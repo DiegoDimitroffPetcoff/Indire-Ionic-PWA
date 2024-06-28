@@ -1,10 +1,12 @@
-import { useForm } from "../hooks/useForm";
+import { useForm } from "../../hooks/useForm";
 import { Content } from "./Content";
+import { Introduction } from "./Introduction";
 import { Section } from "./Section";
 
 export function Project() {
   const { handleChange, handleSubmite, addContent, addSection, project } =
     useForm();
+
   return (
     <form
       onSubmit={handleSubmite}
@@ -14,16 +16,7 @@ export function Project() {
         project.map((project, projectId) => {
           return (
             <div key={projectId}>
-              <input
-                value={project.title}
-                placeholder="Title"
-                onChange={(e) => handleChange(e, projectId, null, "title")}
-              />
-              <input
-                value={project.img}
-                placeholder="img"
-                onChange={(e) => handleChange(e, projectId, null, "img")}
-              />
+              <Introduction project={project} projectId={projectId} />
               <Content
                 project={project}
                 projectId={projectId}
