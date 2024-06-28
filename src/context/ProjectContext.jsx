@@ -1,21 +1,31 @@
 import { createContext, useState } from "react";
 
 export const ProjectContext = createContext();
+
 const INITIAL_STATE = [
   {
-    title: "",
-    content: [],
-    img: "",
-    section: [],
+    introduction: {
+      title: "",
+      sub_title: "",
+      main_img_url: "",
+      address: "",
+      project_number: "",
+      date: "",
+      version: "",
+    },
   },
   {
-    title: "",
-    content: [],
-    img: "",
-    section: [],
+    modules: [
+      {
+        content: [],
+        img: "",
+        title: "",
+        sections: [],
+        budget: [],
+      },
+    ],
   },
 ];
-
 export const PorjectProvider = ({ children }) => {
   const [project, setProject] = useState(() => {
     const projectStorage = window.localStorage.getItem("data");
@@ -26,12 +36,43 @@ export const PorjectProvider = ({ children }) => {
     return INITIAL_STATE;
   });
 
-  function handleChange(e, moduleId, contentId, field) {
-    console.log("handle desde contex");
-    const value = e.target.value;
+  function handleChangeIntroduction(e, field) {
     const newProject = [...project];
-    if (field === "title" || field === "img") {
-      newProject[moduleId][field] = value;
+    if (
+      field === "title" ||
+      field === "sub_title" ||
+      field === "address" ||
+      field === "project_number" ||
+      field === "date" ||
+      field === "version"
+    ) {
+      const value = e.target.value;
+      newProject[0].introduction[field] = value;
+      setProject(newProject);
+      window.localStorage.setItem("data", JSON.stringify(newProject));
+    } else if (field === "main_img_url") {
+      const value = e.target.files[0];
+      newProject[0].introduction[field] = value;
+
+      if (value) {
+        // Crear una URL de vista previa usando FileReader
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          setProject(reader.result);
+        };
+        reader.readAsDataURL(file);
+        /*   setProject(newProject); */
+        window.localStorage.setItem("data", JSON.stringify(newProject));
+      }
+    }
+  }
+  function handleChange(e, moduleId, contentId, field) {
+    const value = e.target.value;
+
+    const newProject = [...project];
+    if (field === "title" || field === "sub_title") {
+      newProject[moduleId].introduction[field] = value;
+
       setProject(newProject);
       window.localStorage.setItem("data", JSON.stringify(newProject));
     } else if ("contentSubtitle" === field || "contentSubcontent" === field) {
@@ -57,9 +98,13 @@ export const PorjectProvider = ({ children }) => {
 
     console.log(project);
   }
-  function addContent(e, moduleId) {
+  function addContent( moduleId) {
     const newProject = [...project];
-    newProject[moduleId].content.push({
+ 
+    console.log(newProject[1]);
+    console.log(moduleId);
+    console.log(newProject[1].modules[moduleId].content);
+    newProject[1].modules[moduleId].content.push({
       contentSubtitle: "",
       contentSubcontent: "",
     });
@@ -87,6 +132,7 @@ export const PorjectProvider = ({ children }) => {
         project,
         addSection,
         setProject,
+        handleChangeIntroduction,
       }}
     >
       {children}
