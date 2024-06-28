@@ -7,7 +7,14 @@ export function Introduction() {
   const projectContent = project[0].introduction || [];
 
   return (
-    <>
+    <div
+      style={{
+        border: "solid white 3px",
+        margin: "30px",
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
       <input
         value={projectContent.title}
         placeholder="Title"
@@ -54,6 +61,6 @@ export function Introduction() {
         placeholder="version"
         onChange={(e) => handleChangeIntroduction(e, "version")}
       />
-    </>
+    </div>
   );
 }

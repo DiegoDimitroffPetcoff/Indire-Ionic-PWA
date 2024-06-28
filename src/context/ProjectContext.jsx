@@ -68,17 +68,14 @@ export const PorjectProvider = ({ children }) => {
   }
   function handleChange(e, moduleId, contentId, field) {
     const value = e.target.value;
-
     const newProject = [...project];
     if (field === "title" || field === "sub_title") {
       newProject[moduleId].introduction[field] = value;
-
       setProject(newProject);
       window.localStorage.setItem("data", JSON.stringify(newProject));
     } else if ("contentSubtitle" === field || "contentSubcontent" === field) {
       newProject[moduleId].content[contentId][field] = value;
       window.localStorage.setItem("data", JSON.stringify(newProject));
-
       setProject(newProject);
     } else if (
       "sectionTitle" === field ||
@@ -87,7 +84,6 @@ export const PorjectProvider = ({ children }) => {
     ) {
       newProject[moduleId].section[contentId][field] = value;
       window.localStorage.setItem("data", JSON.stringify(newProject));
-
       setProject(newProject);
     }
   }
@@ -95,26 +91,21 @@ export const PorjectProvider = ({ children }) => {
   function handleSubmite(e) {
     e.preventDefault();
     window.localStorage.setItem("data", JSON.stringify(project));
-
-    console.log(project);
   }
-  function addContent( moduleId) {
+  function addContent(moduleId) {
     const newProject = [...project];
- 
-    console.log(newProject[1]);
-    console.log(moduleId);
-    console.log(newProject[1].modules[moduleId].content);
     newProject[1].modules[moduleId].content.push({
       contentSubtitle: "",
       contentSubcontent: "",
     });
+    console.log(newProject);
     setProject(newProject);
     window.localStorage.setItem("data", JSON.stringify(newProject));
   }
 
   function addSection(e, moduleId) {
     const newProject = [...project];
-    newProject[moduleId].section.push({
+    newProject[1].modules[moduleId].content.push({
       title: "",
       content: [],
       img: "",
