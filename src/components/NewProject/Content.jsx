@@ -1,8 +1,14 @@
-export function Content({ project, projectId, handleChange }) {
+import { useContext } from "react";
+import { ProjectContext } from "../../context/ProjectContext";
+export function Content({ projectId }) {
+  const { project, handleChange } = useContext(ProjectContext);
+  const projectContent = project[projectId]?.content || [];
+
   return (
     <>
-      {project.content &&
-        project.content.map((content, contentId) => {
+       {projectContent.length > 0 &&
+        projectContent.map((content, contentId) => {
+          console.log(content);
           return (
             <div key={contentId}>
               <textarea

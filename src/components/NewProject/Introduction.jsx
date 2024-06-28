@@ -1,13 +1,19 @@
-export function Introduction({ project, projectId }) {
+import { useContext } from "react";
+import { ProjectContext } from "../../context/ProjectContext";
+
+export function Introduction({ projectId }) {
+  const { project, handleChange } = useContext(ProjectContext);
+
+  const projectContent = project[projectId]|| [];
   return (
     <>
       <input
-        value={project.title}
+        value={projectContent.title}
         placeholder="Title"
         onChange={(e) => handleChange(e, projectId, null, "title")}
       />
       <input
-        value={project.img}
+        value={projectContent.img}
         placeholder="img"
         onChange={(e) => handleChange(e, projectId, null, "img")}
       />

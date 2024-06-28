@@ -1,11 +1,12 @@
-import { useForm } from "../../hooks/useForm";
+import { useContext } from "react";
 import { Content } from "./Content";
 import { Introduction } from "./Introduction";
 import { Section } from "./Section";
+import { ProjectContext } from "../../context/ProjectContext";
 
 export function Project() {
-  const { handleChange, handleSubmite, addContent, addSection, project } =
-    useForm();
+  const { handleSubmite, addContent, addSection, project } =
+    useContext(ProjectContext);
 
   return (
     <form
@@ -13,20 +14,12 @@ export function Project() {
       style={{ display: "flex", flexDirection: "column" }}
     >
       {project &&
-        project.map((project, projectId) => {
+        project.map((_, projectId) => {
           return (
             <div key={projectId}>
-              <Introduction project={project} projectId={projectId} />
-              <Content
-                project={project}
-                projectId={projectId}
-                handleChange={handleChange}
-              />
-              <Section
-                project={project}
-                projectId={projectId}
-                handleChange={handleChange}
-              />
+              <Introduction projectId={projectId} />
+              <Content projectId={projectId} />
+              <Section projectId={projectId} />
               <button onClick={(e) => addContent(e, projectId, null)}>
                 Add Content
               </button>

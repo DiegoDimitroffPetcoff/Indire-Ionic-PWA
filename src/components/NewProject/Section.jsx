@@ -1,8 +1,12 @@
-export function Section({ project, projectId, handleChange }) {
+import { useContext } from "react";
+import { ProjectContext } from "../../context/ProjectContext";
+export function Section({ projectId }) {
+  const { project, handleChange } = useContext(ProjectContext);
+  const projectContent = project[projectId]?.section || [];
   return (
     <>
-      {project.section &&
-        project.section.map((content, contentId) => {
+      {projectContent &&
+        projectContent.map((content, contentId) => {
           return (
             <div key={contentId}>
               Section
@@ -20,7 +24,7 @@ export function Section({ project, projectId, handleChange }) {
                   handleChange(e, projectId, contentId, "contentSubcontent")
                 }
               />
-                            <textarea
+              <textarea
                 value={content.contentSubcontent}
                 placeholder="sectionBudget"
                 onChange={(e) =>
