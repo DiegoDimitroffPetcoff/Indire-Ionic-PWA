@@ -1,54 +1,44 @@
 import { useContext } from "react";
+import { IonInput, IonIcon, IonTextarea, IonButton } from "@ionic/react";
+import { logoApple, documents } from "ionicons/icons";
+
 import { ProjectContext } from "../../context/ProjectContext";
-export function Modules() {
-  const { project, handleChange, addContent } = useContext(ProjectContext);
-  const modules = project[1].modules || [];
+import { Section } from "./Section";
+export function Modules({ module, moduleId }) {
+  const { addSection, handleChangeModules } = useContext(ProjectContext);
 
   return (
-    <>
-      {modules.length > 0 &&
-        modules.map((module, contentId) => {
-          return (
-            <div
-              key={contentId}
-              style={{
-                border: "solid white 3px",
-                margin: "30px",
-                display: "flex",
-                flexDirection: "column",
-              }}
-            >
-              <input
-                value={module.title}
-                placeholder="Title"
-                onChange={(e) => handleChangeIntroduction(e, "title")}
-              />
-              <input
-                value={module.img}
-                placeholder="img"
-                onChange={(e) => handleChangeIntroduction(e, "img")}
-              />
+    <div className="moduleContent" key={moduleId}>
+      <div className="moduleTitleContainer">
+        <h2>{module.module}</h2>
+        <IonButton color="secondary">
+          <IonIcon slot="start" ios={logoApple} md={documents}></IonIcon>
+          Template 1
+        </IonButton>
+      </div>
 
-              {module.content.map((item, id) => {
-                return (
-                  <>
-                    <textarea
-                      value={item.contentSubtitle}
-                      placeholder="Subtitle"
-                      onChange={(e) => handleChange(e, id, "contentSubtitle")}
-                    />
-                    <textarea
-                      value={item.contentSubcontent}
-                      placeholder="contentSubcontent"
-                      onChange={(e) => handleChange(e, id, "contentSubcontent")}
-                    />
-                  </>
-                );
-              })}
-              <button onClick={() => addContent(contentId)}>Add Section</button>
-            </div>
-          );
-        })}
-    </>
+      <IonInput
+        label="Title"
+        labelPlacement="floating"
+        fill="outline"
+        value={module.title}
+        onIonChange={(e) => handleChangeModules(e, moduleId, "title")}
+      />
+      <IonTextarea
+        label="Description"
+        labelPlacement="floating"
+        fill="outline"
+        rows={10}
+        value={module.description}
+        onIonChange={(e) => handleChangeModules(e, moduleId, "description")}
+      />
+      {module.sections &&  module.sections.map((section, sectionId) => {
+        return <Section section={section} sectionId={sectionId} key={sectionId} moduleId={moduleId} />;
+      })}
+
+      <IonButton onClick={() => addSection(moduleId)} expand="full">
+        Add Section
+      </IonButton>
+    </div>
   );
 }

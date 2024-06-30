@@ -27,7 +27,8 @@ import {
   warningSharp,
   atCircleOutline,
   addCircleOutline,
-  listOutline
+  listOutline,
+  documents
 } from "ionicons/icons";
 import "./Menu.css";
 
@@ -50,13 +51,13 @@ const appPages: AppPage[] = [
     url: "/project/listProjects",
     iosIcon: listOutline,
     mdIcon: listOutline,
-  } /* ,
+  }  ,
   {
-    title: 'Inbox',
-    url: '/folder/Inbox',
-    iosIcon: mailOutline,
-    mdIcon: mailSharp
-  },
+    title: 'Templates',
+    url: '/templates',
+    iosIcon: documents,
+    mdIcon: documents
+  }/*,
   {
     title: 'Outbox',
     url: '/folder/Outbox',

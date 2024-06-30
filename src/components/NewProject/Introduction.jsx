@@ -1,65 +1,66 @@
 import { useContext } from "react";
 import { ProjectContext } from "../../context/ProjectContext";
-
+import "./Project.css";
+import { IonInput, IonItem, IonList } from "@ionic/react";
 export function Introduction() {
   const { project, handleChangeIntroduction } = useContext(ProjectContext);
 
   const projectContent = project[0].introduction || [];
 
   return (
-    <div
-      style={{
-        border: "solid white 3px",
-        margin: "30px",
-        display: "flex",
-        flexDirection: "column",
-      }}
-    >
-      <input
+    <div className="introductionContent">
+      <IonInput
+        label="Title"
+        labelPlacement="floating"
         value={projectContent.title}
-        placeholder="Title"
-        onChange={(e) => handleChangeIntroduction(e, "title")}
+        onIonChange={(e) => handleChangeIntroduction(e, "title")}
       />
-      <input
+      <IonInput
         value={projectContent.sub_title}
-        placeholder="sub_title"
-        onChange={(e) => handleChangeIntroduction(e, "sub_title")}
+        label="Subtitle"
+        labelPlacement="floating"
+        onIonChange={(e) => handleChangeIntroduction(e, "sub_title")}
       />
 
-      <input
+      <IonInput
         type="file"
         alt="Main Image on Project"
         accept="image/*"
-        placeholder="main_img_url"
-        onChange={(e) => handleChangeIntroduction(e, "main_img_url")}
+        label="Image"
+        labelPlacement="floating"
+        onIonChange={(e) => handleChangeIntroduction(e, "main_img_url")}
       />
       <img
         src={projectContent.main_img_url}
         alt="Vista previa"
         style={{ maxWidth: "100%", height: "auto" }}
       />
-      <input
+      <IonInput
         value={projectContent.address}
-        placeholder="address"
-        onChange={(e) => handleChangeIntroduction(e, "address")}
+        label="Adress"
+        labelPlacement="floating"
+        onIonChange={(e) => handleChangeIntroduction(e, "address")}
       />
-      <input
+      <IonInput
         type="number"
         value={projectContent.project_number}
-        placeholder="project_number"
-        onChange={(e) => handleChangeIntroduction(e, "project_number")}
+        label="Project Number"
+        labelPlacement="floating"
+        onIonChange={(e) => handleChangeIntroduction(e, "project_number")}
       />
-      <input
+      <IonInput
         type="date"
         value={projectContent.date}
-        placeholder="date"
-        onChange={(e) => handleChangeIntroduction(e, "date")}
+        label="Date"
+        labelPlacement="floating"
+        onIonChange={(e) => handleChangeIntroduction(e, "date")}
       />
-      <input
+      <IonInput
         type="number"
         value={projectContent.version}
-        placeholder="version"
-        onChange={(e) => handleChangeIntroduction(e, "version")}
+        label="Version"
+        labelPlacement="floating"
+        onIonChange={(e) => handleChangeIntroduction(e, "version")}
       />
     </div>
   );
