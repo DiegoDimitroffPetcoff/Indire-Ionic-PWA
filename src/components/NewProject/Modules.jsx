@@ -32,9 +32,16 @@ export function Modules({ module, moduleId }) {
         value={module.description}
         onIonChange={(e) => handleChangeModules(e, moduleId, "description")}
       />
-      {module.sections &&  module.sections.map((section, sectionId) => {
-        return <Section section={section} sectionId={sectionId} key={sectionId} moduleId={moduleId} />;
-      })}
+      {module.sections &&
+        module.sections.map((_, sectionId) => {
+          return (
+            <Section
+              sectionId={sectionId}
+              key={sectionId}
+              moduleId={moduleId}
+            />
+          );
+        })}
 
       <IonButton onClick={() => addSection(moduleId)} expand="full">
         Add Section

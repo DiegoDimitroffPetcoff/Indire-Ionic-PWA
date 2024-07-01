@@ -1,62 +1,39 @@
 import { useContext } from "react";
 import { ProjectContext } from "../../context/ProjectContext";
-import { IonInput, IonTextarea, IonButton } from "@ionic/react";
-export function Section({ section, moduleId, sectionId }) {
-  const { handleChangeModules, addSection, delenteSection } =
-    useContext(ProjectContext);
+import { IonInput, IonTextarea } from "@ionic/react";
+import { TaskBar } from "./TaskBar/Taskbar";
+export function Section({ moduleId, sectionId }) {
+  const { project, handleChangeSection } = useContext(ProjectContext);
+
+  let content = project[1].modules[moduleId].sections[sectionId].content;
 
   return (
     <>
-      <div style={{ background: "#f6d5a8", margin: "10px" }}>
-        <IonInput
-          label="Title"
-          labelPlacement="floating"
-          fill="outline"
-          rows={10}
-          value={section.content[sectionId]?.title}
-          onIonChange={(e) => handleChangeModules(e, sectionId, "description")}
-        />
-        <IonTextarea
-          label="Descripcion"
-          labelPlacement="floating"
-          fill="outline"
-          rows={5}
-          value={section.content[sectionId]?.title}
-          onIonChange={(e) => handleChangeModules(e, sectionId, "description")}
-        />
-        <h1>Barra de tareas</h1>
-        <div className="tools">
-          <p>IMAGENES</p>
+      {content.map((content, contentId) => (
+        <div key={contentId} style={{ background: "#f6d5a8", margin: "10px" }}>
           <IonInput
-            label="Budget"
+            label="Title"
             labelPlacement="floating"
             fill="outline"
             rows={10}
-            value={section.content[sectionId]?.title}
+            value={content.title}
             onIonChange={(e) =>
-              handleChangeModules(e, sectionId, "description")
+              handleChangeSection(e, moduleId, sectionId, "title")
             }
           />
-          {section.sections.map((section, id) => {
-            return <Section section={section} id={id} key={id} />;
-          })}
-
-          <IonButton
-            color="danger"
-            onClick={() => delenteSection(moduleId, sectionId)}
-            expand="full"
-          >
-            Delete Section
-          </IonButton>
-          <IonButton
-            color="secondary"
-            onClick={() => addSection(sectionId)}
-            expand="full"
-          >
-            Add Sub Section
-          </IonButton>
+          <IonTextarea
+            label="Descripcion"
+            labelPlacement="floating"
+            fill="outline"
+            rows={5}
+            value={content.description}
+            onIonChange={(e) =>
+              handleChangeSection(e, moduleId, sectionId, "description")
+            }
+          />
+          <TaskBar moduleId={moduleId} sectionId={sectionId} />
         </div>
-      </div>
+      ))}
     </>
   );
 }

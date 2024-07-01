@@ -63,7 +63,7 @@ export const PorjectProvider = ({ children }) => {
   function handleChangeModules(e, moduleId, field) {
     const value = e.detail.value;
     const newProject = [...project];
-    console.log(newProject);
+
     if (field === "title" || field === "description") {
       newProject[1].modules[moduleId][field] = value;
       setProject(newProject);
@@ -76,13 +76,17 @@ export const PorjectProvider = ({ children }) => {
     window.localStorage.setItem("data", JSON.stringify(project));
     console.log(project);
   }
-  function addContent(moduleId) {
+  function handleChangeSection(e, moduleId, sectionId, field) {
+    const value = e.detail ? e.detail.value : e.target.value;
     const newProject = [...project];
-    newProject[1].modules[moduleId].content.push({
-      contentSubtitle: "",
-      contentSubcontent: "",
-    });
-    console.log(newProject);
+    const section = newProject[1].modules[moduleId].sections[sectionId];
+
+    if (["title", "description"].includes(field)) {
+      section.content[0][field] = value;
+    } else {
+      section[field] = value;
+    }
+
     setProject(newProject);
     window.localStorage.setItem("data", JSON.stringify(newProject));
   }
@@ -98,6 +102,7 @@ export const PorjectProvider = ({ children }) => {
     setProject(newProject);
     window.localStorage.setItem("data", JSON.stringify(newProject));
   }
+
   function delenteSection(moduleId, sectionId) {
     const newProject = [...project];
     const sectionOnStorage = newProject[1].modules[moduleId].sections;
@@ -113,7 +118,7 @@ export const PorjectProvider = ({ children }) => {
       value={{
         handleChangeModules,
         handleSubmite,
-        addContent,
+        handleChangeSection,
         project,
         addSection,
         setProject,
