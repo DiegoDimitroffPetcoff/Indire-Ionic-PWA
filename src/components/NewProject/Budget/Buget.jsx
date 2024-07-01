@@ -47,21 +47,17 @@ export const Budget = ({ moduleId, sectionId, idBudget, budget }) => {
         }
       />
       <IonInput
-        disabled={true}
+      disabled={true}
         label="Total"
         labelPlacement="floating"
         fill="outline"
         rows={10}
         value={budget.qtd * budget.un}
         onIonChange={(e) =>
-          handleBudget(e, moduleId, sectionId, idBudget, "total")
+          handleBudget(e, moduleId, sectionId, idBudget, "uniteValue")
         }
       />
-      <IonButton
-        color="danger"
-        onClick={() => delenteBudget(moduleId, sectionId, idBudget)}
-        expand="full"
-      >
+      <IonButton color="danger" onClick={() => delenteBudget(moduleId, sectionId, idBudget)} expand="full">
         Delete Budget
       </IonButton>
     </div>
