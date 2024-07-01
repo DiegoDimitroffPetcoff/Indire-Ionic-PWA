@@ -4,27 +4,23 @@ import { IonInput, IonButton } from "@ionic/react";
 import { Section } from "../Section";
 
 export function TaskBar({ moduleId, sectionId }) {
-  const { handleChangeModules, addSection, delenteSection, project } =
-    useContext(ProjectContext);
+  const { addSection, delenteSection, addBudget } = useContext(ProjectContext);
 
   return (
     <>
-      {" "}
-      <h1>Barra de tareas</h1>
       <div className="tools">
-        <p>IMAGENES</p>
-        <IonInput
-          label="Budget"
-          labelPlacement="floating"
-          fill="outline"
-          rows={10}
-          value={""}
-          onIonChange={(e) => handleChangeModules(e, sectionId, "description")}
-        />
-        {/*        {section.sections.map((section, id) => {
-          return <Section section={section} id={id} key={id} />;
-        })} */}
-
+        <IonButton
+          onClick={() => delenteSection(moduleId, sectionId)}
+          expand="full"
+        >
+          Add Images
+        </IonButton>
+        <IonButton
+          onClick={() => addBudget(moduleId, sectionId)}
+          expand="full"
+        >
+          Add Budget
+        </IonButton>
         <IonButton
           color="danger"
           onClick={() => delenteSection(moduleId, sectionId)}

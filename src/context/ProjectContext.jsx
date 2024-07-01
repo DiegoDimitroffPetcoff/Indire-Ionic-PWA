@@ -49,7 +49,6 @@ export const PorjectProvider = ({ children }) => {
       newProject[0].introduction[field] = value;
 
       if (value) {
-        // Crear una URL de vista previa usando FileReader
         const reader = new FileReader();
         reader.onloadend = () => {
           setProject(reader.result);
@@ -61,7 +60,7 @@ export const PorjectProvider = ({ children }) => {
     }
   }
   function handleChangeModules(e, moduleId, field) {
-    const value = e.detail.value;
+    const value = e.detail ? e.detail.value : e.target.value;
     const newProject = [...project];
 
     if (field === "title" || field === "description") {
@@ -80,13 +79,11 @@ export const PorjectProvider = ({ children }) => {
     const value = e.detail ? e.detail.value : e.target.value;
     const newProject = [...project];
     const section = newProject[1].modules[moduleId].sections[sectionId];
-
     if (["title", "description"].includes(field)) {
       section.content[0][field] = value;
     } else {
       section[field] = value;
     }
-
     setProject(newProject);
     window.localStorage.setItem("data", JSON.stringify(newProject));
   }
@@ -102,7 +99,38 @@ export const PorjectProvider = ({ children }) => {
     setProject(newProject);
     window.localStorage.setItem("data", JSON.stringify(newProject));
   }
+  function addBudget(moduleId, sectionId) {
+    const newProject = [...project];
+    newProject[1].modules[moduleId].sections[sectionId].budget.push({
+      description: "",
+      amount: "",
+      un: "",
+      qtd: "",
+      uniteValue: "",
+    });
+    setProject(newProject);
+    window.localStorage.setItem("data", JSON.stringify(newProject));
+  }
 
+  function handleBudget(e, moduleId, sectionId, idBudget, field) {
+    const value = e.detail ? e.detail.value : e.target.value;
+    const newProject = [...project];
+    newProject[1].modules[moduleId].sections[sectionId].budget[idBudget][
+      field
+    ] = value;
+    setProject(newProject);
+    window.localStorage.setItem("data", JSON.stringify(newProject));
+  }
+  function delenteBudget(moduleId, sectionId) {
+    const newProject = [...project];
+    const budgetOnStorage = newProject[1].modules[moduleId].sections[sectionId].budget;
+    const sectionFiltered = budgetOnStorage.filter(
+      (_, id) => id !== sectionId
+    );
+    newProject[1].modules[moduleId].sections[sectionId].budget = sectionFiltered;
+    setProject(newProject);
+    window.localStorage.setItem("data", JSON.stringify(newProject));
+  }
   function delenteSection(moduleId, sectionId) {
     const newProject = [...project];
     const sectionOnStorage = newProject[1].modules[moduleId].sections;
@@ -124,6 +152,9 @@ export const PorjectProvider = ({ children }) => {
         setProject,
         handleChangeIntroduction,
         delenteSection,
+        addBudget,
+        handleBudget,
+        delenteBudget
       }}
     >
       {children}
