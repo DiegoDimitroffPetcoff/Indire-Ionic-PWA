@@ -9,6 +9,8 @@ export function Section({ moduleId, sectionId }) {
   let section = project[1].modules[moduleId].sections[sectionId];
   const budget = project[1].modules[moduleId].sections[sectionId].budget;
   let updateSection = sectionId;
+  console.log(section.img);
+
   return (
     <>
       <IonLabel>
@@ -38,6 +40,16 @@ export function Section({ moduleId, sectionId }) {
               handleChangeSection(e, moduleId, sectionId, "description")
             }
           />
+
+          {section.img &&
+            section.img.map((img, idx) => (
+              <img
+                src={img.src}
+                alt={`imagen-`}
+                key={idx}
+                style={{ maxWidth: "100px", margin: "10px" }}
+              />
+            ))}
           {budget.map((budget, idBudget) => {
             return (
               <Budget

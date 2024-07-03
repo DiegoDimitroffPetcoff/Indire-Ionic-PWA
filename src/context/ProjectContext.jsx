@@ -73,26 +73,44 @@ export const PorjectProvider = ({ children }) => {
       const updateProject = [...prevProject];
       updateProject[1].modules[moduleId].sections.push({
         content: [{ title: "", description: "" }],
-        img: "",
+        img: null,
         budget: [],
         sections: [],
       });
-      console.log(updateProject[1].modules[moduleId].sections);
+
       window.localStorage.setItem("data", JSON.stringify(updateProject));
       return updateProject;
     });
   }
   function handleChangeSection(e, moduleId, sectionId, field) {
-    const value = e.detail ? e.detail.value : e.target.value;
+    const value = e.detail
+      ? e.detail.value
+      : e.target.files
+      ? e.target.files
+      : e.target.value;
+
     setProject((prevProject) => {
       const updateProject = [...prevProject];
       const section = updateProject[1].modules[moduleId].sections[sectionId];
       if (["title", "description"].includes(field)) {
         section.content[0][field] = value;
+      } else if (field === "img") {
+       
+        const files = Array.from(value);
+       
+        const newImages = files.map((file) => ({
+          name: file.name,
+          src: URL.createObjectURL(file),
+        }));
+
+        section[field] = newImages;
+        console.log(section);
       } else {
-        section[field] = value;
+        console.log("no se agrego string");
       }
-      window.localStorage.setItem("data", JSON.stringify(updateProject));
+
+      window.localStorage.setItem("data", JSON.stringify(updateProject))
+
       return updateProject;
     });
   }

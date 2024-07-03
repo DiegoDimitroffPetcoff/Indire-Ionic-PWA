@@ -1,23 +1,24 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { ProjectContext } from "../../../../context/ProjectContext";
 import { IonInput, IonButton } from "@ionic/react";
 
 export function TaskBar({ moduleId, sectionId }) {
-  const { addSection, delenteSection, addBudget } = useContext(ProjectContext);
+  const { addSection, delenteSection, addBudget, handleChangeSection } =
+    useContext(ProjectContext);
 
   return (
     <>
       <div className="tools">
-        <IonButton
-          onClick={() => delenteSection(moduleId, sectionId)}
+        <input
+          type="file"
+          accept="image/*"
+          multiple
+          onChange={(e) => handleChangeSection(e,moduleId, sectionId, "img")}
           expand="full"
-        >
-          Add Images
-        </IonButton>
-        <IonButton
-          onClick={() => addBudget(moduleId, sectionId)}
-          expand="full"
-        >
+        />
+
+
+        <IonButton onClick={() => addBudget(moduleId, sectionId)} expand="full">
           Add Budget
         </IonButton>
         <IonButton
