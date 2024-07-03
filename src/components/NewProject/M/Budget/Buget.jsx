@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { ProjectContext } from "../../../context/ProjectContext";
+import { ProjectContext } from "../../../../context/ProjectContext";
 import { IonInput, IonButton } from "@ionic/react";
 
 export const Budget = ({ moduleId, sectionId, idBudget, budget }) => {

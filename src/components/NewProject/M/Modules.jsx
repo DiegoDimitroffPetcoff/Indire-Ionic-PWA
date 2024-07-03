@@ -2,8 +2,8 @@ import { useContext } from "react";
 import { IonInput, IonIcon, IonTextarea, IonButton } from "@ionic/react";
 import { logoApple, documents } from "ionicons/icons";
 
-import { ProjectContext } from "../../context/ProjectContext";
-import { Section } from "./Section";
+import { ProjectContext } from "../../../context/ProjectContext";
+import { Section } from "./S/Section";
 export function Modules({ module, moduleId }) {
   const { addSection, handleChangeModules } = useContext(ProjectContext);
 

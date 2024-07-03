@@ -1,7 +1,7 @@
 import { useContext } from "react";
-import { ProjectContext } from "../../context/ProjectContext";
-import "./Project.css";
-import { IonInput, IonItem, IonList } from "@ionic/react";
+import { ProjectContext } from "../../../context/ProjectContext";
+import "../Project.css";
+import { IonInput} from "@ionic/react";
 export function Introduction() {
   const { project, handleChangeIntroduction } = useContext(ProjectContext);
 

@@ -1,7 +1,6 @@
 import { useContext } from "react";
-import { ProjectContext } from "../../../context/ProjectContext";
+import { ProjectContext } from "../../../../context/ProjectContext";
 import { IonInput, IonButton } from "@ionic/react";
-import { Section } from "../Section";
 
 export function TaskBar({ moduleId, sectionId }) {
   const { addSection, delenteSection, addBudget } = useContext(ProjectContext);

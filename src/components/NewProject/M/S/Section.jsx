@@ -1,18 +1,22 @@
 import { useContext } from "react";
-import { ProjectContext } from "../../context/ProjectContext";
-import { IonInput, IonTextarea } from "@ionic/react";
-import { TaskBar } from "./TaskBar/Taskbar";
-import { Budget } from "./Budget/Buget";
+import { ProjectContext } from "../../../../context/ProjectContext";
+import { IonInput, IonTextarea, IonLabel } from "@ionic/react";
+import { TaskBar } from "../TaskBar/Taskbar";
+import { Budget } from "../Budget/Buget";
 export function Section({ moduleId, sectionId }) {
   const { project, handleChangeSection } = useContext(ProjectContext);
 
-  let content = project[1].modules[moduleId].sections[sectionId].content;
+  let section = project[1].modules[moduleId].sections[sectionId];
   const budget = project[1].modules[moduleId].sections[sectionId].budget;
-
-
+  let updateSection = sectionId;
   return (
     <>
-      {content.map((content, contentId) => (
+      <IonLabel>
+        {" "}
+        <h3>Section: #{++updateSection}</h3>
+      </IonLabel>
+
+      {section.content.map((content, contentId) => (
         <div key={contentId} style={{ background: "#f6d5a8", margin: "10px" }}>
           <IonInput
             label="Title"
@@ -35,7 +39,15 @@ export function Section({ moduleId, sectionId }) {
             }
           />
           {budget.map((budget, idBudget) => {
-            return <Budget moduleId={moduleId} sectionId={sectionId} idBudget={idBudget} budget={budget} key={idBudget} />;
+            return (
+              <Budget
+                moduleId={moduleId}
+                sectionId={sectionId}
+                idBudget={idBudget}
+                budget={budget}
+                key={idBudget}
+              />
+            );
           })}
 
           <TaskBar moduleId={moduleId} sectionId={sectionId} />

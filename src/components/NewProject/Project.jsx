@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { Modules } from "./Modules";
-import { Introduction } from "./Introduction";
+import { Modules } from "./M/Modules";
+import { Introduction } from "./I/Introduction";
 
 import { ProjectContext } from "../../context/ProjectContext";
 import "./Project.css";
@@ -12,7 +12,7 @@ export function Project() {
 
   return (
     <form onSubmit={handleSubmite}>
-    {/*   <Introduction /> */}
+     <Introduction /> 
       {modules.map((module, moduleId) => {
         return <Modules module={module} moduleId={moduleId} key={moduleId} />;
       })}

@@ -16,8 +16,8 @@ const INITIAL_STATE = [
   },
   {
     modules: [
-      { module: "Primer Modulo", description: "", title: "", sections: [] },
-      { module: "Tratativas", description: "", title: "", sections: [] },
+      { module: " 6- Primer Modulo", description: "", title: "", sections: [] },
+      /*       { module: "Tratativas", description: "", title: "", sections: [] }, */
     ],
   },
 ];
@@ -29,36 +29,32 @@ export const PorjectProvider = ({ children }) => {
     }
     return INITIAL_STATE;
   });
-
   function handleChangeIntroduction(e, field) {
-    const newProject = [...project];
-    if (
-      field === "title" ||
-      field === "sub_title" ||
-      field === "address" ||
-      field === "project_number" ||
-      field === "date" ||
-      field === "version"
-    ) {
-      const value = e.detail.value;
-      newProject[0].introduction[field] = value;
-      setProject(newProject);
-      window.localStorage.setItem("data", JSON.stringify(newProject));
-    } else if (field === "main_img_url") {
-      const value = e.target.files[0];
-      newProject[0].introduction[field] = value;
+    setProject((prevProject) => {
+      const newProject = [...prevProject];
+      if (
+        field === "title" ||
+        field === "sub_title" ||
+        field === "address" ||
+        field === "project_number" ||
+        field === "date" ||
+        field === "version"
+      ) {
+        const value = e.detail.value;
+        newProject[0].introduction[field] = value;
 
-      if (value) {
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          setProject(reader.result);
-        };
-        reader.readAsDataURL(file);
-        /*   setProject(newProject); */
-        window.localStorage.setItem("data", JSON.stringify(newProject));
+        /* window.localStorage.setItem("data", JSON.stringify(newProject)); */
+        return newProject;
+      } else if (field === "main_img_url") {
+        const value = e.target.files[0];
+        newProject[0].introduction[field] = value;
+        console.log(newProject);
       }
-    }
+    });
   }
+
+  /* ----------------MODULE---------------- */
+
   function handleChangeModules(e, moduleId, field) {
     const value = e.detail ? e.detail.value : e.target.value;
     const newProject = [...project];
@@ -66,70 +62,39 @@ export const PorjectProvider = ({ children }) => {
     if (field === "title" || field === "description") {
       newProject[1].modules[moduleId][field] = value;
       setProject(newProject);
-      window.localStorage.setItem("data", JSON.stringify(newProject));
+      /* window.localStorage.setItem("data", JSON.stringify(newProject)); */
     }
   }
 
-  function handleSubmite(e) {
-    e.preventDefault();
-    window.localStorage.setItem("data", JSON.stringify(project));
-    console.log(project);
+  /* ----------------SECTION---------------- */
+
+  function addSection(moduleId) {
+    setProject((prevProject) => {
+      const updateProject = [...prevProject];
+      updateProject[1].modules[moduleId].sections.push({
+        content: [{ title: "", description: "" }],
+        img: "",
+        budget: [],
+        sections: [],
+      });
+      console.log(updateProject[1].modules[moduleId].sections);
+      window.localStorage.setItem("data", JSON.stringify(updateProject));
+      return updateProject;
+    });
   }
   function handleChangeSection(e, moduleId, sectionId, field) {
     const value = e.detail ? e.detail.value : e.target.value;
-    const newProject = [...project];
-    const section = newProject[1].modules[moduleId].sections[sectionId];
-    if (["title", "description"].includes(field)) {
-      section.content[0][field] = value;
-    } else {
-      section[field] = value;
-    }
-    setProject(newProject);
-    window.localStorage.setItem("data", JSON.stringify(newProject));
-  }
-
-  function addSection(moduleId) {
-    const newProject = [...project];
-    newProject[1].modules[moduleId].sections.push({
-      content: [{ title: "", description: "" }],
-      img: "",
-      budget: [],
-      sections: [],
+    setProject((prevProject) => {
+      const updateProject = [...prevProject];
+      const section = updateProject[1].modules[moduleId].sections[sectionId];
+      if (["title", "description"].includes(field)) {
+        section.content[0][field] = value;
+      } else {
+        section[field] = value;
+      }
+      window.localStorage.setItem("data", JSON.stringify(updateProject));
+      return updateProject;
     });
-    setProject(newProject);
-    window.localStorage.setItem("data", JSON.stringify(newProject));
-  }
-  function addBudget(moduleId, sectionId) {
-    const newProject = [...project];
-    newProject[1].modules[moduleId].sections[sectionId].budget.push({
-      description: "",
-      amount: "",
-      un: "",
-      qtd: "",
-      uniteValue: "",
-    });
-    setProject(newProject);
-    window.localStorage.setItem("data", JSON.stringify(newProject));
-  }
-
-  function handleBudget(e, moduleId, sectionId, idBudget, field) {
-    const value = e.detail ? e.detail.value : e.target.value;
-    const newProject = [...project];
-    newProject[1].modules[moduleId].sections[sectionId].budget[idBudget][
-      field
-    ] = value;
-    setProject(newProject);
-    window.localStorage.setItem("data", JSON.stringify(newProject));
-  }
-  function delenteBudget(moduleId, sectionId) {
-    const newProject = [...project];
-    const budgetOnStorage = newProject[1].modules[moduleId].sections[sectionId].budget;
-    const sectionFiltered = budgetOnStorage.filter(
-      (_, id) => id !== sectionId
-    );
-    newProject[1].modules[moduleId].sections[sectionId].budget = sectionFiltered;
-    setProject(newProject);
-    window.localStorage.setItem("data", JSON.stringify(newProject));
   }
   function delenteSection(moduleId, sectionId) {
     const newProject = [...project];
@@ -140,6 +105,52 @@ export const PorjectProvider = ({ children }) => {
     newProject[1].modules[moduleId].sections = sectionFiltered;
     setProject(newProject);
     window.localStorage.setItem("data", JSON.stringify(newProject));
+  }
+  function addBudget(moduleId, sectionId) {
+    setProject((prevProject) => {
+      const updateProject = [...prevProject];
+      updateProject[1].modules[moduleId].sections[sectionId].budget.push({
+        description: "",
+        amount: "",
+        un: "",
+        qtd: "",
+        uniteValue: "",
+      });
+      window.localStorage.setItem("data", JSON.stringify(updateProject));
+      return updateProject;
+    });
+  }
+  function handleBudget(e, moduleId, sectionId, idBudget, field) {
+    const value = e.detail ? e.detail.value : e.target.value;
+    setProject((prevProject) => {
+      const updateProject = [...prevProject];
+      updateProject[1].modules[moduleId].sections[sectionId].budget[idBudget][
+        field
+      ] = value;
+      window.localStorage.setItem("data", JSON.stringify(updateProject));
+      return updateProject;
+    });
+  }
+  function delenteBudget(moduleId, sectionId, idBudget) {
+    setProject((prevProject) => {
+      const updateProject = [...prevProject];
+      const budgetOnStorage =
+        updateProject[1].modules[moduleId].sections[sectionId].budget;
+      const sectionFiltered = budgetOnStorage.filter(
+        (_, id) => id !== idBudget
+      );
+      console.log(sectionFiltered);
+      updateProject[1].modules[moduleId].sections[sectionId].budget =
+        sectionFiltered;
+      window.localStorage.setItem("data", JSON.stringify(updateProject));
+      return updateProject;
+    });
+  }
+
+  function handleSubmite(e) {
+    e.preventDefault();
+    window.localStorage.setItem("data", JSON.stringify(project));
+    console.log(project);
   }
   return (
     <ProjectContext.Provider
@@ -154,7 +165,7 @@ export const PorjectProvider = ({ children }) => {
         delenteSection,
         addBudget,
         handleBudget,
-        delenteBudget
+        delenteBudget,
       }}
     >
       {children}
