@@ -2,9 +2,8 @@ import { useContext } from "react";
 import { ProjectContext } from "../../../../context/ProjectContext";
 import { IonButton } from "@ionic/react";
 
-export function TaskBar({ moduleId, sectionId }) {
-  const { addSection, delenteSection, addBudget, handleChangeSection } =
-    useContext(ProjectContext);
+export function TaskBar({ moduleId, sectionId, handle, deleteFunction, add }) {
+  const { addBudget } = useContext(ProjectContext);
 
   return (
     <>
@@ -13,7 +12,7 @@ export function TaskBar({ moduleId, sectionId }) {
           type="file"
           accept="image/*"
           multiple
-          onChange={(e) => handleChangeSection(e, moduleId, sectionId, "img")}
+          onChange={(e) => handle(e, moduleId, sectionId, "img")}
           expand="full"
         />
         <IonButton onClick={() => addBudget(moduleId, sectionId)} expand="full">
@@ -21,14 +20,14 @@ export function TaskBar({ moduleId, sectionId }) {
         </IonButton>
         <IonButton
           color="danger"
-          onClick={() => delenteSection(moduleId, sectionId)}
+          onClick={() => deleteFunction(moduleId, sectionId)}
           expand="full"
         >
           Delete Section
         </IonButton>
         <IonButton
           color="secondary"
-          onClick={() => addSection(moduleId, sectionId)}
+          onClick={() => add(moduleId, sectionId)}
           expand="full"
         >
           Add Sub Section

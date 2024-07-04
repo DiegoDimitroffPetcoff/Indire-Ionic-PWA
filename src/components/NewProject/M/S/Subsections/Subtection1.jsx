@@ -1,38 +1,34 @@
 import { useContext } from "react";
-import { ProjectContext } from "../../../../context/ProjectContext";
+import { Budget } from "../../Budget/Buget";
 import { IonInput, IonTextarea, IonLabel } from "@ionic/react";
-import { TaskBar } from "../TaskBar/Taskbar";
-import { Budget } from "../Budget/Buget";
-import { Subsection1 } from "./Subsections/Subtection1";
-export function Section({ moduleId, sectionId }) {
+import { ProjectContext } from "../../../../../context/ProjectContext";
+import { TaskBar } from "../../TaskBar/Taskbar";
+
+export function Subsection1({ section, moduleId, sectionId }) {
   const {
-    project,
-    handleChangeSection,
+    handleChangeSubSection,
     handleDeleteImage,
     addSubSection,
-    deleteSection,
+    deleteSubSection,
   } = useContext(ProjectContext);
-
-  let section = project[1].modules[moduleId].sections[sectionId];
-
-  let updateSection = sectionId;
+  let sectionCounter = sectionId;
+  let subSectionCounter = sectionId;
 
   return (
     <>
-      <IonLabel>
-        <h3>Section: #{++updateSection}</h3>
-      </IonLabel>
-
-      {section.content.map((content, contentId) => (
-        <div key={contentId} style={{ background: "#f6d5a8", margin: "10px" }}>
+      {section.map((content, contentId) => (
+        <div key={contentId} style={{ background: "red", margin: "10px" }}>
+          <IonLabel>
+            <h3>Section: # {`${sectionCounter}.${++subSectionCounter}`}</h3>
+          </IonLabel>
           <IonInput
             label="Title"
             labelPlacement="floating"
             fill="outline"
             rows={10}
-            value={content.title}
+            value={content.content.title}
             onIonChange={(e) =>
-              handleChangeSection(e, moduleId, sectionId, "title")
+              handleChangeSubSection(e, moduleId, sectionId, "title")
             }
           />
           <IonTextarea
@@ -40,14 +36,14 @@ export function Section({ moduleId, sectionId }) {
             labelPlacement="floating"
             fill="outline"
             rows={5}
-            value={content.description}
+            value={content.content.description}
             onIonChange={(e) =>
-              handleChangeSection(e, moduleId, sectionId, "description")
+              handleChangeSubSection(e, moduleId, sectionId, "description")
             }
           />
 
-          {section.img &&
-            section.img.map((img, idx) => (
+          {content.img &&
+            content.img.map((img, idx) => (
               <img
                 src={img}
                 alt={`imagen-`}
@@ -56,7 +52,7 @@ export function Section({ moduleId, sectionId }) {
                 onClick={() => handleDeleteImage(moduleId, sectionId, idx)}
               />
             ))}
-          {section.budget.map((budget, idBudget) => {
+          {content.budget.map((budget, idBudget) => {
             return (
               <Budget
                 moduleId={moduleId}
@@ -71,14 +67,10 @@ export function Section({ moduleId, sectionId }) {
           <TaskBar
             moduleId={moduleId}
             sectionId={sectionId}
-            handle={handleChangeSection}
-            deleteFunction={deleteSection}
+            handle={handleChangeSubSection}
+            deleteFunction={deleteSubSection}
+            //ACA VA AGREGAR SUB SUB SECTION
             add={addSubSection}
-          />
-          <Subsection1
-            section={section.sections}
-            moduleId={moduleId}
-            sectionId={sectionId}
           />
         </div>
       ))}
