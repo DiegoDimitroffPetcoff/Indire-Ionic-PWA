@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { IonInput, IonIcon, IonTextarea, IonButton } from "@ionic/react";
+import { IonInput, IonIcon, IonTextarea, IonButton,IonAccordion, IonAccordionGroup, IonItem, IonLabel } from "@ionic/react";
 import { logoApple, documents } from "ionicons/icons";
 
 import { ProjectContext } from "../../../context/ProjectContext";
@@ -35,11 +35,20 @@ export function Modules({ module, moduleId }) {
       {module.sections &&
         module.sections.map((_, sectionId) => {
           return (
-            <Section
-              sectionId={sectionId}
-              key={sectionId}
-              moduleId={moduleId}
-            />
+            <IonAccordionGroup>
+            <IonAccordion value="first">
+              <IonItem slot="header" color="light">
+                <IonLabel>{`Section `}</IonLabel>
+              </IonItem>
+              <div className="ion-padding" slot="content">
+              <Section
+                  sectionId={sectionId}
+                  key={sectionId}
+                  moduleId={moduleId}
+                /> 
+              </div>
+            </IonAccordion>
+          </IonAccordionGroup>
           );
         })}
 
