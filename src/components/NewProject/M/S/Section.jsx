@@ -4,12 +4,11 @@ import { IonInput, IonTextarea, IonLabel } from "@ionic/react";
 import { TaskBar } from "../TaskBar/Taskbar";
 import { Budget } from "../Budget/Buget";
 export function Section({ moduleId, sectionId }) {
-  const { project, handleChangeSection } = useContext(ProjectContext);
+  const { project, handleChangeSection, handleDeleteImage } = useContext(ProjectContext);
 
   let section = project[1].modules[moduleId].sections[sectionId];
   const budget = project[1].modules[moduleId].sections[sectionId].budget;
   let updateSection = sectionId;
-  console.log(section.img);
 
   return (
     <>
@@ -44,10 +43,11 @@ export function Section({ moduleId, sectionId }) {
           {section.img &&
             section.img.map((img, idx) => (
               <img
-                src={img.src}
+                src={img}
                 alt={`imagen-`}
                 key={idx}
                 style={{ maxWidth: "100px", margin: "10px" }}
+                onClick={() => handleDeleteImage(moduleId, sectionId, idx)}
               />
             ))}
           {budget.map((budget, idBudget) => {

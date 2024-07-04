@@ -1,6 +1,6 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { ProjectContext } from "../../../../context/ProjectContext";
-import { IonInput, IonButton } from "@ionic/react";
+import { IonButton } from "@ionic/react";
 
 export function TaskBar({ moduleId, sectionId }) {
   const { addSection, delenteSection, addBudget, handleChangeSection } =
@@ -13,11 +13,9 @@ export function TaskBar({ moduleId, sectionId }) {
           type="file"
           accept="image/*"
           multiple
-          onChange={(e) => handleChangeSection(e,moduleId, sectionId, "img")}
+          onChange={(e) => handleChangeSection(e, moduleId, sectionId, "img")}
           expand="full"
         />
-
-
         <IonButton onClick={() => addBudget(moduleId, sectionId)} expand="full">
           Add Budget
         </IonButton>

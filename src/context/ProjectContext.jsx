@@ -62,7 +62,7 @@ export const PorjectProvider = ({ children }) => {
     if (field === "title" || field === "description") {
       newProject[1].modules[moduleId][field] = value;
       setProject(newProject);
-      /* window.localStorage.setItem("data", JSON.stringify(newProject)); */
+      window.localStorage.setItem("data", JSON.stringify(newProject));
     }
   }
 
@@ -89,31 +89,49 @@ export const PorjectProvider = ({ children }) => {
       ? e.target.files
       : e.target.value;
 
-    setProject((prevProject) => {
-      const updateProject = [...prevProject];
-      const section = updateProject[1].modules[moduleId].sections[sectionId];
-      if (["title", "description"].includes(field)) {
+    if (field === "img") {
+      const files = Array.from(value);
+      const readers = files.map((file) => {
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onloadend = () => resolve(reader.result);
+          reader.onerror = reject;
+          reader.readAsDataURL(file);
+        });
+      });
+
+      Promise.all(readers)
+        .then((imagesBase64) => {
+          setProject((prevProject) => {
+            const updateProject = [...prevProject];
+            const section =
+              updateProject[1].modules[moduleId].sections[sectionId];
+
+            // Aseguramos que section.img sea un array
+            if (!Array.isArray(section[field])) {
+              section[field] = [];
+            }
+
+            // Concatenamos las nuevas imágenes con las existentes
+            section[field] = section[field].concat(imagesBase64);
+
+            window.localStorage.setItem("data", JSON.stringify(updateProject));
+            console.log(updateProject);
+            return updateProject;
+          });
+        })
+        .catch((error) => console.error("Error leyendo archivos:", error));
+    } else {
+      setProject((prevProject) => {
+        const updateProject = [...prevProject];
+        const section = updateProject[1].modules[moduleId].sections[sectionId];
         section.content[0][field] = value;
-      } else if (field === "img") {
-       
-        const files = Array.from(value);
-       
-        const newImages = files.map((file) => ({
-          name: file.name,
-          src: URL.createObjectURL(file),
-        }));
-
-        section[field] = newImages;
-        console.log(section);
-      } else {
-        console.log("no se agrego string");
-      }
-
-      window.localStorage.setItem("data", JSON.stringify(updateProject))
-
-      return updateProject;
-    });
+        window.localStorage.setItem("data", JSON.stringify(updateProject));
+        return updateProject;
+      });
+    }
   }
+
   function delenteSection(moduleId, sectionId) {
     const newProject = [...project];
     const sectionOnStorage = newProject[1].modules[moduleId].sections;
@@ -164,6 +182,15 @@ export const PorjectProvider = ({ children }) => {
       return updateProject;
     });
   }
+  function handleDeleteImage(moduleId, sectionId, imageIndex) {
+    setProject((prevProject) => {
+      const updateProject = [...prevProject];
+      const section = updateProject[1].modules[moduleId].sections[sectionId];
+      section.img.splice(imageIndex, 1);
+      window.localStorage.setItem("data", JSON.stringify(updateProject));
+      return updateProject;
+    });
+  }
 
   function handleSubmite(e) {
     e.preventDefault();
@@ -184,6 +211,7 @@ export const PorjectProvider = ({ children }) => {
         addBudget,
         handleBudget,
         delenteBudget,
+        handleDeleteImage,
       }}
     >
       {children}
