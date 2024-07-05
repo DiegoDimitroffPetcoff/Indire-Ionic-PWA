@@ -1,9 +1,10 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { ProjectContext } from "../../../../context/ProjectContext";
 import { IonInput, IonButton, IonAlert } from "@ionic/react";
 
 export const Budget = ({ moduleId, sectionId, idBudget, budget }) => {
   const { handleBudget, delenteBudget } = useContext(ProjectContext);
+  const [showAlert, setShowAlert] = useState(false);
   return (
     <div className="budgetInputs">
       <IonInput
@@ -61,20 +62,21 @@ export const Budget = ({ moduleId, sectionId, idBudget, budget }) => {
       <IonButton
         id="deleBudget"
         color="danger"
-        /*         onClick={() => delenteBudget(moduleId, sectionId, idBudget)} */
+        onClick={() => setShowAlert(true)}
         expand="full"
       >
         Delete Budget
       </IonButton>
       <IonAlert
+      isOpen={showAlert}
         header="Eliminar Budget?"
-        trigger="deleBudget"
+       
         buttons={[
           {
             text: "Cancel",
             role: "cancel",
             handler: () => {
-              false;
+              setShowAlert(false)
             },
           },
           {
@@ -82,11 +84,12 @@ export const Budget = ({ moduleId, sectionId, idBudget, budget }) => {
             role: "confirm",
             handler: () => {
               delenteBudget(moduleId, sectionId, idBudget);
+              setShowAlert(false)
             },
           },
         ]}
-        onDidDismiss={({ detail }) =>
-          console.log(`Dismissed with role: ${detail.role}`)
+        onDidDismiss={() =>
+          setShowAlert(false)
         }
       ></IonAlert>
     </div>
