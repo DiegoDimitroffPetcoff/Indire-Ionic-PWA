@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import {
   IonInput,
-  IonIcon,
   IonTextarea,
   IonButton,
   IonAccordion,
@@ -9,23 +8,19 @@ import {
   IonItem,
   IonLabel,
 } from "@ionic/react";
-import { logoApple, documents } from "ionicons/icons";
 
 import { ProjectContext } from "../../../context/ProjectContext";
 import { Section } from "./S/Section";
-export function Modules({ module, moduleId }) {
-  const { addSection, handleChangeModules } = useContext(ProjectContext);
+import { TemplatesBar } from "./TemplatesBar/TemplatesBar";
+export function Modules({ moduleId }) {
+  const { project, addSection, handleChangeModules } =
+    useContext(ProjectContext);
+  let module = project[1].modules[moduleId];
 
   return (
     <div className="moduleContent" key={moduleId}>
-      <div className="moduleTitleContainer">
-        <h2>{module.module}</h2>
-        <IonButton color="secondary">
-          <IonIcon slot="start" ios={logoApple} md={documents}></IonIcon>
-          Template 1
-        </IonButton>
-      </div>
-
+      <h2>{module.module}</h2>
+      <TemplatesBar moduleId={moduleId} />
       <IonInput
         label="Title"
         labelPlacement="floating"

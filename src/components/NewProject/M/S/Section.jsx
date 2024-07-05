@@ -10,6 +10,7 @@ import {
   IonItem,
   IonLabel,
 } from "@ionic/react";
+import { logoApple, documents } from "ionicons/icons";
 import { TaskBar } from "../TaskBar/Taskbar";
 import { Budget } from "../Budget/Buget";
 import { Subsection1 } from "./Subsections/Subtection1";
@@ -27,7 +28,13 @@ export function Section({ moduleId, sectionId }) {
   return (
     <>
       {section.content.map((content, contentId) => (
-        <div key={contentId} style={{ background: "#f6d5a8", margin: "10px" }}>
+        <div key={contentId} style={{ background: "#f6d5a8" }}>
+        
+            <IonButton color="secondary">
+              <IonIcon slot="start" ios={documents} md={documents}></IonIcon>
+              Template 1
+            </IonButton>
+          
           <IonInput
             label="Title"
             labelPlacement="floating"
@@ -85,9 +92,10 @@ export function Section({ moduleId, sectionId }) {
                 <IonAccordionGroup key={subsectionId}>
                   <IonAccordion value="first">
                     <IonItem slot="header" color="light">
-                      <IonLabel>{`Subsection ${moduleId + 1}.${
-                        sectionId + 1
-                      }`}.{subsectionId +1}</IonLabel>
+                      <IonLabel>
+                        {`Subsection ${moduleId + 1}.${sectionId + 1}`}.
+                        {subsectionId + 1}
+                      </IonLabel>
                     </IonItem>
                     <div className="ion-padding" slot="content">
                       <Subsection1

@@ -24,6 +24,12 @@ input {
 }
 .moduleTitleContainer {
   display: flex;
+  flex-direction: column;
+}
+.btnContainerTemplate{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+
 }
 .tools {
   display: grid;

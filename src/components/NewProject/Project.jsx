@@ -12,9 +12,9 @@ export function Project() {
 
   return (
     <form onSubmit={handleSubmite}>
-     <Introduction /> 
-      {modules.map((module, moduleId) => {
-        return <Modules module={module} moduleId={moduleId} key={moduleId} />;
+    {/*  <Introduction />  */}
+      {modules.map((_, moduleId) => {
+        return <Modules moduleId={moduleId} key={moduleId} />;
       })}
 
       <button>guardar</button>
