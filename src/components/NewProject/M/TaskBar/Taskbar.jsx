@@ -1,9 +1,10 @@
-import { useContext } from "react";
+import { useState, useContext } from "react";
+import { IonButton, IonAlert } from "@ionic/react";
 import { ProjectContext } from "../../../../context/ProjectContext";
-import { IonButton } from "@ionic/react";
 
 export function TaskBar({ moduleId, sectionId, handle, deleteFunction, add }) {
   const { addBudget } = useContext(ProjectContext);
+  const [showAlert, setShowAlert] = useState(false);
 
   return (
     <>
@@ -20,11 +21,31 @@ export function TaskBar({ moduleId, sectionId, handle, deleteFunction, add }) {
         </IonButton>
         <IonButton
           color="danger"
-          onClick={() => deleteFunction(moduleId, sectionId)}
+          onClick={() => setShowAlert(true)}
           expand="full"
         >
           Delete Section
         </IonButton>
+        <IonAlert
+          isOpen={showAlert}
+          header="Eliminar"
+          buttons={[
+            {
+              text: "Cancel",
+              role: "cancel",
+              handler: () => setShowAlert(false),
+            },
+            {
+              text: "OK",
+              role: "confirm",
+              handler: () => {
+                deleteFunction(moduleId, sectionId);
+                setShowAlert(false);
+              },
+            },
+          ]}
+          onDidDismiss={() => setShowAlert(false)}
+        />
         <IonButton
           color="secondary"
           onClick={() => add(moduleId, sectionId)}
