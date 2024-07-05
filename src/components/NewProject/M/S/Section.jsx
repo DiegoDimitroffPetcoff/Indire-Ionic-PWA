@@ -1,6 +1,15 @@
 import { useContext } from "react";
 import { ProjectContext } from "../../../../context/ProjectContext";
-import { IonInput, IonTextarea, IonLabel } from "@ionic/react";
+import {
+  IonInput,
+  IonIcon,
+  IonTextarea,
+  IonButton,
+  IonAccordion,
+  IonAccordionGroup,
+  IonItem,
+  IonLabel,
+} from "@ionic/react";
 import { TaskBar } from "../TaskBar/Taskbar";
 import { Budget } from "../Budget/Buget";
 import { Subsection1 } from "./Subsections/Subtection1";
@@ -15,14 +24,8 @@ export function Section({ moduleId, sectionId }) {
 
   let section = project[1].modules[moduleId].sections[sectionId];
 
-  let updateSection = sectionId;
-
   return (
     <>
-      <IonLabel>
-        <h3>Section: #{++updateSection}</h3>
-      </IonLabel>
-
       {section.content.map((content, contentId) => (
         <div key={contentId} style={{ background: "#f6d5a8", margin: "10px" }}>
           <IonInput
@@ -75,11 +78,29 @@ export function Section({ moduleId, sectionId }) {
             deleteFunction={deleteSection}
             add={addSubSection}
           />
-          <Subsection1
-            section={section.sections}
-            moduleId={moduleId}
-            sectionId={sectionId}
-          />
+
+          {section.sections.length > 0 &&
+            section.sections.map((_, subsectionId) => {
+              return (
+                <IonAccordionGroup key={subsectionId}>
+                  <IonAccordion value="first">
+                    <IonItem slot="header" color="light">
+                      <IonLabel>{`Subsection ${moduleId + 1}.${
+                        sectionId + 1
+                      }`}.{subsectionId +1}</IonLabel>
+                    </IonItem>
+                    <div className="ion-padding" slot="content">
+                      <Subsection1
+                        sectionId={sectionId}
+                        key={sectionId}
+                        moduleId={moduleId}
+                        subsectionId={subsectionId}
+                      />
+                    </div>
+                  </IonAccordion>
+                </IonAccordionGroup>
+              );
+            })}
         </div>
       ))}
     </>
