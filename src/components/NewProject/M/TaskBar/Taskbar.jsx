@@ -13,7 +13,7 @@ export function TaskBar({ moduleId, sectionId, handle, deleteFunction, add }) {
           type="file"
           accept="image/*"
           multiple
-          onChange={(e) => handle(e, moduleId, sectionId, "img")}
+          onChange={(e) => handle(e, moduleId, sectionId, null, "img")}
           expand="full"
         />
         <IonButton onClick={() => addBudget(moduleId, sectionId)} expand="full">

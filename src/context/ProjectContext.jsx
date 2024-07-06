@@ -141,9 +141,7 @@ export const PorjectProvider = ({ children }) => {
           setProject((prevProject) => {
             const updateProject = [...prevProject];
             const section =
-              updateProject[1].modules[moduleId].sections[sectionId].content[
-                contentId
-              ];
+              updateProject[1].modules[moduleId].sections[sectionId]
 
             // Aseguramos que section.img sea un array
             if (!Array.isArray(section[field])) {
