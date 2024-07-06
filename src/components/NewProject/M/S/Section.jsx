@@ -106,7 +106,7 @@ export function Section({ moduleId, sectionId }) {
                   <IonAccordion value="first">
                     <IonItem slot="header" color="light">
                       <IonLabel>
-                        {`Subsection ${moduleId + 1}.${sectionId + 1}`}.
+                        {`# ${moduleId + 1}.${sectionId + 1}`}.
                         {subsectionId + 1}
                       </IonLabel>
                     </IonItem>

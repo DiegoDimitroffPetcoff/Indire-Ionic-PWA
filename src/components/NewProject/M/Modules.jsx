@@ -36,28 +36,37 @@ export function Modules({ moduleId }) {
         value={module.description}
         onIonChange={(e) => handleChangeModules(e, moduleId, "description")}
       />
-      {module.sections &&
-        module.sections.map((_, sectionId) => {
-          return (
-            <IonAccordionGroup key={sectionId}>
-              <IonAccordion value="first">
-                <IonItem slot="header" color="light">
-                  <IonLabel>{`Section ${moduleId + 1}.${
-                    sectionId + 1
-                  }`}</IonLabel>
-                </IonItem>
-                <div className="ion-padding" slot="content">
-                  <Section
-                    sectionId={sectionId}
-                    key={sectionId}
-                    moduleId={moduleId}
-                  />
-                </div>
-              </IonAccordion>
-            </IonAccordionGroup>
-          );
-        })}
 
+      <IonAccordionGroup>
+        <IonAccordion value="first">
+          <IonItem slot="header" color="light">
+            <IonLabel>{`# ${moduleId + 1}`}</IonLabel>
+          </IonItem>
+          <div className="ion-padding" slot="content">
+            {module.sections &&
+              module.sections.map((_, sectionId) => {
+                return (
+                  <IonAccordionGroup key={sectionId}>
+                    <IonAccordion value="first">
+                      <IonItem slot="header" color="light">
+                        <IonLabel>{`# ${moduleId + 1}.${
+                          sectionId + 1
+                        }`}</IonLabel>
+                      </IonItem>
+                      <div className="ion-padding" slot="content">
+                        <Section
+                          sectionId={sectionId}
+                          key={sectionId}
+                          moduleId={moduleId}
+                        />
+                      </div>
+                    </IonAccordion>
+                  </IonAccordionGroup>
+                );
+              })}
+          </div>
+        </IonAccordion>
+      </IonAccordionGroup>
       <IonButton onClick={() => addSection(moduleId)} expand="full">
         Add Section
       </IonButton>
