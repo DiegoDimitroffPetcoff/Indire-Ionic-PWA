@@ -16,8 +16,8 @@ const INITIAL_STATE = [
   },
   {
     modules: [
-      { module: " 6- Primer Modulo", description: "", title: "", sections: [] },
-          { module: "Tratativas", description: "", title: "", sections: [] }, 
+      { module: " 6. Primer Modulo", description: "", title: "", sections: [] },
+      { module: "7. Tratativas", description: "", title: "", sections: [] },
     ],
   },
 ];
@@ -77,7 +77,7 @@ export const PorjectProvider = ({ children }) => {
   }
 
   /* ----------------SECTION---------------- */
-
+  // TODO SE DEBE ANALIZAR SIMPLEMENTE AGREGAR MAS TEXTO Y TITUYLO----> CREAR FUNCION
   function addSection(moduleId) {
     setProject((prevProject) => {
       const updateProject = [...prevProject];
@@ -92,7 +92,33 @@ export const PorjectProvider = ({ children }) => {
       return updateProject;
     });
   }
-  function handleChangeSection(e, moduleId, sectionId, field) {
+
+  function addContent(moduleId, sectionId) {
+    setProject((prevProject) => {
+      const updateProject = [...prevProject];
+      updateProject[1].modules[moduleId].sections[sectionId].content.push({
+        title: "",
+        description: "",
+      });
+
+      window.localStorage.setItem("data", JSON.stringify(updateProject));
+      return updateProject;
+    });
+  }
+
+  function deleteContent(moduleId, sectionId) {
+    const newProject = [...project];
+    const contentOnStorage =
+      newProject[1].modules[moduleId].sections[sectionId].content;
+    const contentFiltered = contentOnStorage.filter(
+      (_, id) => id !== sectionId
+    );
+    newProject[1].modules[moduleId].sections[sectionId].content =
+      contentFiltered;
+    setProject(newProject);
+    window.localStorage.setItem("data", JSON.stringify(newProject));
+  }
+  function handleChangeSection(e, moduleId, sectionId, contentId, field) {
     const value = e.detail
       ? e.detail.value
       : e.target.files
@@ -115,7 +141,9 @@ export const PorjectProvider = ({ children }) => {
           setProject((prevProject) => {
             const updateProject = [...prevProject];
             const section =
-              updateProject[1].modules[moduleId].sections[sectionId];
+              updateProject[1].modules[moduleId].sections[sectionId].content[
+                contentId
+              ];
 
             // Aseguramos que section.img sea un array
             if (!Array.isArray(section[field])) {
@@ -132,13 +160,17 @@ export const PorjectProvider = ({ children }) => {
         })
         .catch((error) => console.error("Error leyendo archivos:", error));
     } else {
-      setProject((prevProject) => {
+      
+    setProject((prevProject) => {
         const updateProject = [...prevProject];
-        const section = updateProject[1].modules[moduleId].sections[sectionId];
-        section.content[0][field] = value;
+        const section =
+          updateProject[1].modules[moduleId].sections[sectionId].content[
+            contentId
+          ];
+        section[field] = value;
         window.localStorage.setItem("data", JSON.stringify(updateProject));
         return updateProject;
-      });
+      }); 
     }
   }
   function deleteSection(moduleId, sectionId) {
@@ -344,6 +376,9 @@ export const PorjectProvider = ({ children }) => {
         addSubSection,
         deleteSubSection,
         moduleTemplate,
+        addContent,
+        addContent,
+        deleteContent,
       }}
     >
       {children}

@@ -21,20 +21,32 @@ export function Section({ moduleId, sectionId }) {
     handleDeleteImage,
     addSubSection,
     deleteSection,
+    addContent,
+    deleteContent
   } = useContext(ProjectContext);
 
   let section = project[1].modules[moduleId].sections[sectionId];
+
 
   return (
     <>
       {section.content.map((content, contentId) => (
         <div key={contentId} style={{ background: "#f6d5a8" }}>
-        
-            <IonButton color="secondary">
-              <IonIcon slot="start" ios={documents} md={documents}></IonIcon>
-              Template 1
-            </IonButton>
-          
+          <IonButton
+            color="secondary"
+            onClick={() => addContent(moduleId, sectionId)}
+          >
+            <IonIcon slot="start" ios={documents} md={documents}></IonIcon>
+            Add content
+          </IonButton>
+          <IonButton
+            color="secondary"
+            onClick={() => deleteContent(moduleId, sectionId)}
+          >
+            <IonIcon slot="start" ios={documents} md={documents}></IonIcon>
+            Delete
+          </IonButton>
+
           <IonInput
             label="Title"
             labelPlacement="floating"
@@ -42,7 +54,7 @@ export function Section({ moduleId, sectionId }) {
             rows={10}
             value={content.title}
             onIonChange={(e) =>
-              handleChangeSection(e, moduleId, sectionId, "title")
+              handleChangeSection(e, moduleId, sectionId,contentId, "title")
             }
           />
           <IonTextarea
@@ -52,11 +64,12 @@ export function Section({ moduleId, sectionId }) {
             rows={5}
             value={content.description}
             onIonChange={(e) =>
-              handleChangeSection(e, moduleId, sectionId, "description")
+              handleChangeSection(e, moduleId, sectionId,contentId, "description")
             }
           />
-
-          {section.img &&
+        </div>
+      ))}
+                {section.img &&
             section.img.map((img, idx) => (
               <img
                 src={img}
@@ -109,8 +122,6 @@ export function Section({ moduleId, sectionId }) {
                 </IonAccordionGroup>
               );
             })}
-        </div>
-      ))}
     </>
   );
 }

@@ -19,6 +19,13 @@ export function TemplatesBar({ moduleId }) {
           <IonLabel>Templates</IonLabel>
         </IonItem>
         <div slot="content">
+          <IonItem slot="header" color="danger">
+            
+            <IonLabel onClick={() => alert("click")}>Agregar</IonLabel>
+            <IonLabel onClick={() => alert("click")}>Eliminar</IonLabel>
+          </IonItem>
+        </div>
+        <div slot="content">
           <div className="btnContainerTemplate">
             {moduloTemplateJson.map((template, id) => {
               return (
@@ -43,3 +50,8 @@ export function TemplatesBar({ moduleId }) {
     </IonAccordionGroup>
   );
 }
+/* TODO
+ debo crear dos Slots separados
+ 1- Crud de los templates
+ 2- Pintar los templates
+*/
