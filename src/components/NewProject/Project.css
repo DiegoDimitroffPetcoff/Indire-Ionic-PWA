@@ -34,7 +34,7 @@ input {
 .tools {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  background-color: #9e9e9e;
+ 
 }
 .budgetInputs {
   display: grid;

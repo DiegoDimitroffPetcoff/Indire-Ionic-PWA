@@ -65,14 +65,7 @@ export function ContentHandler({ moduleId, sectionId, subsectionId }) {
           />
         </div>
       ))}
-      <IonButton
-        color="primary"
-        expandable="expandable"
-        onClick={() => addContent(moduleId, sectionId)}
-      >
-        <IonIcon ios={addCircle} md={addCircle}></IonIcon>
-        {/*   Add content */}
-      </IonButton>
+ 
     </>
   );
 }

@@ -1,14 +1,23 @@
 import { useState, useContext } from "react";
-import { IonButton, IonAlert } from "@ionic/react";
+import { addCircle, closeCircle , card, arrowDownCircle} from "ionicons/icons";
+import { IonButton, IonAlert , IonIcon} from "@ionic/react";
 import { ProjectContext } from "../../../../context/ProjectContext";
 
 export function TaskBar({ moduleId, sectionId, handle, deleteFunction, add }) {
-  const { addBudget } = useContext(ProjectContext);
+  const { addBudget, addContent } = useContext(ProjectContext);
   const [showAlert, setShowAlert] = useState(false);
 
   return (
     <>
       <div className="tools">
+      <IonButton
+        color="primary"
+        expandable="expandable"
+        onClick={() => addContent(moduleId, sectionId)}
+      >
+        <IonIcon ios={addCircle} md={addCircle}></IonIcon>
+        {/*   Add content */}
+      </IonButton>
         <input
           type="file"
           accept="image/*"
@@ -17,14 +26,14 @@ export function TaskBar({ moduleId, sectionId, handle, deleteFunction, add }) {
           expand="full"
         />
         <IonButton onClick={() => addBudget(moduleId, sectionId)} expand="full">
-          Add Budget
+        <IonIcon ios={card} md={card}></IonIcon>{/* Add Budget */}
         </IonButton>
         <IonButton
           color="danger"
           onClick={() => setShowAlert(true)}
           expand="full"
         >
-          Delete Section
+         <IonIcon ios={closeCircle} md={closeCircle}></IonIcon> {/* Delete Section */}
         </IonButton>
         <IonAlert
           isOpen={showAlert}
@@ -51,7 +60,7 @@ export function TaskBar({ moduleId, sectionId, handle, deleteFunction, add }) {
           onClick={() => add(moduleId, sectionId)}
           expand="full"
         >
-          Add Sub Section
+         <IonIcon ios={arrowDownCircle} md={arrowDownCircle}></IonIcon> {/* Add Sub Section */}
         </IonButton>
       </div>
     </>
