@@ -1,19 +1,16 @@
 import { useContext } from "react";
 import { ProjectContext } from "../../../../context/ProjectContext";
 import {
-  IonInput,
-  IonIcon,
-  IonTextarea,
-  IonButton,
   IonAccordion,
   IonAccordionGroup,
   IonItem,
   IonLabel,
 } from "@ionic/react";
-import { logoApple, documents } from "ionicons/icons";
+
 import { TaskBar } from "../TaskBar/Taskbar";
 import { Budget } from "../Budget/Buget";
 import { Subsection1 } from "./Subsections/Subtection1";
+import { ContentHandler } from "../ContentHandler/ContentHandler";
 export function Section({ moduleId, sectionId }) {
   const {
     project,
@@ -21,107 +18,70 @@ export function Section({ moduleId, sectionId }) {
     handleDeleteImage,
     addSubSection,
     deleteSection,
-    addContent,
-    deleteContent
   } = useContext(ProjectContext);
 
   let section = project[1].modules[moduleId].sections[sectionId];
 
-
   return (
     <>
-      {section.content.map((content, contentId) => (
-        <div key={contentId} style={{ background: "#f6d5a8" }}>
-          <IonButton
-            color="secondary"
-            onClick={() => addContent(moduleId, sectionId)}
-          >
-            <IonIcon slot="start" ios={documents} md={documents}></IonIcon>
-            Add content
-          </IonButton>
-          <IonButton
-            color="secondary"
-            onClick={() => deleteContent(moduleId, sectionId)}
-          >
-            <IonIcon slot="start" ios={documents} md={documents}></IonIcon>
-            Delete
-          </IonButton>
+      {/*-----CONTENT----- */}
+      <ContentHandler moduleId={moduleId} sectionId={sectionId} subsectionId={null} />
 
-          <IonInput
-            label="Title"
-            labelPlacement="floating"
-            fill="outline"
-            rows={10}
-            value={content.title}
-            onIonChange={(e) =>
-              handleChangeSection(e, moduleId, sectionId,contentId, "title")
-            }
+      {/*-----IMG----- */}
+      {section.img &&
+        section.img.map((img, idx) => (
+          <img
+            src={img}
+            alt={`imagen-`}
+            key={idx}
+            style={{ maxWidth: "100px", margin: "10px" }}
+            onClick={() => handleDeleteImage(moduleId, sectionId, idx)}
           />
-          <IonTextarea
-            label="Descripcion"
-            labelPlacement="floating"
-            fill="outline"
-            rows={5}
-            value={content.description}
-            onIonChange={(e) =>
-              handleChangeSection(e, moduleId, sectionId,contentId, "description")
-            }
-          />
-        </div>
-      ))}
-                {section.img &&
-            section.img.map((img, idx) => (
-              <img
-                src={img}
-                alt={`imagen-`}
-                key={idx}
-                style={{ maxWidth: "100px", margin: "10px" }}
-                onClick={() => handleDeleteImage(moduleId, sectionId, idx)}
-              />
-            ))}
-          {section.budget.map((budget, idBudget) => {
-            return (
-              <Budget
-                moduleId={moduleId}
-                sectionId={sectionId}
-                idBudget={idBudget}
-                budget={budget}
-                key={idBudget}
-              />
-            );
-          })}
-
-          <TaskBar
+        ))}
+      {section.budget.map((budget, idBudget) => {
+        return (
+          <Budget
             moduleId={moduleId}
             sectionId={sectionId}
-            handle={handleChangeSection}
-            deleteFunction={deleteSection}
-            add={addSubSection}
+            idBudget={idBudget}
+            budget={budget}
+            key={idBudget}
           />
+        );
+      })}
 
-          {section.sections.length > 0 &&
-            section.sections.map((_, subsectionId) => {
-              return (
-                <IonAccordionGroup key={subsectionId}>
-                  <IonAccordion value="first">
-                    <IonItem slot="header" color="light">
-                      <IonLabel>
-                        {`# ${moduleId + 1}.${sectionId + 1}`}.
-                        {subsectionId + 1}
-                      </IonLabel>
-                    </IonItem>
-                    <div className="ion-padding" slot="content">
-                      <Subsection1
-                        sectionId={sectionId}
-                        key={sectionId}
-                        moduleId={moduleId}
-                        subsectionId={subsectionId}
-                      />
-                    </div>
-                  </IonAccordion>
-                </IonAccordionGroup>
-              );
-            })}
+      {/*-----TASKBAR----- */}
+      <TaskBar
+        moduleId={moduleId}
+        sectionId={sectionId}
+        handle={handleChangeSection}
+        deleteFunction={deleteSection}
+        add={addSubSection}
+      />
+
+      {/*-----SECTIONS----- */}
+{/*       {section.sections.length > 0 &&
+        section.sections.map((_, subsectionId) => {
+          return (
+            <IonAccordionGroup key={subsectionId}>
+              <IonAccordion value="first">
+                <IonItem slot="header" color="light">
+                  <IonLabel>
+                    {`# ${moduleId + 1}.${sectionId + 1}`}.{subsectionId + 1}
+                  </IonLabel>
+                </IonItem>
+                <div className="ion-padding" slot="content">
+                  <Subsection1
+                    sectionId={sectionId}
+                    key={sectionId}
+                    moduleId={moduleId}
+                    subsectionId={subsectionId}
+                  />
+                </div>
+              </IonAccordion>
+            </IonAccordionGroup>
+          );
+        })} */}
     </>
   );
 }

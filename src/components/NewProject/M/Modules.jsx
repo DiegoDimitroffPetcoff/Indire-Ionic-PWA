@@ -1,17 +1,10 @@
 import { useContext } from "react";
-import {
-  IonInput,
-  IonTextarea,
-  IonButton,
-  IonAccordion,
-  IonAccordionGroup,
-  IonItem,
-  IonLabel,
-} from "@ionic/react";
+import { IonInput, IonTextarea, IonButton } from "@ionic/react";
 
 import { ProjectContext } from "../../../context/ProjectContext";
-import { Section } from "./S/Section";
+
 import { TemplatesBar } from "./TemplatesBar/TemplatesBar";
+import { FirstAccordionSection } from "./FirstAccordionSection/FirstAccordionSection";
 export function Modules({ moduleId }) {
   const { project, addSection, handleChangeModules } =
     useContext(ProjectContext);
@@ -37,39 +30,8 @@ export function Modules({ moduleId }) {
         onIonChange={(e) => handleChangeModules(e, moduleId, "description")}
       />
 
-      <IonAccordionGroup>
-        <IonAccordion value="first">
-          <IonItem slot="header" color="light">
-            <IonLabel>{`# ${moduleId + 1}`}</IonLabel>
-          </IonItem>
-          <div className="ion-padding" slot="content">
-            {module.sections &&
-              module.sections.map((_, sectionId) => {
-                return (
-                  <IonAccordionGroup key={sectionId}>
-                    <IonAccordion value="first">
-                      <IonItem slot="header" color="light">
-                        <IonLabel>{`# ${moduleId + 1}.${
-                          sectionId + 1
-                        }`}</IonLabel>
-                      </IonItem>
-                      <div className="ion-padding" slot="content">
-                        <Section
-                          sectionId={sectionId}
-                          key={sectionId}
-                          moduleId={moduleId}
-                        />
-                      </div>
-                    </IonAccordion>
-                  </IonAccordionGroup>
-                );
-              })}
-          </div>
-        </IonAccordion>
-      </IonAccordionGroup>
-      <IonButton onClick={() => addSection(moduleId)} expand="full">
-        Add Section
-      </IonButton>
+      <FirstAccordionSection module={module} moduleId={moduleId} addSection={addSection}/>
+
     </div>
   );
 }

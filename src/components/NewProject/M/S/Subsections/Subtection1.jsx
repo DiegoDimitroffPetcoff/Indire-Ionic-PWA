@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import { Budget } from "../../Budget/Buget";
-import { IonInput, IonTextarea } from "@ionic/react";
 import { ProjectContext } from "../../../../../context/ProjectContext";
 import { TaskBar } from "../../TaskBar/Taskbar";
+import { ContentHandler } from "../../ContentHandler/ContentHandler";
 
 export function Subsection1({ moduleId, sectionId, subsectionId }) {
   const {
@@ -18,27 +18,11 @@ export function Subsection1({ moduleId, sectionId, subsectionId }) {
   return (
     <>
       <div key={subsectionId} style={{ margin: "0 0 0 10px" }}>
-        <IonInput
-          label="Title"
-          labelPlacement="floating"
-          fill="outline"
-          rows={10}
-          value={subsection.title}
-          onIonChange={(e) =>
-            handleChangeSubSection(e, moduleId, sectionId, "title")
-          }
+        <ContentHandler
+          moduleId={moduleId}
+          sectionId={sectionId}
+          subsectionId={subsectionId}
         />
-        <IonTextarea
-          label="Descripcion"
-          labelPlacement="floating"
-          fill="outline"
-          rows={5}
-          value={subsection.description}
-          onIonChange={(e) =>
-            handleChangeSubSection(e, moduleId, sectionId, "description")
-          }
-        />
-
         {subsection.img &&
           subsection.img.map((img, idx) => (
             <img

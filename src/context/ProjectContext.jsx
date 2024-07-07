@@ -106,13 +106,13 @@ export const PorjectProvider = ({ children }) => {
     });
   }
 
-  function deleteContent(moduleId, sectionId) {
+  function deleteContent(moduleId, sectionId, contentId) {
     const newProject = [...project];
     const contentOnStorage =
       newProject[1].modules[moduleId].sections[sectionId].content;
     const contentFiltered = contentOnStorage.filter(
-      (_, id) => id !== sectionId
-    );
+      (_, id) => id !== contentId    );
+
     newProject[1].modules[moduleId].sections[sectionId].content =
       contentFiltered;
     setProject(newProject);
@@ -141,7 +141,7 @@ export const PorjectProvider = ({ children }) => {
           setProject((prevProject) => {
             const updateProject = [...prevProject];
             const section =
-              updateProject[1].modules[moduleId].sections[sectionId]
+              updateProject[1].modules[moduleId].sections[sectionId];
 
             // Aseguramos que section.img sea un array
             if (!Array.isArray(section[field])) {
@@ -158,8 +158,7 @@ export const PorjectProvider = ({ children }) => {
         })
         .catch((error) => console.error("Error leyendo archivos:", error));
     } else {
-      
-    setProject((prevProject) => {
+      setProject((prevProject) => {
         const updateProject = [...prevProject];
         const section =
           updateProject[1].modules[moduleId].sections[sectionId].content[
@@ -168,7 +167,7 @@ export const PorjectProvider = ({ children }) => {
         section[field] = value;
         window.localStorage.setItem("data", JSON.stringify(updateProject));
         return updateProject;
-      }); 
+      });
     }
   }
   function deleteSection(moduleId, sectionId) {
