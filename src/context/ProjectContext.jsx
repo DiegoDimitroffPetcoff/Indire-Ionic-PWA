@@ -16,8 +16,14 @@ const INITIAL_STATE = [
   },
   {
     modules: [
-      { module: " 6. Primer Modulo", description: "", title: "", sections: [] },
-      { module: "7. Tratativas", description: "", title: "", sections: [] },
+      {
+        module: " 6. Primer Modulo",
+        description: "",
+        title: "",
+        mainSection: [],
+        sections: [],
+      },
+      /* { module: "7. Tratativas", description: "", title: "", sections: [] }, */
     ],
   },
 ];
@@ -76,6 +82,28 @@ export const PorjectProvider = ({ children }) => {
     }
   }
 
+  function addMainSection(moduleId, title) {
+    setProject((prevProject) => {
+      const updateProject = [...prevProject];
+      updateProject[1].modules[moduleId].mainSection.push({ name: title });
+
+      window.localStorage.setItem("data", JSON.stringify(updateProject));
+      return updateProject;
+    });
+  }
+
+  function deleteMainSection(moduleId, MainsectionId) {
+    console.log("delete main se");
+    const newProject = [...project];
+    const sectionOnStorage = newProject[1].modules[moduleId].mainSection;
+    console.log(sectionOnStorage);
+    const sectionFiltered = sectionOnStorage.filter(
+      (_, id) => id !== MainsectionId
+    );
+    newProject[1].modules[moduleId].mainSection = sectionFiltered;
+    setProject(newProject);
+    window.localStorage.setItem("data", JSON.stringify(newProject));
+  }
   /* ----------------SECTION---------------- */
   // TODO SE DEBE ANALIZAR SIMPLEMENTE AGREGAR MAS TEXTO Y TITUYLO----> CREAR FUNCION
   function addSection(moduleId) {
@@ -111,7 +139,8 @@ export const PorjectProvider = ({ children }) => {
     const contentOnStorage =
       newProject[1].modules[moduleId].sections[sectionId].content;
     const contentFiltered = contentOnStorage.filter(
-      (_, id) => id !== contentId    );
+      (_, id) => id !== contentId
+    );
 
     newProject[1].modules[moduleId].sections[sectionId].content =
       contentFiltered;
@@ -353,7 +382,7 @@ export const PorjectProvider = ({ children }) => {
   function handleSubmite(e) {
     e.preventDefault();
     window.localStorage.setItem("data", JSON.stringify(project));
-    console.log(project);
+    
   }
   return (
     <ProjectContext.Provider
@@ -374,8 +403,9 @@ export const PorjectProvider = ({ children }) => {
         deleteSubSection,
         moduleTemplate,
         addContent,
-        addContent,
+        addMainSection,
         deleteContent,
+        deleteMainSection
       }}
     >
       {children}

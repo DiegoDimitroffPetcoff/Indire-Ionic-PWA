@@ -3,17 +3,24 @@ import {
   IonAccordionGroup,
   IonItem,
   IonLabel,
-  IonButton
+  IonButton,
 } from "@ionic/react";
 import { Section } from "../S/Section";
+import { ProjectContext } from "../../../../context/ProjectContext";
+import { useContext } from "react";
 
-export function FirstAccordionSection({ module, moduleId,addSection }) {
+export function FirstAccordionSection({ moduleId,idMainSection }) {
+  const { project, addSection } = useContext(ProjectContext);
+  let module = project[1].modules[moduleId];
+
   return (
     <>
       <IonAccordionGroup>
         <IonAccordion value="first">
           <IonItem slot="header" color="light">
-            <IonLabel>{`# ${moduleId + 1}`}</IonLabel>
+            <IonLabel>
+              {`# ${idMainSection + 1} - ${module.mainSection[idMainSection].name}`}{" "}
+            </IonLabel>
           </IonItem>
           <div className="ion-padding" slot="content">
             {module.sections &&
@@ -22,7 +29,7 @@ export function FirstAccordionSection({ module, moduleId,addSection }) {
                   <IonAccordionGroup key={sectionId}>
                     <IonAccordion value="first">
                       <IonItem slot="header" color="light">
-                        <IonLabel>{`# ${moduleId + 1}.${
+                        <IonLabel>{`# ${idMainSection + 1}.${
                           sectionId + 1
                         }`}</IonLabel>
                       </IonItem>
@@ -37,13 +44,12 @@ export function FirstAccordionSection({ module, moduleId,addSection }) {
                   </IonAccordionGroup>
                 );
               })}
-                    <IonButton onClick={() => addSection(moduleId)} expand="full">
-        Add Section
-      </IonButton>
+            <IonButton onClick={() => addSection(moduleId)} expand="full">
+              Add Section
+            </IonButton>
           </div>
         </IonAccordion>
       </IonAccordionGroup>
-
     </>
   );
 }
