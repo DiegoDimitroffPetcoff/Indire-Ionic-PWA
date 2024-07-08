@@ -83,12 +83,11 @@ export const PorjectProvider = ({ children }) => {
   }
 
   function addMainSection(moduleId, title) {
-    console.log(title);
     setProject((prevProject) => {
       const updateProject = [...prevProject];
       updateProject[1].modules[moduleId].mainSection.push({ name: title });
       window.localStorage.setItem("data", JSON.stringify(updateProject));
-      console.log(updateProject[1].modules[moduleId].mainSection);
+
       return updateProject;
     });
   }
@@ -106,10 +105,11 @@ export const PorjectProvider = ({ children }) => {
   }
   /* ----------------SECTION---------------- */
   // TODO SE DEBE ANALIZAR SIMPLEMENTE AGREGAR MAS TEXTO Y TITUYLO----> CREAR FUNCION
-  function addSection(moduleId) {
+  function addSection(moduleId, name) {
     setProject((prevProject) => {
       const updateProject = [...prevProject];
       updateProject[1].modules[moduleId].sections.push({
+        name:name,
         content: [{ title: "", description: "" }],
         img: null,
         budget: [],

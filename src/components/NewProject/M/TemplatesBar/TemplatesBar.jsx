@@ -7,11 +7,11 @@ import {
 } from "@ionic/react";
 import { addCircle } from "ionicons/icons";
 
-import moduloTemplateJson from "../../../../templates/moduloTemplate.json";
+import moduloTemplateJson from "../../../../templates/sectionTemplate.json";
 import { ProjectContext } from "../../../../context/ProjectContext";
 import { useContext, useState } from "react";
 export function TemplatesBar({ moduleId, type }) {
-  const { moduleTemplate, addMainSection } = useContext(ProjectContext);
+  const { moduleTemplate, addSection } = useContext(ProjectContext);
   const [accordionValue, setAccordionValue] = useState(null);
   let action;
 
@@ -20,11 +20,12 @@ export function TemplatesBar({ moduleId, type }) {
       action = moduleTemplate;
       break;
     case "mainSection":
-      action = addMainSection;
+      action = addSection;
       break;
     default:
       action = null;
   }
+ 
   return (
     <IonAccordionGroup value={accordionValue} key={moduleId}>
       <IonAccordion value="first">
@@ -40,11 +41,11 @@ export function TemplatesBar({ moduleId, type }) {
                   <IonItem className="clickable-label" key={id}>
                     <IonLabel
                       onClick={() => {
-                        action(moduleId, template);
+                        action(moduleId, template.name);
                         setAccordionValue(null);
                       }}
                     >
-                      {template.module}
+                      {template.name}
                     </IonLabel>
                   </IonItem>
                 );

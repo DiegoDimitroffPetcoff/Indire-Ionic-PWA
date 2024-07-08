@@ -20,15 +20,37 @@ export function Section({ moduleId, sectionId }) {
     deleteSection,
   } = useContext(ProjectContext);
 
-  let section = project[1].modules[moduleId].sections[sectionId];
+  const module = project[1]?.modules[moduleId];
+  const section = module?.sections[sectionId];
+ 
+
 
   return (
     <>
+{/*     {section.content && section.content.map((content, subsectionId) => {
+        return (
+          <ContentHandler
+          key={subsectionId}
+            moduleId={moduleId}
+            sectionId={sectionId}
+            subsectionId={subsectionId}
+          />
+        );
+      })} */}
       {/*-----CONTENT----- */}
-      <ContentHandler moduleId={moduleId} sectionId={sectionId} subsectionId={null} />
-
+{/*       {section.content.map((content, subsectionId) => {
+        return (
+          <ContentHandler
+          key={subsectionId}
+            moduleId={moduleId}
+            sectionId={sectionId}
+            subsectionId={subsectionId}
+          />
+        );
+      })}
+ */}
       {/*-----IMG----- */}
-      {section.img &&
+      {/*       {section.img &&
         section.img.map((img, idx) => (
           <img
             src={img}
@@ -48,7 +70,7 @@ export function Section({ moduleId, sectionId }) {
             key={idBudget}
           />
         );
-      })}
+      })} */}
 
       {/*-----TASKBAR----- */}
       <TaskBar
@@ -60,7 +82,7 @@ export function Section({ moduleId, sectionId }) {
       />
 
       {/*-----SECTIONS----- */}
-{/*       {section.sections.length > 0 &&
+      {/*       {section.sections.length > 0 &&
         section.sections.map((_, subsectionId) => {
           return (
             <IonAccordionGroup key={subsectionId}>

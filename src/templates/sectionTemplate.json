@@ -1,0 +1,102 @@
+[
+  {
+      "name": "TEMPLATE1",
+      "content": [
+          {
+              "title": "",
+              "description": ""
+          },
+          {
+              "title": "",
+              "description": ""
+          }
+      ],
+      "img": null,
+      "budget": [],
+      "sections": []
+  },
+  {
+      "name": "TEMPLATE2",
+      "content": [
+          {
+              "title": "",
+              "description": ""
+          }
+      ],
+      "img": null,
+      "budget": [],
+      "sections": []
+  },
+  {
+      "name": "TEMPLATE3",
+      "content": [
+          {
+              "title": "",
+              "description": ""
+          }
+      ],
+      "img": null,
+      "budget": [],
+      "sections": []
+  },
+  {
+      "name": "TEMPLATE4",
+      "content": [
+          {
+              "title": "",
+              "description": ""
+          }
+      ],
+      "img": null,
+      "budget": [],
+      "sections": []
+  },
+  {
+      "name": "TEMPLATE5",
+      "content": [
+          {
+              "title": "",
+              "description": ""
+          }
+      ],
+      "img": null,
+      "budget": [],
+      "sections": []
+  },
+  {
+      "name": "TEMPLATE6",
+      "content": [
+          {
+              "title": "",
+              "description": ""
+          }
+      ],
+      "img": null,
+      "budget": [],
+      "sections": []
+  },
+  {
+      "name": "TEMPLATE7",
+      "content": [
+          {
+              "title": "",
+              "description": ""
+          }
+      ],
+      "img": null,
+      "budget": [],
+      "sections": []
+  },
+  {
+      "name": "TEMPLATE8",
+      "content": [
+          {
+              "title": "",
+              "description": ""
+          }
+      ],
+      "img": null,
+      "budget": [],
+      "sections": []
+  }
+]

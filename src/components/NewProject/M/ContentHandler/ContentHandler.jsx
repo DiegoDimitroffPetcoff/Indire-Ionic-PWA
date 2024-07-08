@@ -16,7 +16,7 @@ export function ContentHandler({ moduleId, sectionId, subsectionId }) {
   // This improves code readability and avoids repetitive logic.
   // 'const' is used instead of 'let' to prevent accidental reassignment of these variables,
   // making the code safer and easier to maintain.
-  const section = subsectionId
+  const content = subsectionId
     ? project[1].modules[moduleId].sections[sectionId].sections[subsectionId]
     : project[1].modules[moduleId].sections[sectionId];
 
@@ -26,7 +26,7 @@ export function ContentHandler({ moduleId, sectionId, subsectionId }) {
 
   return (
     <>
-      {section.content.map((content, contentId) => (
+      {content.content.map((content, contentId) => (
         <div key={contentId} style={{ background: "#f6d5a8" }}>
           <div style={{ display: "flex" }}>
             <IonInput
@@ -65,7 +65,6 @@ export function ContentHandler({ moduleId, sectionId, subsectionId }) {
           />
         </div>
       ))}
- 
     </>
   );
 }

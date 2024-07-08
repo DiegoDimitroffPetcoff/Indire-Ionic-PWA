@@ -1,5 +1,12 @@
 import { useContext } from "react";
 import { IonInput, IonTextarea } from "@ionic/react";
+import {
+  IonAccordion,
+  IonAccordionGroup,
+  IonItem,
+  IonLabel,
+  IonButton,
+} from "@ionic/react";
 
 import { ProjectContext } from "../../../context/ProjectContext";
 
@@ -7,7 +14,7 @@ import { TemplatesBar } from "./TemplatesBar/TemplatesBar";
 import { FirstAccordionSection } from "./S/FirstAccordionSection/FirstAccordionSection";
 
 export function Modules({ moduleId }) {
-  const { project, addSection, handleChangeModules } =
+  const { project, handleChangeModules, addSubSection } =
     useContext(ProjectContext);
   let module = project[1].modules[moduleId];
 
@@ -30,14 +37,25 @@ export function Modules({ moduleId }) {
         value={module.description}
         onIonChange={(e) => handleChangeModules(e, moduleId, "description")}
       />
-      {module.mainSection.map((_, idMainSection) => (
-        <FirstAccordionSection
-          key={idMainSection}
-          idMainSection={idMainSection}
-          module={module}
-          moduleId={moduleId}
-          addSection={addSection}
-        />
+      {module.sections.map((section, sectionId) => (
+       
+          <IonAccordionGroup key={sectionId}>
+            <IonAccordion value="first">
+              <IonItem slot="header" color="light">
+                <IonLabel>{`# ${sectionId + 1} - ${section.name}`}</IonLabel>
+                <IonButton color="danger" onClick={() => addSection(moduleId)}>
+                  Delete
+                </IonButton>
+              </IonItem>
+              <FirstAccordionSection
+                key={sectionId}
+                sectionId={sectionId}
+                moduleId={moduleId}
+              />
+            </IonAccordion>
+          </IonAccordionGroup>
+  
+      
       ))}
       <TemplatesBar moduleId={moduleId} type={"mainSection"} />
     </div>
