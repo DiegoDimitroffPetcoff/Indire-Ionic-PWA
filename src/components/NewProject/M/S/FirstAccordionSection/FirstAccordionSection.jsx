@@ -44,7 +44,7 @@ export function FirstAccordionSection({ moduleId, idMainSection }) {
                       <div className="ion-padding" slot="content">
                         <Section
                           sectionId={sectionId}
-                          key={sectionId}
+                          
                           moduleId={moduleId}
                         />
                       </div>

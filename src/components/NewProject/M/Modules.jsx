@@ -32,7 +32,7 @@ export function Modules({ moduleId }) {
       />
       {module.mainSection.map((_, idMainSection) => (
         <FirstAccordionSection
-          id={idMainSection}
+          key={idMainSection}
           idMainSection={idMainSection}
           module={module}
           moduleId={moduleId}
