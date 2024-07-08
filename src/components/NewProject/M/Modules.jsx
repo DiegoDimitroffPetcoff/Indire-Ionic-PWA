@@ -1,24 +1,14 @@
 import { useContext } from "react";
-import {
-  IonInput,
-  IonTextarea,
-  IonButton,
-  IonContent,
-  IonPopover,
-} from "@ionic/react";
+import { IonInput, IonTextarea } from "@ionic/react";
 
 import { ProjectContext } from "../../../context/ProjectContext";
-import modulesTemplates from "../../../templates/moduloTemplate.json";
+
 import { TemplatesBar } from "./TemplatesBar/TemplatesBar";
-import { FirstAccordionSection } from "./FirstAccordionSection/FirstAccordionSection";
+import { FirstAccordionSection } from "./S/FirstAccordionSection/FirstAccordionSection";
+import { ModuleAccordion } from "./ModuleAccordion";
 export function Modules({ moduleId }) {
-  const {
-    project,
-    addSection,
-    addMainSection,
-    handleChangeModules,
-    deleteMainSection,
-  } = useContext(ProjectContext);
+  const { project, addSection, handleChangeModules } =
+    useContext(ProjectContext);
   let module = project[1].modules[moduleId];
 
   return (
@@ -41,31 +31,15 @@ export function Modules({ moduleId }) {
         onIonChange={(e) => handleChangeModules(e, moduleId, "description")}
       />
       {module.mainSection.map((_, idMainSection) => (
-        <div className="tools">
-          <FirstAccordionSection
-            idMainSection={idMainSection}
-            module={module}
-            moduleId={moduleId}
-            addSection={addSection}
-          />
-          <button onClick={() => deleteMainSection(moduleId, idMainSection)}>
-            Delete
-          </button>
-        </div>
+        <FirstAccordionSection
+          id={idMainSection}
+          idMainSection={idMainSection}
+          module={module}
+          moduleId={moduleId}
+          addSection={addSection}
+        />
       ))}
-      <IonButton id="click-trigger">AGREGAR</IonButton>
-      <IonPopover trigger="click-trigger" triggerAction="click">
-        {modulesTemplates.map((template) => (
-          <>
-            <IonContent
-              class="ion-padding"
-              onClick={() => addMainSection(moduleId, template.title)}
-            >
-              {template.title}
-            </IonContent>
-          </>
-        ))}
-      </IonPopover>
+      <ModuleAccordion moduleId={moduleId} />
     </div>
   );
 }

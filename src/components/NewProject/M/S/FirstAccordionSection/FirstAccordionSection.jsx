@@ -5,12 +5,12 @@ import {
   IonLabel,
   IonButton,
 } from "@ionic/react";
-import { Section } from "../S/Section";
-import { ProjectContext } from "../../../../context/ProjectContext";
+import { Section } from "../Section";
+import { ProjectContext } from "../../../../../context/ProjectContext";
 import { useContext } from "react";
 
-export function FirstAccordionSection({ moduleId,idMainSection }) {
-  const { project, addSection } = useContext(ProjectContext);
+export function FirstAccordionSection({ moduleId, idMainSection }) {
+  const { project, addSection, deleteMainSection } = useContext(ProjectContext);
   let module = project[1].modules[moduleId];
 
   return (
@@ -19,8 +19,13 @@ export function FirstAccordionSection({ moduleId,idMainSection }) {
         <IonAccordion value="first">
           <IonItem slot="header" color="light">
             <IonLabel>
-              {`# ${idMainSection + 1} - ${module.mainSection[idMainSection].name}`}{" "}
+              {`# ${idMainSection + 1} - ${
+                module.mainSection[idMainSection].name
+              }`}
             </IonLabel>
+            <IonButton color="danger" onClick={() => deleteMainSection(moduleId, idMainSection)}>
+              Delete
+            </IonButton>
           </IonItem>
           <div className="ion-padding" slot="content">
             {module.sections &&

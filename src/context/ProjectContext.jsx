@@ -83,11 +83,14 @@ export const PorjectProvider = ({ children }) => {
   }
 
   function addMainSection(moduleId, title) {
+    console.log(title);
     setProject((prevProject) => {
       const updateProject = [...prevProject];
+
       updateProject[1].modules[moduleId].mainSection.push({ name: title });
 
       window.localStorage.setItem("data", JSON.stringify(updateProject));
+      console.log(updateProject[1].modules[moduleId].mainSection);
       return updateProject;
     });
   }
@@ -96,7 +99,7 @@ export const PorjectProvider = ({ children }) => {
     console.log("delete main se");
     const newProject = [...project];
     const sectionOnStorage = newProject[1].modules[moduleId].mainSection;
-    console.log(sectionOnStorage);
+
     const sectionFiltered = sectionOnStorage.filter(
       (_, id) => id !== MainsectionId
     );
@@ -382,7 +385,6 @@ export const PorjectProvider = ({ children }) => {
   function handleSubmite(e) {
     e.preventDefault();
     window.localStorage.setItem("data", JSON.stringify(project));
-    
   }
   return (
     <ProjectContext.Provider
@@ -405,7 +407,7 @@ export const PorjectProvider = ({ children }) => {
         addContent,
         addMainSection,
         deleteContent,
-        deleteMainSection
+        deleteMainSection,
       }}
     >
       {children}
