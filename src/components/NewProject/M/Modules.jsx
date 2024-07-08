@@ -5,7 +5,7 @@ import { ProjectContext } from "../../../context/ProjectContext";
 
 import { TemplatesBar } from "./TemplatesBar/TemplatesBar";
 import { FirstAccordionSection } from "./S/FirstAccordionSection/FirstAccordionSection";
-import { ModuleAccordion } from "./ModuleAccordion";
+
 export function Modules({ moduleId }) {
   const { project, addSection, handleChangeModules } =
     useContext(ProjectContext);
@@ -14,7 +14,7 @@ export function Modules({ moduleId }) {
   return (
     <div className="moduleContent" key={moduleId}>
       <h2>{module.module}</h2>
-      <TemplatesBar moduleId={moduleId} />
+      <TemplatesBar moduleId={moduleId} type={"module"} />
       <IonInput
         label="Title"
         labelPlacement="floating"
@@ -39,7 +39,7 @@ export function Modules({ moduleId }) {
           addSection={addSection}
         />
       ))}
-      <ModuleAccordion moduleId={moduleId} />
+      <TemplatesBar moduleId={moduleId} type={"mainSection"} />
     </div>
   );
 }

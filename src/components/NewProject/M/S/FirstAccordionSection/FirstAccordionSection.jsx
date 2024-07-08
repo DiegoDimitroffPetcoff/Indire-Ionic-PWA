@@ -20,10 +20,13 @@ export function FirstAccordionSection({ moduleId, idMainSection }) {
           <IonItem slot="header" color="light">
             <IonLabel>
               {`# ${idMainSection + 1} - ${
-                module.mainSection[idMainSection].name
+                module.mainSection[idMainSection].name.module
               }`}
             </IonLabel>
-            <IonButton color="danger" onClick={() => deleteMainSection(moduleId, idMainSection)}>
+            <IonButton
+              color="danger"
+              onClick={() => deleteMainSection(moduleId, idMainSection)}
+            >
               Delete
             </IonButton>
           </IonItem>
