@@ -37,26 +37,27 @@ export function Modules({ moduleId }) {
         value={module.description}
         onIonChange={(e) => handleChangeModules(e, moduleId, "description")}
       />
-      {module.sections.map((section, sectionId) => (
+      {module.sections.map((section, firstSectionId) => {
+        let FirstSection = `# ${firstSectionId + 1} - ${section.name}`;
        
-          <IonAccordionGroup key={sectionId}>
+        return (
+          <IonAccordionGroup key={firstSectionId}>
             <IonAccordion value="first">
               <IonItem slot="header" color="light">
-                <IonLabel>{`# ${sectionId + 1} - ${section.name}`}</IonLabel>
+                <IonLabel>{FirstSection}</IonLabel>
                 <IonButton color="danger" onClick={() => addSection(moduleId)}>
                   Delete
                 </IonButton>
               </IonItem>
               <FirstAccordionSection
-                key={sectionId}
-                sectionId={sectionId}
+                key={firstSectionId}
+                firstSectionId={firstSectionId}
                 moduleId={moduleId}
               />
             </IonAccordion>
           </IonAccordionGroup>
-  
-      
-      ))}
+        );
+      })}
       <TemplatesBar moduleId={moduleId} type={"mainSection"} />
     </div>
   );

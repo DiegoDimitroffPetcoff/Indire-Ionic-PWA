@@ -133,8 +133,18 @@ export const PorjectProvider = ({ children }) => {
       return updateProject;
     });
   }
-
-  function deleteContent(moduleId, sectionId, contentId) {
+  function handleChangeContent(e, moduleId, sectionId, contentId, field) {
+    setProject((prevProject) => {
+      const value = e.detail ? e.detail.value : e.target.value;
+      let updateProject = [...prevProject];
+      updateProject[1].modules[moduleId].sections[firstSectionId].sections[
+        sectionId
+      ].content[contentId][field] = value;
+      window.localStorage.setItem("data", JSON.stringify(updateProject));
+      return updateProject;
+    });
+  }
+  function deleteContent(moduleId, sectionId, subsectionId,contentId) {
     const newProject = [...project];
     const contentOnStorage =
       newProject[1].modules[moduleId].sections[sectionId].content;
@@ -147,7 +157,8 @@ export const PorjectProvider = ({ children }) => {
     setProject(newProject);
     window.localStorage.setItem("data", JSON.stringify(newProject));
   }
-  function handleChangeSection(e, moduleId, sectionId, contentId, field) {
+  function handleChangeSection(e, moduleId, sectionId,subsectionId, contentId, field) {
+    console.log("handleChangeSection");
     const value = e.detail
       ? e.detail.value
       : e.target.files
@@ -170,7 +181,7 @@ export const PorjectProvider = ({ children }) => {
           setProject((prevProject) => {
             const updateProject = [...prevProject];
             const section =
-              updateProject[1].modules[moduleId].sections[sectionId];
+              updateProject[1].modules[moduleId].sections[sectionId].sections[subsectionId];
 
             // Aseguramos que section.img sea un array
             if (!Array.isArray(section[field])) {
@@ -190,7 +201,7 @@ export const PorjectProvider = ({ children }) => {
       setProject((prevProject) => {
         const updateProject = [...prevProject];
         const section =
-          updateProject[1].modules[moduleId].sections[sectionId].content[
+          updateProject[1].modules[moduleId].sections[sectionId].sections[subsectionId].content[
             contentId
           ];
         section[field] = value;
@@ -405,6 +416,7 @@ export const PorjectProvider = ({ children }) => {
         addMainSection,
         deleteContent,
         deleteMainSection,
+        handleChangeContent
       }}
     >
       {children}

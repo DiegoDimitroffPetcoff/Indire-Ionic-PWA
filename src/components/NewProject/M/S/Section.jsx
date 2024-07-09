@@ -9,9 +9,9 @@ import {
 
 import { TaskBar } from "../TaskBar/Taskbar";
 import { Budget } from "../Budget/Buget";
-import { Subsection1 } from "./Subsections/Subtection1";
+
 import { ContentHandler } from "../ContentHandler/ContentHandler";
-export function Section({ moduleId, sectionId }) {
+export function Section({ moduleId, firstSectionId, sectionId }) {
   const {
     project,
     handleChangeSection,
@@ -20,37 +20,27 @@ export function Section({ moduleId, sectionId }) {
     deleteSection,
   } = useContext(ProjectContext);
 
-  const module = project[1]?.modules[moduleId];
-  const section = module?.sections[sectionId];
- 
-
+  let section =
+    project[1].modules[moduleId].sections[firstSectionId].sections[sectionId];
 
   return (
     <>
-{/*     {section.content && section.content.map((content, subsectionId) => {
-        return (
-          <ContentHandler
-          key={subsectionId}
-            moduleId={moduleId}
-            sectionId={sectionId}
-            subsectionId={subsectionId}
-          />
-        );
-      })} */}
       {/*-----CONTENT----- */}
-{/*       {section.content.map((content, subsectionId) => {
-        return (
-          <ContentHandler
-          key={subsectionId}
-            moduleId={moduleId}
-            sectionId={sectionId}
-            subsectionId={subsectionId}
-          />
-        );
-      })}
- */}
+      {section.content &&
+        section.content.map((content, contentId) => {
+          return (
+            <ContentHandler
+              key={contentId}
+              moduleId={moduleId}
+              firstSectionId={firstSectionId}
+              sectionId={sectionId}
+              contentId={contentId}
+            />
+          );
+        })}
+
       {/*-----IMG----- */}
-      {/*       {section.img &&
+      {section.img &&
         section.img.map((img, idx) => (
           <img
             src={img}
@@ -70,7 +60,7 @@ export function Section({ moduleId, sectionId }) {
             key={idBudget}
           />
         );
-      })} */}
+      })}
 
       {/*-----TASKBAR----- */}
       <TaskBar
