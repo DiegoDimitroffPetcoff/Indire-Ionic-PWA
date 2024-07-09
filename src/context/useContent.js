@@ -31,17 +31,20 @@ export function useContent(setProject) {
       return updateProject;
     });
   }
-  function deleteContent(moduleId, sectionId, subsectionId, contentId) {
+  function deleteContent(moduleId, firstSectionId, sectionId, contentId) {
     setProject((prevProject) => {
       const newProject = [...prevProject];
       const contentOnStorage =
-        newProject[1].modules[moduleId].sections[sectionId].content;
+        prevProject[1].modules[moduleId].sections[firstSectionId].sections[
+          sectionId
+        ].content;
       const contentFiltered = contentOnStorage.filter(
         (_, id) => id !== contentId
       );
 
-      newProject[1].modules[moduleId].sections[sectionId].content =
-        contentFiltered;
+      prevProject[1].modules[moduleId].sections[firstSectionId].sections[
+        sectionId
+      ].content = contentFiltered;
 
       window.localStorage.setItem("data", JSON.stringify(newProject));
       return newProject;

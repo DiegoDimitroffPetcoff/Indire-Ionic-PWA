@@ -16,14 +16,12 @@ export function ContentHandler({
     handleChangeSubSection,
     deleteContent,
     setProject,
-    handleChangeContent
+    handleChangeContent,
   } = useContext(ProjectContext);
 
   const content =
     project[1].modules[moduleId].sections[firstSectionId].sections[sectionId]
       .content;
-
-
 
   return (
     <>
@@ -49,7 +47,9 @@ export function ContentHandler({
             />
             <IonButton
               color="danger"
-              onClick={() => deleteContent(moduleId, sectionId, contentId)}
+              onClick={() =>
+                deleteContent(moduleId, sectionId, firstSectionId, contentId)
+              }
             >
               <IonIcon ios={closeCircle} md={closeCircle}></IonIcon>
               {/*   Delete */}
