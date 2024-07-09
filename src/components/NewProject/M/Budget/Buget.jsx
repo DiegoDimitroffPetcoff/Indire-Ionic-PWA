@@ -56,42 +56,18 @@ export const Budget = ({ moduleId,firstSectionId, sectionId, idBudget, budget })
         fill="outline"
         value={budget.qtd * budget.un}
         onIonChange={(e) =>
-          handleBudget(e, moduleId, sectionId, idBudget, "uniteValue")
+          handleBudget(e, moduleId,firstSectionId, sectionId, idBudget, "uniteValue")
         }
       />
       <IonButton
         id="deleBudget"
         color="danger"
-        onClick={() => setShowAlert(true)}
+        onClick={() =>   delenteBudget(moduleId,firstSectionId, sectionId, idBudget)}
         expand="full"
       >
         Delete Budget
       </IonButton>
-      <IonAlert
-      isOpen={showAlert}
-        header="Eliminar Budget?"
-       
-        buttons={[
-          {
-            text: "Cancel",
-            role: "cancel",
-            handler: () => {
-              setShowAlert(false)
-            },
-          },
-          {
-            text: "OK",
-            role: "confirm",
-            handler: () => {
-              delenteBudget(moduleId, sectionId, idBudget);
-              setShowAlert(false)
-            },
-          },
-        ]}
-        onDidDismiss={() =>
-          setShowAlert(false)
-        }
-      ></IonAlert>
+
     </div>
   );
 };

@@ -1,6 +1,5 @@
 export function useBudget(setProject) {
   function addBudget(moduleId, firstSectionId, sectionId) {
-    console.log("addBudget");
     setProject((prevProject) => {
       const updateProject = [...prevProject];
 
@@ -35,17 +34,20 @@ export function useBudget(setProject) {
       return updateProject;
     });
   }
-  function delenteBudget(moduleId, sectionId, idBudget) {
+  function delenteBudget(moduleId, firstSectionId, sectionId, idBudget) {
     setProject((prevProject) => {
       const updateProject = [...prevProject];
       const budgetOnStorage =
-        updateProject[1].modules[moduleId].sections[sectionId].budget;
+        updateProject[1].modules[moduleId].sections[firstSectionId].sections[
+          sectionId
+        ].budget;
       const sectionFiltered = budgetOnStorage.filter(
         (_, id) => id !== idBudget
       );
-      console.log(sectionFiltered);
-      updateProject[1].modules[moduleId].sections[sectionId].budget =
-        sectionFiltered;
+
+      updateProject[1].modules[moduleId].sections[firstSectionId].sections[
+        sectionId
+      ].budget = sectionFiltered;
       window.localStorage.setItem("data", JSON.stringify(updateProject));
       return updateProject;
     });
