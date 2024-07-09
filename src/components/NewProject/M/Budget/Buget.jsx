@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { ProjectContext } from "../../../../context/ProjectContext";
 import { IonInput, IonButton, IonAlert } from "@ionic/react";
 
-export const Budget = ({ moduleId, sectionId, idBudget, budget }) => {
+export const Budget = ({ moduleId,firstSectionId, sectionId, idBudget, budget }) => {
   const { handleBudget, delenteBudget } = useContext(ProjectContext);
   const [showAlert, setShowAlert] = useState(false);
   return (
@@ -13,7 +13,7 @@ export const Budget = ({ moduleId, sectionId, idBudget, budget }) => {
         fill="outline"
         value={budget.description}
         onIonChange={(e) =>
-          handleBudget(e, moduleId, sectionId, idBudget, "description")
+          handleBudget(e, moduleId,firstSectionId, sectionId, idBudget, "description")
         }
       />
       <IonInput
@@ -24,7 +24,7 @@ export const Budget = ({ moduleId, sectionId, idBudget, budget }) => {
         fill="outline"
         value={budget.amount}
         onIonChange={(e) =>
-          handleBudget(e, moduleId, sectionId, idBudget, "amount")
+          handleBudget(e, moduleId,firstSectionId, sectionId, idBudget, "amount")
         }
       />
       <IonInput
@@ -35,7 +35,7 @@ export const Budget = ({ moduleId, sectionId, idBudget, budget }) => {
         placeholder="Número"
         value={budget.un}
         onIonChange={(e) =>
-          handleBudget(e, moduleId, sectionId, idBudget, "un")
+          handleBudget(e, moduleId,firstSectionId, sectionId, idBudget, "un")
         }
       />
       <IonInput
@@ -46,7 +46,7 @@ export const Budget = ({ moduleId, sectionId, idBudget, budget }) => {
         placeholder="Número"
         value={budget.qtd}
         onIonChange={(e) =>
-          handleBudget(e, moduleId, sectionId, idBudget, "qtd")
+          handleBudget(e, moduleId,firstSectionId, sectionId, idBudget, "qtd")
         }
       />
       <IonInput

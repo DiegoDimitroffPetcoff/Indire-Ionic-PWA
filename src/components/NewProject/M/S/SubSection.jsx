@@ -54,6 +54,7 @@ export function SubSection({ moduleId, firstSectionId, sectionId }) {
         return (
           <Budget
             moduleId={moduleId}
+            firstSectionId={firstSectionId}
             sectionId={sectionId}
             idBudget={idBudget}
             budget={budget}

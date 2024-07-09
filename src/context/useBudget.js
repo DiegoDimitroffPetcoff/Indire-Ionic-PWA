@@ -17,13 +17,20 @@ export function useBudget(setProject) {
       return updateProject;
     });
   }
-  function handleBudget(e, moduleId, sectionId, idBudget, field) {
+  function handleBudget(
+    e,
+    moduleId,
+    firstSectionId,
+    sectionId,
+    idBudget,
+    field
+  ) {
     const value = e.detail ? e.detail.value : e.target.value;
     setProject((prevProject) => {
       const updateProject = [...prevProject];
-      updateProject[1].modules[moduleId].sections[sectionId].budget[idBudget][
-        field
-      ] = value;
+      updateProject[1].modules[moduleId].sections[firstSectionId].sections[
+        sectionId
+      ].budget[idBudget][field] = value;
       window.localStorage.setItem("data", JSON.stringify(updateProject));
       return updateProject;
     });
