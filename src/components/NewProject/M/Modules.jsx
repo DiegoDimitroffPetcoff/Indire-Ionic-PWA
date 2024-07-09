@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { IonInput, IonTextarea } from "@ionic/react";
 import {
   IonAccordion,
@@ -12,11 +12,13 @@ import { ProjectContext } from "../../../context/ProjectContext";
 
 import { TemplatesBar } from "./TemplatesBar/TemplatesBar";
 import { FirstAccordionSection } from "./S/FirstAccordionSection/FirstAccordionSection";
+import { AlertDelete } from "../../../utils/AlertDelete";
 
 export function Modules({ moduleId }) {
-  const { project, handleChangeModules, addSubSection } =
+  const { project, handleChangeModules, deleteSection } =
     useContext(ProjectContext);
   let module = project[1].modules[moduleId];
+  const [showAlert, setShowAlert] = useState(false);
 
   return (
     <div className="moduleContent" key={moduleId}>
@@ -39,16 +41,28 @@ export function Modules({ moduleId }) {
       />
       {module.sections.map((section, firstSectionId) => {
         let FirstSection = `# ${firstSectionId + 1} - ${section.name}`;
-       
+
         return (
           <IonAccordionGroup key={firstSectionId}>
             <IonAccordion value="first">
               <IonItem slot="header" color="light">
                 <IonLabel>{FirstSection}</IonLabel>
-                <IonButton color="danger" onClick={() => addSection(moduleId)}>
+                <IonButton
+                  color="danger"
+                  onClick={() => setShowAlert(!showAlert)}
+                >
                   Delete
                 </IonButton>
+                <AlertDelete
+                  showAlert={showAlert}
+                  setShowAlert={setShowAlert}
+                  moduleId={moduleId}
+                  sectionId={firstSectionId}
+                  /* FUNCION CAMBIANTE */
+                  deleteFunction={deleteSection}
+                />
               </IonItem>
+
               <FirstAccordionSection
                 key={firstSectionId}
                 firstSectionId={firstSectionId}

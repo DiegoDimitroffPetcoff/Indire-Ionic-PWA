@@ -41,7 +41,7 @@ export function ContentHandler({
                   e,
                   moduleId,
                   sectionId,
-
+                  firstSectionId,
                   contentId,
                   "title"
                 )
@@ -66,7 +66,7 @@ export function ContentHandler({
                 e,
                 moduleId,
                 sectionId,
-
+                firstSectionId,
                 contentId,
                 "description"
               )

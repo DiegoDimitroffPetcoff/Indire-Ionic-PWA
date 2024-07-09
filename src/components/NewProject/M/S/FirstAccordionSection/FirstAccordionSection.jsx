@@ -13,7 +13,7 @@ export function FirstAccordionSection({ moduleId, firstSectionId }) {
   const { project, addSection, addSubSection, deleteMainSection } =
     useContext(ProjectContext);
   let section = project[1].modules[moduleId].sections[firstSectionId];
-/* console.log("firstSection", section); */
+
   return (
     <>
       <div className="ion-padding" slot="content">
