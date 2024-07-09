@@ -33,9 +33,9 @@ export function TaskBar({
           onChange={(e) => handle(e, moduleId, sectionId, null, "img")}
           expand="full"
         />
-        <IonButton onClick={() => addBudget(moduleId, sectionId)} expand="full">
+        <IonButton onClick={() => addBudget(moduleId, firstSectionId, sectionId)} expand="full">
           <IonIcon ios={card} md={card}></IonIcon>
-          {/* Add Budget */}
+
         </IonButton>
         <IonButton
           color="danger"
@@ -43,7 +43,7 @@ export function TaskBar({
           expand="full"
         >
           <IonIcon ios={closeCircle} md={closeCircle}></IonIcon>{" "}
-          {/* Delete Section */}
+  
         </IonButton>
 
         <IonButton
@@ -52,7 +52,7 @@ export function TaskBar({
           expand="full"
         >
           <IonIcon ios={arrowDownCircle} md={arrowDownCircle}></IonIcon>{" "}
-          {/* Add Sub Section */}
+    
         </IonButton>
       </div>
     </>

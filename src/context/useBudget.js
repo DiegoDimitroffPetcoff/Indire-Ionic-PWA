@@ -1,8 +1,12 @@
 export function useBudget(setProject) {
-  function addBudget(moduleId, sectionId) {
+  function addBudget(moduleId, firstSectionId, sectionId) {
+    console.log("addBudget");
     setProject((prevProject) => {
       const updateProject = [...prevProject];
-      updateProject[1].modules[moduleId].sections[sectionId].budget.push({
+
+      updateProject[1].modules[moduleId].sections[firstSectionId].sections[
+        sectionId
+      ].budget.push({
         description: "",
         amount: "",
         un: "",

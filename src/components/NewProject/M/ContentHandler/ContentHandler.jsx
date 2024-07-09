@@ -3,21 +3,9 @@ import { IonButton, IonIcon, IonInput, IonTextarea } from "@ionic/react";
 import { ProjectContext } from "../../../../context/ProjectContext";
 import { useContext } from "react";
 
-export function ContentHandler({
-  moduleId,
-  firstSectionId,
-  sectionId,
-  contentId,
-}) {
-  const {
-    handleChangeSection,
-    project,
-    addContent,
-    handleChangeSubSection,
-    deleteContent,
-    setProject,
-    handleChangeContent,
-  } = useContext(ProjectContext);
+export function ContentHandler({ moduleId, firstSectionId, sectionId }) {
+  const { project, deleteContent, handleChangeContent } =
+    useContext(ProjectContext);
 
   const content =
     project[1].modules[moduleId].sections[firstSectionId].sections[sectionId]
@@ -52,7 +40,6 @@ export function ContentHandler({
               }
             >
               <IonIcon ios={closeCircle} md={closeCircle}></IonIcon>
-              {/*   Delete */}
             </IonButton>
           </div>
           <IonTextarea
