@@ -4,8 +4,15 @@ import { IonButton, IonIcon } from "@ionic/react";
 import { ProjectContext } from "../../../../context/ProjectContext";
 import { AlertDelete } from "../../../../utils/AlertDelete";
 
-export function TaskBar({ moduleId, sectionId, handle, deleteFunction, add }) {
-  const { addBudget, addContent } = useContext(ProjectContext);
+export function TaskBar({
+  moduleId,
+  firstSectionId,
+  sectionId,
+  handle,
+  deleteFunction,
+  add,
+}) {
+  const { addBudget, addContent,deleteSubSection } = useContext(ProjectContext);
   const [showAlert, setShowAlert] = useState(false);
 
   return (
@@ -32,20 +39,13 @@ export function TaskBar({ moduleId, sectionId, handle, deleteFunction, add }) {
         </IonButton>
         <IonButton
           color="danger"
-          onClick={() => setShowAlert(true)}
+          onClick={() => deleteSubSection(moduleId, sectionId,firstSectionId)}
           expand="full"
         >
           <IonIcon ios={closeCircle} md={closeCircle}></IonIcon>{" "}
           {/* Delete Section */}
         </IonButton>
-        <AlertDelete
-          showAlert={showAlert}
-          setShowAlert={setShowAlert}
-          moduleId={moduleId}
-          sectionId={sectionId}
-          /* FUNCION CAMBIANTE */
-          deleteFunction={deleteFunction}
-        />
+
         <IonButton
           color="secondary"
           onClick={() => add(moduleId, sectionId)}

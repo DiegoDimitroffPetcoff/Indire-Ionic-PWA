@@ -82,9 +82,12 @@ export function useSection(setProject) {
     setProject((prevProject) => {
       const newProject = [...prevProject];
       const sectionOnStorage = newProject[1].modules[moduleId].sections;
+
       const sectionFiltered = sectionOnStorage.filter(
         (_, id) => id !== sectionId
       );
+      console.log(sectionFiltered);
+
       newProject[1].modules[moduleId].sections = sectionFiltered;
 
       window.localStorage.setItem("data", JSON.stringify(newProject));

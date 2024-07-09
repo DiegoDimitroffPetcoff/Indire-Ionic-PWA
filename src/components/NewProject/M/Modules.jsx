@@ -9,16 +9,17 @@ import {
 } from "@ionic/react";
 
 import { ProjectContext } from "../../../context/ProjectContext";
-
 import { TemplatesBar } from "./TemplatesBar/TemplatesBar";
 import { FirstAccordionSection } from "./S/FirstAccordionSection/FirstAccordionSection";
 import { AlertDelete } from "../../../utils/AlertDelete";
-
+/*------------- MODULO--------------- */
+/*------------- MODULO--------------- */
+/*------------- MODULO--------------- */
+/*------------- MODULO--------------- */
 export function Modules({ moduleId }) {
   const { project, handleChangeModules, deleteSection } =
     useContext(ProjectContext);
   let module = project[1].modules[moduleId];
-  const [showAlert, setShowAlert] = useState(false);
 
   return (
     <div className="moduleContent" key={moduleId}>
@@ -39,33 +40,24 @@ export function Modules({ moduleId }) {
         value={module.description}
         onIonChange={(e) => handleChangeModules(e, moduleId, "description")}
       />
-      {module.sections.map((section, firstSectionId) => {
-        let FirstSection = `# ${firstSectionId + 1} - ${section.name}`;
+      {module.sections.map((section, sectionId) => {
+        let FirstSection = `# ${sectionId + 1} - ${section.name}`;
 
         return (
-          <IonAccordionGroup key={firstSectionId}>
+          <IonAccordionGroup key={sectionId}>
             <IonAccordion value="first">
               <IonItem slot="header" color="light">
                 <IonLabel>{FirstSection}</IonLabel>
                 <IonButton
                   color="danger"
-                  onClick={() => setShowAlert(!showAlert)}
+                  onClick={() => deleteSection(moduleId, sectionId)}
                 >
                   Delete
                 </IonButton>
-                <AlertDelete
-                  showAlert={showAlert}
-                  setShowAlert={setShowAlert}
-                  moduleId={moduleId}
-                  sectionId={firstSectionId}
-                  /* FUNCION CAMBIANTE */
-                  deleteFunction={deleteSection}
-                />
               </IonItem>
-
               <FirstAccordionSection
-                key={firstSectionId}
-                firstSectionId={firstSectionId}
+                key={sectionId}
+                firstSectionId={sectionId}
                 moduleId={moduleId}
               />
             </IonAccordion>

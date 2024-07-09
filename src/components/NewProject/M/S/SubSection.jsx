@@ -11,13 +11,17 @@ import { TaskBar } from "../TaskBar/Taskbar";
 import { Budget } from "../Budget/Buget";
 
 import { ContentHandler } from "../ContentHandler/ContentHandler";
-export function Section({ moduleId, firstSectionId, sectionId }) {
+/*------------- SUBSECTION--------------- */
+/*------------- SUBSECTION--------------- */
+/*------------- SUBSECTION--------------- */
+/*------------- SUBSECTION--------------- */
+export function SubSection({ moduleId, firstSectionId, sectionId }) {
   const {
     project,
     handleChangeSection,
     handleDeleteImage,
     addSubSection,
-    deleteSection,
+    deleteSubSection,
   } = useContext(ProjectContext);
 
   let section =
@@ -62,14 +66,7 @@ export function Section({ moduleId, firstSectionId, sectionId }) {
         );
       })}
 
-      {/*-----TASKBAR----- */}
-      <TaskBar
-        moduleId={moduleId}
-        sectionId={sectionId}
-        handle={handleChangeSection}
-        deleteFunction={deleteSection}
-        add={addSubSection}
-      />
+
 
       {/*-----SECTIONS----- */}
       {/*       {section.sections.length > 0 &&
