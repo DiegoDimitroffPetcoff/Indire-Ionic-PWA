@@ -21,7 +21,7 @@ export function TaskBar({
         <IonButton
           color="primary"
           expandable="expandable"
-          onClick={() => addContent(moduleId, sectionId)}
+          onClick={() => addContent(moduleId, firstSectionId, sectionId)}
         >
           <IonIcon ios={addCircle} md={addCircle}></IonIcon>
           {/*   Add content */}

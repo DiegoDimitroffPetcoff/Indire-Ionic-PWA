@@ -29,22 +29,14 @@ export function SubSection({ moduleId, firstSectionId, sectionId }) {
 
   return (
     <>
-    
       {/*-----CONTENT----- */}
-      {section.content &&
-        section.content.map((content, contentId) => {
-          return (
-            <ContentHandler
-              key={contentId}
-              moduleId={moduleId}
-              firstSectionId={firstSectionId}
-              sectionId={sectionId}
-              contentId={contentId}
-            />
-          );
-        })}
+      <ContentHandler
+        moduleId={moduleId}
+        firstSectionId={firstSectionId}
+        sectionId={sectionId}
+      />
 
-      {/*-----IMG----- */}
+      {/*-----IMG VIEW----- */}
       {section.img &&
         section.img.map((img, idx) => (
           <img
@@ -55,6 +47,9 @@ export function SubSection({ moduleId, firstSectionId, sectionId }) {
             onClick={() => handleDeleteImage(moduleId, sectionId, idx)}
           />
         ))}
+
+      {/*-----BUDGET VIEW----- */}
+
       {section.budget.map((budget, idBudget) => {
         return (
           <Budget
@@ -67,15 +62,14 @@ export function SubSection({ moduleId, firstSectionId, sectionId }) {
         );
       })}
 
-<TaskBar
-          moduleId={moduleId}
-          firstSectionId={firstSectionId}
-          handle={handleChangeSection}
-          deleteFunction={deleteSubSection}
-          add={addSubSection}
-        />
-
-
+      <TaskBar
+        moduleId={moduleId}
+        firstSectionId={firstSectionId}
+        sectionId={sectionId}
+        handle={handleChangeSection}
+        deleteFunction={deleteSubSection}
+        add={addSubSection}
+      />
     </>
   );
 }

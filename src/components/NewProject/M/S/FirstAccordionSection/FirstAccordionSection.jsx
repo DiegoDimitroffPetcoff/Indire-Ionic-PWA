@@ -25,7 +25,7 @@ export function FirstAccordionSection({ moduleId, firstSectionId }) {
         {section.sections &&
           section.sections.map((_, sectionId) => {
             return (
-              <IonAccordionGroup>
+              <IonAccordionGroup key={sectionId}>
                 <IonAccordion value="first">
                   <IonItem slot="header" color="light">
                     <IonLabel>{`# ${sectionId + 1}.${sectionId + 1}`}</IonLabel>
