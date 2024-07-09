@@ -29,6 +29,7 @@ export function SubSection({ moduleId, firstSectionId, sectionId }) {
 
   return (
     <>
+    
       {/*-----CONTENT----- */}
       {section.content &&
         section.content.map((content, contentId) => {
@@ -66,31 +67,15 @@ export function SubSection({ moduleId, firstSectionId, sectionId }) {
         );
       })}
 
+<TaskBar
+          moduleId={moduleId}
+          firstSectionId={firstSectionId}
+          handle={handleChangeSection}
+          deleteFunction={deleteSubSection}
+          add={addSubSection}
+        />
 
 
-      {/*-----SECTIONS----- */}
-      {/*       {section.sections.length > 0 &&
-        section.sections.map((_, subsectionId) => {
-          return (
-            <IonAccordionGroup key={subsectionId}>
-              <IonAccordion value="first">
-                <IonItem slot="header" color="light">
-                  <IonLabel>
-                    {`# ${moduleId + 1}.${sectionId + 1}`}.{subsectionId + 1}
-                  </IonLabel>
-                </IonItem>
-                <div className="ion-padding" slot="content">
-                  <Subsection1
-                    sectionId={sectionId}
-                    key={sectionId}
-                    moduleId={moduleId}
-                    subsectionId={subsectionId}
-                  />
-                </div>
-              </IonAccordion>
-            </IonAccordionGroup>
-          );
-        })} */}
     </>
   );
 }

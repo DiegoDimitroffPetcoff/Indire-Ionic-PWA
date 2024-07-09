@@ -25,29 +25,24 @@ export function FirstAccordionSection({ moduleId, firstSectionId }) {
         {section.sections &&
           section.sections.map((_, sectionId) => {
             return (
-              <IonAccordionGroup key={sectionId}>
+              <IonAccordionGroup>
                 <IonAccordion value="first">
                   <IonItem slot="header" color="light">
                     <IonLabel>{`# ${sectionId + 1}.${sectionId + 1}`}</IonLabel>
                   </IonItem>
+                  <div className="ion-padding" slot="content">
+                    <SubSection
+                      moduleId={moduleId}
+                      firstSectionId={firstSectionId}
+                      sectionId={sectionId}
+                    />
+                  </div>
                 </IonAccordion>
-
-                <SubSection
-                  moduleId={moduleId}
-                  firstSectionId={firstSectionId}
-                  sectionId={sectionId}
-                />
               </IonAccordionGroup>
             );
           })}
         {/*-----TASKBAR----- */}
-        <TaskBar
-          moduleId={moduleId}
-          firstSectionId={firstSectionId}
-          handle={handleChangeSection}
-          deleteFunction={deleteSubSection}
-          add={addSubSection}
-        />
+
         <IonButton
           onClick={() => addSubSection(moduleId, firstSectionId)}
           expand="full"
