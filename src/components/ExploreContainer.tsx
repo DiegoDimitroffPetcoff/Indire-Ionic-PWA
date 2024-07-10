@@ -9,7 +9,7 @@ const ExploreContainer: React.FC<ContainerProps> = ({ name }) => {
   return (
     <div id="container">
       <strong>{name}</strong>
-      <Project />
+     <Project /> 
     </div>
   );
 };

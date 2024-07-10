@@ -12,7 +12,7 @@ export function Project() {
 
   return (
     <form onSubmit={handleSubmite}>
-      {/*  <Introduction />  */}
+    <Introduction />  
       {modules.map((_, moduleId) => {
         return <Modules moduleId={moduleId} key={moduleId} />;
       })}

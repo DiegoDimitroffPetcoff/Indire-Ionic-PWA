@@ -12,6 +12,7 @@ import {
 
 import { useLocation } from "react-router-dom";
 import {
+  refresh,
   archiveOutline,
   archiveSharp,
   bookmarkOutline,
@@ -28,7 +29,7 @@ import {
   atCircleOutline,
   addCircleOutline,
   listOutline,
-  documents
+  documents,
 } from "ionicons/icons";
 import "./Menu.css";
 
@@ -37,6 +38,7 @@ interface AppPage {
   iosIcon: string;
   mdIcon: string;
   title: string;
+  action?:() => void;
 }
 
 const appPages: AppPage[] = [
@@ -46,18 +48,27 @@ const appPages: AppPage[] = [
     iosIcon: addCircleOutline,
     mdIcon: addCircleOutline,
   },
+  
   {
     title: "ListProjects",
     url: "/project/listProjects",
     iosIcon: listOutline,
     mdIcon: listOutline,
-  }  ,
+  },
   {
-    title: 'Templates',
-    url: '/templates',
+    title: "Templates",
+    url: "/templates",
     iosIcon: documents,
-    mdIcon: documents
-  }/*,
+    mdIcon: documents,
+  },  {
+    title: "Refresh",
+    url: "/project/project",
+    iosIcon: refresh,
+    mdIcon: refresh,
+    action:() => {
+      window.localStorage.clear();  // Función para limpiar el localStorage
+    },
+  } /*,
   {
     title: 'Outbox',
     url: '/folder/Outbox',
@@ -119,11 +130,12 @@ const Menu: React.FC = () => {
                     ios={appPage.iosIcon}
                     md={appPage.mdIcon}
                   />
-                  <IonLabel>{appPage.title}</IonLabel>
+                  <IonLabel onClick={appPage.action}>{appPage.title}</IonLabel>
                 </IonItem>
               </IonMenuToggle>
             );
           })}
+
         </IonList>
 
         {/*         <IonList id="labels-list">
