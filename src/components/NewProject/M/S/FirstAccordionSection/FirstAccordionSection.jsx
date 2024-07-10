@@ -27,7 +27,7 @@ export function FirstAccordionSection({ moduleId, firstSectionId }) {
               <IonAccordionGroup key={sectionId}>
                 <IonAccordion value="first">
                   <IonItem slot="header" color="light">
-                    <IonLabel>{`# ${sectionId + 1}.${sectionId + 1}`}</IonLabel>
+                    <IonLabel>{`# ${firstSectionId + 1}.${sectionId + 1}`}</IonLabel>
                   </IonItem>
                   <div className="ion-padding" slot="content">
                     <SubSection

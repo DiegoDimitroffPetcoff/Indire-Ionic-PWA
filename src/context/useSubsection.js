@@ -57,18 +57,22 @@ export function useSubsection(setProject) {
       });
     }
   }
-  function deleteSubSection(moduleId, sectionId,firstSectionId) {
+  function deleteSubSection(moduleId, firstSectionId, sectionId) {
     console.log("delete");
     console.log(moduleId);
     console.log(sectionId);
+    
     setProject(prevProject=>{
       const newProject = [...prevProject];
+      console.log(newProject[1].modules[moduleId]);
+      console.log(newProject[1].modules[moduleId].sections[firstSectionId].sections);
+
       const sectionOnStorage = newProject[1].modules[moduleId].sections[firstSectionId].sections;
       console.log(sectionOnStorage);
       const sectionFiltered = sectionOnStorage.filter(
-        (_, id) => id !== firstSectionId
+        (_, id) => id !== sectionId
       );
-      newProject[1].modules[moduleId].sections = sectionFiltered;
+      newProject[1].modules[moduleId].sections[firstSectionId].sections = sectionFiltered;
      
      window.localStorage.setItem("data", JSON.stringify(newProject));
       return newProject 

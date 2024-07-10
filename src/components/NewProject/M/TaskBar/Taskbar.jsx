@@ -1,5 +1,11 @@
 import { useState, useContext } from "react";
-import { addCircle, closeCircle, card, arrowDownCircle, arrowUpRightBoxSharp } from "ionicons/icons";
+import {
+  addCircle,
+  closeCircle,
+  card,
+  arrowDownCircle,
+  arrowUpRightBoxSharp,
+} from "ionicons/icons";
 import { IonButton, IonIcon } from "@ionic/react";
 import { ProjectContext } from "../../../../context/ProjectContext";
 import { AlertDelete } from "../../../../utils/AlertDelete";
@@ -12,7 +18,8 @@ export function TaskBar({
   deleteFunction,
   add,
 }) {
-  const { addBudget, addContent,deleteSubSection, handleImg } = useContext(ProjectContext);
+  const { addBudget, addContent, deleteSubSection, handleImg } =
+    useContext(ProjectContext);
   const [showAlert, setShowAlert] = useState(false);
 
   return (
@@ -30,30 +37,36 @@ export function TaskBar({
           type="file"
           accept="image/*"
           multiple
-          onChange={(e) => handleImg(e, moduleId,firstSectionId, sectionId, "img")}
+          onChange={(e) =>
+            handleImg(e, moduleId, firstSectionId, sectionId, "img")
+          }
           expand="full"
         />
-        <IonButton onClick={() => addBudget(moduleId, firstSectionId, sectionId)} expand="full">
+        <IonButton
+          onClick={() => addBudget(moduleId, firstSectionId, sectionId)}
+          expand="full"
+        >
           <IonIcon ios={card} md={card}></IonIcon>
-
         </IonButton>
         <IonButton
           color="danger"
-          onClick={() => deleteSubSection(moduleId, sectionId,firstSectionId)}
+          onClick={() => deleteSubSection(moduleId, firstSectionId, sectionId)}
           expand="full"
         >
           <IonIcon ios={closeCircle} md={closeCircle}></IonIcon>{" "}
-  
         </IonButton>
-{/* 
+
         <IonButton
           color="secondary"
           onClick={() => add(moduleId, sectionId)}
           expand="full"
         >
-          <IonIcon ios={arrowUpRightBoxSharp} md={arrowUpRightBoxSharp}></IonIcon>{" "}
-    
-        </IonButton> */}
+          {" "}
+          <IonIcon
+            ios={arrowUpRightBoxSharp}
+            md={arrowUpRightBoxSharp}
+          ></IonIcon>{" "}
+        </IonButton>
       </div>
     </>
   );
