@@ -8,7 +8,7 @@ import "./Project.css";
 export function Project() {
   const { handleSubmite } = useContext(ProjectContext);
   const { project } = useContext(ProjectContext);
-  const modules = project[1].modules || [];
+  const modules:any[] = project[1].modules || [];
 
   return (
     <form onSubmit={handleSubmite}>
