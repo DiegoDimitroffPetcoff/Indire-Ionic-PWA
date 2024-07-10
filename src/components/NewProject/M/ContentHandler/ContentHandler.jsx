@@ -36,7 +36,7 @@ export function ContentHandler({ moduleId, firstSectionId, sectionId }) {
             <IonButton
               color="danger"
               onClick={() =>
-                deleteContent(moduleId, sectionId, firstSectionId, contentId)
+                deleteContent(moduleId,firstSectionId, sectionId, contentId)
               }
             >
               <IonIcon ios={closeCircle} md={closeCircle}></IonIcon>
