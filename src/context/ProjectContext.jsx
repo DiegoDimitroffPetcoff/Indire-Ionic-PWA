@@ -43,22 +43,23 @@ export const PorjectProvider = ({ children }) => {
     return INITIAL_STATE;
   });
   /* ----------------CONTENT---------------- */
-
   const { addContent, handleChangeContent, deleteContent } =
     useContent(setProject);
 
+  /* ----------------INTRODUCTION---------------- */
   const { handleChangeIntroduction } = useIntroduction;
+
   /* ----------------TEMPLATES---------------- */
   const moduleTemplate = (moduleId, newModule) => {
     setProject((prevProject) => {
       const newProject = [...prevProject];
-
       newProject[1].modules[moduleId].description = newModule.description;
       newProject[1].modules[moduleId].title = newModule.title;
       window.localStorage.setItem("data", JSON.stringify(newProject));
       return newProject;
     });
   };
+  
   /* ----------------MODULE---------------- */
   const { handleChangeModules, addMainSection, deleteMainSection } = useModules(
     { setProject, project }
@@ -68,15 +69,13 @@ export const PorjectProvider = ({ children }) => {
   const { deleteSection, handleChangeSection, addSection } =
     useSection(setProject);
 
-  /* ----------------BUDGET---------------- */
+  /* ----------------IMAGE---------------- */
   const { handleImg, deleteImage  } = useImg(setProject);
-  /* ----------------BUDGET---------------- */
 
+  /* ----------------BUDGET---------------- */
   const { addBudget, delenteBudget, handleBudget } = useBudget(setProject);
 
-
   /* ----------------SUBSECTION---------------- */
-
   const { deleteSubSection, handleChangeSubSection, addSubSection } =
     useSubsection(setProject);
 
