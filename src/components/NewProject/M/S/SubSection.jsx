@@ -19,7 +19,7 @@ export function SubSection({ moduleId, firstSectionId, sectionId }) {
   const {
     project,
     handleChangeSection,
-    handleDeleteImage,
+    deleteImage,
     addSubSection,
     deleteSubSection,
   } = useContext(ProjectContext);
@@ -44,7 +44,7 @@ export function SubSection({ moduleId, firstSectionId, sectionId }) {
             alt={`imagen-`}
             key={idx}
             style={{ maxWidth: "100px", margin: "10px" }}
-            onClick={() => handleDeleteImage(moduleId, sectionId, idx)}
+            onClick={() => deleteImage(moduleId,firstSectionId, sectionId, idx)}
           />
         ))}
 

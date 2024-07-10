@@ -19,6 +19,7 @@ export function useSection(setProject) {
   function handleChangeSection(
     e,
     moduleId,
+    firstSectionId,
     sectionId,
     subsectionId,
     contentId,
@@ -47,9 +48,9 @@ export function useSection(setProject) {
           setProject((prevProject) => {
             const updateProject = [...prevProject];
             const section =
-              updateProject[1].modules[moduleId].sections[sectionId].sections[
-                subsectionId
-              ];
+            updateProject[1].modules[moduleId].sections[firstSectionId].sections[
+              sectionId
+            ];
 
             // Aseguramos que section.img sea un array
             if (!Array.isArray(section[field])) {

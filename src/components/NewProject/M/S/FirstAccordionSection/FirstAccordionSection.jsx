@@ -15,8 +15,7 @@ import { TaskBar } from "../../TaskBar/Taskbar";
 /*------------- FIRST-SECTION -> SECTION--------------- */
 
 export function FirstAccordionSection({ moduleId, firstSectionId }) {
-  const { project, addSubSection, handleChangeSection, deleteSubSection } =
-    useContext(ProjectContext);
+  const { project, addSubSection } = useContext(ProjectContext);
   let section = project[1].modules[moduleId].sections[firstSectionId];
 
   return (

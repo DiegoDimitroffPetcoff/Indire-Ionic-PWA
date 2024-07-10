@@ -5,6 +5,7 @@ import { useModules } from "./useModules";
 import { useSection } from "./useSection";
 import { useSubsection } from "./useSubsection";
 import { useBudget } from "./useBudget";
+import { useImg } from "./useImg";
 
 export const ProjectContext = createContext();
 
@@ -59,25 +60,20 @@ export const PorjectProvider = ({ children }) => {
     });
   };
   /* ----------------MODULE---------------- */
-  const { handleChangeModules, addMainSection, deleteMainSection } =
-    useModules({setProject, project});
+  const { handleChangeModules, addMainSection, deleteMainSection } = useModules(
+    { setProject, project }
+  );
 
   /* ----------------SECTION---------------- */
   const { deleteSection, handleChangeSection, addSection } =
     useSection(setProject);
 
   /* ----------------BUDGET---------------- */
+  const { handleImg, deleteImage  } = useImg(setProject);
+  /* ----------------BUDGET---------------- */
 
   const { addBudget, delenteBudget, handleBudget } = useBudget(setProject);
-  function handleDeleteImage(moduleId, sectionId, imageIndex) {
-    setProject((prevProject) => {
-      const updateProject = [...prevProject];
-      const section = updateProject[1].modules[moduleId].sections[sectionId];
-      section.img.splice(imageIndex, 1);
-      window.localStorage.setItem("data", JSON.stringify(updateProject));
-      return updateProject;
-    });
-  }
+
 
   /* ----------------SUBSECTION---------------- */
 
@@ -102,7 +98,7 @@ export const PorjectProvider = ({ children }) => {
         addBudget,
         handleBudget,
         delenteBudget,
-        handleDeleteImage,
+        deleteImage,
         addSubSection,
         deleteSubSection,
         moduleTemplate,
@@ -111,6 +107,7 @@ export const PorjectProvider = ({ children }) => {
         deleteContent,
         deleteMainSection,
         handleChangeContent,
+        handleImg
       }}
     >
       {children}
