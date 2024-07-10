@@ -11,12 +11,16 @@ import { TaskBar } from "../TaskBar/Taskbar";
 import { Budget } from "../Budget/Buget";
 
 import { ContentHandler } from "../ContentHandler/ContentHandler";
-import { SubSection2 } from "./SubSection2";
 /*------------- SUBSECTION--------------- */
 /*------------- SUBSECTION--------------- */
 /*------------- SUBSECTION--------------- */
 /*------------- SUBSECTION--------------- */
-export function SubSection({ moduleId, firstSectionId, sectionId }) {
+export function SubSection2({
+  moduleId,
+  firstSectionId,
+  sectionId,
+  sectionId2,
+}) {
   const {
     project,
     handleChangeSection,
@@ -26,7 +30,8 @@ export function SubSection({ moduleId, firstSectionId, sectionId }) {
   } = useContext(ProjectContext);
 
   let section =
-    project[1].modules[moduleId].sections[firstSectionId].sections[sectionId];
+    project[1].modules[moduleId].sections[firstSectionId].sections[sectionId]
+      .sections[sectionId2];
 
   return (
     <>
@@ -65,22 +70,12 @@ export function SubSection({ moduleId, firstSectionId, sectionId }) {
           />
         );
       })}
-      {section.sections.map((subsection2, sectionId2) => {
-        return (
-          <div style={{backgroundColor: "blue", padding:"20px"}}>
-            <SubSection2
-              moduleId={moduleId}
-              firstSectionId={firstSectionId}
-              sectionId={sectionId}
-              sectionId2={sectionId2}
-            />
-          </div>
-        );
-      })}
+
       <TaskBar
         moduleId={moduleId}
         firstSectionId={firstSectionId}
         sectionId={sectionId}
+        sectionId2={sectionId2}
         handle={handleChangeSection}
         deleteFunction={deleteSubSection}
         add={addSubSection}

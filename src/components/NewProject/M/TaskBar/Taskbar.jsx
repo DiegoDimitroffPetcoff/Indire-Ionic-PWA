@@ -18,7 +18,7 @@ export function TaskBar({
   deleteFunction,
   add,
 }) {
-  const { addBudget, addContent, deleteSubSection, handleImg } =
+  const { addBudget, addContent, deleteSubSection, handleImg, addSubSection, addSubSectionSwitch } =
     useContext(ProjectContext);
   const [showAlert, setShowAlert] = useState(false);
 
@@ -58,9 +58,9 @@ export function TaskBar({
 
         <IonButton
           color="secondary"
-          onClick={() => add(moduleId, sectionId)}
+          onClick={() => addSubSectionSwitch(moduleId, firstSectionId, sectionId,"subsection2")}
           expand="full"
-        >
+        >SUB
           {" "}
           <IonIcon
             ios={arrowUpRightBoxSharp}

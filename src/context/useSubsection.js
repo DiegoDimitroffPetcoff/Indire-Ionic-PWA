@@ -1,13 +1,15 @@
 export function useSubsection(setProject) {
-  function addSubSection(moduleId, sectionId) {
+  function addSubSection(moduleId, firstSectionId) {
     setProject((prevProject) => {
       const updateProject = [...prevProject];
-      updateProject[1].modules[moduleId].sections[sectionId].sections.push({
-        content: [{ title: "", description: "" }],
-        img: null,
-        budget: [],
-        sections: [],
-      });
+      updateProject[1].modules[moduleId].sections[firstSectionId].sections.push(
+        {
+          content: [{ title: "", description: "" }],
+          img: null,
+          budget: [],
+          sections: [],
+        }
+      );
 
       window.localStorage.setItem("data", JSON.stringify(updateProject));
       return updateProject;
@@ -61,23 +63,74 @@ export function useSubsection(setProject) {
     console.log("delete");
     console.log(moduleId);
     console.log(sectionId);
-    
-    setProject(prevProject=>{
+
+    setProject((prevProject) => {
       const newProject = [...prevProject];
       console.log(newProject[1].modules[moduleId]);
-      console.log(newProject[1].modules[moduleId].sections[firstSectionId].sections);
+      console.log(
+        newProject[1].modules[moduleId].sections[firstSectionId].sections
+      );
 
-      const sectionOnStorage = newProject[1].modules[moduleId].sections[firstSectionId].sections;
+      const sectionOnStorage =
+        newProject[1].modules[moduleId].sections[firstSectionId].sections;
       console.log(sectionOnStorage);
       const sectionFiltered = sectionOnStorage.filter(
         (_, id) => id !== sectionId
       );
-      newProject[1].modules[moduleId].sections[firstSectionId].sections = sectionFiltered;
-     
-     window.localStorage.setItem("data", JSON.stringify(newProject));
-      return newProject 
-    });
+      newProject[1].modules[moduleId].sections[firstSectionId].sections =
+        sectionFiltered;
 
+      window.localStorage.setItem("data", JSON.stringify(newProject));
+      return newProject;
+    });
   }
-  return { deleteSubSection, handleChangeSubSection, addSubSection };
+  function addSubSectionSwitch(moduleId, firstSectionId,sectionId, key) {
+    switch (key) {
+      case "subsection":
+        console.log("subsection");
+
+        setProject((prevProject) => {
+          const updateProject = [...prevProject];
+          updateProject[1].modules[moduleId].sections[
+            firstSectionId
+          ].sections.push({
+            content: [{ title: "", description: "" }],
+            img: null,
+            budget: [],
+            sections: [],
+          });
+
+          window.localStorage.setItem("data", JSON.stringify(updateProject));
+          return updateProject;
+        });
+        break;
+      case "subsection2":
+        console.log("subsection2");
+
+        setProject((prevProject) => {
+          const updateProject = [...prevProject];
+          updateProject[1].modules[moduleId].sections[
+            firstSectionId
+          ].sections[sectionId].sections.push({
+            content: [{ title: "", description: "" }],
+            img: null,
+            budget: [],
+            sections: [],
+          });
+
+          window.localStorage.setItem("data", JSON.stringify(updateProject));
+          return updateProject;
+        });
+        break;
+      default:
+        console.log("no subsections adedd");
+        break;
+    }
+  }
+  return {
+    deleteSubSection,
+    handleChangeSubSection,
+    addSubSection,
+    addSubSectionSwitch,
+  };
 }

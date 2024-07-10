@@ -76,7 +76,7 @@ export const PorjectProvider = ({ children }) => {
   const { addBudget, delenteBudget, handleBudget } = useBudget(setProject);
 
   /* ----------------SUBSECTION---------------- */
-  const { deleteSubSection, handleChangeSubSection, addSubSection } =
+  const { deleteSubSection, handleChangeSubSection, addSubSection, addSubSectionSwitch } =
     useSubsection(setProject);
 
   function handleSubmite(e) {
@@ -106,7 +106,8 @@ export const PorjectProvider = ({ children }) => {
         deleteContent,
         deleteMainSection,
         handleChangeContent,
-        handleImg
+        handleImg,
+        addSubSectionSwitch
       }}
     >
       {children}
