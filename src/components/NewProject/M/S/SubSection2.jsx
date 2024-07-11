@@ -76,9 +76,6 @@ export function SubSection2({
         firstSectionId={firstSectionId}
         sectionId={sectionId}
         sectionId2={sectionId2}
-        handle={handleChangeSection}
-        deleteFunction={deleteSubSection}
-        add={addSubSection}
       />
     </>
   );

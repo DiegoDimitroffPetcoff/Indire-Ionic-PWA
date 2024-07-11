@@ -43,7 +43,7 @@ export function FirstAccordionSection({ moduleId, firstSectionId }) {
         {/*-----TASKBAR----- */}
 
         <IonButton
-          onClick={() => addSubSection(moduleId, firstSectionId)}
+          onClick={() => addSubSection("subsection",moduleId, firstSectionId)}
           expand="full"
         >
           Add SubSection

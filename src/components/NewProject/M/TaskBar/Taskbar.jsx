@@ -10,15 +10,8 @@ import { IonButton, IonIcon } from "@ionic/react";
 import { ProjectContext } from "../../../../context/ProjectContext";
 import { AlertDelete } from "../../../../utils/AlertDelete";
 
-export function TaskBar({
-  moduleId,
-  firstSectionId,
-  sectionId,
-  handle,
-  deleteFunction,
-  add,
-}) {
-  const { addBudget, addContent, deleteSubSection, handleImg, addSubSection, addSubSectionSwitch } =
+export function TaskBar({ description, moduleId, firstSectionId, sectionId }) {
+  const { addBudget, addContent, deleteSubSection, handleImg, addSubSection } =
     useContext(ProjectContext);
   const [showAlert, setShowAlert] = useState(false);
 
@@ -58,10 +51,12 @@ export function TaskBar({
 
         <IonButton
           color="secondary"
-          onClick={() => addSubSectionSwitch(moduleId, firstSectionId, sectionId,"subsection2")}
+          onClick={() =>
+            addSubSection(description, moduleId, firstSectionId, sectionId)
+          }
           expand="full"
-        >SUB
-          {" "}
+        >
+          SUB{" "}
           <IonIcon
             ios={arrowUpRightBoxSharp}
             md={arrowUpRightBoxSharp}

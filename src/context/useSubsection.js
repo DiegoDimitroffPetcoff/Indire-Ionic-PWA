@@ -1,20 +1,4 @@
 export function useSubsection(setProject) {
-  function addSubSection(moduleId, firstSectionId) {
-    setProject((prevProject) => {
-      const updateProject = [...prevProject];
-      updateProject[1].modules[moduleId].sections[firstSectionId].sections.push(
-        {
-          content: [{ title: "", description: "" }],
-          img: null,
-          budget: [],
-          sections: [],
-        }
-      );
-
-      window.localStorage.setItem("data", JSON.stringify(updateProject));
-      return updateProject;
-    });
-  }
   function handleChangeSubSection(e, moduleId, sectionId, field) {
     const value = e.detail
       ? e.detail.value
@@ -84,7 +68,7 @@ export function useSubsection(setProject) {
       return newProject;
     });
   }
-  function addSubSectionSwitch(moduleId, firstSectionId,sectionId, key) {
+  function addSubSection(key, moduleId, firstSectionId, sectionId) {
     switch (key) {
       case "subsection":
         console.log("subsection");
@@ -109,9 +93,9 @@ export function useSubsection(setProject) {
 
         setProject((prevProject) => {
           const updateProject = [...prevProject];
-          updateProject[1].modules[moduleId].sections[
-            firstSectionId
-          ].sections[sectionId].sections.push({
+          updateProject[1].modules[moduleId].sections[firstSectionId].sections[
+            sectionId
+          ].sections.push({
             content: [{ title: "", description: "" }],
             img: null,
             budget: [],
@@ -131,6 +115,5 @@ export function useSubsection(setProject) {
     deleteSubSection,
     handleChangeSubSection,
     addSubSection,
-    addSubSectionSwitch,
   };
 }

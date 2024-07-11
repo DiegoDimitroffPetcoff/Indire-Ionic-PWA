@@ -17,13 +17,7 @@ import { SubSection2 } from "./SubSection2";
 /*------------- SUBSECTION--------------- */
 /*------------- SUBSECTION--------------- */
 export function SubSection({ moduleId, firstSectionId, sectionId }) {
-  const {
-    project,
-    handleChangeSection,
-    deleteImage,
-    addSubSection,
-    deleteSubSection,
-  } = useContext(ProjectContext);
+  const { project, deleteImage } = useContext(ProjectContext);
 
   let section =
     project[1].modules[moduleId].sections[firstSectionId].sections[sectionId];
@@ -52,7 +46,6 @@ export function SubSection({ moduleId, firstSectionId, sectionId }) {
         ))}
 
       {/*-----BUDGET VIEW----- */}
-
       {section.budget.map((budget, idBudget) => {
         return (
           <Budget
@@ -67,23 +60,30 @@ export function SubSection({ moduleId, firstSectionId, sectionId }) {
       })}
       {section.sections.map((subsection2, sectionId2) => {
         return (
-          <div style={{backgroundColor: "blue", padding:"20px"}}>
-            <SubSection2
-              moduleId={moduleId}
-              firstSectionId={firstSectionId}
-              sectionId={sectionId}
-              sectionId2={sectionId2}
-            />
-          </div>
+          <IonAccordionGroup key={sectionId2}>
+            <IonAccordion value="first">
+              <IonItem slot="header" color="light">
+                <IonLabel>{`# ${firstSectionId + 1}.${sectionId + 1}.${
+                  sectionId2 + 1
+                }`}</IonLabel>
+              </IonItem>
+              <div className="ion-padding" slot="content">
+                <SubSection2
+                  moduleId={moduleId}
+                  firstSectionId={firstSectionId}
+                  sectionId={sectionId}
+                  sectionId2={sectionId2}
+                />
+              </div>
+            </IonAccordion>
+          </IonAccordionGroup>
         );
       })}
       <TaskBar
         moduleId={moduleId}
         firstSectionId={firstSectionId}
         sectionId={sectionId}
-        handle={handleChangeSection}
-        deleteFunction={deleteSubSection}
-        add={addSubSection}
+        description="subsection2"
       />
     </>
   );

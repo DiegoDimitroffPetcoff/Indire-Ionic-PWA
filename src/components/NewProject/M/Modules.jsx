@@ -56,7 +56,6 @@ export function Modules({ moduleId }) {
                 </IonButton>
               </IonItem>
               <FirstAccordionSection
-                key={sectionId}
                 firstSectionId={sectionId}
                 moduleId={moduleId}
               />
