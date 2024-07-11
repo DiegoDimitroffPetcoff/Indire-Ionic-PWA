@@ -12,7 +12,7 @@ export function ContentHandler({
 }) {
   const { project, deleteContent, handleChangeContent } =
     useContext(ProjectContext);
-
+//Analyze Content of the section that is going to be painted in the component
   let content =
     project[1].modules[moduleId].sections[firstSectionId].sections[sectionId]
       .content;
@@ -50,7 +50,7 @@ export function ContentHandler({
             <IonButton
               color="danger"
               onClick={() =>
-                deleteContent(moduleId, firstSectionId, sectionId, contentId)
+                deleteContent(description, contentId, moduleId, firstSectionId, sectionId,sectionId2)
               }
             >
               <IonIcon ios={closeCircle} md={closeCircle}></IonIcon>

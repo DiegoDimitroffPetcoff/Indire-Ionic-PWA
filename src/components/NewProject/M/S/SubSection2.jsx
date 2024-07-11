@@ -72,12 +72,15 @@ export function SubSection2({
           />
         );
       })}
-
+{/* ADD SUBSECTIONS-> HAVE TO BE A NEXT */}
       <TaskBar
         moduleId={moduleId}
         firstSectionId={firstSectionId}
         sectionId={sectionId}
         sectionId2={sectionId2}
+        description="subsection2"
+        contentDescription="subsection2"
+
       />
     </>
   );

@@ -85,6 +85,7 @@ export function SubSection({ moduleId, firstSectionId, sectionId }) {
         firstSectionId={firstSectionId}
         sectionId={sectionId}
         description="subsection2"
+        contentDescription="subsection"
       />
     </>
   );
