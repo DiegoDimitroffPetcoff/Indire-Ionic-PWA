@@ -4,7 +4,15 @@ import {
   IonItem,
   IonLabel,
   IonButton,
+  IonIcon,
 } from "@ionic/react";
+import {
+  addCircle,
+  closeCircle,
+  card,
+  arrowDownCircle,
+  arrowUpRightBoxSharp,
+} from "ionicons/icons";
 import { SubSection } from "../SubSection";
 import { ProjectContext } from "../../../../../context/ProjectContext";
 import { useContext } from "react";
@@ -27,7 +35,9 @@ export function FirstAccordionSection({ moduleId, firstSectionId }) {
               <IonAccordionGroup key={sectionId}>
                 <IonAccordion value="first">
                   <IonItem slot="header" color="light">
-                    <IonLabel>{`# ${firstSectionId + 1}.${sectionId + 1}`}</IonLabel>
+                    <IonLabel>{`# ${firstSectionId + 1}.${
+                      sectionId + 1
+                    }`}</IonLabel>
                   </IonItem>
                   <div className="ion-padding" slot="content">
                     <SubSection
@@ -43,10 +53,15 @@ export function FirstAccordionSection({ moduleId, firstSectionId }) {
         {/*-----TASKBAR----- */}
 
         <IonButton
-          onClick={() => addSubSection("subsection",moduleId, firstSectionId)}
+          color="secondary"
+          onClick={() => addSubSection("subsection", moduleId, firstSectionId)}
           expand="full"
         >
-          Add SubSection
+          Add Sub-Section
+          <IonIcon
+            ios={arrowUpRightBoxSharp}
+            md={arrowUpRightBoxSharp}
+          ></IonIcon>{" "}
         </IonButton>
       </div>
     </>

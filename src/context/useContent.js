@@ -96,6 +96,8 @@ console.log(sectionId2);
   ) {
     switch (description) {
       case "subsection":
+        console.log("delete content");
+        console.log("dsescription: "+description);
         setProject((prevProject) => {
           const newProject = [...prevProject];
           const contentOnStorage =
@@ -108,7 +110,7 @@ console.log(sectionId2);
 
           prevProject[1].modules[moduleId].sections[firstSectionId].sections[
             sectionId
-          ].sections[sectionId2].content = contentFiltered;
+          ].content = contentFiltered;
 
           window.localStorage.setItem("data", JSON.stringify(newProject));
           return newProject;

@@ -71,7 +71,7 @@ export function TaskBar({
           }
           expand="full"
         >
-          SUB{" "}
+         Add Sub-Section
           <IonIcon
             ios={arrowUpRightBoxSharp}
             md={arrowUpRightBoxSharp}

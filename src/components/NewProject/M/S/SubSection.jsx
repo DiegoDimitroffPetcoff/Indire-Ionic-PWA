@@ -26,7 +26,8 @@ export function SubSection({ moduleId, firstSectionId, sectionId }) {
     <>
       {/*-----CONTENT----- */}
       <ContentHandler
-        description="subsection"
+                description="subsection"
+        contentDescription="subsection"
         moduleId={moduleId}
         firstSectionId={firstSectionId}
         sectionId={sectionId}
@@ -61,8 +62,8 @@ export function SubSection({ moduleId, firstSectionId, sectionId }) {
       })}
       {section.sections.map((subsection2, sectionId2) => {
         return (
-          <IonAccordionGroup key={sectionId2}>
-            <IonAccordion value="first">
+          <IonAccordionGroup key={sectionId2} >
+            <IonAccordion value="first" >
               <IonItem slot="header" color="light">
                 <IonLabel>{`# ${firstSectionId + 1}.${sectionId + 1}.${
                   sectionId2 + 1
