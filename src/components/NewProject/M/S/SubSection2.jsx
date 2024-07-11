@@ -37,9 +37,11 @@ export function SubSection2({
     <>
       {/*-----CONTENT----- */}
       <ContentHandler
+      description="subsection2"
         moduleId={moduleId}
         firstSectionId={firstSectionId}
         sectionId={sectionId}
+        sectionId2={sectionId2}
       />
 
       {/*-----IMG VIEW----- */}

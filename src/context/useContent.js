@@ -15,21 +15,44 @@ export function useContent(setProject) {
   }
   function handleChangeContent(
     e,
-    moduleId,
-    sectionId,
-    firstSectionId,
+    description,
+    field,
     contentId,
-    field
+    moduleId,
+    firstSectionId,
+    sectionId,
+    sectionId2,
   ) {
-    setProject((prevProject) => {
-      const value = e.detail ? e.detail.value : e.target.value;
-      let updateProject = [...prevProject];
-      updateProject[1].modules[moduleId].sections[firstSectionId].sections[
-        sectionId
-      ].content[contentId][field] = value;
-      window.localStorage.setItem("data", JSON.stringify(updateProject));
-      return updateProject;
-    });
+    switch (description) {
+      case "subsection":
+        console.log("content /section");
+        setProject((prevProject) => {
+          const value = e.detail ? e.detail.value : e.target.value;
+          let updateProject = [...prevProject];
+          updateProject[1].modules[moduleId].sections[firstSectionId].sections[
+            sectionId
+          ].content[contentId][field] = value;
+          window.localStorage.setItem("data", JSON.stringify(updateProject));
+          return updateProject;
+        });
+        break;
+      case "subsection2":
+        setProject((prevProject) => {
+          console.log("content /Subsection");
+
+          const value = e.detail ? e.detail.value : e.target.value;
+          let updateProject = [...prevProject];
+          updateProject[1].modules[moduleId].sections[firstSectionId].sections[
+            sectionId
+          ].sections[sectionId2].content[contentId][field] = value;
+          window.localStorage.setItem("data", JSON.stringify(updateProject));
+          return updateProject;
+        });
+        break;
+
+      default:
+        break;
+    }
   }
   function deleteContent(moduleId, firstSectionId, sectionId, contentId) {
     setProject((prevProject) => {
@@ -52,3 +75,12 @@ export function useContent(setProject) {
   }
   return { addContent, handleChangeContent, deleteContent };
 }
+
+/*     setProject((prevProject) => {
+      const value = e.detail ? e.detail.value : e.target.value;
+      let updateProject = [...prevProject];
+      updateProject[1].modules[moduleId].sections[firstSectionId].sections[sectionId]
+        .sections[sectionId2].content[contentId][field] = value;
+      window.localStorage.setItem("data", JSON.stringify(updateProject));
+      return updateProject;
+    }); */

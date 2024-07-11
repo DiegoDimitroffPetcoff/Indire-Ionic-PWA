@@ -26,6 +26,7 @@ export function SubSection({ moduleId, firstSectionId, sectionId }) {
     <>
       {/*-----CONTENT----- */}
       <ContentHandler
+        description="subsection"
         moduleId={moduleId}
         firstSectionId={firstSectionId}
         sectionId={sectionId}

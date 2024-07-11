@@ -3,13 +3,24 @@ import { IonButton, IonIcon, IonInput, IonTextarea } from "@ionic/react";
 import { ProjectContext } from "../../../../context/ProjectContext";
 import { useContext } from "react";
 
-export function ContentHandler({ moduleId, firstSectionId, sectionId }) {
+export function ContentHandler({
+  description,
+  moduleId,
+  firstSectionId,
+  sectionId,
+  sectionId2,
+}) {
   const { project, deleteContent, handleChangeContent } =
     useContext(ProjectContext);
 
-  const content =
+  let content =
     project[1].modules[moduleId].sections[firstSectionId].sections[sectionId]
       .content;
+  if (description === "subsection2") {
+    content =
+      project[1].modules[moduleId].sections[firstSectionId].sections[sectionId]
+        .sections[sectionId2].content;
+  }
 
   return (
     <>
@@ -25,18 +36,21 @@ export function ContentHandler({ moduleId, firstSectionId, sectionId }) {
               onIonChange={(e) =>
                 handleChangeContent(
                   e,
-                  moduleId,
-                  sectionId,
-                  firstSectionId,
+                  description,
+                  "title",
                   contentId,
-                  "title"
+                  moduleId,
+                  firstSectionId,
+                  sectionId,
+                  sectionId2,
+                  
                 )
               }
             />
             <IonButton
               color="danger"
               onClick={() =>
-                deleteContent(moduleId,firstSectionId, sectionId, contentId)
+                deleteContent(moduleId, firstSectionId, sectionId, contentId)
               }
             >
               <IonIcon ios={closeCircle} md={closeCircle}></IonIcon>
@@ -51,11 +65,14 @@ export function ContentHandler({ moduleId, firstSectionId, sectionId }) {
             onIonChange={(e) =>
               handleChangeContent(
                 e,
-                moduleId,
-                sectionId,
-                firstSectionId,
+                description,
+                "description",
                 contentId,
-                "description"
+                moduleId,
+                firstSectionId,
+                sectionId,
+                sectionId2,
+                
               )
             }
           />
