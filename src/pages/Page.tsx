@@ -18,6 +18,7 @@ import {
   documentOutline,
   saveOutline,
   cloudCircle,
+  
   ellipsisHorizontal,
   ellipsisVertical,
   helpCircle,
@@ -66,12 +67,7 @@ const Page: React.FC = () => {
               OnDrive
             </IonButton>
           </IonButtons>
-          <IonButtons slot="start">
-            <IonButton fill="outline">
-              <IonIcon slot="end" icon={documentOutline}></IonIcon>
-              Word
-            </IonButton>
-          </IonButtons>
+
           <IonButtons slot="start">
             <IonButton fill="outline">
               <IonIcon slot="end" icon={copyOutline}></IonIcon>
@@ -82,6 +78,18 @@ const Page: React.FC = () => {
             <IonButton fill="outline">
               <IonIcon slot="end" icon={clipboardOutline}></IonIcon>
               PDF
+            </IonButton>
+          </IonButtons>
+          <IonButtons slot="start">
+            <IonButton fill="outline">
+              <IonIcon slot="end" icon={documentOutline}></IonIcon>
+              Word
+            </IonButton>
+          </IonButtons>
+          <IonButtons slot="start">
+            <IonButton fill="outline">
+              <IonIcon slot="end" icon={documentOutline}></IonIcon>
+              Word
             </IonButton>
           </IonButtons>
         </IonToolbar>

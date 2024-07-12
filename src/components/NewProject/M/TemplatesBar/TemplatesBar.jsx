@@ -5,7 +5,7 @@ import {
   IonItem,
   IonLabel,
 } from "@ionic/react";
-import { addCircle } from "ionicons/icons";
+import { copyOutline } from "ionicons/icons";
 
 import moduloTemplateJson from "../../../../templates/sectionTemplate.json";
 import { ProjectContext } from "../../../../context/ProjectContext";
@@ -30,7 +30,7 @@ export function TemplatesBar({ moduleId, type }) {
     <IonAccordionGroup value={accordionValue} key={moduleId}>
       <IonAccordion value="first">
         <IonItem slot="header" color="light">
-          <IonIcon ios={addCircle} md={addCircle}></IonIcon>
+          <IonIcon ios={copyOutline} md={copyOutline}></IonIcon>
         </IonItem>
 
         <div className="ion-padding" slot="content">

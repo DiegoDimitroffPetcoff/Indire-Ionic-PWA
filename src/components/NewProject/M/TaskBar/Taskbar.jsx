@@ -1,11 +1,5 @@
 import { useState, useContext } from "react";
-import {
-  addCircle,
-  closeCircle,
-  card,
-  arrowDownCircle,
-  arrowUpRightBoxSharp,
-} from "ionicons/icons";
+import { addCircle, closeCircle, card, squareOutline } from "ionicons/icons";
 import { IonButton, IonIcon } from "@ionic/react";
 import { ProjectContext } from "../../../../context/ProjectContext";
 import { AlertDelete } from "../../../../utils/AlertDelete";
@@ -39,7 +33,7 @@ export function TaskBar({
             )
           }
         >
-          <IonIcon ios={addCircle} md={addCircle}></IonIcon>
+          <IonIcon ios={squareOutline} md={squareOutline}></IonIcon>
           {/*   Add content */}
         </IonButton>
         <input
@@ -89,10 +83,7 @@ export function TaskBar({
             expand="full"
           >
             Add Sub-Section
-            <IonIcon
-              ios={arrowUpRightBoxSharp}
-              md={arrowUpRightBoxSharp}
-            ></IonIcon>{" "}
+            <IonIcon ios={addCircle} md={addCircle}></IonIcon>{" "}
           </IonButton>
         )}
       </div>

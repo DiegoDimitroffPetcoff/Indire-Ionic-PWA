@@ -7,11 +7,11 @@ import {
   IonIcon,
 } from "@ionic/react";
 import {
-  addCircle,
+
   closeCircle,
   card,
   arrowDownCircle,
-  arrowUpRightBoxSharp,
+  addCircle,
 } from "ionicons/icons";
 import { SubSection } from "../SubSection";
 import { ProjectContext } from "../../../../../context/ProjectContext";
@@ -59,8 +59,8 @@ export function FirstAccordionSection({ moduleId, firstSectionId }) {
         >
           Add Sub-Section
           <IonIcon
-            ios={arrowUpRightBoxSharp}
-            md={arrowUpRightBoxSharp}
+            ios={addCircle}
+            md={addCircle}
           ></IonIcon>{" "}
         </IonButton>
       </div>
