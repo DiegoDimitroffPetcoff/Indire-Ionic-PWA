@@ -1,21 +1,48 @@
 export function useBudget(setProject) {
-  function addBudget(moduleId, firstSectionId, sectionId) {
-    setProject((prevProject) => {
-      const updateProject = [...prevProject];
+  function addBudget(description, moduleId, firstSectionId, sectionId, sectionId2) {
+    switch (description) {
+      case "subsection":
+        console.log("ADD BUDGET FUNCTION: description: " + description);
+        setProject((prevProject) => {
+          const updateProject = [...prevProject];
+          updateProject[1].modules[moduleId].sections[firstSectionId].sections[
+            sectionId
+          ].budget.push({
+            description: "",
+            amount: "",
+            un: "",
+            qtd: "",
+            uniteValue: "",
+          });
+          window.localStorage.setItem("data", JSON.stringify(updateProject));
+          return updateProject;
+        });
+        break;
+      case "subsection2":
+        console.log("ADD BUDGET FUNCTION: description: " + description);
+        setProject((prevProject) => {
+          const updateProject = [...prevProject];
+          updateProject[1].modules[moduleId].sections[firstSectionId].sections[
+            sectionId
+          ].sections[sectionId2].budget.push({
+            description: "",
+            amount: "",
+            un: "",
+            qtd: "",
+            uniteValue: "",
+          });
+          window.localStorage.setItem("data", JSON.stringify(updateProject));
+          return updateProject;
+        });
 
-      updateProject[1].modules[moduleId].sections[firstSectionId].sections[
-        sectionId
-      ].budget.push({
-        description: "",
-        amount: "",
-        un: "",
-        qtd: "",
-        uniteValue: "",
-      });
-      window.localStorage.setItem("data", JSON.stringify(updateProject));
-      return updateProject;
-    });
+        break;
+      default:
+        console.log("ADD BUDGET FUNCTION: NO DESCRIPTION ADDED");
+
+        break;
+    }
   }
+
   function handleBudget(
     e,
     moduleId,
@@ -34,6 +61,7 @@ export function useBudget(setProject) {
       return updateProject;
     });
   }
+
   function delenteBudget(moduleId, firstSectionId, sectionId, idBudget) {
     setProject((prevProject) => {
       const updateProject = [...prevProject];

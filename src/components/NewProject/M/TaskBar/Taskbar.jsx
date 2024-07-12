@@ -51,7 +51,7 @@ export function TaskBar({
           expand="full"
         />
         <IonButton
-          onClick={() => addBudget(moduleId, firstSectionId, sectionId)}
+          onClick={() => addBudget(contentDescription, moduleId, firstSectionId, sectionId,sectionId2 )}
           expand="full"
         >
           <IonIcon ios={card} md={card}></IonIcon>

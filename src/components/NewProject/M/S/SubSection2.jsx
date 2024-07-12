@@ -37,7 +37,7 @@ export function SubSection2({
     <>
       {/*-----CONTENT----- */}
       <ContentHandler
-      description="subsection2"
+        description="subsection2"
         moduleId={moduleId}
         firstSectionId={firstSectionId}
         sectionId={sectionId}
@@ -66,13 +66,14 @@ export function SubSection2({
             moduleId={moduleId}
             firstSectionId={firstSectionId}
             sectionId={sectionId}
+            sectionId2={sectionId2}
             idBudget={idBudget}
             budget={budget}
             key={idBudget}
           />
         );
       })}
-{/* ADD SUBSECTIONS-> HAVE TO BE A NEXT */}
+      {/* ADD SUBSECTIONS-> HAVE TO BE A NEXT */}
       <TaskBar
         moduleId={moduleId}
         firstSectionId={firstSectionId}
@@ -80,7 +81,6 @@ export function SubSection2({
         sectionId2={sectionId2}
         description="subsection2"
         contentDescription="subsection2"
-
       />
     </>
   );
