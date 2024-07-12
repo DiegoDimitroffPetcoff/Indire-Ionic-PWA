@@ -5,7 +5,6 @@ export function useSubsection(setProject) {
       : e.target.files
       ? e.target.files
       : e.target.value;
-
     if (field === "img") {
       const files = Array.from(value);
       const readers = files.map((file) => {
@@ -16,7 +15,6 @@ export function useSubsection(setProject) {
           reader.readAsDataURL(file);
         });
       });
-
       Promise.all(readers)
         .then((imagesBase64) => {
           setProject((prevProject) => {
@@ -43,36 +41,62 @@ export function useSubsection(setProject) {
       });
     }
   }
-  function deleteSubSection(moduleId, firstSectionId, sectionId) {
-    console.log("delete");
-    console.log(moduleId);
-    console.log(sectionId);
 
-    setProject((prevProject) => {
-      const newProject = [...prevProject];
-      console.log(newProject[1].modules[moduleId]);
-      console.log(
-        newProject[1].modules[moduleId].sections[firstSectionId].sections
-      );
+  function deleteSubSection(
+    description,
+    moduleId,
+    firstSectionId,
+    sectionId,
+    sectionId2
+  ) {
+    switch (description) {
+      case "subsection":
+        console.log("DELETE ALL SUBSECTION FUNCTION: " + description);
+        setProject((prevProject) => {
+          const newProject = [...prevProject];
+          const sectionOnStorage =
+            newProject[1].modules[moduleId].sections[firstSectionId].sections;
+          const sectionFiltered = sectionOnStorage.filter(
+            (_, id) => id !== sectionId
+          );
+          newProject[1].modules[moduleId].sections[firstSectionId].sections =
+            sectionFiltered;
+          window.localStorage.setItem("data", JSON.stringify(newProject));
+          return newProject;
+        });
+        break;
+      case "subsection2":
+        console.log("DELETE ALL SUBSECTION FUNCTION: " + description);
 
-      const sectionOnStorage =
-        newProject[1].modules[moduleId].sections[firstSectionId].sections;
-      console.log(sectionOnStorage);
-      const sectionFiltered = sectionOnStorage.filter(
-        (_, id) => id !== sectionId
-      );
-      newProject[1].modules[moduleId].sections[firstSectionId].sections =
-        sectionFiltered;
+        setProject((prevProject) => {
+          const newProject = [...prevProject];
+          const sectionOnStorage =
+            newProject[1].modules[moduleId].sections[firstSectionId].sections[
+              sectionId
+            ].sections;
+          const sectionFiltered = sectionOnStorage.filter(
+            (_, id) => id !== sectionId2
+          );
+          newProject[1].modules[moduleId].sections[firstSectionId].sections[
+            sectionId
+          ].sections = sectionFiltered;
+          window.localStorage.setItem("data", JSON.stringify(newProject));
+          return newProject;
+        });
+        break;
+      default:
+        console.log(
+          "DELETE ALL DE SUBSECTION FUNCTION: DIDNT ADD DESCRIPTION: " +
+            description
+        );
 
-      window.localStorage.setItem("data", JSON.stringify(newProject));
-      return newProject;
-    });
+        break;
+    }
   }
   function addSubSection(key, moduleId, firstSectionId, sectionId) {
     switch (key) {
       case "subsection":
         console.log("subsection");
-
         setProject((prevProject) => {
           const updateProject = [...prevProject];
           updateProject[1].modules[moduleId].sections[
@@ -83,14 +107,13 @@ export function useSubsection(setProject) {
             budget: [],
             sections: [],
           });
-
           window.localStorage.setItem("data", JSON.stringify(updateProject));
           return updateProject;
         });
         break;
+
       case "subsection2":
         console.log("subsection2");
-
         setProject((prevProject) => {
           const updateProject = [...prevProject];
           updateProject[1].modules[moduleId].sections[firstSectionId].sections[
@@ -101,7 +124,6 @@ export function useSubsection(setProject) {
             budget: [],
             sections: [],
           });
-
           window.localStorage.setItem("data", JSON.stringify(updateProject));
           return updateProject;
         });

@@ -68,7 +68,6 @@ export function useContent(setProject) {
       case "subsection2":
         setProject((prevProject) => {
           console.log("content /Subsection");
-
           const value = e.detail ? e.detail.value : e.target.value;
           let updateProject = [...prevProject];
           updateProject[1].modules[moduleId].sections[firstSectionId].sections[

@@ -58,7 +58,7 @@ export function TaskBar({
         </IonButton>
         <IonButton
           color="danger"
-          onClick={() => deleteSubSection(moduleId, firstSectionId, sectionId)}
+          onClick={() => deleteSubSection(contentDescription, moduleId, firstSectionId, sectionId,sectionId2)}
           expand="full"
         >
           <IonIcon ios={closeCircle} md={closeCircle}></IonIcon>{" "}
