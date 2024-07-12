@@ -63,13 +63,14 @@ export function SubSection2({
       {section.budget.map((budget, idBudget) => {
         return (
           <Budget
+            idBudget={idBudget}
+            budget={budget}
+            key={idBudget}
+            description={"subsection2"}
             moduleId={moduleId}
             firstSectionId={firstSectionId}
             sectionId={sectionId}
             sectionId2={sectionId2}
-            idBudget={idBudget}
-            budget={budget}
-            key={idBudget}
           />
         );
       })}
