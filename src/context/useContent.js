@@ -9,7 +9,6 @@ export function useContent(setProject) {
     switch (description) {
       case "subsection":
         console.log("content /ADD section");
-
         setProject((prevProject) => {
           const updateProject = [...prevProject];
           updateProject[1].modules[moduleId].sections[firstSectionId].sections[
@@ -25,23 +24,21 @@ export function useContent(setProject) {
         break;
       case "subsection2":
         console.log("content /ADD sUBsection");
-console.log(sectionId2);
+        console.log(sectionId2);
         setProject((prevProject) => {
           const updateProject = [...prevProject];
           updateProject[1].modules[moduleId].sections[firstSectionId].sections[
-            sectionId.sections[sectionId2]
-          ].content.push({
+            sectionId
+          ].sections[sectionId2].content.push({
             title: "",
             description: "",
           });
-
           window.localStorage.setItem("data", JSON.stringify(updateProject));
           return updateProject;
         });
         break;
       default:
         console.log("NO ADDED content /ADD section YO SUBSECITON");
-
         break;
     }
   }
@@ -83,6 +80,7 @@ console.log(sectionId2);
         break;
 
       default:
+        console.log("NO ADDED content /HANDLE section YO SUBSECITON");
         break;
     }
   }
@@ -96,8 +94,7 @@ console.log(sectionId2);
   ) {
     switch (description) {
       case "subsection":
-        console.log("delete content");
-        console.log("dsescription: "+description);
+        console.log("DELETE CONTENT FUNCTION: dEscription: " + description);
         setProject((prevProject) => {
           const newProject = [...prevProject];
           const contentOnStorage =
@@ -107,16 +104,16 @@ console.log(sectionId2);
           const contentFiltered = contentOnStorage.filter(
             (_, id) => id !== contentId
           );
-
           prevProject[1].modules[moduleId].sections[firstSectionId].sections[
             sectionId
           ].content = contentFiltered;
-
           window.localStorage.setItem("data", JSON.stringify(newProject));
           return newProject;
         });
         break;
+
       case "subsection2":
+        console.log("DELETE CONTENT FUNCTION: description: " + description);
         setProject((prevProject) => {
           const newProject = [...prevProject];
           const contentOnStorage =
@@ -129,7 +126,7 @@ console.log(sectionId2);
 
           prevProject[1].modules[moduleId].sections[firstSectionId].sections[
             sectionId
-          ].content = contentFiltered;
+          ].sections[sectionId2].content = contentFiltered;
 
           window.localStorage.setItem("data", JSON.stringify(newProject));
           return newProject;
