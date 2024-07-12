@@ -82,6 +82,7 @@ export function SubSection2({
         sectionId2={sectionId2}
         description="subsection2"
         contentDescription="subsection2"
+        invisible={true}
       />
     </>
   );
