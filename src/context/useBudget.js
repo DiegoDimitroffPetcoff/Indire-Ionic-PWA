@@ -49,21 +49,45 @@ export function useBudget(setProject) {
 
   function handleBudget(
     e,
+    description,
+    field,
     moduleId,
     firstSectionId,
     sectionId,
-    idBudget,
-    field
+    sectionId2,
+    idBudget
   ) {
     const value = e.detail ? e.detail.value : e.target.value;
-    setProject((prevProject) => {
-      const updateProject = [...prevProject];
-      updateProject[1].modules[moduleId].sections[firstSectionId].sections[
-        sectionId
-      ].budget[idBudget][field] = value;
-      window.localStorage.setItem("data", JSON.stringify(updateProject));
-      return updateProject;
-    });
+    switch (description) {
+      case "subsection":
+        console.log("HANDLE BUDGET FUNCTION:: " + description);
+
+        setProject((prevProject) => {
+          const updateProject = [...prevProject];
+          updateProject[1].modules[moduleId].sections[firstSectionId].sections[
+            sectionId
+          ].budget[idBudget][field] = value;
+          window.localStorage.setItem("data", JSON.stringify(updateProject));
+          return updateProject;
+        });
+        break;
+      case "subsection2":
+        setProject((prevProject) => {
+          const updateProject = [...prevProject];
+          updateProject[1].modules[moduleId].sections[firstSectionId].sections[
+            sectionId
+          ].sections[sectionId2].budget[idBudget][field] = value;
+          window.localStorage.setItem("data", JSON.stringify(updateProject));
+          return updateProject;
+        });
+        break;
+      default:
+        console.log(
+          "HANDLE BUDGET FUNCTION: DIDNT ADD DESCRIPTION: " + description
+        );
+
+        break;
+    }
   }
 
   function delenteBudget(
