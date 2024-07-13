@@ -12,6 +12,7 @@ import { IonContent } from "@ionic/react";
 import data from "./mock.json";
 import { RenderSections } from "./RenderSections";
 import { styles } from "./styles";
+import { Header } from "./Header";
 export const PdfView = () => (
   <IonContent>
     {" "}
@@ -39,6 +40,7 @@ const MyDocument = ({ data }) => (
   <Document>
     {data.map((page, pageIndex) => (
       <Page key={pageIndex} size="A4" style={styles.page}>
+        <Header data={{ data }} />
         {page.introduction && (
           <View>
             <View style={styles.header}>

@@ -37,8 +37,26 @@ export const styles = StyleSheet.create({
   text: {
     fontSize: 14,
     marginBottom: 10,
-   
   },
+
+  /* header */
+  logoHeader: {
+    position: "absolute",
+    width: "100px",
+  },
+  headerContent: {
+    fontSize: 12,
+    textAlign: "right",
+    color: "grey",
+    margin: "5px",
+  },
+  headerTitle: {
+    fontSize: 13,
+    textAlign: "right",
+    color: "grey",
+  },
+  /* header */
+
   table: {
     display: "table",
     width: "auto",
@@ -73,6 +91,10 @@ export const styles = StyleSheet.create({
     right: 0,
     textAlign: "center",
     color: "grey",
+  },
+  image: {
+    marginVertical: 15,
+    marginHorizontal: 100,
   },
   moduleTitle: {
     fontSize: 24,
