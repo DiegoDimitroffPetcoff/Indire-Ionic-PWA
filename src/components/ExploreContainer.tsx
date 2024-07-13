@@ -1,15 +1,21 @@
 import "./ExploreContainer.css";
 import { Project } from "./NewProject/Project";
+import { PdfView } from "./Pdf/PdfView";
 
 interface ContainerProps {
   name: string;
+  project: string;
+  view: boolean
 }
 
-const ExploreContainer: React.FC<ContainerProps> = ({ name }) => {
+const ExploreContainer: React.FC<ContainerProps> = ({ name , view}) => {
+  console.log(name === "pdf");
+  
   return (
     <div id="container">
       <strong>{name}</strong>
-     <Project /> 
+
+      {view ? <PdfView /> : <Project />}
     </div>
   );
 };

@@ -1,6 +1,7 @@
 form {
   display: flex;
   flex-direction: column;
+
   width: 100%;
   gap: 30px;
 }
@@ -26,15 +27,13 @@ input {
   display: flex;
   flex-direction: column;
 }
-.btnContainerTemplate{
+.btnContainerTemplate {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-
 }
 .tools {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
- 
 }
 .budgetInputs {
   display: grid;

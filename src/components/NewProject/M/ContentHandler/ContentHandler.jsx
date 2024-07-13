@@ -1,4 +1,4 @@
-import { addCircle, closeCircle } from "ionicons/icons";
+import { closeCircle } from "ionicons/icons";
 import { IonButton, IonIcon, IonInput, IonTextarea } from "@ionic/react";
 import { ProjectContext } from "../../../../context/ProjectContext";
 import { useContext } from "react";
@@ -12,7 +12,7 @@ export function ContentHandler({
 }) {
   const { project, deleteContent, handleChangeContent } =
     useContext(ProjectContext);
-//Analyze Content of the section that is going to be painted in the component
+  //Analyze Content of the section that is going to be painted in the component
   let content =
     project[1].modules[moduleId].sections[firstSectionId].sections[sectionId]
       .content;
@@ -42,15 +42,21 @@ export function ContentHandler({
                   moduleId,
                   firstSectionId,
                   sectionId,
-                  sectionId2,
-                  
+                  sectionId2
                 )
               }
             />
             <IonButton
               color="danger"
               onClick={() =>
-                deleteContent(description, contentId, moduleId, firstSectionId, sectionId,sectionId2)
+                deleteContent(
+                  description,
+                  contentId,
+                  moduleId,
+                  firstSectionId,
+                  sectionId,
+                  sectionId2
+                )
               }
             >
               <IonIcon ios={closeCircle} md={closeCircle}></IonIcon>
@@ -71,8 +77,7 @@ export function ContentHandler({
                 moduleId,
                 firstSectionId,
                 sectionId,
-                sectionId2,
-                
+                sectionId2
               )
             }
           />
