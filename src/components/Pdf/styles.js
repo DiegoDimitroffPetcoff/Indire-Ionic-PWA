@@ -53,6 +53,11 @@ export const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 13,
     textAlign: "right",
+    fontWeight: "bold",
+  },
+  pageNumberHeader: {
+    fontSize: 12,
+    textAlign: "right",
     color: "grey",
   },
   /* header */
@@ -92,20 +97,23 @@ export const styles = StyleSheet.create({
     textAlign: "center",
     color: "grey",
   },
+
   image: {
     marginVertical: 15,
     marginHorizontal: 100,
   },
   moduleTitle: {
-    fontSize: 24,
+    fontSize: 15,
     fontWeight: "bold",
-    textAlign: "center",
+    textAlign: "start",
     marginBottom: 10,
+    textDecoration: "underline",
   },
 
   moduleText: {
     fontSize: 14,
     marginBottom: 10,
     textAlign: "justify",
+    fontWeight: "thin",
   },
 });

@@ -15,9 +15,9 @@ export function Header({ data }) {
       </Text>
       <Image style={styles.logoHeader} src="/INDIRE_LOGO.png" />
       <Text style={styles.headerTitle}>{introduction.title}</Text>
-      <Text style={styles.headerContent}>-{introduction.address}-</Text>
+      <Text style={styles.headerContent}>{introduction.address}</Text>
       <Text
-        style={styles.pageNumber}
+        style={styles.pageNumberHeader}
         render={({ pageNumber, totalPages }) => `${pageNumber} / ${totalPages}`}
         fixed
       />
