@@ -2,6 +2,7 @@ import { Text, View, Image } from "@react-pdf/renderer";
 import { styles } from "./styles";
 
 export function Header({ data }) {
+  
   const { introduction } = data.data[0];
 
   return (

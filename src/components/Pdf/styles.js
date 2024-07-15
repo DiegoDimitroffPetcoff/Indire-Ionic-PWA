@@ -10,9 +10,16 @@ export const styles = StyleSheet.create({
     marginBottom: 10,
     color:"blue"
   },
+  firtsSection: {
+    marginBottom: 10,
+    marginLeft: 10,
+    color:"red"
+  },
   section: {
     marginBottom: 10,
-    color:"red"
+    marginLeft: 10,
+
+    color:"green"
   },
   header: {
     textAlign: "center",

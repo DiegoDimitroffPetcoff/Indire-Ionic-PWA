@@ -1,25 +1,33 @@
-import { Text, View, Image } from "@react-pdf/renderer";
+import { Text, View, Image, Page } from "@react-pdf/renderer";
 import { BudgetTable } from "./BudgetTable";
-import { styles  } from "./styles";
+import { styles } from "./styles";
+import { capitalizeFirstLetter } from "../../utils/capitalizeFirstLetter";
 
-
-export const RenderSections = ({ sections }) =>
-  sections.map((section, index) => (
-    <View key={index} style={styles.section}>
-      {/* ESTO NO VA, ES EL TITULO DEL TEMPLATE */}
-     {/*  <Text style={styles.sectionSubTitle}>{section.name}</Text> */}
-       {section.content.map((content, idx) => (
+export const RenderSections = ({ sections, firtsSectionIndex }) => {
+  return sections.map((section, sectionIndex) => (
+    <View key={sectionIndex} style={styles.section}>
+      {section.content.map((content, idx) => (
         <View key={idx}>
-          <Text style={styles.sectionSubTitle}>{content.title}</Text>
+          <Text style={styles.sectionSubTitle}>
+            {idx === 0
+              ? firtsSectionIndex +
+                1 +
+                "." +
+                (sectionIndex + 1) +
+                "." +
+                capitalizeFirstLetter(content.title)
+              : capitalizeFirstLetter(content.title)}
+          </Text>
           <Text style={styles.text}>{content.description}</Text>
         </View>
       ))}
       {section.img && <Image style={styles.mainImage} src={section.img} />}
       {section.budget && section.budget.length > 0 && (
         <BudgetTable budget={section.budget} />
-      )} 
+      )}
       {section.sections && section.sections.length > 0 && (
         <RenderSections sections={section.sections} />
       )}
     </View>
   ));
+};
