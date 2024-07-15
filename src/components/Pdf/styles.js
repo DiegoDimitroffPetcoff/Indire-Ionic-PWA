@@ -53,7 +53,7 @@ export const styles = StyleSheet.create({
     marginBottom: 10,
   },
   text: {
-    fontSize: 14,
+    fontSize: 12,
     marginBottom: 10,
   },
 
@@ -92,6 +92,7 @@ export const styles = StyleSheet.create({
   tableRow: {
     flexDirection: "row",
     fontSize:10,
+
   },
   tableCol: {
     borderStyle: "solid",
@@ -142,7 +143,7 @@ export const styles = StyleSheet.create({
     textDecoration: "underline",
   },
   sectionSubTitle: {
-    fontSize: 12,
+    fontSize: 14,
     fontWeight: "bold",
     textAlign: "start",
     marginBottom: 10,

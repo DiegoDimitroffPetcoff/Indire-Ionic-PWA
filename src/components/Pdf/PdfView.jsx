@@ -16,6 +16,7 @@ import { ProjectContext } from "../../context/ProjectContext";
 import { useContext } from "react";
 import { Introduction } from "./Introduction";
 import { Modules } from "./Modules";
+import { BudgetTable } from "./BudgetTable";
 export const PdfView = () => {
   const { project } = useContext(ProjectContext);
 
@@ -50,7 +51,8 @@ const MyDocument = ({ data }) => {
         <Header data={{ data }} />
         <Introduction data={data} />
         <Modules data={data} />
-        
+     
+        <BudgetTable budget={data} />
       </Page>
     </Document>
   );
