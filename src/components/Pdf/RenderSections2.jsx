@@ -2,9 +2,8 @@ import { Text, View, Image, Page } from "@react-pdf/renderer";
 import { BudgetTable } from "./BudgetTable";
 import { styles } from "./styles";
 import { capitalizeFirstLetter } from "../../utils/capitalizeFirstLetter";
-import { RenderSections2 } from "./RenderSections2";
 
-export const RenderSections = ({ sections, firtsSectionIndex }) => {
+export const RenderSections2 = ({ sections, firtsSectionIndex }) => {
   return sections.map((section, sectionIndex) => (
     <View key={sectionIndex} style={styles.section}>
       {section.content.map((content, idx) => (
@@ -16,6 +15,8 @@ export const RenderSections = ({ sections, firtsSectionIndex }) => {
                 "." +
                 (sectionIndex + 1) +
                 "." +
+                (idx + 1) +
+                "." +
                 capitalizeFirstLetter(content.title)
               : capitalizeFirstLetter(content.title)}
           </Text>
@@ -26,9 +27,9 @@ export const RenderSections = ({ sections, firtsSectionIndex }) => {
       {section.budget && section.budget.length > 0 && (
         <BudgetTable budget={section.budget} />
       )}
-      {section.sections && section.sections.length > 0 && (
-        <RenderSections2 sections={section.sections} firtsSectionIndex={firtsSectionIndex}/>
-      )}
+      {/*       {section.sections && section.sections.length > 0 && (
+        <RenderSections sections={section.sections} />
+      )} */}
     </View>
   ));
 };
