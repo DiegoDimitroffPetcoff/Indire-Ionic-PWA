@@ -22,7 +22,7 @@ export const PdfView = () => {
   return (
     <IonContent>
       {" "}
-      <PDFViewer width="100%" height="100%">
+      <PDFViewer width="50%" height="50%">
         <MyDocument data={project} />
       </PDFViewer>
     </IonContent>
