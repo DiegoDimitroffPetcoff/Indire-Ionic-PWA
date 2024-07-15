@@ -45,7 +45,7 @@ const Page: React.FC = () => {
           </IonToolbar>
         </IonHeader>
         <ExploreContainer name={name} project={project} view={view} />
-      </IonContent>
+      
 
       <IonFooter>
         <IonToolbar>
@@ -90,6 +90,7 @@ const Page: React.FC = () => {
 
         </IonToolbar>
       </IonFooter>
+      </IonContent>
     </IonPage>
   );
 };
