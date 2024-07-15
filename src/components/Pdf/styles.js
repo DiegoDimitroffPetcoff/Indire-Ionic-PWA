@@ -91,6 +91,7 @@ export const styles = StyleSheet.create({
   },
   tableRow: {
     flexDirection: "row",
+    fontSize:10,
   },
   tableCol: {
     borderStyle: "solid",
@@ -98,8 +99,8 @@ export const styles = StyleSheet.create({
     borderWidth: 1,
     borderLeftWidth: 0,
     borderTopWidth: 0,
-    width: "14%",
-    padding: 5,
+    width: "100%",
+    padding: 1,
     textAlign: "center",
   },
   tableHeader: {

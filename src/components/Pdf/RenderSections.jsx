@@ -24,11 +24,31 @@ export const RenderSections = ({ sections, firtsSectionIndex }) => {
       ))}
       {section.img && <Image style={styles.mainImage} src={section.img} />}
       {section.budget && section.budget.length > 0 && (
-        <BudgetTable budget={section.budget} />
+        <>
+          {" "}
+          <Text style={styles.budget}>Custo Estimado:</Text>
+         {section.budget.map((budget, indexBudget) => (
+            <>
+              <Text style={styles.budget} key={indexBudget}>
+                •
+                {budget.description.charAt(0).toUpperCase() +
+                  budget.description.slice(1)}
+                : {budget.amount} € (ver artigo
+                {(budget.id = "#" + "counter" + "." + "index")}, capítulo 9
+                ESTIMATIVA DE CUSTO)
+              </Text>
+              <BudgetTable budget={section.budget} />
+            </>
+          ))} 
+        </>
       )}
       {section.sections && section.sections.length > 0 && (
-        <RenderSections2 sections={section.sections} firtsSectionIndex={firtsSectionIndex}/>
+        <RenderSections2
+          sections={section.sections}
+          firtsSectionIndex={firtsSectionIndex}
+        />
       )}
     </View>
   ));
 };
+/*  */

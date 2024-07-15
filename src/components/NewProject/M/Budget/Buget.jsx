@@ -2,7 +2,15 @@ import { useContext, useState } from "react";
 import { ProjectContext } from "../../../../context/ProjectContext";
 import { IonInput, IonButton, IonAlert } from "@ionic/react";
 
-export const Budget = ({ description, moduleId,firstSectionId, sectionId,sectionId2, idBudget, budget }) => {
+export const Budget = ({
+  description,
+  moduleId,
+  firstSectionId,
+  sectionId,
+  sectionId2,
+  idBudget,
+  budget,
+}) => {
   const { handleBudget, delenteBudget } = useContext(ProjectContext);
   const [showAlert, setShowAlert] = useState(false);
   return (
@@ -13,31 +21,59 @@ export const Budget = ({ description, moduleId,firstSectionId, sectionId,section
         fill="outline"
         value={budget.description}
         onIonChange={(e) =>
-          handleBudget(e,description, "description", moduleId,firstSectionId, sectionId,sectionId2, idBudget )
+          handleBudget(
+            e,
+            description,
+            "description",
+            moduleId,
+            firstSectionId,
+            sectionId,
+            sectionId2,
+            idBudget
+          )
         }
       />
-      <IonInput
-        label="Amount"
-        type="number"
+    <IonInput
+        label="Un"
+        type="text"
         placeholder="Número"
         labelPlacement="floating"
         fill="outline"
         value={budget.amount}
         onIonChange={(e) =>
-          handleBudget(e,description, "amount", moduleId,firstSectionId, sectionId,sectionId2, idBudget)
+          handleBudget(
+            e,
+            description,
+            "amount",
+            moduleId,
+            firstSectionId,
+            sectionId,
+            sectionId2,
+            idBudget
+          )
         }
-      />
-      <IonInput
+      /> 
+{/*       <IonInput
         label="Un"
-        type="number"
+        disabled={true}
+        type="text"
+        placeholder="Número"
         labelPlacement="floating"
         fill="outline"
-        placeholder="Número"
-        value={budget.un}
+        value="vg"
         onIonChange={(e) =>
-          handleBudget(e,description,"un", moduleId,firstSectionId, sectionId,sectionId2, idBudget)
+          handleBudget(
+            e,
+            description,
+            "amount",
+            moduleId,
+            firstSectionId,
+            sectionId,
+            sectionId2,
+            idBudget
+          )
         }
-      />
+      /> */}
       <IonInput
         label="Qtd"
         type="number"
@@ -46,29 +82,75 @@ export const Budget = ({ description, moduleId,firstSectionId, sectionId,section
         placeholder="Número"
         value={budget.qtd}
         onIonChange={(e) =>
-          handleBudget(e,description, "qtd",moduleId,firstSectionId, sectionId,sectionId2, idBudget)
+          handleBudget(
+            e,
+            description,
+            "qtd",
+            moduleId,
+            firstSectionId,
+            sectionId,
+            sectionId2,
+            idBudget
+          )
+        }
+      />
+      {/* CORREGIR CUSTO UNITARIO -> "QTD x OTRO NOMBRE" */}
+      <IonInput
+        label="CUSTO UNITARIO"
+        type="number"
+        labelPlacement="floating"
+        fill="outline"
+        placeholder="Número"
+        value={budget.un}
+        onIonChange={(e) =>
+          handleBudget(
+            e,
+            description,
+            "un",
+            moduleId,
+            firstSectionId,
+            sectionId,
+            sectionId2,
+            idBudget
+          )
         }
       />
       <IonInput
         disabled={true}
-        label="Total"
+        label="Custo Parcial"
         labelPlacement="floating"
         fill="outline"
         value={budget.qtd * budget.un}
-        onIonChange={(e) =>{
-          console.log(e);
-          handleBudget(e,description,"uniteValue", moduleId,firstSectionId, sectionId,sectionId2, idBudget)
+        onIonChange={(e) => {
+          handleBudget(
+            e,
+            description,
+            "uniteValue",
+            moduleId,
+            firstSectionId,
+            sectionId,
+            sectionId2,
+            idBudget
+          );
         }}
       />
       <IonButton
         id="deleBudget"
         color="danger"
-        onClick={() =>   delenteBudget(description, moduleId,firstSectionId, sectionId,sectionId2, idBudget)}
+        onClick={() =>
+          delenteBudget(
+            description,
+            moduleId,
+            firstSectionId,
+            sectionId,
+            sectionId2,
+            idBudget
+          )
+        }
         expand="full"
       >
         Delete Budget
       </IonButton>
-
     </div>
   );
 };

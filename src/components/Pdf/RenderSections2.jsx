@@ -24,9 +24,9 @@ export const RenderSections2 = ({ sections, firtsSectionIndex }) => {
         </View>
       ))}
       {section.img && <Image style={styles.mainImage} src={section.img} />}
-      {section.budget && section.budget.length > 0 && (
+{/*       {section.budget && section.budget.length > 0 && (
         <BudgetTable budget={section.budget} />
-      )}
+      )} */}
       {/*       {section.sections && section.sections.length > 0 && (
         <RenderSections sections={section.sections} />
       )} */}
