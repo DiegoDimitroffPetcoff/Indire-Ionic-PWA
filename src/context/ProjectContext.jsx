@@ -82,13 +82,16 @@ export const PorjectProvider = ({ children }) => {
   };
 
   /* ----------------MODULE---------------- */
-  const { handleChangeModules, addMainSection, deleteMainSection } = useModules(
-    { setProject, project }
-  );
+  const { handleChangeModules, addCounter, addMainSection, deleteMainSection } =
+    useModules({ setProject, project });
 
   /* ----------------SECTION---------------- */
-  const { deleteSection, handleChangeSection, addSection } =
-    useSection(setProject);
+  const {
+    addCounterOnSection,
+    deleteSection,
+    handleChangeSection,
+    addSection,
+  } = useSection(setProject);
 
   /* ----------------IMAGE---------------- */
   const { handleImg, deleteImage } = useImg(setProject);
@@ -133,6 +136,8 @@ export const PorjectProvider = ({ children }) => {
         handleChangeContent,
         handleImg,
         addSubSectionSwitch,
+        addCounter,
+        addCounterOnSection,
       }}
     >
       {children}

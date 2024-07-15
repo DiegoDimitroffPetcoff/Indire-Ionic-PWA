@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { IonInput, IonTextarea } from "@ionic/react";
 import {
   IonAccordion,
@@ -17,13 +17,18 @@ import { AlertDelete } from "../../../utils/AlertDelete";
 /*------------- MODULO--------------- */
 /*------------- MODULO--------------- */
 export function Modules({ moduleId }) {
-  const { project, handleChangeModules, deleteSection } =
+  const { project, handleChangeModules, deleteSection, addCounter } =
     useContext(ProjectContext);
   let module = project[1].modules[moduleId];
-
+  useEffect(() => {
+    console.log(`Modules component with moduleId ${moduleId} has rendered`);
+    addCounter(moduleId, moduleId + 1) 
+  },[]);
   return (
     <div className="moduleContent" key={moduleId}>
-      <h2>{module.module}</h2>
+      <h2>
+        {moduleId + 1}.{module.module}
+      </h2>
       <TemplatesBar moduleId={moduleId} type={"module"} />
       <IonInput
         label="Title"

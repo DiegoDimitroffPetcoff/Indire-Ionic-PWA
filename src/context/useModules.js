@@ -19,6 +19,15 @@ export function useModules({ setProject, project }) {
       return updateProject;
     });
   }
+  function addCounter(moduleId, value) {
+    setProject((prevProject) => {
+      const updateProject = [...prevProject];
+      updateProject[1].modules[moduleId].moduleCounter = value;
+      window.localStorage.setItem("data", JSON.stringify(updateProject));
+
+      return updateProject;
+    });
+  }
 
   function deleteMainSection(moduleId, MainsectionId) {
     const newProject = [...project];
@@ -31,5 +40,5 @@ export function useModules({ setProject, project }) {
     setProject(newProject);
     window.localStorage.setItem("data", JSON.stringify(newProject));
   }
-  return { handleChangeModules, addMainSection, deleteMainSection };
+  return { addCounter, handleChangeModules, addMainSection, deleteMainSection };
 }
