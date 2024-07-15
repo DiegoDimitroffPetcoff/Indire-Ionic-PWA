@@ -23,14 +23,35 @@ const INITIAL_STATE = [
   },
   {
     modules: [
+      { module: "INTRODUÇÃO", description: "", title: "", sections: [] },
+      { module: " DESCRIÇÃO GERAL", description: "", title: "", sections: [] },
       {
-        module: " 6. Primer Modulo",
+        module: " INSPEÇÃO TÉCNICA AO EDIFÍCIO",
+        description: "",
+        title: "",
+        sections: [],
+      },
+      { module: " ELEMENTOS BASE", description: "", title: "", sections: [] },
+      {
+        module: " HISTÓRICO DE INTERVENÇÕES",
+        description: "",
+        title: "",
+        sections: [],
+      },
+      {
+        module: "ELEMENTOS INSPECIONADOS E MEDIDAS CORRETIVAS PROPOSTAS",
         description: "",
         title: "",
         mainSection: [],
         sections: [],
       },
-      /* { module: "7. Tratativas", description: "", title: "", sections: [] }, */
+      {
+        module: " RECOMENDAÇÕES E AÇÕES DE MANUTENÇÃO",
+        description: "",
+        title: "",
+        sections: [],
+      },
+      { module: " CONCLUSÕES", description: "", title: "", sections: [] },
     ],
   },
 ];
@@ -47,7 +68,7 @@ export const PorjectProvider = ({ children }) => {
     useContent(setProject);
 
   /* ----------------INTRODUCTION---------------- */
-  const { handleChangeIntroduction } = useIntroduction;
+  const { handleChangeIntroduction } = useIntroduction(setProject);
 
   /* ----------------TEMPLATES---------------- */
   const moduleTemplate = (moduleId, newModule) => {
@@ -59,7 +80,7 @@ export const PorjectProvider = ({ children }) => {
       return newProject;
     });
   };
-  
+
   /* ----------------MODULE---------------- */
   const { handleChangeModules, addMainSection, deleteMainSection } = useModules(
     { setProject, project }
@@ -70,14 +91,18 @@ export const PorjectProvider = ({ children }) => {
     useSection(setProject);
 
   /* ----------------IMAGE---------------- */
-  const { handleImg, deleteImage  } = useImg(setProject);
+  const { handleImg, deleteImage } = useImg(setProject);
 
   /* ----------------BUDGET---------------- */
   const { addBudget, delenteBudget, handleBudget } = useBudget(setProject);
 
   /* ----------------SUBSECTION---------------- */
-  const { deleteSubSection, handleChangeSubSection, addSubSection, addSubSectionSwitch } =
-    useSubsection(setProject);
+  const {
+    deleteSubSection,
+    handleChangeSubSection,
+    addSubSection,
+    addSubSectionSwitch,
+  } = useSubsection(setProject);
 
   function handleSubmite(e) {
     e.preventDefault();
@@ -107,7 +132,7 @@ export const PorjectProvider = ({ children }) => {
         deleteMainSection,
         handleChangeContent,
         handleImg,
-        addSubSectionSwitch
+        addSubSectionSwitch,
       }}
     >
       {children}

@@ -6,8 +6,13 @@ export const styles = StyleSheet.create({
     padding: 20,
     backgroundColor: "#FFFFFF",
   },
+  module: {
+    marginBottom: 10,
+    color:"blue"
+  },
   section: {
     marginBottom: 10,
+    color:"red"
   },
   header: {
     textAlign: "center",
@@ -23,6 +28,12 @@ export const styles = StyleSheet.create({
     height: 300,
     marginBottom: 10,
   },
+  mainImg: {
+    width: "300px",
+    display: "flex",
+    alignSelf: "center",
+    margin: 50,
+  }, 
   title: {
     fontSize: 24,
     fontWeight: "bold",
@@ -109,11 +120,24 @@ export const styles = StyleSheet.create({
     marginBottom: 10,
     textDecoration: "underline",
   },
-
   moduleText: {
     fontSize: 14,
     marginBottom: 10,
     textAlign: "justify",
     fontWeight: "thin",
+  },
+  sectionTitle: {
+    fontSize: 15,
+    fontWeight: "bold",
+    textAlign: "start",
+    marginBottom: 10,
+    textDecoration: "underline",
+  },
+  sectionSubTitle: {
+    fontSize: 12,
+    fontWeight: "bold",
+    textAlign: "start",
+    marginBottom: 10,
+    textDecoration: "underline",
   },
 });

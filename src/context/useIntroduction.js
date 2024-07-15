@@ -1,4 +1,4 @@
-export function useIntroduction() {
+export function useIntroduction(setProject) {
     function handleChangeIntroduction(e, field) {
         setProject((prevProject) => {
           const newProject = [...prevProject];
@@ -22,5 +22,5 @@ export function useIntroduction() {
           }
         });
       }
-      return handleChangeIntroduction
+      return {handleChangeIntroduction}
 }

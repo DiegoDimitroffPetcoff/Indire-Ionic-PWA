@@ -5,12 +5,10 @@ import { PdfView } from "./Pdf/PdfView";
 interface ContainerProps {
   name: string;
   project: string;
-  view: boolean
+  view: boolean;
 }
 
-const ExploreContainer: React.FC<ContainerProps> = ({ name , view}) => {
-  console.log(name === "pdf");
-  
+const ExploreContainer: React.FC<ContainerProps> = ({ name, view }) => {
   return (
     <div id="container">
       <strong>{name}</strong>

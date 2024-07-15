@@ -33,8 +33,8 @@
             "name": "Main Section 1",
             "content": [
               {
-                "title": "Main Section Introduction",
-                "description": "Una breve introducción a la sección principal."
+                "title": "# 1.1 SUBSection Introduction",
+                "description": "Este módulo cubre los aspectos iniciales del proyecto. El primer módulo de nuestro proyecto se centra en establecer una base sólida para todas las actividades futuras. Este módulo es crucial, ya que define la dirección y el enfoque del proyecto, asegurando que todos los participantes estén alineados y entiendan claramente los objetivos y las expectativas. Objetivos del Primer Módulo El objetivo principal de este módulo es proporcionar una visión general del proyecto, incluyendo su propósito, metas y el plan de acción a seguir. A continuación, se detallan los objetivos específicos: 1. Introducción al Proyecto: Presentar el contexto y la necesidad del proyecto. Explicar los beneficios y el impacto esperado. Definir claramente los términos y conceptos clave. 2. Identificación de Interesados: Identificar todas las partes interesadas del proyecto. Analizar sus roles, responsabilidades y expectativas. Establecer canales de comunicación efectivos."
               }
             ],
             "img": "http://example.com/main_section_image.jpg",
@@ -55,8 +55,8 @@
             "name": "TEMPLATE6",
             "content": [
               {
-                "title": "Template 6 Introduction",
-                "description": "Descripción inicial del template 6."
+                "title": "# 1.2 sUBSection SOMETHING",
+                "description": "Este módulo cubre los aspectos iniciales del proyecto. El primer módulo de nuestro proyecto se centra en establecer una base sólida para todas las actividades futuras. Este módulo es crucial, ya que define la dirección y el enfoque del proyecto, asegurando que todos los participantes estén alineados y entiendan claramente los objetivos y las expectativas. Objetivos del Primer Módulo El objetivo principal de este módulo es proporcionar una visión general del proyecto, incluyendo su propósito, metas y el plan de acción a seguir. A continuación, se detallan los objetivos específicos: 1. Introducción al Proyecto: Presentar el contexto y la necesidad del proyecto. Explicar los beneficios y el impacto esperado. Definir claramente los términos y conceptos clave. 2. Identificación de Interesados: Identificar todas las partes interesadas del proyecto. Analizar sus roles, responsabilidades y expectativas. Establecer canales de comunicación efectivos."
               }
             ],
             "img": "http://example.com/template6_image.jpg",
@@ -73,7 +73,7 @@
               {
                 "content": [
                   {
-                    "title": "TITULO PARA EL MOCH",
+                    "title": "# 1.2. 1 TITULO PARA EL MOCH",
                     "description": "En un lugar de la Mancha, de cuyo nombre no quiero acordarme..."
                   },
                   {
@@ -198,7 +198,7 @@
             "name": "TEMPLATE7",
             "content": [
               {
-                "title": "Template 7 Introduction",
+                "title": "#1.2 Template 7 Introduction",
                 "description": "Descripción inicial del template 7."
               }
             ],
