@@ -55,9 +55,10 @@ export const Budget = ({ description, moduleId,firstSectionId, sectionId,section
         labelPlacement="floating"
         fill="outline"
         value={budget.qtd * budget.un}
-        onIonChange={(e) =>
+        onIonChange={(e) =>{
+          console.log(e);
           handleBudget(e,description,"uniteValue", moduleId,firstSectionId, sectionId,sectionId2, idBudget)
-        }
+        }}
       />
       <IonButton
         id="deleBudget"

@@ -20,6 +20,7 @@ export function useBudget(setProject) {
             qtd: "",
             uniteValue: "",
           });
+
           window.localStorage.setItem("data", JSON.stringify(updateProject));
           return updateProject;
         });
@@ -58,6 +59,7 @@ export function useBudget(setProject) {
     idBudget
   ) {
     const value = e.detail ? e.detail.value : e.target.value;
+
     switch (description) {
       case "subsection":
         console.log("HANDLE BUDGET FUNCTION:: " + description);
@@ -67,6 +69,21 @@ export function useBudget(setProject) {
           updateProject[1].modules[moduleId].sections[firstSectionId].sections[
             sectionId
           ].budget[idBudget][field] = value;
+
+          if (field === "un" || field === "qtd") {
+            let un =
+              updateProject[1].modules[moduleId].sections[firstSectionId]
+                .sections[sectionId].budget[idBudget].un;
+
+            let qtd =
+              updateProject[1].modules[moduleId].sections[firstSectionId]
+                .sections[sectionId].budget[idBudget].qtd;
+            let result = un * qtd;
+
+            updateProject[1].modules[moduleId].sections[
+              firstSectionId
+            ].sections[sectionId].budget[idBudget].uniteValue = result;
+          }
           window.localStorage.setItem("data", JSON.stringify(updateProject));
           return updateProject;
         });
@@ -77,6 +94,21 @@ export function useBudget(setProject) {
           updateProject[1].modules[moduleId].sections[firstSectionId].sections[
             sectionId
           ].sections[sectionId2].budget[idBudget][field] = value;
+
+          if (field === "un" || field === "qtd") {
+            let un =
+              updateProject[1].modules[moduleId].sections[firstSectionId]
+                .sections[sectionId].sections[sectionId2].budget[idBudget].un;
+
+            let qtd =
+              updateProject[1].modules[moduleId].sections[firstSectionId]
+                .sections[sectionId].sections[sectionId2].budget[idBudget].qtd;
+            let result = un * qtd;
+
+            updateProject[1].modules[moduleId].sections[
+              firstSectionId
+            ].sections[sectionId].sections[sectionId2].budget[idBudget].uniteValue = result;
+          }
           window.localStorage.setItem("data", JSON.stringify(updateProject));
           return updateProject;
         });
