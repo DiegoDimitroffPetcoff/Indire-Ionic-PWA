@@ -52,7 +52,7 @@ const MyDocument = ({ data }) => {
         <Introduction data={data} />
         <Modules data={data} />
      
-        <BudgetTable budget={data} />
+{/*         <BudgetTable budget={data} /> */}
       </Page>
     </Document>
   );

@@ -21,7 +21,7 @@ export function Modules({ moduleId }) {
     useContext(ProjectContext);
   let module = project[1].modules[moduleId];
   useEffect(() => {
-    console.log(`Modules component with moduleId ${moduleId} has rendered`);
+   /*  console.log(`Modules component with moduleId ${moduleId} has rendered`); */
     addCounter(moduleId, moduleId + 1) 
   },[]);
   return (
