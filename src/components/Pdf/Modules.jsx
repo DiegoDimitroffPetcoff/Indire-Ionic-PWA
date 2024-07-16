@@ -29,7 +29,7 @@ export function Modules({ data }) {
               name: section.name,
               description: content.description,
               title: content.title,
-              idTemplate: `#${moduleId + 1}.${sectionId + 1}`,
+              idTemplate: `    # ${sectionId + 1}`,
               budget: section.budget || [],
             });
           });
@@ -41,7 +41,7 @@ export function Modules({ data }) {
                   name: subsection.name,
                   description: subContent.description,
                   title: subContent.title,
-                  idTemplate: `#${moduleId + 1}.${sectionId + 1}.${
+                  idTemplate: `    # .${sectionId + 1}.${
                     subsectionId + 1
                   }`,
                   budget: subsection.budget || [],
@@ -56,7 +56,7 @@ export function Modules({ data }) {
                         name: subSubsection.name,
                         description: subSubContent.description,
                         title: subSubContent.title,
-                        idTemplate: `#${moduleId + 1}.${sectionId + 1}.${
+                        idTemplate: `    # .${sectionId + 1}.${
                           subsectionId + 1
                         }.${subSubsectionId + 1}`,
                         budget: subSubsection.budget || [],

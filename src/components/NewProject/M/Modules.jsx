@@ -47,7 +47,7 @@ export function Modules({ moduleId }) {
       />
       {module.sections.map((section, sectionId) => {
         let title = section.content[0].title
-        let FirstSection = `# ${sectionId + 1} - ${title}`;
+        let FirstSection = `${moduleId + 1}. # ${sectionId + 1}  ${title}`;
 
         return (
           <IonAccordionGroup key={sectionId}>
