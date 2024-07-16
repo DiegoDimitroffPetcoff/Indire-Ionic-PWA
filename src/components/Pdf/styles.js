@@ -8,18 +8,17 @@ export const styles = StyleSheet.create({
   },
   module: {
     marginBottom: 10,
-    color:"blue"
   },
   firtsSection: {
     marginBottom: 10,
     marginLeft: 10,
-    color:"red"
+    color: "red",
   },
   section: {
     marginBottom: 10,
     marginLeft: 10,
 
-    color:"green"
+    color: "green",
   },
   header: {
     textAlign: "center",
@@ -40,7 +39,7 @@ export const styles = StyleSheet.create({
     display: "flex",
     alignSelf: "center",
     margin: 50,
-  }, 
+  },
   title: {
     fontSize: 24,
     fontWeight: "bold",
@@ -91,8 +90,7 @@ export const styles = StyleSheet.create({
   },
   tableRow: {
     flexDirection: "row",
-    fontSize:10,
-
+    fontSize: 10,
   },
   tableCol: {
     borderStyle: "solid",
@@ -149,5 +147,4 @@ export const styles = StyleSheet.create({
     marginBottom: 10,
     textDecoration: "underline",
   },
-  
 });

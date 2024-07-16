@@ -4,7 +4,7 @@ export function useSection(setProject) {
     setProject((prevProject) => {
       const updateProject = [...prevProject];
       updateProject[1].modules[moduleId].sections.push({
-        name: name,
+       name: name, 
         content: [{ title: "", description: "" }],
         img: null,
         budget: [],
@@ -48,9 +48,8 @@ export function useSection(setProject) {
           setProject((prevProject) => {
             const updateProject = [...prevProject];
             const section =
-            updateProject[1].modules[moduleId].sections[firstSectionId].sections[
-              sectionId
-            ];
+              updateProject[1].modules[moduleId].sections[firstSectionId]
+                .sections[sectionId];
 
             // Aseguramos que section.img sea un array
             if (!Array.isArray(section[field])) {

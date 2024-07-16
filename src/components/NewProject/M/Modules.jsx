@@ -46,7 +46,8 @@ export function Modules({ moduleId }) {
         onIonChange={(e) => handleChangeModules(e, moduleId, "description")}
       />
       {module.sections.map((section, sectionId) => {
-        let FirstSection = `# ${sectionId + 1} - ${section.name}`;
+        let title = section.content[0].title
+        let FirstSection = `# ${sectionId + 1} - ${title}`;
 
         return (
           <IonAccordionGroup key={sectionId}>

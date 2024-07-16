@@ -7,25 +7,18 @@ import {
   Font,
 } from "@react-pdf/renderer";
 import { styles } from "./styles";
-import { RenderSections } from "./RenderSections";
-import { RenderFirstSections } from "./RenderFirstSections";
-import { capitalizeFirstLetter } from "../../utils/capitalizeFirstLetter";
+
 import { BudgetTable } from "./BudgetTable";
 export function Modules({ data }) {
-  const [introduction, modules] = data;
-
-  let moduleCounter = 1;
-
   let allData = [];
 
   function iterateModules(modules) {
     modules.forEach((module, moduleId) => {
-      // Agregar el módulo principal
       allData.push({
         name: module.module,
         description: module.description,
         title: module.title,
-        idTemplate: `#${moduleId + 1}`,
+        idTemplate: `${moduleId + 1}`,
         budget: module.budget || [],
       });
 
@@ -79,16 +72,34 @@ export function Modules({ data }) {
     });
   }
 
-  // Llamada a la función con los módulos del JSON
   if (data[1] && data[1].modules) {
     iterateModules(data[1].modules);
   }
-
-  console.log(allData);
+  let lastidTemplate = null;
 
   return (
     <View>
-      {modules.modules.map((module, moduleIndex) => {
+      {allData.map((module, index) => {
+        const isSameTemplate = lastidTemplate === module.idTemplate;
+        lastidTemplate = module.idTemplate;
+
+        lastidTemplate = module.idTemplate;
+        return (
+          <View key={index} style={styles.module}>
+            <Text style={styles.moduleTitle}>
+              {isSameTemplate
+                ? module.title
+                : `${module.idTemplate}. ${module.title}`}
+            </Text>
+            <Text style={styles.moduleText}>{module.description}</Text>
+          </View>
+        );
+      })}
+      <BudgetTable allData={allData} />
+    </View>
+  );
+}
+/*       {modules.modules.map((module, moduleIndex) => {
         //if there is no description or title, the module is not gonna be showed
         if (module.description.trim() !== "" || module.title.trim() !== "") {
           console.log(module);
@@ -112,6 +123,4 @@ export function Modules({ data }) {
           );
         }
       })}
-    </View>
-  );
-}
+         */

@@ -24,8 +24,8 @@ const INITIAL_STATE = [
   {
     modules: [
       { module: "INTRODUÇÃO", description: "", title: "", sections: [] },
-      { module: " DESCRIÇÃO GERAL", description: "", title: "", sections: [] },
-      {
+      { module: " DESCRIÇÃO GERAL", description: "", title: "",  sections: [] },
+     {
         module: " INSPEÇÃO TÉCNICA AO EDIFÍCIO",
         description: "",
         title: "",
@@ -51,7 +51,7 @@ const INITIAL_STATE = [
         title: "",
         sections: [],
       },
-      { module: " CONCLUSÕES", description: "", title: "", sections: [] },
+      { module: " CONCLUSÕES", description: "", title: "", sections: [] }, 
     ],
   },
 ];
@@ -72,6 +72,7 @@ export const PorjectProvider = ({ children }) => {
 
   /* ----------------TEMPLATES---------------- */
   const moduleTemplate = (moduleId, newModule) => {
+    console.log(newModule);
     setProject((prevProject) => {
       const newProject = [...prevProject];
       newProject[1].modules[moduleId].description = newModule.description;

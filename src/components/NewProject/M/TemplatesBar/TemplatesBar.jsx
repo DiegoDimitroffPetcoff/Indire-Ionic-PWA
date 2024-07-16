@@ -41,6 +41,7 @@ export function TemplatesBar({ moduleId, type }) {
                   <IonItem className="clickable-label" key={id}>
                     <IonLabel
                       onClick={() => {
+                        /* en action, el seg parametro agrega el titulo */
                         action(moduleId, template.name);
                         setAccordionValue(null);
                       }}
