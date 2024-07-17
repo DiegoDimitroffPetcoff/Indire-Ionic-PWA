@@ -9,6 +9,7 @@ import {
 import { styles } from "./styles";
 
 import { BudgetTable } from "./BudgetTable";
+import { TableOfContents } from "./TableOfContents";
 export function Modules({ data }) {
   let allData = [];
 
@@ -77,8 +78,10 @@ export function Modules({ data }) {
   }
   let lastidTemplate = null;
 
+  
   return (
     <View>
+       <TableOfContents allData={allData} />
       {allData.map((module, index) => {
         const isSameTemplate = lastidTemplate === module.idTemplate;
         lastidTemplate = module.idTemplate;
@@ -99,28 +102,3 @@ export function Modules({ data }) {
     </View>
   );
 }
-/*       {modules.modules.map((module, moduleIndex) => {
-        //if there is no description or title, the module is not gonna be showed
-        if (module.description.trim() !== "" || module.title.trim() !== "") {
-          console.log(module);
-          return (
-            <View key={moduleIndex} style={styles.module}>
-              <Text style={styles.moduleTitle}>
-                # {moduleIndex + 1}.{module.module.toUpperCase()}
-              </Text>
-              <Text style={styles.moduleText}>
-                {capitalizeFirstLetter(module.description)}
-              </Text>
-
-              <View>
-                {module.sections && (
-                  <RenderFirstSections sections={module.sections} moduleIndex={moduleIndex}/>
-                )}
-              </View>
-
-              <BudgetTable allData={allData} />
-            </View>
-          );
-        }
-      })}
-         */
