@@ -8,7 +8,7 @@ import { IonReactRouter } from "@ionic/react-router";
 import { Redirect, Route } from "react-router-dom";
 import Menu from "./components/Menu/Menu";
 import Page from "./pages/Page";
-
+import { Providers, ProviderState } from "@microsoft/mgt-element";
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
 
@@ -38,11 +38,28 @@ import "@ionic/react/css/display.css";
 
 /* Theme variables */
 import "./theme/variables.css";
-import { PdfView } from "./components/Pdf/PdfView";
+import { useEffect, useState } from "react";
+
 
 setupIonicReact();
 
 const App: React.FC = () => {
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  useEffect(() => {
+    const updateLoginStatus = () => {
+      if (Providers.globalProvider) {
+        setIsLoggedIn(
+          Providers.globalProvider.state === ProviderState.SignedIn
+        );
+      }
+    };
+    updateLoginStatus();
+    Providers.onProviderUpdated(updateLoginStatus);
+    return () => {
+      Providers.removeProviderUpdatedListener(updateLoginStatus);
+    };
+  }, []);
   return (
     <IonApp>
       <IonReactRouter>

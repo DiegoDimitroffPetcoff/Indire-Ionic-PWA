@@ -9,7 +9,7 @@ import {
   IonMenuToggle,
   IonNote,
 } from "@ionic/react";
-
+import { Login } from "@microsoft/mgt-react";
 import { useLocation } from "react-router-dom";
 import {
   refresh,
@@ -38,7 +38,7 @@ interface AppPage {
   iosIcon: string;
   mdIcon: string;
   title: string;
-  action?:() => void;
+  action?: () => void;
 }
 
 const appPages: AppPage[] = [
@@ -48,7 +48,7 @@ const appPages: AppPage[] = [
     iosIcon: addCircleOutline,
     mdIcon: addCircleOutline,
   },
-  
+
   {
     title: "ListProjects",
     url: "/project/listProjects",
@@ -60,13 +60,14 @@ const appPages: AppPage[] = [
     url: "/templates",
     iosIcon: documents,
     mdIcon: documents,
-  },  {
+  },
+  {
     title: "Refresh",
     url: "/project/project",
     iosIcon: refresh,
     mdIcon: refresh,
-    action:() => {
-      window.localStorage.clear();  // Función para limpiar el localStorage
+    action: () => {
+      window.localStorage.clear(); // Función para limpiar el localStorage
     },
   } /*,
   {
@@ -110,8 +111,10 @@ const Menu: React.FC = () => {
     <IonMenu contentId="main" type="overlay">
       <IonContent>
         <IonList id="inbox-list">
-          <IonListHeader>Indire</IonListHeader>
-          <IonNote>hi@ionicframework.com</IonNote>
+          <IonListHeader>
+            <Login />
+          </IonListHeader>
+     {/*      <IonNote>hi@ionicframework.com</IonNote> */}
           {appPages.map((appPage, index) => {
             return (
               <IonMenuToggle key={index} autoHide={false}>
@@ -135,7 +138,6 @@ const Menu: React.FC = () => {
               </IonMenuToggle>
             );
           })}
-
         </IonList>
 
         {/*         <IonList id="labels-list">
