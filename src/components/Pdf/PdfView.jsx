@@ -17,12 +17,12 @@ import { useContext } from "react";
 import { Introduction } from "./Introduction";
 import { Modules } from "./Modules";
 import { BudgetTable } from "./BudgetTable";
+
 export const PdfView = () => {
   const { project } = useContext(ProjectContext);
 
   return (
     <IonContent>
-      {" "}
       <PDFViewer width="100%" height="100%">
         <MyDocument data={project} />
       </PDFViewer>
@@ -44,15 +44,15 @@ Font.register({
   ],
 });
 
-const MyDocument = ({ data }) => {
+export const MyDocument = ({ data }) => {
   return (
     <Document>
       <Page size="A4" style={styles.page}>
         <Header data={{ data }} />
         <Introduction data={data} />
         <Modules data={data} />
-     
-{/*         <BudgetTable budget={data} /> */}
+
+        {/*         <BudgetTable budget={data} /> */}
       </Page>
     </Document>
   );

@@ -4,7 +4,7 @@ import { PdfView } from "./Pdf/PdfView";
 
 interface ContainerProps {
   name: string;
-  project: string;
+
   view: boolean;
 }
 
