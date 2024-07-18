@@ -37,74 +37,73 @@ export function FotterTaskBar({ setView, view }) {
   };
   return (
     <IonFooter>
-      <IonToolbar>
-        <IonGrid>
-          <IonCol size="6" size-md="4" size-lg="2">
-            {" "}
-            <PDFDownloadLink
-              document={<MyDocument data={project} />}
-              fileName={title + ".pdf"}
-            >
-              {({ blob, url, loading, error }) => (
-                <>
-                  <IonButton
-                    fill="outline"
-                    disabled={loading}
-                    onClick={() => PostOneDrive(blob)}
-                  >
-                    <IonIcon slot="end" icon={saveOutline}></IonIcon>
-                    {loading
-                      ? "Loading..."
-                      : error
-                      ? `Error: ${error.message}`
-                      : "Save"}
-                  </IonButton>
-                  {error && (
-                    <p style={{ color: "red" }}>
-                      Failed to generate PDF: {error.message}
-                    </p>
-                  )}
-                </>
+      <IonGrid>
+        <PDFDownloadLink
+          size="6"
+          size-md="4"
+          size-lg="2"
+          document={<MyDocument data={project} />}
+          fileName={title + ".pdf"}
+        >
+          {({ blob, url, loading, error }) => (
+            <>
+              <IonButton
+                fill="outline"
+                disabled={loading}
+                onClick={() => PostOneDrive(blob)}
+              >
+                <IonIcon slot="end" icon={saveOutline}></IonIcon>
+                {loading
+                  ? "Loading..."
+                  : error
+                  ? `Error: ${error.message}`
+                  : "Save"}
+              </IonButton>
+              {error && (
+                <p style={{ color: "red" }}>
+                  Failed to generate PDF: {error.message}
+                </p>
               )}
-            </PDFDownloadLink>
-          </IonCol>
-          <IonCol size="6" size-md="4" size-lg="2">
-            {" "}
-            <IonButton fill="outline" onClick={handleSaveToOneDrive}>
-              <IonIcon slot="end" icon={cloudCircle}></IonIcon>
-              OnDrive
-            </IonButton>
-          </IonCol>
-          <IonCol size="6" size-md="4" size-lg="2">
-            {" "}
-            <IonButton fill="outline">
-              <IonIcon slot="end" icon={copyOutline}></IonIcon>
-              Template
-            </IonButton>
-          </IonCol>
-          <IonCol size="6" size-md="4" size-lg="2">
-            {" "}
-            <IonButton fill="outline">
-              <IonIcon slot="end" icon={documentOutline}></IonIcon>
-              Word
-            </IonButton>
-          </IonCol>
-          <IonCol size="6" size-md="4" size-lg="2">
-            {" "}
-            <IonButton fill="outline">
-              <IonIcon slot="end" icon={clipboardOutline}></IonIcon>
-              PDF
-            </IonButton>
-          </IonCol>
-          <IonCol >
-            {" "}
-            <IonButton fill="outline">
-              <IonIcon slot="end" icon={clipboardOutline}></IonIcon>
-              PROJECT
-            </IonButton>
-          </IonCol>
-        </IonGrid>
-      </IonToolbar>
+            </>
+          )}
+        </PDFDownloadLink>
+
+        <IonCol size="6" size-md="4" size-lg="2">
+          {" "}
+          <IonButton fill="outline" onClick={handleSaveToOneDrive}>
+            <IonIcon slot="end" icon={cloudCircle}></IonIcon>
+            OnDrive
+          </IonButton>
+        </IonCol>
+        <IonCol size="6" size-md="4" size-lg="2">
+          {" "}
+          <IonButton fill="outline">
+            <IonIcon slot="end" icon={copyOutline}></IonIcon>
+            Template
+          </IonButton>
+        </IonCol>
+        <IonCol size="6" size-md="4" size-lg="2">
+          {" "}
+          <IonButton fill="outline">
+            <IonIcon slot="end" icon={documentOutline}></IonIcon>
+            Word
+          </IonButton>
+        </IonCol>
+        <IonCol size="6" size-md="4" size-lg="2">
+          {" "}
+          <IonButton fill="outline">
+            <IonIcon slot="end" icon={clipboardOutline}></IonIcon>
+            PDF
+          </IonButton>
+        </IonCol>
+        <IonCol>
+          {" "}
+          <IonButton fill="outline">
+            <IonIcon slot="end" icon={clipboardOutline}></IonIcon>
+            PROJECT
+          </IonButton>
+        </IonCol>
+      </IonGrid>
     </IonFooter>
   );
 }
