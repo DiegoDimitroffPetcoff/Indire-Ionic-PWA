@@ -40,24 +40,18 @@ export function FotterTaskBar({ setView, view }) {
       <IonToolbar>
         <IonGrid>
           <PDFDownloadLink
-          
             document={<MyDocument data={project} />}
             fileName={title + ".pdf"}
           >
             {({ blob, url, loading, error }) => (
               <>
                 <IonButton
-                size="12" size-md="3" size-lg="2"
                   fill="outline"
                   disabled={loading}
                   onClick={() => PostOneDrive(blob)}
                 >
                   <IonIcon slot="end" icon={saveOutline}></IonIcon>
-                  {loading
-                    ? "Loading..."
-                    : error
-                    ? `Error: ${error.message}`
-                    : "Save"}
+                  {loading ? "..." : error ? `Error: ${error.message}` : "Save"}
                 </IonButton>
                 {error && (
                   <p style={{ color: "red" }}>
@@ -68,30 +62,30 @@ export function FotterTaskBar({ setView, view }) {
             )}
           </PDFDownloadLink>
 
-          <IonCol size="12" size-md="3" size-lg="2">
+          <IonCol>
             {" "}
             <IonButton fill="outline" onClick={handleSaveToOneDrive}>
               <IonIcon slot="end" icon={cloudCircle}></IonIcon>
               OnDrive
             </IonButton>
           </IonCol>
-          <IonCol size="12" size-md="3" size-lg="2">
+          <IonCol>
             {" "}
             <IonButton fill="outline">
               <IonIcon slot="end" icon={copyOutline}></IonIcon>
               Template
             </IonButton>
           </IonCol>
-          <IonCol size="12" size-md="3" size-lg="2">
+          <IonCol>
             {" "}
             <IonButton fill="outline">
               <IonIcon slot="end" icon={documentOutline}></IonIcon>
               Word
             </IonButton>
           </IonCol>
-          <IonCol size="12" size-md="3" size-lg="2">
+          <IonCol>
             {" "}
-            <IonButton fill="outline">
+            <IonButton fill="outline" onClick={() => setView(!view)}>
               <IonIcon slot="end" icon={clipboardOutline}></IonIcon>
               PDF
             </IonButton>
