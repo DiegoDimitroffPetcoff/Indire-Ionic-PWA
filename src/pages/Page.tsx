@@ -38,7 +38,8 @@ const Page: React.FC = () => {
         <ExploreContainer name={name} view={view} />
       </IonContent>
 
-      <FotterTaskBar setView={setView} view={view} />
+      <FotterTaskBar  setView={setView} view={view} />
+      
     </IonPage>
   );
 };
