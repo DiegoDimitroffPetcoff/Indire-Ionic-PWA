@@ -117,6 +117,7 @@ export function SubSection({ moduleId, firstSectionId, sectionId }) {
         sectionId={sectionId}
         description="subsection2"
         contentDescription="subsection"
+        invisible={true}
       />
     </>
   );
