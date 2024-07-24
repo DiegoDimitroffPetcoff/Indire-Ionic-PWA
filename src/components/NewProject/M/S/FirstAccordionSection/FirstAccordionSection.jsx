@@ -20,7 +20,9 @@ import { TemplatesBar } from "../../TemplatesBar/TemplatesBar";
 export function FirstAccordionSection({ moduleId, firstSectionId }) {
   const { project, addSubSection } = useContext(ProjectContext);
   let section = project[1].modules[moduleId].sections[firstSectionId];
-
+  function addTemplate(info) {
+     console.log(info);
+    }
   return (
     <div slot="content" style={{ padding: "1%" }}>
       <div style={{ display: "flex", alignContent: "center" }}>
@@ -38,10 +40,11 @@ export function FirstAccordionSection({ moduleId, firstSectionId }) {
           Add Sub-Section
           <IonIcon ios={addCircle} md={addCircle}></IonIcon>{" "}
         </IonButton>
+
       </div>
       {section.sections &&
         section.sections.map((sectionMapped, sectionId) => {
-          console.log(sectionMapped);
+       /* aca podria agregar un add section con secitonMapped */
           return (
             <IonAccordionGroup expand="inset" key={sectionId}>
               <IonAccordion className="subSectionContent" value="first">
@@ -51,8 +54,9 @@ export function FirstAccordionSection({ moduleId, firstSectionId }) {
                       sectionId + 1
                     }`}
                     -{" "}
-                    {sectionMapped.content && sectionMapped.content.length > 0 &&
-                sectionMapped.content[0].title}
+                    {sectionMapped.content &&
+                      sectionMapped.content.length > 0 &&
+                      sectionMapped.content[0].title}
                   </IonLabel>
                 </IonItem>
                 <div

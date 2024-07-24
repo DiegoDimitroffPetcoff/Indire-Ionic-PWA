@@ -24,9 +24,9 @@ const INITIAL_STATE = [
   },
   {
     modules: [
-/*       { module: "INTRODUÇÃO", description: "", title: "", sections: [] },
-      { module: " DESCRIÇÃO GERAL", description: "", title: "",  sections: [] },
-     {
+      { module: "INTRODUÇÃO", description: "", title: "", sections: [] },
+      { module: " DESCRIÇÃO GERAL", description: "", title: "", sections: [] },
+      {
         module: " INSPEÇÃO TÉCNICA AO EDIFÍCIO",
         description: "",
         title: "",
@@ -38,7 +38,7 @@ const INITIAL_STATE = [
         description: "",
         title: "",
         sections: [],
-      }, */
+      },
       {
         module: "ELEMENTOS INSPECIONADOS E MEDIDAS CORRETIVAS PROPOSTAS",
         description: "",
@@ -46,13 +46,13 @@ const INITIAL_STATE = [
         mainSection: [],
         sections: [],
       },
-  /*     {
+      {
         module: " RECOMENDAÇÕES E AÇÕES DE MANUTENÇÃO",
         description: "",
         title: "",
         sections: [],
       },
-      { module: " CONCLUSÕES", description: "", title: "", sections: [] },  */
+      { module: " CONCLUSÕES", description: "", title: "", sections: [] },
     ],
   },
 ];
@@ -72,7 +72,8 @@ export const PorjectProvider = ({ children }) => {
   const { handleChangeIntroduction } = useIntroduction(setProject);
 
   /* ----------------TEMPLATES---------------- */
-const {addTemplateOnModule, addTemplateSubSection} = useTemplates(setProject)
+  const { addTemplateOnModule, addTemplateSubSection } =
+    useTemplates(setProject);
 
   /* ----------------MODULE---------------- */
   const { handleChangeModules, addCounter, addMainSection, deleteMainSection } =
@@ -132,7 +133,7 @@ const {addTemplateOnModule, addTemplateSubSection} = useTemplates(setProject)
         addCounter,
         addCounterOnSection,
         addTemplateOnModule,
-        addTemplateSubSection
+        addTemplateSubSection,
       }}
     >
       {children}
