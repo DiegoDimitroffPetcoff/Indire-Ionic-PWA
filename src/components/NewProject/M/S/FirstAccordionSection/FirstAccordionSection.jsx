@@ -24,7 +24,7 @@ export function FirstAccordionSection({ moduleId, firstSectionId }) {
   return (
     <>
       <div className="ion-padding" slot="content">
-      <TemplatesBar moduleId={moduleId} type={"subsection"} />
+      <TemplatesBar moduleId={moduleId} firstSectionId={firstSectionId} type={"subsection"} />
       <IonButton
           color="secondary"
           onClick={() => addSubSection("subsection", moduleId, firstSectionId)}
@@ -38,7 +38,7 @@ export function FirstAccordionSection({ moduleId, firstSectionId }) {
             return (
               <IonAccordionGroup key={sectionId}>
                 <IonAccordion value="first">
-                  <IonItem slot="header" color="light">
+                  <IonItem slot="header" color="secondary">
                     <IonLabel>{`${moduleId + 1}. # ${firstSectionId + 1}.${
                       sectionId + 1
                     }`}</IonLabel>

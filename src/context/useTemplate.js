@@ -17,28 +17,38 @@ export function useTemplates(setProject) {
       }
     });
   };
-/* CHEKEAR QUE LAS DOS FUNCIONES TENGAN LOS MISOMS */
-  function addTemplateSubSection(key,template, moduleId, firstSectionId, sectionId) {
+  /* CHEKEAR QUE LAS DOS FUNCIONES TENGAN LOS MISOMS */
+  function addTemplateSubSection(key, template, moduleId, firstSectionId, sectionId) {
     switch (key) {
       case "subsection":
         try {
-          console.log("subsectiontemplate");
-          console.log(template);
+          console.log("subsectiontemplate", template);
+          console.log("Module ID:", moduleId);
+          console.log("First Section ID:", firstSectionId);
+  
           setProject((prevProject) => {
             const updateProject = [...prevProject];
-            
+  
+            // Verificar si los índices son válidos
             if (
-              updateProject[1] && 
+              updateProject[1] &&
               updateProject[1].modules[moduleId] &&
               updateProject[1].modules[moduleId].sections[firstSectionId]
             ) {
-              updateProject[1].modules[moduleId].sections[firstSectionId].content = template.content
+              console.log("Template content:", template.content);
+              console.log("Current sections:", updateProject[1].modules[moduleId].sections);
+  
+              // Añadir la subsección del template
               updateProject[1].modules[moduleId].sections[firstSectionId].sections.push({
-                content: [{ title: "", description: "" }],
+                content: template.content, // Aquí aseguramos que content sea del template
                 img: null,
                 budget: [],
                 sections: [],
               });
+  
+              console.log("Updated sections:", updateProject[1].modules[moduleId].sections);
+  
+              // Guardar en localStorage
               window.localStorage.setItem("data", JSON.stringify(updateProject));
               return updateProject;
             } else {
@@ -51,41 +61,12 @@ export function useTemplates(setProject) {
         }
         break;
   
-      case "subsection2":
-        try {
-          console.log("subsection2");
-          setProject((prevProject) => {
-            const updateProject = [...prevProject];
-            
-            if (
-              updateProject[1] && 
-              updateProject[1].modules[moduleId] &&
-              updateProject[1].modules[moduleId].sections[firstSectionId] &&
-              updateProject[1].modules[moduleId].sections[firstSectionId].sections[sectionId]
-            ) {
-              updateProject[1].modules[moduleId].sections[firstSectionId].sections[sectionId].sections.push({
-                content: [{ title: "", description: "" }],
-                img: null,
-                budget: [],
-                sections: [],
-              });
-              window.localStorage.setItem("data", JSON.stringify(updateProject));
-              return updateProject;
-            } else {
-              console.error("Invalid indices for updating project");
-              return prevProject;
-            }
-          });
-        } catch (error) {
-          console.error("Error adding subsection2:", error);
-        }
-        break;
-  
       default:
         console.log("no subsections added");
         break;
     }
   }
   
+
   return { addTemplateOnModule, addTemplateSubSection };
 }

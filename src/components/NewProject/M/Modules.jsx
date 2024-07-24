@@ -63,7 +63,7 @@ export function Modules({ moduleId }) {
         return (
           <IonAccordionGroup key={sectionId}>
             <IonAccordion value="first">
-              <IonItem slot="header" color="light">
+              <IonItem slot="header" color="success">
                 <IonLabel>{FirstSection}</IonLabel>
                 <IonButton
                   expand="block"
