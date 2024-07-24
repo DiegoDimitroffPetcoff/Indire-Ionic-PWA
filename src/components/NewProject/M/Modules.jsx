@@ -29,7 +29,8 @@ export function Modules({ moduleId }) {
       <h2>
         {moduleId + 1}.{module.module}
       </h2>
-      <TemplatesBar moduleId={moduleId} type={"module"} />
+      {/* POR AHORA OCULTO EL TEMPLATE */}
+     {/*  <TemplatesBar moduleId={moduleId} type={"module"} /> */}
       <IonInput
         label="Title"
         labelPlacement="floating"
@@ -69,7 +70,7 @@ export function Modules({ moduleId }) {
           </IonAccordionGroup>
         );
       })}
-      <TemplatesBar moduleId={moduleId} type={"mainSection"} />
+      <TemplatesBar moduleId={moduleId} type={"addTemplate"} />
     </div>
   );
 }

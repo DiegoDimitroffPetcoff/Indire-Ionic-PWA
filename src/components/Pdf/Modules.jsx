@@ -81,7 +81,7 @@ export function Modules({ data }) {
   
   return (
     <View>
-       <TableOfContents allData={allData} />
+{/*        <TableOfContents allData={allData} /> */}
       {allData.map((module, index) => {
         const isSameTemplate = lastidTemplate === module.idTemplate;
         lastidTemplate = module.idTemplate;

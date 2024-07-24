@@ -11,13 +11,13 @@ import moduloTemplateJson from "../../../../templates/sectionTemplate.json";
 import { ProjectContext } from "../../../../context/ProjectContext";
 import { useContext, useState } from "react";
 export function TemplatesBar({ moduleId, type }) {
-  const { moduleTemplate, addSection } = useContext(ProjectContext);
+  const { addTemplateOnModule, addSection } = useContext(ProjectContext);
   const [accordionValue, setAccordionValue] = useState(null);
   let action;
 
   switch (type) {
-    case "module":
-      action = moduleTemplate;
+    case "addTemplate":
+      action = addTemplateOnModule;
       break;
     case "mainSection":
       action = addSection;
@@ -25,7 +25,7 @@ export function TemplatesBar({ moduleId, type }) {
     default:
       action = null;
   }
- 
+
   return (
     <IonAccordionGroup value={accordionValue} key={moduleId}>
       <IonAccordion value="first">

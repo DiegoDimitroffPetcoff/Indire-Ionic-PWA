@@ -17,6 +17,7 @@ import { SubSection } from "../SubSection";
 import { ProjectContext } from "../../../../../context/ProjectContext";
 import { useContext } from "react";
 import { TaskBar } from "../../TaskBar/Taskbar";
+import { TemplatesBar } from "../../TemplatesBar/TemplatesBar";
 /*------------- FIRST-SECTION -> SECTION--------------- */
 /*------------- FIRST-SECTION -> SECTION--------------- */
 /*------------- FIRST-SECTION -> SECTION--------------- */
@@ -63,6 +64,7 @@ export function FirstAccordionSection({ moduleId, firstSectionId }) {
             md={addCircle}
           ></IonIcon>{" "}
         </IonButton>
+        <TemplatesBar moduleId={moduleId} type={"module"} />
       </div>
     </>
   );

@@ -6,6 +6,7 @@ import { useSection } from "./useSection";
 import { useSubsection } from "./useSubsection";
 import { useBudget } from "./useBudget";
 import { useImg } from "./useImg";
+import { useTemplates } from "./useTemplate";
 
 export const ProjectContext = createContext();
 
@@ -23,7 +24,7 @@ const INITIAL_STATE = [
   },
   {
     modules: [
-      { module: "INTRODUÇÃO", description: "", title: "", sections: [] },
+/*       { module: "INTRODUÇÃO", description: "", title: "", sections: [] },
       { module: " DESCRIÇÃO GERAL", description: "", title: "",  sections: [] },
      {
         module: " INSPEÇÃO TÉCNICA AO EDIFÍCIO",
@@ -37,7 +38,7 @@ const INITIAL_STATE = [
         description: "",
         title: "",
         sections: [],
-      },
+      }, */
       {
         module: "ELEMENTOS INSPECIONADOS E MEDIDAS CORRETIVAS PROPOSTAS",
         description: "",
@@ -45,13 +46,13 @@ const INITIAL_STATE = [
         mainSection: [],
         sections: [],
       },
-      {
+  /*     {
         module: " RECOMENDAÇÕES E AÇÕES DE MANUTENÇÃO",
         description: "",
         title: "",
         sections: [],
       },
-      { module: " CONCLUSÕES", description: "", title: "", sections: [] }, 
+      { module: " CONCLUSÕES", description: "", title: "", sections: [] },  */
     ],
   },
 ];
@@ -71,16 +72,7 @@ export const PorjectProvider = ({ children }) => {
   const { handleChangeIntroduction } = useIntroduction(setProject);
 
   /* ----------------TEMPLATES---------------- */
-  const moduleTemplate = (moduleId, newModule) => {
-    console.log(newModule);
-    setProject((prevProject) => {
-      const newProject = [...prevProject];
-      newProject[1].modules[moduleId].description = newModule.description;
-      newProject[1].modules[moduleId].title = newModule.title;
-      window.localStorage.setItem("data", JSON.stringify(newProject));
-      return newProject;
-    });
-  };
+const {addTemplateOnModule} = useTemplates(setProject)
 
   /* ----------------MODULE---------------- */
   const { handleChangeModules, addCounter, addMainSection, deleteMainSection } =
@@ -129,7 +121,7 @@ export const PorjectProvider = ({ children }) => {
         deleteImage,
         addSubSection,
         deleteSubSection,
-        moduleTemplate,
+
         addContent,
         addMainSection,
         deleteContent,
@@ -139,6 +131,7 @@ export const PorjectProvider = ({ children }) => {
         addSubSectionSwitch,
         addCounter,
         addCounterOnSection,
+        addTemplateOnModule
       }}
     >
       {children}
