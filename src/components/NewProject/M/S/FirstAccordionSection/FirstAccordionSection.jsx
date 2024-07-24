@@ -41,6 +41,7 @@ export function FirstAccordionSection({ moduleId, firstSectionId }) {
       </div>
       {section.sections &&
         section.sections.map((sectionMapped, sectionId) => {
+          console.log(sectionMapped);
           return (
             <IonAccordionGroup expand="inset" key={sectionId}>
               <IonAccordion className="subSectionContent" value="first">
@@ -49,7 +50,9 @@ export function FirstAccordionSection({ moduleId, firstSectionId }) {
                     {`${moduleId + 1}. - # ${firstSectionId + 1}.${
                       sectionId + 1
                     }`}
-                    - {sectionMapped.content[0].title}
+                    -{" "}
+                    {sectionMapped.content && sectionMapped.content.length > 0 &&
+                sectionMapped.content[0].title}
                   </IonLabel>
                 </IonItem>
                 <div

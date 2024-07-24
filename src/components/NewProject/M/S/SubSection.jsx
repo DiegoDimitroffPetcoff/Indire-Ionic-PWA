@@ -21,14 +21,14 @@ import { TemplatesBar } from "../TemplatesBar/TemplatesBar";
 /*------------- SUBSECTION--------------- */
 /*------------- SUBSECTION--------------- */
 export function SubSection({ moduleId, firstSectionId, sectionId }) {
-  const { project, deleteImage } = useContext(ProjectContext);
+  const { project, deleteImage, addSubSection } = useContext(ProjectContext);
 
   let section =
     project[1].modules[moduleId].sections[firstSectionId].sections[sectionId];
 
   return (
-    < >
-            <div style={{ display: "flex", alignContent: "center" }}>
+    <>
+      <div style={{ display: "flex", alignContent: "center" }}>
         <TemplatesBar
           moduleId={moduleId}
           firstSectionId={firstSectionId}
@@ -38,7 +38,9 @@ export function SubSection({ moduleId, firstSectionId, sectionId }) {
         <IonButton
           className="buttonAdd"
           color="light"
-          onClick={() => addSubSection("subsection", moduleId, firstSectionId)}
+          onClick={() =>
+            addSubSection("subsection2", moduleId, firstSectionId, sectionId)
+          }
           expand="full"
         >
           Add Sub-Section
@@ -82,30 +84,33 @@ export function SubSection({ moduleId, firstSectionId, sectionId }) {
           />
         );
       })}
-    
-    
-        {section.sections.map((sectionMapped, sectionId2) => {
-          return (
-            <IonAccordionGroup  expand="inset"  key={sectionId2}>
-              <IonAccordion value="first">
-                <IonItem slot="header" >
-                  <IonLabel>{`# ${firstSectionId + 1}.${sectionId + 1}.${
-                    sectionId2 + 1
-                  }   - ${sectionMapped.content[0].title}`}</IonLabel>
-                </IonItem>
-                <div slot="content" className="accordion-content">
-                  <SubSection2
-                    moduleId={moduleId}
-                    firstSectionId={firstSectionId}
-                    sectionId={sectionId}
-                    sectionId2={sectionId2}
-                  />
-                </div>
-              </IonAccordion>
-            </IonAccordionGroup>
-          );
-        })}
-      
+
+      {section.sections.map((sectionMapped, sectionId2) => {
+        return (
+          <IonAccordionGroup expand="inset" key={sectionId2}>
+            <IonAccordion value="first">
+              <IonItem slot="header">
+                <IonLabel>{`# ${firstSectionId + 1}.${sectionId + 1}.${
+                  sectionId2 + 1
+                }   - ${
+                  sectionMapped.content &&
+                  sectionMapped.content.length > 0 ?
+                  sectionMapped.content[0].title : ""
+                }`}</IonLabel>
+              </IonItem>
+              <div slot="content" className="accordion-content">
+                <SubSection2
+                  moduleId={moduleId}
+                  firstSectionId={firstSectionId}
+                  sectionId={sectionId}
+                  sectionId2={sectionId2}
+                />
+              </div>
+            </IonAccordion>
+          </IonAccordionGroup>
+        );
+      })}
+
       <TaskBar
         moduleId={moduleId}
         firstSectionId={firstSectionId}
