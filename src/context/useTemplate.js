@@ -18,38 +18,45 @@ export function useTemplates(setProject) {
     });
   };
   /* CHEKEAR QUE LAS DOS FUNCIONES TENGAN LOS MISOMS */
-  function addTemplateSubSection(key, template, moduleId, firstSectionId, sectionId) {
+  function addTemplateSubSection(
+    key,
+    template,
+    moduleId,
+    firstSectionId,
+    sectionId
+  ) {
     switch (key) {
       case "subsection":
         try {
-          console.log("subsectiontemplate", template);
-          console.log("Module ID:", moduleId);
-          console.log("First Section ID:", firstSectionId);
-  
           setProject((prevProject) => {
             const updateProject = [...prevProject];
-  
+
             // Verificar si los índices son válidos
             if (
               updateProject[1] &&
               updateProject[1].modules[moduleId] &&
               updateProject[1].modules[moduleId].sections[firstSectionId]
             ) {
-              console.log("Template content:", template.content);
-              console.log("Current sections:", updateProject[1].modules[moduleId].sections);
-  
               // Añadir la subsección del template
-              updateProject[1].modules[moduleId].sections[firstSectionId].sections.push({
-                content: template.content, // Aquí aseguramos que content sea del template
+              updateProject[1].modules[moduleId].sections[
+                firstSectionId
+              ].sections.push({
+                content: template.content,
                 img: null,
                 budget: [],
                 sections: [],
               });
-  
-              console.log("Updated sections:", updateProject[1].modules[moduleId].sections);
-  
+
+              console.log(
+                "Updated sections:",
+                updateProject[1].modules[moduleId].sections
+              );
+
               // Guardar en localStorage
-              window.localStorage.setItem("data", JSON.stringify(updateProject));
+              window.localStorage.setItem(
+                "data",
+                JSON.stringify(updateProject)
+              );
               return updateProject;
             } else {
               console.error("Invalid indices for updating project");
@@ -60,13 +67,12 @@ export function useTemplates(setProject) {
           console.error("Error adding subsection:", error);
         }
         break;
-  
+
       default:
         console.log("no subsections added");
         break;
     }
   }
-  
 
   return { addTemplateOnModule, addTemplateSubSection };
 }

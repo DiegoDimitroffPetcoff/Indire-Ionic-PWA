@@ -1,10 +1,10 @@
 export function useSection(setProject) {
   // TODO SE DEBE ANALIZAR SIMPLEMENTE AGREGAR MAS TEXTO Y TITUYLO----> CREAR FUNCION
-  function addSection(moduleId, name) {
+  function addSection(moduleId) {
     setProject((prevProject) => {
       const updateProject = [...prevProject];
       updateProject[1].modules[moduleId].sections.push({
-       name: name, 
+      
         content: [{ title: "", description: "" }],
         img: null,
         budget: [],

@@ -31,7 +31,7 @@ export function TemplatesBar({ moduleId,firstSectionId, type }) {
   }
 
   return (
-    <IonAccordionGroup value={accordionValue} key={moduleId}>
+    <IonAccordionGroup className="IonAccordionGroup" value={accordionValue} key={moduleId}>
       <IonAccordion value="first">
         <IonItem slot="header" color="light">
           <IonIcon ios={copyOutline} md={copyOutline}></IonIcon>

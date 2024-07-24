@@ -25,11 +25,9 @@ export function Modules({ moduleId }) {
     addSection,
     deleteSection,
     addCounter,
-    addSubSection,
   } = useContext(ProjectContext);
   let module = project[1].modules[moduleId];
   useEffect(() => {
-    /*  console.log(`Modules component with moduleId ${moduleId} has rendered`); */
     addCounter(moduleId, moduleId + 1);
   }, []);
   return (
@@ -37,7 +35,7 @@ export function Modules({ moduleId }) {
       <h2>
         {moduleId + 1}.{module.module}
       </h2>
-      {/* POR AHORA OCULTO EL TEMPLATE */}
+
       <TemplatesBar moduleId={moduleId} type={"module"} />
 
       <IonInput
@@ -63,7 +61,7 @@ export function Modules({ moduleId }) {
         return (
           <IonAccordionGroup key={sectionId}>
             <IonAccordion value="first">
-              <IonItem slot="header" color="success">
+              <IonItem slot="header">
                 <IonLabel>{FirstSection}</IonLabel>
                 <IonButton
                   expand="block"
@@ -84,8 +82,8 @@ export function Modules({ moduleId }) {
       })}
 
       <IonButton
-        color="secondary"
-        onClick={() => addSection(moduleId, "nombreejemplo")}
+        color="light"
+        onClick={() => addSection(moduleId)}
         expand="full"
       >
         Add Section

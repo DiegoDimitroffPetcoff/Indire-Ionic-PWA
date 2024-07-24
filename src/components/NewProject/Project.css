@@ -19,9 +19,9 @@ input {
 .moduleContent {
   display: flex;
   flex-direction: column;
-  background-color: antiquewhite;
-  border-radius: 5px;
-  margin: 10px;
+/*   background-color: antiquewhite; */
+
+  margin: 1px;
 }
 .moduleTitleContainer {
   display: flex;
@@ -43,4 +43,12 @@ input {
 .clickable-label:hover {
   cursor: pointer;
   color: antiquewhite;
+}
+.buttonAdd{
+height:40px;
+}
+.IonAccordionGroup{
+  border-radius: 5px;
+
+
 }
