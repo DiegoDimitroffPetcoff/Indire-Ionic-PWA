@@ -1,16 +1,12 @@
 import { useContext } from "react";
 import { ProjectContext } from "../../../../context/ProjectContext";
-import {
-  IonAccordion,
-  IonAccordionGroup,
-  IonItem,
-  IonLabel,
-} from "@ionic/react";
+
 
 import { TaskBar } from "../TaskBar/Taskbar";
 import { Budget } from "../Budget/Buget";
 
 import { ContentHandler } from "../ContentHandler/ContentHandler";
+import { TemplatesBar } from "../TemplatesBar/TemplatesBar";
 /*------------- SUBSECTION--------------- */
 /*------------- SUBSECTION--------------- */
 /*------------- SUBSECTION--------------- */
@@ -35,6 +31,8 @@ export function SubSection2({
 
   return (
     <>
+        
+
       {/*-----CONTENT----- */}
       <ContentHandler
         description="subsection2"
@@ -74,6 +72,8 @@ export function SubSection2({
           />
         );
       })}
+
+
       {/* ADD SUBSECTIONS-> HAVE TO BE A NEXT */}
       <TaskBar
         moduleId={moduleId}

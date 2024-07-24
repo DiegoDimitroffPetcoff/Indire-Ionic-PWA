@@ -11,7 +11,7 @@ import moduloTemplateJson from "../../../../templates/moduleTemplate.json";
 import sectionTemplateJson from "../../../../templates/subsectionTemplate.json";
 import { ProjectContext } from "../../../../context/ProjectContext";
 import { useContext, useState } from "react";
-export function TemplatesBar({ moduleId,firstSectionId, type }) {
+export function TemplatesBar({ moduleId,firstSectionId,sectionId, type }) {
   const { addTemplateOnModule, addTemplateSubSection } = useContext(ProjectContext);
   const [accordionValue, setAccordionValue] = useState(null);
   let action;
@@ -26,6 +26,10 @@ export function TemplatesBar({ moduleId,firstSectionId, type }) {
       action = addTemplateSubSection;
       templateMapped = sectionTemplateJson
       break;
+      case "subsection2":
+        action = addTemplateSubSection;
+        templateMapped = sectionTemplateJson
+        break;
     default:
       action = null;
   }
@@ -47,7 +51,7 @@ export function TemplatesBar({ moduleId,firstSectionId, type }) {
                       onClick={() => {
                         /* en action, el seg parametro agrega el titulo */
 
-                        action("subsection",template,moduleId,firstSectionId, );
+                        action(type,template,moduleId,firstSectionId, sectionId);
                         setAccordionValue(null);
                       }}
                     >

@@ -5,13 +5,17 @@ import {
   IonAccordionGroup,
   IonItem,
   IonLabel,
+  IonButton,
+  IonIcon,
 } from "@ionic/react";
+import { addCircle } from "ionicons/icons";
 
 import { TaskBar } from "../TaskBar/Taskbar";
 import { Budget } from "../Budget/Buget";
 
 import { ContentHandler } from "../ContentHandler/ContentHandler";
 import { SubSection2 } from "./SubSection2";
+import { TemplatesBar } from "../TemplatesBar/TemplatesBar";
 /*------------- SUBSECTION--------------- */
 /*------------- SUBSECTION--------------- */
 /*------------- SUBSECTION--------------- */
@@ -24,6 +28,23 @@ export function SubSection({ moduleId, firstSectionId, sectionId }) {
 
   return (
     < >
+            <div style={{ display: "flex", alignContent: "center" }}>
+        <TemplatesBar
+          moduleId={moduleId}
+          firstSectionId={firstSectionId}
+          sectionId={sectionId}
+          type={"subsection2"}
+        />
+        <IonButton
+          className="buttonAdd"
+          color="light"
+          onClick={() => addSubSection("subsection", moduleId, firstSectionId)}
+          expand="full"
+        >
+          Add Sub-Section
+          <IonIcon ios={addCircle} md={addCircle}></IonIcon>{" "}
+        </IonButton>
+      </div>
       {/*-----CONTENT----- */}
       <ContentHandler
         description="subsection"
@@ -61,6 +82,7 @@ export function SubSection({ moduleId, firstSectionId, sectionId }) {
           />
         );
       })}
+    
     
         {section.sections.map((sectionMapped, sectionId2) => {
           return (

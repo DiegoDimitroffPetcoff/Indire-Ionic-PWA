@@ -67,7 +67,44 @@ export function useTemplates(setProject) {
           console.error("Error adding subsection:", error);
         }
         break;
+      case "subsection2":
+        try {
+          setProject((prevProject) => {
+            const updateProject = [...prevProject];
 
+            // Verificar si los índices son válidos
+            if (
+              updateProject[1] &&
+              updateProject[1].modules[moduleId] &&
+              updateProject[1].modules[moduleId].sections[firstSectionId] &&
+              updateProject[1].modules[moduleId].sections[firstSectionId]
+                .sections[sectionId]
+            ) {
+              // Añadir la subsección del template
+              updateProject[1].modules[moduleId].sections[
+                firstSectionId
+              ].sections[sectionId].sections.push({
+                content: template.content,
+                img: null,
+                budget: [],
+                sections: [],
+              });
+
+              // Guardar en localStorage
+              window.localStorage.setItem(
+                "data",
+                JSON.stringify(updateProject)
+              );
+              return updateProject;
+            } else {
+              console.error("Invalid indices for updating project");
+              return prevProject;
+            }
+          });
+        } catch (error) {
+          console.error("Error adding subsection:", error);
+        }
+        break;
       default:
         console.log("no subsections added");
         break;
