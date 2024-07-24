@@ -6,7 +6,9 @@ import {
   IonItem,
   IonLabel,
   IonButton,
+  IonIcon,
 } from "@ionic/react";
+import { addCircle } from "ionicons/icons";
 
 import { ProjectContext } from "../../../context/ProjectContext";
 import { TemplatesBar } from "./TemplatesBar/TemplatesBar";
@@ -17,20 +19,27 @@ import { AlertDelete } from "../../../utils/AlertDelete";
 /*------------- MODULO--------------- */
 /*------------- MODULO--------------- */
 export function Modules({ moduleId }) {
-  const { project, handleChangeModules, deleteSection, addCounter } =
-    useContext(ProjectContext);
+  const {
+    project,
+    handleChangeModules,
+    addSection,
+    deleteSection,
+    addCounter,
+    addSubSection,
+  } = useContext(ProjectContext);
   let module = project[1].modules[moduleId];
   useEffect(() => {
-   /*  console.log(`Modules component with moduleId ${moduleId} has rendered`); */
-    addCounter(moduleId, moduleId + 1) 
-  },[]);
+    /*  console.log(`Modules component with moduleId ${moduleId} has rendered`); */
+    addCounter(moduleId, moduleId + 1);
+  }, []);
   return (
     <div className="moduleContent" key={moduleId}>
       <h2>
         {moduleId + 1}.{module.module}
       </h2>
       {/* POR AHORA OCULTO EL TEMPLATE */}
-     {/*  <TemplatesBar moduleId={moduleId} type={"module"} /> */}
+      <TemplatesBar moduleId={moduleId} type={"module"} />
+
       <IonInput
         label="Title"
         labelPlacement="floating"
@@ -46,8 +55,9 @@ export function Modules({ moduleId }) {
         value={module.description}
         onIonChange={(e) => handleChangeModules(e, moduleId, "description")}
       />
+
       {module.sections.map((section, sectionId) => {
-        let title = section.content[0].title
+        let title = section.content[0].title;
         let FirstSection = `${moduleId + 1}. # ${sectionId + 1}  ${title}`;
 
         return (
@@ -56,12 +66,14 @@ export function Modules({ moduleId }) {
               <IonItem slot="header" color="light">
                 <IonLabel>{FirstSection}</IonLabel>
                 <IonButton
+                  expand="block"
                   color="danger"
                   onClick={() => deleteSection(moduleId, sectionId)}
                 >
                   Delete
                 </IonButton>
               </IonItem>
+
               <FirstAccordionSection
                 firstSectionId={sectionId}
                 moduleId={moduleId}
@@ -70,7 +82,15 @@ export function Modules({ moduleId }) {
           </IonAccordionGroup>
         );
       })}
-      <TemplatesBar moduleId={moduleId} type={"addTemplate"} />
+
+      <IonButton
+        color="secondary"
+        onClick={() => addSection(moduleId, "nombreejemplo")}
+        expand="full"
+      >
+        Add Section
+        <IonIcon ios={addCircle} md={addCircle}></IonIcon>{" "}
+      </IonButton>
     </div>
   );
 }

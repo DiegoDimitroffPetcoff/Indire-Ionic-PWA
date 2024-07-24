@@ -72,7 +72,7 @@ export const PorjectProvider = ({ children }) => {
   const { handleChangeIntroduction } = useIntroduction(setProject);
 
   /* ----------------TEMPLATES---------------- */
-const {addTemplateOnModule} = useTemplates(setProject)
+const {addTemplateOnModule, addTemplateSubSection} = useTemplates(setProject)
 
   /* ----------------MODULE---------------- */
   const { handleChangeModules, addCounter, addMainSection, deleteMainSection } =
@@ -131,7 +131,8 @@ const {addTemplateOnModule} = useTemplates(setProject)
         addSubSectionSwitch,
         addCounter,
         addCounterOnSection,
-        addTemplateOnModule
+        addTemplateOnModule,
+        addTemplateSubSection
       }}
     >
       {children}

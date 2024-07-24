@@ -7,20 +7,24 @@ import {
 } from "@ionic/react";
 import { copyOutline } from "ionicons/icons";
 
-import moduloTemplateJson from "../../../../templates/sectionTemplate.json";
+import moduloTemplateJson from "../../../../templates/moduleTemplate.json";
+import sectionTemplateJson from "../../../../templates/subsectionTemplate.json";
 import { ProjectContext } from "../../../../context/ProjectContext";
 import { useContext, useState } from "react";
 export function TemplatesBar({ moduleId, type }) {
-  const { addTemplateOnModule, addSection } = useContext(ProjectContext);
+  const { addTemplateOnModule, addTemplateSubSection } = useContext(ProjectContext);
   const [accordionValue, setAccordionValue] = useState(null);
   let action;
+  let templateMapped;
 
   switch (type) {
-    case "addTemplate":
+    case "module":
       action = addTemplateOnModule;
+      templateMapped = moduloTemplateJson
       break;
-    case "mainSection":
-      action = addSection;
+    case "subsection":
+      action = addTemplateSubSection;
+      templateMapped = sectionTemplateJson
       break;
     default:
       action = null;
@@ -35,14 +39,15 @@ export function TemplatesBar({ moduleId, type }) {
 
         <div className="ion-padding" slot="content">
           <div className="btnContainerTemplate">
-            {moduloTemplateJson &&
-              moduloTemplateJson.map((template, id) => {
+            {templateMapped &&
+              templateMapped.map((template, id) => {
                 return (
                   <IonItem className="clickable-label" key={id}>
                     <IonLabel
                       onClick={() => {
                         /* en action, el seg parametro agrega el titulo */
-                        action(moduleId, template.name);
+
+                        action("subsection",template,moduleId,id, );
                         setAccordionValue(null);
                       }}
                     >
