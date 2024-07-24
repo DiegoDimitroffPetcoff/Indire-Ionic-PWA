@@ -44,7 +44,7 @@ export function FirstAccordionSection({ moduleId, firstSectionId }) {
           return (
             <IonAccordionGroup expand="inset" key={sectionId}>
               <IonAccordion className="subSectionContent" value="first">
-                <IonItem slot="header" color="warning">
+                <IonItem slot="header" color="light">
                   <IonLabel>{`${moduleId + 1}. - # ${firstSectionId + 1}.${
                     sectionId + 1
                   }`}</IonLabel>
