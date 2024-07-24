@@ -62,14 +62,14 @@ export function SubSection({ moduleId, firstSectionId, sectionId }) {
         );
       })}
     
-        {section.sections.map((_, sectionId2) => {
+        {section.sections.map((sectionMapped, sectionId2) => {
           return (
             <IonAccordionGroup  expand="inset"  key={sectionId2}>
               <IonAccordion value="first">
                 <IonItem slot="header" >
                   <IonLabel>{`# ${firstSectionId + 1}.${sectionId + 1}.${
                     sectionId2 + 1
-                  }`}</IonLabel>
+                  }   - ${sectionMapped.content[0].title}`}</IonLabel>
                 </IonItem>
                 <div slot="content" className="accordion-content">
                   <SubSection2
