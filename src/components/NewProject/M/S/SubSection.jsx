@@ -23,7 +23,7 @@ export function SubSection({ moduleId, firstSectionId, sectionId }) {
     project[1].modules[moduleId].sections[firstSectionId].sections[sectionId];
 
   return (
-    <>
+    < >
       {/*-----CONTENT----- */}
       <ContentHandler
         description="subsection"
@@ -61,27 +61,29 @@ export function SubSection({ moduleId, firstSectionId, sectionId }) {
           />
         );
       })}
-      {section.sections.map((_, sectionId2) => {
-        return (
-          <IonAccordionGroup key={sectionId2}>
-            <IonAccordion value="first">
-              <IonItem slot="header" color="light">
-                <IonLabel>{`# ${firstSectionId + 1}.${sectionId + 1}.${
-                  sectionId2 + 1
-                }`}</IonLabel>
-              </IonItem>
-              <div className="ion-padding" slot="content">
-                <SubSection2
-                  moduleId={moduleId}
-                  firstSectionId={firstSectionId}
-                  sectionId={sectionId}
-                  sectionId2={sectionId2}
-                />
-              </div>
-            </IonAccordion>
-          </IonAccordionGroup>
-        );
-      })}
+    
+        {section.sections.map((_, sectionId2) => {
+          return (
+            <IonAccordionGroup  expand="inset"  key={sectionId2}>
+              <IonAccordion value="first">
+                <IonItem slot="header" >
+                  <IonLabel>{`# ${firstSectionId + 1}.${sectionId + 1}.${
+                    sectionId2 + 1
+                  }`}</IonLabel>
+                </IonItem>
+                <div slot="content" className="accordion-content">
+                  <SubSection2
+                    moduleId={moduleId}
+                    firstSectionId={firstSectionId}
+                    sectionId={sectionId}
+                    sectionId2={sectionId2}
+                  />
+                </div>
+              </IonAccordion>
+            </IonAccordionGroup>
+          );
+        })}
+      
       <TaskBar
         moduleId={moduleId}
         firstSectionId={firstSectionId}

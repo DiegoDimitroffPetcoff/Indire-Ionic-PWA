@@ -23,9 +23,9 @@ export function ContentHandler({
   }
 
   return (
-    <>
+    <div style={{width:"100%"}}>
       {content.map((content, contentId) => (
-        <div key={contentId} style={{ background: "#f6d5a8" }}>
+        <div key={contentId} >
           <div style={{ display: "flex" }}>
             <IonInput
               label="Title"
@@ -83,6 +83,6 @@ export function ContentHandler({
           />
         </div>
       ))}
-    </>
+    </div>
   );
 }

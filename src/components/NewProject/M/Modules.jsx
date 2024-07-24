@@ -59,7 +59,7 @@ export function Modules({ moduleId }) {
         let FirstSection = `${moduleId + 1}. # ${sectionId + 1}  ${title}`;
 
         return (
-          <IonAccordionGroup key={sectionId}>
+          <IonAccordionGroup  expand="inset" key={sectionId}>
             <IonAccordion value="first">
               <IonItem slot="header">
                 <IonLabel>{FirstSection}</IonLabel>

@@ -1,5 +1,5 @@
 export function useTemplates(setProject) {
-  const addTemplateOnModule = (_, moduleId, newModule) => {
+  const addTemplateOnModule = (_, newModule, moduleId) => {
     /* Module File is special such have a diferent objet, there is not content like in all the subsections */
     setProject((prevProject) => {
       const newProject = [...prevProject];

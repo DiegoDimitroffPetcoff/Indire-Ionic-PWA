@@ -5,9 +5,7 @@ form {
   width: 100%;
   gap: 30px;
 }
-input {
-  background-color: aliceblue;
-}
+
 .introductionContent {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -19,13 +17,20 @@ input {
 .moduleContent {
   display: flex;
   flex-direction: column;
-/*   background-color: antiquewhite; */
+  background-color: antiquewhite; 
 
   margin: 1px;
 }
 .moduleTitleContainer {
   display: flex;
   flex-direction: column;
+}
+
+.subSectionContent {
+background-color: #ffc107e6;
+
+
+
 }
 .btnContainerTemplate {
   display: grid;
@@ -38,7 +43,7 @@ input {
 .budgetInputs {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  background-color: #9e9e9e;
+  background-color: #9e9e9e6f;
 }
 .clickable-label:hover {
   cursor: pointer;
@@ -46,9 +51,4 @@ input {
 }
 .buttonAdd{
 height:40px;
-}
-.IonAccordionGroup{
-  border-radius: 5px;
-
-
 }

@@ -37,7 +37,7 @@ export function TemplatesBar({ moduleId,firstSectionId, type }) {
           <IonIcon ios={copyOutline} md={copyOutline}></IonIcon>
         </IonItem>
 
-        <div className="ion-padding" slot="content">
+        <div  slot="content">
           <div className="btnContainerTemplate">
             {templateMapped &&
               templateMapped.map((template, id) => {

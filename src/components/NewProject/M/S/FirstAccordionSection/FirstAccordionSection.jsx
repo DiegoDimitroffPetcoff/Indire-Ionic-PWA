@@ -42,14 +42,14 @@ export function FirstAccordionSection({ moduleId, firstSectionId }) {
       {section.sections &&
         section.sections.map((_, sectionId) => {
           return (
-            <IonAccordionGroup key={sectionId}>
-              <IonAccordion value="first">
-                <IonItem slot="header" color="light">
+            <IonAccordionGroup expand="inset" key={sectionId}>
+              <IonAccordion className="subSectionContent" value="first">
+                <IonItem slot="header" color="warning">
                   <IonLabel>{`${moduleId + 1}. - # ${firstSectionId + 1}.${
                     sectionId + 1
                   }`}</IonLabel>
                 </IonItem>
-                <div slot="content">
+                <div slot="content"  style={{ padding: "0px 0px 10px 10px", margin:"5px" }}>
                   <SubSection
                     moduleId={moduleId}
                     firstSectionId={firstSectionId}
