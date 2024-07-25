@@ -1,4 +1,4 @@
-import { IonCol, IonGrid, IonRow, IonCheckbox, IonItem } from "@ionic/react";
+import { IonCol, IonGrid, IonRow, IonContent, IonItem } from "@ionic/react";
 import { useContext, useState } from "react";
 import ModuleTemplates from "../../templates/moduleTemplate.json";
 import SubsectionTemplates from "../../templates/subsectionTemplate.json";
@@ -68,7 +68,7 @@ export function ProjectList() {
   }
 
   return (
-    <>
+    <IonContent>
       <IonGrid className="table-grid">
         {/* Caption */}
         <IonRow className="table-caption">
@@ -136,6 +136,6 @@ export function ProjectList() {
           </IonCol>
         </IonRow>
       </IonGrid>
-    </>
+      </IonContent>
   );
 }

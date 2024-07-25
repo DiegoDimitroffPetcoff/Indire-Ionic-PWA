@@ -1,5 +1,6 @@
 import {
   IonInput,
+  IonContent,
   IonItem,
   IonList,
   IonTextarea,
@@ -71,55 +72,57 @@ export function TemplatesForm() {
   }
 
   return (
-    <IonList>
-      <form onSubmit={(e) => handleSubmite(e, "subsection")}>
-        <IonItem>
-          <IonInput
-            label="Name"
-            labelPlacement="stacked"
-            clearInput={true}
-            placeholder="Enter text to see clear button"
-            value={name}
-            onIonChange={handleInputName}
-          ></IonInput>
-        </IonItem>
-        <IonItem>
-          <IonInput
-            label="Title"
-            labelPlacement="stacked"
-            clearInput={true}
-            placeholder="Enter text to see clear button"
-            onIonChange={handleInputTitle}
-            value={title}
-          ></IonInput>
-        </IonItem>
-        <IonItem>
-          <IonTextarea
-            label="Description"
-            labelPlacement="stacked"
-            placeholder="Enter text to see clear button"
-            onIonChange={handleInputDescription}
-            value={description}
-          ></IonTextarea>
-        </IonItem>
-        <IonItem>
-          <IonCheckbox
-            justify="start"
-            onIonChange={(e) => handleCheck(e, setIsModule)}
-          >
-            Module
-          </IonCheckbox>
-          <IonCheckbox
-            justify="start"
-            onIonChange={(e) => handleCheck(e, setIsSubsection)}
-          >
-            Subsection
-          </IonCheckbox>
-        </IonItem>
-        <IonButton type="submit" color="medium">
-          Guardar
-        </IonButton>
-      </form>
-    </IonList>
+    <IonContent>
+      <IonList>
+        <form onSubmit={(e) => handleSubmite(e, "subsection")}>
+          <IonItem>
+            <IonInput
+              label="Name"
+              labelPlacement="stacked"
+              clearInput={true}
+              placeholder="Enter text to see clear button"
+              value={name}
+              onIonChange={handleInputName}
+            ></IonInput>
+          </IonItem>
+          <IonItem>
+            <IonInput
+              label="Title"
+              labelPlacement="stacked"
+              clearInput={true}
+              placeholder="Enter text to see clear button"
+              onIonChange={handleInputTitle}
+              value={title}
+            ></IonInput>
+          </IonItem>
+          <IonItem>
+            <IonTextarea
+              label="Description"
+              labelPlacement="stacked"
+              placeholder="Enter text to see clear button"
+              onIonChange={handleInputDescription}
+              value={description}
+            ></IonTextarea>
+          </IonItem>
+          <IonItem>
+            <IonCheckbox
+              justify="start"
+              onIonChange={(e) => handleCheck(e, setIsModule)}
+            >
+              Module
+            </IonCheckbox>
+            <IonCheckbox
+              justify="start"
+              onIonChange={(e) => handleCheck(e, setIsSubsection)}
+            >
+              Subsection
+            </IonCheckbox>
+          </IonItem>
+          <IonButton type="submit" color="medium">
+            Guardar
+          </IonButton>
+        </form>
+      </IonList>
+    </IonContent>
   );
 }

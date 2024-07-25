@@ -76,13 +76,13 @@ export function FotterTaskBar({ setView, view }) {
               OnDrive
             </IonButton>
           </IonCol>
-          <IonCol>
+   {/*        <IonCol>
             {" "}
             <IonButton fill="outline">
               <IonIcon slot="end" icon={copyOutline}></IonIcon>
               Template
             </IonButton>
-          </IonCol>
+          </IonCol> */}
           <IonCol>
             {" "}
             <IonButton fill="outline">
