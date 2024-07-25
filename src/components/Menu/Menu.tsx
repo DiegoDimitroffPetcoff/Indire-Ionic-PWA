@@ -7,26 +7,25 @@ import {
   IonListHeader,
   IonMenu,
   IonMenuToggle,
-  IonNote,
+  IonGrid,
+  IonToolbar,
+  IonFooter,
+  IonButton,
+  IonCol,
 } from "@ionic/react";
+import { PDFDownloadLink } from "@react-pdf/renderer";
+import { MyDocument } from "../Pdf/PdfView";
+import {
+  copyOutline,
+  clipboardOutline,
+  documentOutline,
+  saveOutline,
+  cloudCircle,
+} from "ionicons/icons";
 import { Login } from "@microsoft/mgt-react";
 import { useLocation } from "react-router-dom";
 import {
   refresh,
-  archiveOutline,
-  archiveSharp,
-  bookmarkOutline,
-  heartOutline,
-  heartSharp,
-  mailOutline,
-  mailSharp,
-  paperPlaneOutline,
-  paperPlaneSharp,
-  trashOutline,
-  trashSharp,
-  warningOutline,
-  warningSharp,
-  atCircleOutline,
   addCircleOutline,
   listOutline,
   documents,
@@ -61,7 +60,7 @@ const appPages: AppPage[] = [
     iosIcon: documents,
     mdIcon: documents,
   },
-  
+
   {
     title: "Refresh",
     url: "/project/project",
@@ -115,7 +114,7 @@ const Menu: React.FC = () => {
           <IonListHeader>
             <Login />
           </IonListHeader>
-     
+
           {appPages.map((appPage, index) => {
             return (
               <IonMenuToggle key={index} autoHide={false}>
@@ -140,15 +139,64 @@ const Menu: React.FC = () => {
             );
           })}
         </IonList>
-
-        {/*         <IonList id="labels-list">
+{/*         <IonList id="labels-list">
           <IonListHeader>Last Projects</IonListHeader>
-          {labels.map((label, index) => (
-            <IonItem lines="none" key={index}>
-              <IonIcon aria-hidden="true" slot="start" icon={bookmarkOutline} />
-              <IonLabel>{label}</IonLabel>
-            </IonItem>
-          ))}
+
+          <IonFooter>
+            <IonToolbar>
+                   <PDFDownloadLink
+                  document={<MyDocument data={project} />}
+                  fileName={title + ".pdf"}
+                >
+                  {({ blob, url, loading, error }) => {
+                    return (
+                      <>
+                        <IonButton
+                          fill="outline"
+                          disabled={loading}
+                          onClick={() => {
+                            PostOneDrive(blob);
+                            addProjectToProjectList(project);
+                          }}
+                        >
+                          <IonIcon slot="end" icon={saveOutline}></IonIcon>
+                          {loading
+                            ? "..."
+                            : error
+                            ? `Error: ${error.message}`
+                            : "Save"}
+                        </IonButton>
+                        {error && (
+                          <p style={{ color: "red" }}>
+                            Failed to generate PDF: {error.message}
+                          </p>
+                        )}
+                      </>
+                    );
+                  }}
+                </PDFDownloadLink> 
+              <IonButton expand="block" fill="outline">
+                <IonIcon  icon={cloudCircle}></IonIcon>
+                OnDrive
+              </IonButton>
+              <IonButton expand="block" fill="outline">
+                <IonIcon  icon={copyOutline}></IonIcon>
+                Template
+              </IonButton>{" "}
+              <IonButton expand="block" fill="outline">
+                <IonIcon  icon={documentOutline}></IonIcon>
+                Word
+              </IonButton>{" "}
+              <IonButton expand="block" fill="outline">
+                <IonIcon  icon={clipboardOutline}></IonIcon>
+                PDF
+              </IonButton>{" "}
+              <IonButton expand="block" fill="outline">
+                <IonIcon  icon={clipboardOutline}></IonIcon>
+                PROJECT
+              </IonButton>
+            </IonToolbar>
+          </IonFooter>
         </IonList> */}
       </IonContent>
     </IonMenu>
@@ -156,3 +204,15 @@ const Menu: React.FC = () => {
 };
 
 export default Menu;
+
+{
+  /*         <IonList id="labels-list">
+          <IonListHeader>Last Projects</IonListHeader>
+          {labels.map((label, index) => (
+            <IonItem lines="none" key={index}>
+              <IonIcon aria-hidden="true" slot="start" icon={bookmarkOutline} />
+              <IonLabel>{label}</IonLabel>
+            </IonItem>
+          ))}
+        </IonList> */
+}

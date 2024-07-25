@@ -8,6 +8,7 @@ import { useBudget } from "./useBudget";
 import { useImg } from "./useImg";
 import { useTemplates } from "./useTemplate";
 import MOCKPROJECTLIST from "./MOCKPROJECTLIST.json";
+import { useProjectList } from "./useProjectList";
 
 export const ProjectContext = createContext();
 const PROJECTS_LIST = MOCKPROJECTLIST;
@@ -73,23 +74,7 @@ export const PorjectProvider = ({ children }) => {
     return PROJECTS_LIST;
   });
 
-  function addProjectToProjectList(newProject) {
-/*     console.log("newProject",newProject);
-    console.log(project); */
-    setProject((preProjectList) => {
-      const projectListUpdate = [...preProjectList];
-      try {
-        console.log("atnes:",projectListUpdate);
-        projectListUpdate.push(newProject);
-        console.log("despues:",projectListUpdate);
-
-        return projectListUpdate;
-      } catch (error) {
-        console.log(error);
-        return preProjectList;
-      }
-    }); 
-  }
+  const { addProjectToProjectList } = useProjectList(setProjectList);
   /* ----------------CONTENT---------------- */
   const { addContent, handleChangeContent, deleteContent } =
     useContent(setProject);
@@ -162,7 +147,7 @@ export const PorjectProvider = ({ children }) => {
         addCounterOnSection,
         addTemplateOnModule,
         addTemplateSubSection,
-        addProjectToProjectList
+        addProjectToProjectList,
       }}
     >
       {children}

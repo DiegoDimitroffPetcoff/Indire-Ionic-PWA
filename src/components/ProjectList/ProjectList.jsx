@@ -93,7 +93,6 @@ export function ProjectList() {
         {/* Table Body */}
 
         {projectList.map((project, idProject) => {
-          console.log(project[0].introduction);
           if (project[0].introduction) {
             const {
               title,
@@ -106,7 +105,7 @@ export function ProjectList() {
             } = project[0].introduction;
 
             return (
-              <IonRow className="table-row">
+              <IonRow key={idProject} className="table-row">
                 <IonCol size="3" className="table-cell">
                   {title}
                 </IonCol>
@@ -130,10 +129,10 @@ export function ProjectList() {
         {/* Table Footer */}
         <IonRow className="table-footer">
           <IonCol size="8" className="table-footer-cell">
-            Average age
+           Total Project
           </IonCol>
           <IonCol size="4" className="table-footer-cell">
-            33
+            {projectList.length}
           </IonCol>
         </IonRow>
       </IonGrid>
