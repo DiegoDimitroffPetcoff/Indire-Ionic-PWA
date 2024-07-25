@@ -27,7 +27,7 @@ export function Modules({ moduleId }) {
     addCounter,
   } = useContext(ProjectContext);
   let module = project[1].modules[moduleId];
-  const {name} = module.sections
+  const { name } = module.sections;
   useEffect(() => {
     addCounter(moduleId, moduleId + 1);
   }, []);
@@ -55,15 +55,13 @@ export function Modules({ moduleId }) {
         onIonChange={(e) => handleChangeModules(e, moduleId, "description")}
       />
 
-      {module.sections.map((section, sectionId) => {
-      
-      console.log(name);
+      {module.sections.map((_, sectionId) => {
         let FirstSection = `${moduleId + 1}. # ${sectionId + 1}  ${name}`;
 
         return (
-          <IonAccordionGroup  expand="inset" key={sectionId}>
+          <IonAccordionGroup expand="inset" key={sectionId}>
             <IonAccordion value="first">
-              <IonItem slot="header"  color="dark">
+              <IonItem slot="header" color="dark">
                 <IonLabel>{FirstSection}</IonLabel>
                 <IonButton
                   expand="block"

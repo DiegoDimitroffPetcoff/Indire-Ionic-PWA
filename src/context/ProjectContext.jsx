@@ -7,9 +7,10 @@ import { useSubsection } from "./useSubsection";
 import { useBudget } from "./useBudget";
 import { useImg } from "./useImg";
 import { useTemplates } from "./useTemplate";
+import MOCKPROJECTLIST from "./MOCKPROJECTLIST.json";
 
 export const ProjectContext = createContext();
-
+const PROJECTS_LIST = MOCKPROJECTLIST;
 const INITIAL_STATE = [
   {
     introduction: {
@@ -25,7 +26,7 @@ const INITIAL_STATE = [
   {
     modules: [
       { module: "INTRODUÇÃO", description: "", title: "", sections: [] },
-     /*  { module: " DESCRIÇÃO GERAL", description: "", title: "", sections: [] },
+      { module: " DESCRIÇÃO GERAL", description: "", title: "", sections: [] },
       {
         module: " INSPEÇÃO TÉCNICA AO EDIFÍCIO",
         description: "",
@@ -52,7 +53,7 @@ const INITIAL_STATE = [
         title: "",
         sections: [],
       },
-      { module: " CONCLUSÕES", description: "", title: "", sections: [] }, */
+      { module: " CONCLUSÕES", description: "", title: "", sections: [] },
     ],
   },
 ];
@@ -64,6 +65,31 @@ export const PorjectProvider = ({ children }) => {
     }
     return INITIAL_STATE;
   });
+  const [projectList, setProjectList] = useState(() => {
+    const projectStorage = window.localStorage.getItem("projectList");
+    if (projectStorage) {
+      return JSON.parse(projectStorage);
+    }
+    return PROJECTS_LIST;
+  });
+
+  function addProjectToProjectList(newProject) {
+/*     console.log("newProject",newProject);
+    console.log(project); */
+    setProject((preProjectList) => {
+      const projectListUpdate = [...preProjectList];
+      try {
+        console.log("atnes:",projectListUpdate);
+        projectListUpdate.push(newProject);
+        console.log("despues:",projectListUpdate);
+
+        return projectListUpdate;
+      } catch (error) {
+        console.log(error);
+        return preProjectList;
+      }
+    }); 
+  }
   /* ----------------CONTENT---------------- */
   const { addContent, handleChangeContent, deleteContent } =
     useContent(setProject);
@@ -112,6 +138,8 @@ export const PorjectProvider = ({ children }) => {
         handleSubmite,
         handleChangeSection,
         project,
+        projectList,
+        setProjectList,
         addSection,
         setProject,
         handleChangeIntroduction,
@@ -134,6 +162,7 @@ export const PorjectProvider = ({ children }) => {
         addCounterOnSection,
         addTemplateOnModule,
         addTemplateSubSection,
+        addProjectToProjectList
       }}
     >
       {children}

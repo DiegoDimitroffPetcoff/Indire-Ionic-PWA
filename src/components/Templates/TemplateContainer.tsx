@@ -1,4 +1,4 @@
-import "./ExploreContainer.css";
+/* import "./ExploreContainer.css";
 import { Project } from "../NewProject/Project";
 import { PdfView } from "../Pdf/PdfView";
 import { TemplatesForm } from "./TemplatesForm";
@@ -13,3 +13,4 @@ const ExploreContainer: React.FC<ContainerProps> = ({  view }) => {
 };
 
 export default ExploreContainer;
+ */

@@ -51,7 +51,7 @@ const appPages: AppPage[] = [
 
   {
     title: "ListProjects",
-    url: "/project/list",
+    url: "/projectList",
     iosIcon: listOutline,
     mdIcon: listOutline,
   },
@@ -61,6 +61,7 @@ const appPages: AppPage[] = [
     iosIcon: documents,
     mdIcon: documents,
   },
+  
   {
     title: "Refresh",
     url: "/project/project",

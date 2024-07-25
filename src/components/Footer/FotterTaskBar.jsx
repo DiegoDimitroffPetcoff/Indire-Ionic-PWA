@@ -1,12 +1,10 @@
 import {
   IonButton,
-  IonButtons,
   IonIcon,
   IonFooter,
   IonToolbar,
   IonCol,
   IonGrid,
-  IonRow,
 } from "@ionic/react";
 import {
   copyOutline,
@@ -24,7 +22,7 @@ import { MyDocument } from "../Pdf/PdfView";
 import PostOneDrive from "../../services/PostOneDrive";
 
 export function FotterTaskBar({ setView, view }) {
-  const { project } = useContext(ProjectContext);
+  const { project, addProjectToProjectList } = useContext(ProjectContext);
   const { title } = project[0].introduction;
   const handleSaveToOneDrive = async () => {
     try {
@@ -43,23 +41,32 @@ export function FotterTaskBar({ setView, view }) {
             document={<MyDocument data={project} />}
             fileName={title + ".pdf"}
           >
-            {({ blob, url, loading, error }) => (
-              <>
-                <IonButton
-                  fill="outline"
-                  disabled={loading}
-                  onClick={() => PostOneDrive(blob)}
-                >
-                  <IonIcon slot="end" icon={saveOutline}></IonIcon>
-                  {loading ? "..." : error ? `Error: ${error.message}` : "Save"}
-                </IonButton>
-                {error && (
-                  <p style={{ color: "red" }}>
-                    Failed to generate PDF: {error.message}
-                  </p>
-                )}
-              </>
-            )}
+            {({ blob, url, loading, error }) => {
+              return (
+                <>
+                  <IonButton
+                    fill="outline"
+                    disabled={loading}
+                    onClick={() => {
+                      PostOneDrive(blob);
+                      addProjectToProjectList(project);
+                    }}
+                  >
+                    <IonIcon slot="end" icon={saveOutline}></IonIcon>
+                    {loading
+                      ? "..."
+                      : error
+                      ? `Error: ${error.message}`
+                      : "Save"}
+                  </IonButton>
+                  {error && (
+                    <p style={{ color: "red" }}>
+                      Failed to generate PDF: {error.message}
+                    </p>
+                  )}
+                </>
+              );
+            }}
           </PDFDownloadLink>
 
           <IonCol>

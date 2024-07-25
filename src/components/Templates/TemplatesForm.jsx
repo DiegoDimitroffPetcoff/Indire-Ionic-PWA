@@ -31,7 +31,6 @@ export function TemplatesForm() {
   function handleCheck(e, setType) {
     const checked = e.detail.checked;
     setType(checked);
-    console.log(`Checkbox changed: ${checked}`);
   }
   function handleSubmite(e) {
     e.preventDefault();

@@ -40,6 +40,8 @@ import "@ionic/react/css/display.css";
 import "./theme/variables.css";
 import { useEffect, useState } from "react";
 import Templates from "./pages/Templates";
+import ProjectList from "./pages/ProjectList";
+
 
 setupIonicReact();
 
@@ -73,6 +75,7 @@ const App: React.FC = () => {
               <Page />
             </Route>
             <Route path="/templates" component={Templates} />
+            <Route path="/projectList" component={ProjectList} />
          
             
           </IonRouterOutlet>

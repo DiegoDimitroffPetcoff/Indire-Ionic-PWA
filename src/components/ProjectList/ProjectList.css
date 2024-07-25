@@ -1,0 +1,30 @@
+/* main.css */
+
+.table-grid {
+  border-collapse: collapse;
+}
+
+.table-caption {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.table-header, .table-footer {
+  background-color: #f0f0f0;
+  font-weight: bold;
+}
+
+.table-header-cell, .table-footer-cell, .table-cell {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.table-row {
+  border-bottom: 1px solid #ddd;
+}
+
+.table-cell {
+  padding: 8px;
+}

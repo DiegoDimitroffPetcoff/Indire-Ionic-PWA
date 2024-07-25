@@ -1,0 +1,225 @@
+[
+    [
+      {
+        "introduction": {
+          "title": "Primer Relatório de Inspeção de Edifício",
+          "sub_title": "Inspeção Técnica Detalhada",
+          "main_img_url": "https://example.com/images/building_inspection.jpg",
+          "address": "Rua das Flores, 123, Lisboa, Portugal",
+          "project_number": "00123",
+          "date": "2024-07-25",
+          "version": "1.0"
+        }
+      },
+      {
+        "modules": [
+          {
+            "module": "INTRODUÇÃO",
+            "description": "Este módulo introduz o relatório e define o objetivo da inspeção.",
+            "title": "Introdução ao Relatório",
+            "sections": [
+              {
+                "section_title": "Objetivo da Inspeção",
+                "section_content": "O objetivo principal da inspeção é identificar e avaliar as condições atuais do edifício."
+              }
+            ]
+          },
+          {
+            "module": "DESCRIÇÃO GERAL",
+            "description": "Descrição geral do edifício e suas características principais.",
+            "title": "Descrição do Edifício",
+            "sections": [
+              {
+                "section_title": "Características do Edifício",
+                "section_content": "O edifício é um prédio de escritórios de 5 andares, construído em 1995."
+              }
+            ]
+          },
+          {
+            "module": "INSPEÇÃO TÉCNICA AO EDIFÍCIO",
+            "description": "Detalhamento da inspeção técnica realizada no edifício.",
+            "title": "Relatório da Inspeção Técnica",
+            "sections": [
+              {
+                "section_title": "Métodos de Inspeção",
+                "section_content": "A inspeção foi realizada utilizando técnicas de termografia e análise estrutural."
+              }
+            ]
+          },
+          {
+            "module": "ELEMENTOS BASE",
+            "description": "Descrição dos elementos base do edifício e suas condições.",
+            "title": "Elementos Estruturais",
+            "sections": [
+              {
+                "section_title": "Fundação e Estrutura",
+                "section_content": "A fundação está em boas condições, sem sinais de comprometimento."
+              }
+            ]
+          },
+          {
+            "module": "HISTÓRICO DE INTERVENÇÕES",
+            "description": "Histórico das intervenções realizadas no edifício.",
+            "title": "Histórico de Manutenção",
+            "sections": [
+              {
+                "section_title": "Intervenções Passadas",
+                "section_content": "Reparos significativos foram realizados em 2010 para melhorar a estrutura."
+              }
+            ]
+          },
+          {
+            "module": "ELEMENTOS INSPECIONADOS E MEDIDAS CORRETIVAS PROPOSTAS",
+            "description": "Detalhes dos elementos inspecionados e recomendações de correção.",
+            "title": "Medidas Corretivas",
+            "mainSection": [
+              {
+                "main_section_title": "Medidas Corretivas Necessárias",
+                "main_section_content": "Substituição de algumas vigas comprometidas e reforço da fundação."
+              }
+            ],
+            "sections": [
+              {
+                "section_title": "Detalhes das Correções",
+                "section_content": "As vigas no 3º andar precisam ser substituídas para garantir a segurança."
+              }
+            ]
+          },
+          {
+            "module": "RECOMENDAÇÕES E AÇÕES DE MANUTENÇÃO",
+            "description": "Recomendações para manutenção futura do edifício.",
+            "title": "Plano de Manutenção",
+            "sections": [
+              {
+                "section_title": "Ações Recomendadas",
+                "section_content": "Recomenda-se a realização de inspeções anuais e a manutenção regular dos sistemas de climatização."
+              }
+            ]
+          },
+          {
+            "module": "CONCLUSÕES",
+            "description": "Sumário das conclusões da inspeção.",
+            "title": "Conclusões e Recomendações",
+            "sections": [
+              {
+                "section_title": "Resumo das Conclusões",
+                "section_content": "O edifício está em geral em boas condições, com algumas áreas que necessitam de atenção imediata."
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    [
+      {
+        "introduction": {
+          "title": "Relatório de Inspeção de Edifício",
+          "sub_title": "Inspeção Técnica Completa",
+          "main_img_url": "https://example.com/images/building_inspection2.jpg",
+          "address": "Avenida da Liberdade, 456, Porto, Portugal",
+          "project_number": "00456",
+          "date": "2024-07-26",
+          "version": "2.0"
+        }
+      },
+      {
+        "modules": [
+          {
+            "module": "INTRODUÇÃO",
+            "description": "Introdução ao relatório com detalhes da inspeção.",
+            "title": "Introdução ao Relatório",
+            "sections": [
+              {
+                "section_title": "Objetivo",
+                "section_content": "Descrever o objetivo e escopo da inspeção realizada no edifício."
+              }
+            ]
+          },
+          {
+            "module": "DESCRIÇÃO GERAL",
+            "description": "Descrição geral do edifício e suas especificações.",
+            "title": "Descrição do Edifício",
+            "sections": [
+              {
+                "section_title": "Informações Básicas",
+                "section_content": "Edifício comercial de 8 andares, construído em 2000."
+              }
+            ]
+          },
+          {
+            "module": "INSPEÇÃO TÉCNICA AO EDIFÍCIO",
+            "description": "Relatório detalhado da inspeção técnica.",
+            "title": "Relatório de Inspeção",
+            "sections": [
+              {
+                "section_title": "Procedimentos de Inspeção",
+                "section_content": "Foi utilizada uma análise estruturada com sensores de umidade e câmera térmica."
+              }
+            ]
+          },
+          {
+            "module": "ELEMENTOS BASE",
+            "description": "Análise dos principais elementos estruturais.",
+            "title": "Estrutura e Fundamentos",
+            "sections": [
+              {
+                "section_title": "Condições Estruturais",
+                "section_content": "A estrutura do edifício está sólida, com manutenção regular recomendada."
+              }
+            ]
+          },
+          {
+            "module": "HISTÓRICO DE INTERVENÇÕES",
+            "description": "Histórico das intervenções anteriores no edifício.",
+            "title": "Intervenções Passadas",
+            "sections": [
+              {
+                "section_title": "Histórico",
+                "section_content": "Foram realizados trabalhos de reforço em 2015 e manutenção de fachada em 2018."
+              }
+            ]
+          },
+          {
+            "module": "ELEMENTOS INSPECIONADOS E MEDIDAS CORRETIVAS PROPOSTAS",
+            "description": "Detalhes sobre elementos inspecionados e sugestões de correção.",
+            "title": "Medidas Propostas",
+            "mainSection": [
+              {
+                "main_section_title": "Correções Necessárias",
+                "main_section_content": "Reparo nas juntas de dilatação e substituição de telhas danificadas."
+              }
+            ],
+            "sections": [
+              {
+                "section_title": "Detalhamento das Correções",
+                "section_content": "As juntas de dilatação apresentaram desgaste e devem ser substituídas para evitar infiltrações."
+              }
+            ]
+          },
+          {
+            "module": "RECOMENDAÇÕES E AÇÕES DE MANUTENÇÃO",
+            "description": "Recomendações para a manutenção futura do edifício.",
+            "title": "Plano de Manutenção",
+            "sections": [
+              {
+                "section_title": "Recomendações",
+                "section_content": "Manter um plano de manutenção preventiva com inspeções semestrais."
+              }
+            ]
+          },
+          {
+            "module": "CONCLUSÕES",
+            "description": "Resumo das conclusões da inspeção.",
+            "title": "Conclusões e Recomendações",
+            "sections": [
+              {
+                "section_title": "Resumo",
+                "section_content": "O edifício está bem conservado, mas alguns reparos são necessários para garantir sua longevidade."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  ]
+  
