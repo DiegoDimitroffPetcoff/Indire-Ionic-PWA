@@ -47,7 +47,7 @@ export function useTemplates(setProject) {
                 budget: [],
                 sections: [],
               });
-console.log(updateProject[1].modules[moduleId].sections);
+
               updateProject[1].modules[moduleId].sections.name = template.name;
 
               // Guardar en localStorage

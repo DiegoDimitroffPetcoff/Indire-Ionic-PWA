@@ -6,13 +6,14 @@ import {
   IonHeader,
   IonMenuButton,
   IonPage,
+
 } from "@ionic/react";
 
 import { useParams } from "react-router";
 import ExploreContainer from "../components/ExploreContainer";
 import "./Page.css";
 import { useState } from "react";
-import { FotterTaskBar } from "../components/Footer/FotterTaskBar";
+import { TemplatesForm } from "../components/Templates/TemplatesForm";
 
 const Temaplates: React.FC = () => {
   const { name } = useParams<{ name: string }>();
@@ -35,12 +36,11 @@ const Temaplates: React.FC = () => {
             <IonTitle size="large">{name}</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <h1>Templates</h1>
+       <TemplatesForm/>
       </IonContent>
-
-      
     </IonPage>
   );
 };
 
 export default Temaplates;
+
