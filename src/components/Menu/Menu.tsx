@@ -44,14 +44,14 @@ interface AppPage {
 const appPages: AppPage[] = [
   {
     title: "New Project",
-    url: "/project/project",
+    url: "/project",
     iosIcon: addCircleOutline,
     mdIcon: addCircleOutline,
   },
 
   {
     title: "ListProjects",
-    url: "/project/listProjects",
+    url: "/project/list",
     iosIcon: listOutline,
     mdIcon: listOutline,
   },

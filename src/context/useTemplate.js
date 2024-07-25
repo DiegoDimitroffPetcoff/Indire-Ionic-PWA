@@ -27,6 +27,7 @@ export function useTemplates(setProject) {
   ) {
     switch (key) {
       case "subsection":
+        console.log("activa subsection");
         try {
           setProject((prevProject) => {
             const updateProject = [...prevProject];
@@ -46,11 +47,8 @@ export function useTemplates(setProject) {
                 budget: [],
                 sections: [],
               });
-
-              console.log(
-                "Updated sections:",
-                updateProject[1].modules[moduleId].sections
-              );
+console.log(updateProject[1].modules[moduleId].sections);
+              updateProject[1].modules[moduleId].sections.name = template.name;
 
               // Guardar en localStorage
               window.localStorage.setItem(

@@ -25,7 +25,7 @@ const INITIAL_STATE = [
   {
     modules: [
       { module: "INTRODUÇÃO", description: "", title: "", sections: [] },
-      { module: " DESCRIÇÃO GERAL", description: "", title: "", sections: [] },
+     /*  { module: " DESCRIÇÃO GERAL", description: "", title: "", sections: [] },
       {
         module: " INSPEÇÃO TÉCNICA AO EDIFÍCIO",
         description: "",
@@ -52,7 +52,7 @@ const INITIAL_STATE = [
         title: "",
         sections: [],
       },
-      { module: " CONCLUSÕES", description: "", title: "", sections: [] },
+      { module: " CONCLUSÕES", description: "", title: "", sections: [] }, */
     ],
   },
 ];

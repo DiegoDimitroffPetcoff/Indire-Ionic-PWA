@@ -27,6 +27,7 @@ export function Modules({ moduleId }) {
     addCounter,
   } = useContext(ProjectContext);
   let module = project[1].modules[moduleId];
+  const {name} = module.sections
   useEffect(() => {
     addCounter(moduleId, moduleId + 1);
   }, []);
@@ -55,8 +56,9 @@ export function Modules({ moduleId }) {
       />
 
       {module.sections.map((section, sectionId) => {
-        let title = section.content[0].title;
-        let FirstSection = `${moduleId + 1}. # ${sectionId + 1}  ${title}`;
+      
+      console.log(name);
+        let FirstSection = `${moduleId + 1}. # ${sectionId + 1}  ${name}`;
 
         return (
           <IonAccordionGroup  expand="inset" key={sectionId}>
