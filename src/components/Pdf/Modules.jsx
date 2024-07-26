@@ -10,6 +10,7 @@ import { getDynamicStyles, styles } from "./styles";
 
 import { BudgetTable } from "./BudgetTable";
 import { TableOfContents } from "./TableOfContents";
+import { Header } from "./Header";
 export function Modules({ data }) {
   let allData = [];
 
@@ -75,32 +76,39 @@ export function Modules({ data }) {
     iterateModules(data[1].modules);
   }
   let lastidTemplate = null;
-
+  allData.map((data, id) => {
+    if (data.budget && data.budget.length > 0) {
+      console.log(data.budget);
+    }
+  });
   return (
-    <View>
-      {/*        <TableOfContents allData={allData} /> */}
+    <Page size="A4" style={styles.page}>
+      <Header data={{ data }} />
+      <View>
+        {/*        <TableOfContents allData={allData} /> */}
 
-      {allData.map((module, index) => {
-        const isSameTemplate = lastidTemplate === module.idTemplate;
-        lastidTemplate = module.idTemplate;
+        {allData.map((module, index) => {
+          const isSameTemplate = lastidTemplate === module.idTemplate;
+          lastidTemplate = module.idTemplate;
 
-        return (
-          <View key={index} style={styles.module}>
-            <Text style={[styles.moduleName, getDynamicStyles(index)]}>
-              {isSameTemplate
-                ? module.name
+          return (
+            <View key={index} style={styles.module}>
+              <Text style={[styles.moduleName, getDynamicStyles(index)]}>
+                {isSameTemplate
                   ? module.name
-                  : module.title
-                : `${module.idTemplate}. ${
-                    module.name ? module.name : module.title
-                  }`}
-            </Text>
-            <Text style={styles.moduleText}>{module.title}</Text>
-            <Text style={styles.moduleText}>{module.description}</Text>
-          </View>
-        );
-      })}
-      <BudgetTable allData={allData} />
-    </View>
+                    ? module.name
+                    : module.title
+                  : `${module.idTemplate}. ${
+                      module.name ? module.name : module.title
+                    }`}
+              </Text>
+              <Text style={styles.moduleText}>{module.title}</Text>
+              <Text style={styles.moduleText}>{module.description}</Text>
+            </View>
+          );
+        })}
+        <BudgetTable allData={allData} />
+      </View>
+    </Page>
   );
 }

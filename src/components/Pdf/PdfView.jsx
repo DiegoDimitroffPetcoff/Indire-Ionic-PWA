@@ -47,13 +47,10 @@ Font.register({
 export const MyDocument = ({ data }) => {
   return (
     <Document>
-      <Page size="A4" style={styles.page}>
-        <Header data={{ data }} />
-        <Introduction data={data} />
-        <Modules data={data} />
+      <Introduction data={data} />
+      <Modules data={data} />
 
-        {/*         <BudgetTable budget={data} /> */}
-      </Page>
+      {/*         <BudgetTable budget={data} /> */}
     </Document>
   );
 };

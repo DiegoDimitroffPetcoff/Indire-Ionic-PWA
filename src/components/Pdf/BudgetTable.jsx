@@ -1,7 +1,8 @@
 import { Text, View } from "@react-pdf/renderer";
 import { styles } from "./styles";
-
+let cont = 0
 export const BudgetTable = ({ allData }) => {
+
 
   if (allData.length !== 0) {
     return (
