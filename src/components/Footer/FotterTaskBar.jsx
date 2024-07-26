@@ -15,13 +15,17 @@ import {
 } from "ionicons/icons";
 
 import { PDFDownloadLink } from "@react-pdf/renderer";
+import { useIsSignedIn } from "@microsoft/mgt-react";
+
 import { pdf, Document, Page } from "@react-pdf/renderer";
 import { ProjectContext } from "../../context/ProjectContext";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { MyDocument } from "../Pdf/PdfView";
 import PostOneDrive from "../../services/PostOneDrive";
 
 export function FotterTaskBar({ setView, view }) {
+  const [isSignedIn] = useIsSignedIn();
+
   const { project, addProjectToProjectList } = useContext(ProjectContext);
   const { title } = project[0].introduction;
   const handleSaveToOneDrive = async () => {
@@ -71,18 +75,15 @@ export function FotterTaskBar({ setView, view }) {
 
           <IonCol>
             {" "}
-            <IonButton fill="outline" onClick={handleSaveToOneDrive}>
+            <IonButton
+              disabled={!isSignedIn}
+              fill="outline"
+              onClick={handleSaveToOneDrive}
+            >
               <IonIcon slot="end" icon={cloudCircle}></IonIcon>
               OnDrive
             </IonButton>
           </IonCol>
-   {/*        <IonCol>
-            {" "}
-            <IonButton fill="outline">
-              <IonIcon slot="end" icon={copyOutline}></IonIcon>
-              Template
-            </IonButton>
-          </IonCol> */}
           <IonCol>
             {" "}
             <IonButton fill="outline">

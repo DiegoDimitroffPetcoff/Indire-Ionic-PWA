@@ -22,7 +22,7 @@ import {
   saveOutline,
   cloudCircle,
 } from "ionicons/icons";
-import { Login } from "@microsoft/mgt-react";
+import { Login  } from "@microsoft/mgt-react";
 import { useLocation } from "react-router-dom";
 import {
   refresh,
@@ -107,6 +107,7 @@ const labels = ["Family", "Friends", "Notes", "Work", "Travel", "Reminders"];
 const Menu: React.FC = () => {
   const location = useLocation();
 
+  
   return (
     <IonMenu contentId="main" type="overlay">
       <IonContent>
