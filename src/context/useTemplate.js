@@ -48,7 +48,7 @@ export function useTemplates(setProject) {
                 sections: [],
               });
 
-              updateProject[1].modules[moduleId].sections.name = template.name;
+       /*        updateProject[1].modules[moduleId].sections.name = template.name; */
 
               // Guardar en localStorage
               window.localStorage.setItem(

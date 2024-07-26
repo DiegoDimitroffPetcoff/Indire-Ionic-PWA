@@ -4,11 +4,11 @@ export function useSection(setProject) {
     setProject((prevProject) => {
       const updateProject = [...prevProject];
       updateProject[1].modules[moduleId].sections.push({
-      
         content: [{ title: "", description: "" }],
         img: null,
         budget: [],
         sections: [],
+        name: "",
       });
 
       window.localStorage.setItem("data", JSON.stringify(updateProject));
@@ -18,20 +18,14 @@ export function useSection(setProject) {
 
   function handleChangeSection(
     e,
+    field,
     moduleId,
     firstSectionId,
     sectionId,
     subsectionId,
-    contentId,
-    field
+    contentId
   ) {
-    console.log("handleChangeSection");
-    const value = e.detail
-      ? e.detail.value
-      : e.target.files
-      ? e.target.files
-      : e.target.value;
-
+    const value = e.detail?.value || e.target?.files || e.target?.value;
     if (field === "img") {
       const files = Array.from(value);
       const readers = files.map((file) => {
@@ -69,9 +63,7 @@ export function useSection(setProject) {
       setProject((prevProject) => {
         const updateProject = [...prevProject];
         const section =
-          updateProject[1].modules[moduleId].sections[sectionId].sections[
-            subsectionId
-          ].content[contentId];
+          updateProject[1].modules[moduleId].sections[firstSectionId];
         section[field] = value;
         window.localStorage.setItem("data", JSON.stringify(updateProject));
         return updateProject;

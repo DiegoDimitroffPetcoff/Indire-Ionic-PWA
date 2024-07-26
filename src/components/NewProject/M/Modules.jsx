@@ -25,9 +25,16 @@ export function Modules({ moduleId }) {
     addSection,
     deleteSection,
     addCounter,
+    handleChangeSection,
   } = useContext(ProjectContext);
   let module = project[1].modules[moduleId];
-  const { name } = module.sections;
+  /*   if (
+    module.module === "ELEMENTOS INSPECIONADOS E MEDIDAS CORRETIVAS PROPOSTAS"
+  ) {
+    console.log("MODULO:", module);
+  }
+
+  const { name } = module.sections[sectionId].name; */
   useEffect(() => {
     addCounter(moduleId, moduleId + 1);
   }, []);
@@ -56,14 +63,22 @@ export function Modules({ moduleId }) {
         onIonChange={(e) => handleChangeModules(e, moduleId, "description")}
       />
 
-      {module.sections.map((_, sectionId) => {
-        let FirstSection = `${moduleId + 1}. # ${sectionId + 1}  ${name}`;
+      {module.sections.map((section, sectionId) => {
+        let { name } = section;
+        let FirstSection = `${moduleId + 1}. # ${sectionId + 1}  `;
 
         return (
           <IonAccordionGroup expand="inset" key={sectionId}>
             <IonAccordion value="first">
               <IonItem slot="header" color="dark">
-                <IonLabel>{FirstSection}</IonLabel>
+                <IonLabel>
+                  {FirstSection}
+                  <IonInput
+                    onIonBlur={(e) =>
+                      handleChangeSection(e, "name", moduleId, sectionId)
+                    }
+                  ></IonInput>
+                </IonLabel>
                 <IonButton
                   expand="block"
                   color="danger"
