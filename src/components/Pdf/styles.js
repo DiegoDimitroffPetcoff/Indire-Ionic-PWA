@@ -24,17 +24,7 @@ export const styles = StyleSheet.create({
 /*     borderBottomWidth: 1,
     borderBottomColor: "#e0e0e0", */
   },
-  firtsSection: {
-    marginBottom: 10,
-    marginLeft: 10,
-    color: "red",
-  },
-  section: {
-    marginBottom: 10,
-    marginLeft: 10,
 
-    color: "green",
-  },
   header: {
     textAlign: "center",
     marginBottom: 10,
@@ -55,7 +45,7 @@ export const styles = StyleSheet.create({
     alignSelf: "center",
     margin: 50,
   },
-  title: {
+/*   title: {
     fontSize: 24,
     fontWeight: "bold",
     textAlign: "center",
@@ -69,7 +59,7 @@ export const styles = StyleSheet.create({
   text: {
     fontSize: 12,
     marginBottom: 10,
-  },
+  }, */
 
   /* header */
   logoHeader: {
@@ -135,16 +125,16 @@ export const styles = StyleSheet.create({
     marginVertical: 15,
     marginHorizontal: 100,
   },
-  moduleTitle: {
+  moduleName: {
     fontSize: 12,
     fontWeight: "bold",
     textAlign: "start",
-    marginBottom: 10,
+  /*   marginBottom: 10, */
     textDecoration: "underline",
   },
   moduleText: {
     fontSize: 10,
-    marginBottom: 4,
+   /*  marginBottom: 4, */
     textAlign: "justify",
     fontWeight: "thin",
   },
@@ -152,14 +142,14 @@ export const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: "bold",
     textAlign: "start",
-    marginBottom: 10,
+  /*   marginBottom: 10, */
     textDecoration: "underline",
   },
   sectionSubTitle: {
     fontSize: 14,
     fontWeight: "bold",
     textAlign: "start",
-    marginBottom: 10,
+  /*   marginBottom: 10, */
     textDecoration: "underline",
   },
 
@@ -175,3 +165,19 @@ export const styles = StyleSheet.create({
     marginTop: 30,
   },
 });
+
+
+/* 
+
+  firtsSection: {
+    marginBottom: 10,
+    marginLeft: 10,
+    color: "red",
+  },
+  section: {
+    marginBottom: 10,
+    marginLeft: 10,
+
+    color: "green",
+  },
+*/

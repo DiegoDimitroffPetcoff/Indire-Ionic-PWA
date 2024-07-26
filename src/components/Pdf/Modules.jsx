@@ -86,7 +86,7 @@ export function Modules({ data }) {
 
         return (
           <View key={index} style={styles.module}>
-            <Text style={[styles.moduleTitle, getDynamicStyles(index)]}>
+            <Text style={[styles.moduleName, getDynamicStyles(index)]}>
               {isSameTemplate
                 ? module.name
                   ? module.name
