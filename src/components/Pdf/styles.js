@@ -1,4 +1,16 @@
 import { StyleSheet } from "@react-pdf/renderer";
+export function getDynamicStyles(index) {
+  switch (index) {
+    case 0:
+      return styles.firstTemplate;
+    case 1:
+      return styles.secondTemplate;
+    case 2:
+      return styles.thirdTemplate;
+    default:
+      return {};
+  }
+}
 
 // Create styles
 export const styles = StyleSheet.create({
@@ -7,7 +19,10 @@ export const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
   },
   module: {
-    marginBottom: 10,
+    margin: 10,
+    padding: 10,
+/*     borderBottomWidth: 1,
+    borderBottomColor: "#e0e0e0", */
   },
   firtsSection: {
     marginBottom: 10,
@@ -121,15 +136,15 @@ export const styles = StyleSheet.create({
     marginHorizontal: 100,
   },
   moduleTitle: {
-    fontSize: 15,
+    fontSize: 12,
     fontWeight: "bold",
     textAlign: "start",
     marginBottom: 10,
     textDecoration: "underline",
   },
   moduleText: {
-    fontSize: 14,
-    marginBottom: 10,
+    fontSize: 10,
+    marginBottom: 4,
     textAlign: "justify",
     fontWeight: "thin",
   },
@@ -146,5 +161,17 @@ export const styles = StyleSheet.create({
     textAlign: "start",
     marginBottom: 10,
     textDecoration: "underline",
+  },
+
+  firstTemplate: {
+    fontWeight: "bold",
+    margin: 0,
+  },
+  secondTemplate: {
+    margin: 20,
+    marginTop: 20,
+  },
+  thirdTemplate: {
+    marginTop: 30,
   },
 });

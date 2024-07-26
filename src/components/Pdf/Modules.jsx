@@ -6,7 +6,7 @@ import {
   PDFViewer,
   Font,
 } from "@react-pdf/renderer";
-import { styles } from "./styles";
+import { getDynamicStyles, styles } from "./styles";
 
 import { BudgetTable } from "./BudgetTable";
 import { TableOfContents } from "./TableOfContents";
@@ -84,11 +84,9 @@ export function Modules({ data }) {
         const isSameTemplate = lastidTemplate === module.idTemplate;
         lastidTemplate = module.idTemplate;
 
-        lastidTemplate = module.idTemplate;
-
         return (
           <View key={index} style={styles.module}>
-            <Text style={styles.moduleTitle}>
+            <Text style={[styles.moduleTitle, getDynamicStyles(index)]}>
               {isSameTemplate
                 ? module.name
                   ? module.name
