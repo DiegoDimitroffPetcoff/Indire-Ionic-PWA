@@ -82,33 +82,37 @@ export function Modules({ data }) {
     }
   });
   return (
-    <Page size="A4" style={styles.page}>
-      <Header data={{ data }} />
-      <View>
-        {/*        <TableOfContents allData={allData} /> */}
+    <>
+      <Page size="A4" style={styles.page}>
+        <Header data={{ data }} />
+        <View>
+          {/*        <TableOfContents allData={allData} /> */}
 
-        {allData.map((module, index) => {
-          const isSameTemplate = lastidTemplate === module.idTemplate;
-          lastidTemplate = module.idTemplate;
+          {allData.map((module, index) => {
+            const isSameTemplate = lastidTemplate === module.idTemplate;
+            lastidTemplate = module.idTemplate;
 
-          return (
-            <View key={index} style={styles.module}>
-              <Text style={[styles.moduleName, getDynamicStyles(index)]}>
-                {isSameTemplate
-                  ? module.name
+            return (
+              <View key={index} style={styles.module}>
+                <Text style={[styles.moduleName, getDynamicStyles(index)]}>
+                  {isSameTemplate
                     ? module.name
-                    : module.title
-                  : `${module.idTemplate}. ${
-                      module.name ? module.name : module.title
-                    }`}
-              </Text>
-              <Text style={styles.moduleText}>{module.title}</Text>
-              <Text style={styles.moduleText}>{module.description}</Text>
-            </View>
-          );
-        })}
+                      ? module.name
+                      : module.title
+                    : `${module.idTemplate}. ${
+                        module.name ? module.name : module.title
+                      }`}
+                </Text>
+                <Text style={styles.moduleText}>{module.title}</Text>
+                <Text style={styles.moduleText}>{module.description}</Text>
+              </View>
+            );
+          })}
+        </View>
+      </Page>
+      <Page size="A4" style={styles.page}>
         <BudgetTable allData={allData} />
-      </View>
-    </Page>
+      </Page>
+    </>
   );
 }
