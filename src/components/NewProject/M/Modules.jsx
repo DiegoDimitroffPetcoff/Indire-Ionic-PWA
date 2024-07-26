@@ -31,9 +31,10 @@ export function Modules({ moduleId }) {
   useEffect(() => {
     addCounter(moduleId, moduleId + 1);
   }, []);
+
   return (
     <div className="moduleContent" key={moduleId}>
-      <h2>
+      <h2 className="moduleTitle">
         {moduleId + 1}.{module.module}
       </h2>
 
@@ -81,14 +82,17 @@ export function Modules({ moduleId }) {
         );
       })}
 
-      <IonButton
-        color="light"
-        onClick={() => addSection(moduleId)}
-        expand="full"
-      >
-        Add Section
-        <IonIcon ios={addCircle} md={addCircle}></IonIcon>{" "}
-      </IonButton>
+      {module.module ===
+        "ELEMENTOS INSPECIONADOS E MEDIDAS CORRETIVAS PROPOSTAS" && (
+        <IonButton
+          color="light"
+          onClick={() => addSection(moduleId)}
+          expand="full"
+        >
+          Add Section
+          <IonIcon ios={addCircle} md={addCircle}></IonIcon>{" "}
+        </IonButton>
+      )}
     </div>
   );
 }
