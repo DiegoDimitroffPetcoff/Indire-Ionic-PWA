@@ -42,9 +42,7 @@ export function Modules({ data }) {
                   name: subsection.name,
                   description: subContent.description,
                   title: subContent.title,
-                  idTemplate: `    # .${sectionId + 1}.${
-                    subsectionId + 1
-                  }`,
+                  idTemplate: `    # .${sectionId + 1}.${subsectionId + 1}`,
                   budget: subsection.budget || [],
                 });
               });
@@ -78,22 +76,28 @@ export function Modules({ data }) {
   }
   let lastidTemplate = null;
 
-  
   return (
     <View>
-{/*        <TableOfContents allData={allData} /> */}
+      {/*        <TableOfContents allData={allData} /> */}
+
       {allData.map((module, index) => {
         const isSameTemplate = lastidTemplate === module.idTemplate;
         lastidTemplate = module.idTemplate;
 
         lastidTemplate = module.idTemplate;
+
         return (
           <View key={index} style={styles.module}>
             <Text style={styles.moduleTitle}>
               {isSameTemplate
-                ? module.title
-                : `${module.idTemplate}. ${module.title}`}
+                ? module.name
+                  ? module.name
+                  : module.title
+                : `${module.idTemplate}. ${
+                    module.name ? module.name : module.title
+                  }`}
             </Text>
+            <Text style={styles.moduleText}>{module.title}</Text>
             <Text style={styles.moduleText}>{module.description}</Text>
           </View>
         );

@@ -64,7 +64,6 @@ export function Modules({ moduleId }) {
       />
 
       {module.sections.map((section, sectionId) => {
-        let { name } = section;
         let FirstSection = `${moduleId + 1}. # ${sectionId + 1}  `;
 
         return (

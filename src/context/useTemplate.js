@@ -7,8 +7,8 @@ export function useTemplates(setProject) {
         newProject[1].modules[moduleId].description =
           newModule.content[0].description;
         newProject[1].modules[moduleId].title = newModule.content[0].title;
-
-        newProject[1].modules[moduleId].module = newModule.content[0].title;
+        /* I can change the Main name of the module if I put the next sentense */
+        /*    newProject[1].modules[moduleId].module = newModule.content[0].title; */
         window.localStorage.setItem("data", JSON.stringify(newProject));
         return newProject;
       } catch (error) {
@@ -48,7 +48,7 @@ export function useTemplates(setProject) {
                 sections: [],
               });
 
-       /*        updateProject[1].modules[moduleId].sections.name = template.name; */
+              /*        updateProject[1].modules[moduleId].sections.name = template.name; */
 
               // Guardar en localStorage
               window.localStorage.setItem(

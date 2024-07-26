@@ -78,7 +78,6 @@ export function useSection(setProject) {
       const sectionFiltered = sectionOnStorage.filter(
         (_, id) => id !== sectionId
       );
-      console.log(sectionFiltered);
 
       newProject[1].modules[moduleId].sections = sectionFiltered;
 
