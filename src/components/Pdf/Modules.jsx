@@ -76,11 +76,7 @@ export function Modules({ data }) {
     iterateModules(data[1].modules);
   }
   let lastidTemplate = null;
-  allData.map((data, id) => {
-    if (data.budget && data.budget.length > 0) {
-      console.log(data.budget);
-    }
-  });
+
   return (
     <>
       <Page size="A4" style={styles.page}>

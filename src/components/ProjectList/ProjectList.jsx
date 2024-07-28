@@ -66,7 +66,14 @@ export function ProjectList() {
     setDescription("");
     setTitle("");
   }
-
+   const DateMaker = () => {
+    var fechaActual = new Date();
+    var año = fechaActual.getFullYear();
+    var mes = fechaActual.getMonth();
+    var dia = fechaActual.getDate();
+    let date = `${dia}-${mes + 1}-${año}`;
+    return date;
+  };
   return (
     <IonContent>
       <IonGrid className="table-grid">
@@ -78,15 +85,18 @@ export function ProjectList() {
         {/* Table Header */}
         <IonRow className="table-header">
           <IonCol size="3" className="table-header-cell">
-            Title
+            Título
           </IonCol>
           <IonCol size="3" className="table-header-cell">
-            Sub title
+            Endereço
+          </IonCol>
+
+          <IonCol size="2" className="table-header-cell">
+            Data
           </IonCol>
           <IonCol size="2" className="table-header-cell">
-            Adress
+            Relatorio
           </IonCol>
-          <IonCol size="2" className="table-header-cell"></IonCol>
           <IonCol size="2" className="table-header-cell"></IonCol>
         </IonRow>
 
@@ -110,15 +120,18 @@ export function ProjectList() {
                   {title}
                 </IonCol>
                 <IonCol size="3" className="table-cell">
-                  {sub_title}
-                </IonCol>
-                <IonCol size="2" className="table-cell">
                   {address}
                 </IonCol>
                 <IonCol size="2" className="table-cell">
-                  <button>Open</button>
+                  {date}
                 </IonCol>
                 <IonCol size="2" className="table-cell">
+                  {date + title + project_number}
+                </IonCol>
+                <IonCol size="1" className="table-cell">
+                  <button>Open</button>
+                </IonCol>
+                <IonCol size="1" className="table-cell">
                   <button>X</button>
                 </IonCol>
               </IonRow>
@@ -129,13 +142,13 @@ export function ProjectList() {
         {/* Table Footer */}
         <IonRow className="table-footer">
           <IonCol size="8" className="table-footer-cell">
-           Total Project
+            Total Project
           </IonCol>
           <IonCol size="4" className="table-footer-cell">
             {projectList.length}
           </IonCol>
         </IonRow>
       </IonGrid>
-      </IonContent>
+    </IonContent>
   );
 }

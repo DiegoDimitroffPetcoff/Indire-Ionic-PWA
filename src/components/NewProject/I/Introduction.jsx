@@ -1,11 +1,16 @@
 import { useContext } from "react";
 import { ProjectContext } from "../../../context/ProjectContext";
 import "../Project.css";
-import { IonInput} from "@ionic/react";
+import {
+  IonInput,
+  IonDatetime,
+  IonDatetimeButton,
+  IonModal,
+} from "@ionic/react";
 export function Introduction() {
   const { project, handleChangeIntroduction } = useContext(ProjectContext);
-
   const projectContent = project[0].introduction || [];
+  console.log(projectContent.main_img_url);
 
   return (
     <div className="introductionContent">
@@ -21,20 +26,14 @@ export function Introduction() {
         labelPlacement="floating"
         onIonChange={(e) => handleChangeIntroduction(e, "sub_title")}
       />
-
       <IonInput
-        type="file"
-        alt="Main Image on Project"
-        accept="image/*"
-        label="Image"
+        type="number"
+        value={projectContent.version}
+        label="Version"
         labelPlacement="floating"
-        onIonChange={(e) => handleChangeIntroduction(e, "main_img_url")}
+        onIonChange={(e) => handleChangeIntroduction(e, "version")}
       />
-      <img
-        src={projectContent.main_img_url}
-        alt="Vista previa"
-        style={{ maxWidth: "100%", height: "auto" }}
-      />
+
       <IonInput
         value={projectContent.address}
         label="Adress"
@@ -48,20 +47,35 @@ export function Introduction() {
         labelPlacement="floating"
         onIonChange={(e) => handleChangeIntroduction(e, "project_number")}
       />
+
       <IonInput
-        type="date"
-        value={projectContent.date}
-        label="Date"
+        type="file"
+        alt="Main Image on Project"
+        accept="image/*"
+        label="Image"
         labelPlacement="floating"
-        onIonChange={(e) => handleChangeIntroduction(e, "date")}
+        onIonChange={(e) => handleChangeIntroduction(e, "main_img_url")}
       />
-      <IonInput
-        type="number"
-        value={projectContent.version}
-        label="Version"
-        labelPlacement="floating"
-        onIonChange={(e) => handleChangeIntroduction(e, "version")}
-      />
+
+      <IonModal keepContentsMounted={true}>
+        <IonDatetime
+          id="datetime"
+          onIonChange={(e) => handleChangeIntroduction(e, "date")}
+        ></IonDatetime>
+      </IonModal>
+      <IonDatetimeButton datetime="datetime">
+        <IonDatetime
+          value={projectContent.date}
+          onIonChange={(e) => handleChangeIntroduction(e, "date")}
+        />
+      </IonDatetimeButton>
+      {projectContent.main_img_url !== "" && (
+        <img
+          src={projectContent.main_img_url}
+          alt="Vista previa"
+          style={{ maxWidth: "100%", height: "auto" }}
+        />
+      )}
     </div>
   );
 }
