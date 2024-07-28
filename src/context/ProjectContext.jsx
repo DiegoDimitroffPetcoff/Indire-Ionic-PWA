@@ -74,7 +74,7 @@ export const PorjectProvider = ({ children }) => {
     return PROJECTS_LIST;
   });
 
-  const { addProjectToProjectList } = useProjectList(setProjectList);
+  const { addProjectToProjectList ,deleteProjectOnList} = useProjectList(setProjectList);
   /* ----------------CONTENT---------------- */
   const { addContent, handleChangeContent, deleteContent } =
     useContent(setProject);
@@ -148,6 +148,7 @@ export const PorjectProvider = ({ children }) => {
         addTemplateOnModule,
         addTemplateSubSection,
         addProjectToProjectList,
+        deleteProjectOnList
       }}
     >
       {children}
