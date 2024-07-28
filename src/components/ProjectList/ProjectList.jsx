@@ -66,7 +66,7 @@ export function ProjectList() {
                   <IonButton
                     expand="block"
                     color={"danger"}
-                    onIonChange={() => deleteProjectOnList(idProject)}
+                    onClick={() => deleteProjectOnList(idProject)}
                   >
                     X
                   </IonButton>
