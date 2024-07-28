@@ -5,13 +5,14 @@ export function Introduction({ data }) {
   const { introduction } = data[0];
   return (
     <Page size="A4" style={styles.page}>
-      <Header data={{ data }} />
       <View>
         {introduction ? (
           <View>
+            <Image style={styles.logo} src="/INDIRE_LOGO.png" />
             <View style={styles.header}>
-              <Text style={styles.title}>{introduction.title}</Text>
-              <Text style={styles.subTitle}>{introduction.sub_title}</Text>
+              <Text style={styles.mainTitle}>{introduction.title}</Text>
+              <Text style={styles.text}>{introduction.address}</Text>
+
               {introduction.main_img_url ? (
                 <Image style={styles.mainImg} src={introduction.main_img_url} />
               ) : (
@@ -21,13 +22,15 @@ export function Introduction({ data }) {
                   alt="No imagen Added"
                 />
               )}
+              <Text  style={styles.sub_title}>{introduction.sub_title}</Text>
 
-              <Text style={styles.text}>{introduction.address}</Text>
-              <Text style={styles.text}>
-                Project Number: {introduction.project_number}
+              <Text style={styles.contentProjectInformation}>
+                {introduction.project_number +
+                  "-" +
+                  introduction.title +
+                  "-V" +
+                  introduction.version}
               </Text>
-              <Text style={styles.text}>Date: {introduction.date}</Text>
-              <Text style={styles.text}>Version: {introduction.version}</Text>
             </View>
 
             {introduction.main_img_url ? (

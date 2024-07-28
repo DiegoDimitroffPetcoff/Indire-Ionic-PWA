@@ -126,7 +126,7 @@ export function ProjectList() {
                   {date}
                 </IonCol>
                 <IonCol size="2" className="table-cell">
-                  {date + title + project_number}
+                  {date +"_"+ title +"_"+ project_number}
                 </IonCol>
                 <IonCol size="1" className="table-cell">
                   <button>Open</button>

@@ -21,8 +21,6 @@ export const styles = StyleSheet.create({
   module: {
     margin: 10,
     padding: 10,
-/*     borderBottomWidth: 1,
-    borderBottomColor: "#e0e0e0", */
   },
 
   header: {
@@ -33,6 +31,29 @@ export const styles = StyleSheet.create({
     width: 100,
     height: 100,
     marginBottom: 10,
+  },
+  mainTitle: {
+    marginTop: 50,
+    fontSize: 35,
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+  sub_title: {
+    marginTop: 0,
+    padding: 0,
+    fontWeight: "bold",
+    fontSize: 30,
+    textAlign: "center",
+  },
+  contentProjectInformation: {
+    fontSize: 20,
+    marginTop: 200,
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+  logo: {
+    width: "150px",
+    padding: "10px",
   },
   mainImage: {
     width: "100%",
@@ -45,21 +66,6 @@ export const styles = StyleSheet.create({
     alignSelf: "center",
     margin: 50,
   },
-/*   title: {
-    fontSize: 24,
-    fontWeight: "bold",
-    textAlign: "center",
-    marginBottom: 10,
-  },
-  subTitle: {
-    fontSize: 20,
-    textAlign: "center",
-    marginBottom: 10,
-  },
-  text: {
-    fontSize: 12,
-    marginBottom: 10,
-  }, */
 
   /* header */
   logoHeader: {
@@ -71,6 +77,7 @@ export const styles = StyleSheet.create({
     textAlign: "right",
     color: "grey",
     margin: "5px",
+    
   },
   headerTitle: {
     fontSize: 13,
@@ -129,12 +136,12 @@ export const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: "bold",
     textAlign: "start",
-  /*   marginBottom: 10, */
+    /*   marginBottom: 10, */
     textDecoration: "underline",
   },
   moduleText: {
     fontSize: 10,
-   /*  marginBottom: 4, */
+    /*  marginBottom: 4, */
     textAlign: "justify",
     fontWeight: "thin",
   },
@@ -142,14 +149,14 @@ export const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: "bold",
     textAlign: "start",
-  /*   marginBottom: 10, */
+    /*   marginBottom: 10, */
     textDecoration: "underline",
   },
   sectionSubTitle: {
     fontSize: 14,
     fontWeight: "bold",
     textAlign: "start",
-  /*   marginBottom: 10, */
+    /*   marginBottom: 10, */
     textDecoration: "underline",
   },
 
@@ -165,7 +172,6 @@ export const styles = StyleSheet.create({
     marginTop: 30,
   },
 });
-
 
 /* 
 
