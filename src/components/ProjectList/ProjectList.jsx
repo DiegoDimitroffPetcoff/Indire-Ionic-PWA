@@ -33,10 +33,10 @@ export function ProjectList() {
                 <IonCol sizeMd="3" sizeXs="12" className="table-cell">{address}</IonCol>
                 <IonCol sizeMd="1" sizeXs="12" className="table-cell">{date}</IonCol>
                 <IonCol sizeMd="3" sizeXs="12" className="table-cell">{`${date}_${title}_${project_number}`}</IonCol>
-                <IonCol sizeMd="1" sizeXs="12" className="table-cell">
+                <IonCol sizeMd="1" sizeXs="12" >
                   <IonButton expand="block">OPEN</IonButton>
                 </IonCol>
-                <IonCol sizeMd="1" sizeXs="12" className="table-cell">
+                <IonCol sizeMd="1" sizeXs="12" >
                   <IonButton expand="block" color={"danger"} onClick={() => deleteProjectOnList(idProject)}>X</IonButton>
                 </IonCol>
               </IonRow>
