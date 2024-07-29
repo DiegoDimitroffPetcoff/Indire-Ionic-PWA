@@ -42,7 +42,6 @@ import { useEffect, useState } from "react";
 import Templates from "./pages/Templates";
 import ProjectList from "./pages/ProjectList";
 
-
 setupIonicReact();
 
 const App: React.FC = () => {
@@ -70,14 +69,14 @@ const App: React.FC = () => {
             <Route path="/" exact={true}>
               <Redirect to="/project" />
             </Route>
-
             <Route path="/project" exact={true}>
+              <Page />
+            </Route>
+            <Route path="/project/:id">
               <Page />
             </Route>
             <Route path="/templates" component={Templates} />
             <Route path="/projectList" component={ProjectList} />
-         
-            
           </IonRouterOutlet>
         </IonSplitPane>
       </IonReactRouter>

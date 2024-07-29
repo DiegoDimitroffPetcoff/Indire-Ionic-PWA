@@ -10,7 +10,6 @@ import {
 export function Introduction() {
   const { project, handleChangeIntroduction } = useContext(ProjectContext);
   const projectContent = project[0].introduction || [];
-  console.log(projectContent.main_img_url);
 
   return (
     <div className="introductionContent">
