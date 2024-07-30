@@ -9,10 +9,11 @@ import { useImg } from "./useImg";
 import { useTemplates } from "./useTemplate";
 import MOCKPROJECTLIST from "./MOCKPROJECTLIST.json";
 import { useProjectList } from "./useProjectList";
-import { v4 as uuidv4 } from 'uuid'
+import { v4 as uuidv4 } from "uuid";
 
 export const ProjectContext = createContext();
 const PROJECTS_LIST = MOCKPROJECTLIST;
+
 const INITIAL_STATE = [
   {
     id: uuidv4(),
@@ -75,8 +76,15 @@ export const PorjectProvider = ({ children }) => {
     }
     return PROJECTS_LIST;
   });
+  function updateProject() {
+    const newProject = JSON.parse(JSON.stringify(INITIAL_STATE));
+    newProject[0].id = uuidv4();
+    setProject(newProject);
+    window.localStorage.setItem("data", JSON.stringify(newProject));
+  }
 
-  const { addProjectToProjectList ,deleteProjectOnList} = useProjectList(setProjectList);
+  const { addProjectToProjectList, deleteProjectOnList } =
+    useProjectList(setProjectList);
   /* ----------------CONTENT---------------- */
   const { addContent, handleChangeContent, deleteContent } =
     useContent(setProject);
@@ -137,7 +145,7 @@ export const PorjectProvider = ({ children }) => {
         deleteImage,
         addSubSection,
         deleteSubSection,
-
+        updateProject,
         addContent,
         addMainSection,
         deleteContent,
@@ -150,7 +158,7 @@ export const PorjectProvider = ({ children }) => {
         addTemplateOnModule,
         addTemplateSubSection,
         addProjectToProjectList,
-        deleteProjectOnList
+        deleteProjectOnList,
       }}
     >
       {children}
