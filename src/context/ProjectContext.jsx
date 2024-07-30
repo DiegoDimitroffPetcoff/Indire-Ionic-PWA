@@ -9,11 +9,13 @@ import { useImg } from "./useImg";
 import { useTemplates } from "./useTemplate";
 import MOCKPROJECTLIST from "./MOCKPROJECTLIST.json";
 import { useProjectList } from "./useProjectList";
+import { v4 as uuidv4 } from 'uuid'
 
 export const ProjectContext = createContext();
 const PROJECTS_LIST = MOCKPROJECTLIST;
 const INITIAL_STATE = [
   {
+    id: uuidv4(),
     introduction: {
       title: "",
       sub_title: "",

@@ -32,9 +32,9 @@ export function ProjectList() {
         </IonRow>
 
         {projectList.map((project, idProject) => {
-          if (project[1].introduction) {
+          if (project[0].introduction) {
             const { title, address, date, project_number } =
-              project[1].introduction;
+              project[0].introduction;
             const { id } = project[0];
             return (
               <IonRow key={idProject} className="table-row">

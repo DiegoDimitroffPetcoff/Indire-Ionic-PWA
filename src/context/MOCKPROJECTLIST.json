@@ -1,7 +1,7 @@
 [
   [
-    { "id": 1 },
     {
+      "id": 1,
       "introduction": {
         "title": "Primer Relatório de Inspeção de Edifício",
         "sub_title": "Inspeção Técnica Detalhada",
@@ -112,8 +112,8 @@
     }
   ],
   [
-    { "id": 2 },
     {
+      "id": 2,
       "introduction": {
         "title": "Relatório de Inspeção de Edifício",
         "sub_title": "Inspeção Técnica Completa",
