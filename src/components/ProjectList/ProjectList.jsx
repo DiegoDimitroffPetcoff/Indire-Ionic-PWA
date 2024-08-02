@@ -4,8 +4,12 @@ import "./ProjectList.css";
 import { ProjectContext } from "../../context/ProjectContext";
 
 export function ProjectList() {
-  const { projectList, deleteProjectOnList } = useContext(ProjectContext);
-
+  const { projectList, deleteProjectOnList, setProject } =
+    useContext(ProjectContext);
+  function filter(id) {
+    const projectFiltered = projectList.find((project) => project[0].id === id);
+    setProject(projectFiltered);
+  }
   return (
     <IonContent>
       <IonGrid className="table-grid">
@@ -35,7 +39,7 @@ export function ProjectList() {
           if (project[0].introduction) {
             const { title, address, date, project_number } =
               project[0].introduction;
-            const { id } = project[0];
+            const id = project[0].id;
             return (
               <IonRow key={idProject} className="table-row">
                 <IonCol sizeMd="3" sizeXs="12" className="table-cell">
@@ -53,8 +57,12 @@ export function ProjectList() {
                   className="table-cell"
                 >{`${date}_${title}_${project_number}`}</IonCol>
                 <IonCol sizeMd="1" sizeXs="12">
-                  <IonButton routerLink={`/project/${id}`} expand="block">
-                    OPEN
+                  <IonButton
+                    routerLink={`/project/${id}`}
+                    expand="block"
+                    onClick={() => filter(id)}
+                  >
+                    EDITE
                   </IonButton>
                 </IonCol>
                 <IonCol sizeMd="1" sizeXs="12">

@@ -1,9 +1,11 @@
+import _ from "lodash";
 export function useProjectList(setProjectList) {
   function addProjectToProjectList(newProject) {
     setProjectList((preProjectList) => {
       let projectListUpdate = [...preProjectList];
       try {
-        projectListUpdate.push(newProject);
+        let deepCopiedProject = _.cloneDeep(newProject);
+        projectListUpdate.push(deepCopiedProject);
         window.localStorage.setItem(
           "projectList",
           JSON.stringify(projectListUpdate)
@@ -15,6 +17,7 @@ export function useProjectList(setProjectList) {
       }
     });
   }
+
   function deleteProjectOnList(idProject) {
     setProjectList((preProjectList) => {
       let projectListUpdate = [...preProjectList];

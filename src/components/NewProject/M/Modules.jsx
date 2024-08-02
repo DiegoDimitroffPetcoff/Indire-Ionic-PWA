@@ -28,13 +28,7 @@ export function Modules({ moduleId }) {
     handleChangeSection,
   } = useContext(ProjectContext);
   let module = project[1].modules[moduleId];
-  /*   if (
-    module.module === "ELEMENTOS INSPECIONADOS E MEDIDAS CORRETIVAS PROPOSTAS"
-  ) {
-    console.log("MODULO:", module);
-  }
 
-  const { name } = module.sections[sectionId].name; */
   useEffect(() => {
     addCounter(moduleId, moduleId + 1);
   }, []);

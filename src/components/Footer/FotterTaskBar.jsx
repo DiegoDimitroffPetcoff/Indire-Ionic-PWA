@@ -37,6 +37,8 @@ export function FotterTaskBar({ setView, view }) {
       console.error("Failed to upload to OneDrive", error);
     }
   };
+  let updateProject = project;
+
   return (
     <IonFooter>
       <IonToolbar>
