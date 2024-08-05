@@ -68,13 +68,13 @@ export function Introduction() {
           onIonChange={(e) => handleChangeIntroduction(e, "date", id)}
         />
       </IonDatetimeButton>
-      {projectContent.main_img_url !== "" && (
+{/*       {projectContent.main_img_url !== "" && (
         <img
           src={projectContent.main_img_url}
           alt="Vista previa"
           style={{ maxWidth: "100%", height: "auto" }}
         />
-      )}
+      )} */}
     </div>
   );
 }

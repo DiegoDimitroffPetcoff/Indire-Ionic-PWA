@@ -43,6 +43,7 @@ export function useIntroduction(setProject) {
         const value = e.target.files[0];
         newProject[0].introduction[field] = value;
         console.log(newProject);
+        return newProject
       } else if (field === "date") {
         console.log("date:)");
         const value = e.detail.value;
