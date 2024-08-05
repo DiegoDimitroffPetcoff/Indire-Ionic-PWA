@@ -1,14 +1,18 @@
 import { IonCol, IonGrid, IonRow, IonContent, IonButton } from "@ionic/react";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import "./ProjectList.css";
 import { ProjectContext } from "../../context/ProjectContext";
 
 export function ProjectList() {
   const { projectList, deleteProjectOnList, setProject } =
     useContext(ProjectContext);
+    const [initialProject, setInitialProject] = useState(null);
+
+
   function filter(id) {
     const projectFiltered = projectList.find((project) => project[0].id === id);
     setProject(projectFiltered);
+    setInitialProject(JSON.parse(JSON.stringify(projectFiltered)));
   }
   return (
     <IonContent>

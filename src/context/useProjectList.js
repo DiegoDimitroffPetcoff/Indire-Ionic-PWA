@@ -1,11 +1,22 @@
 import _ from "lodash";
+import { v4 as uuidv4 } from "uuid";
 export function useProjectList(setProjectList) {
   function addProjectToProjectList(newProject) {
     setProjectList((preProjectList) => {
       let projectListUpdate = [...preProjectList];
       try {
-        let deepCopiedProject = _.cloneDeep(newProject);
-        projectListUpdate.push(deepCopiedProject);
+        // Crear una copia profunda del newProject
+        const newProjectCopy = JSON.parse(JSON.stringify(newProject));
+  
+        // Asignar un nuevo ID a la copia
+        newProjectCopy[0].id = uuidv4();
+        console.log(newProjectCopy);
+  
+        // Agregar la copia al listado de proyectos
+        projectListUpdate.push(newProjectCopy);
+        console.log(projectListUpdate);
+  
+        // Actualizar el almacenamiento local
         window.localStorage.setItem(
           "projectList",
           JSON.stringify(projectListUpdate)

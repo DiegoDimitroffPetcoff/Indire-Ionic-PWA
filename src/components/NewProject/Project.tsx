@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Modules } from "./M/Modules";
 import { Introduction } from "./I/Introduction";
 import { IonContent, IonButton } from "@ionic/react";
@@ -11,13 +11,26 @@ interface RouteParams {
 }
 
 export function Project() {
-  const { handleSubmite, project, updateProject } = useContext(ProjectContext);
-  const { id } = useParams<RouteParams>();
+  const { handleSubmite, project, resetProjectAndList } =
+    useContext(ProjectContext);
+  /*   const { id } = useParams<RouteParams>(); */
   let modules: any[] = project[1].modules || [];
+  const [initialProject, setInitialProject] = useState(null);
+
+  useEffect(() => {
+    console.log(
+      "Almacenar el estado inicial del proyecto cuando el componente se monta"
+    );
+
+    setInitialProject(JSON.parse(JSON.stringify(project)));
+  }, []);
 
   return (
     <IonContent>
-      <IonButton onClick={() => updateProject()}>Refresh</IonButton>
+      <IonButton onClick={() => resetProjectAndList(initialProject)}>
+        Reset
+      </IonButton>
+
       <form onSubmit={handleSubmite}>
         <Introduction />
         {modules.map((_, moduleId) => (
