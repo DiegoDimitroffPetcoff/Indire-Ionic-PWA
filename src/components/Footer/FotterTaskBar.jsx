@@ -54,7 +54,7 @@ export function FotterTaskBar({ setView, view }) {
                     fill="outline"
                     disabled={loading}
                     onClick={() => {
-                      PostOneDrive(blob);
+                    /*   PostOneDrive(blob); */
                       addProjectToProjectList(project);
                     }}
                   >

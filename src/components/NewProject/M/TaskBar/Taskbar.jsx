@@ -41,7 +41,7 @@ export function TaskBar({
           accept="image/*"
           multiple
           onChange={(e) =>
-            handleImg(e, moduleId, firstSectionId, sectionId, "img")
+            handleImg(e, moduleId, firstSectionId, sectionId, sectionId2, "img", contentDescription)
           }
           expand="full"
         />

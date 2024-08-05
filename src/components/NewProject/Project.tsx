@@ -28,7 +28,7 @@ export function Project() {
   return (
     <IonContent>
       <IonButton onClick={() => resetProjectAndList(initialProject)}>
-        Reset
+        Restaurar ao estado inicial
       </IonButton>
 
       <form onSubmit={handleSubmite}>
