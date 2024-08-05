@@ -8,16 +8,37 @@ const formatDate = (dateString) => {
 
 export function useIntroduction(setProject) {
   function handleChangeIntroduction(e, field, id) {
-    setProject((prevProject) => {
-      const newProject = [...prevProject];
-      if (
-        field === "title" ||
-        field === "sub_title" ||
-        field === "address" ||
-        field === "project_number" ||
-        field === "version"
-      ) {
-        const value = e.detail.value;
+    if (field === "main_img_url") {
+      const file = e.target.files[0];
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const base64String = reader.result;
+        setProject((prevProject) => {
+          const newProject = [...prevProject];
+          newProject[0].introduction[field] = base64String;
+
+          window.localStorage.setItem("data", JSON.stringify(newProject));
+
+          let list = window.localStorage.getItem("projectList");
+          if (list) {
+            let listParse = JSON.parse(list);
+            listParse = listParse.map((project) => {
+              if (project[0].id === id) {
+                project[0].introduction[field] = base64String;
+              }
+              return project;
+            });
+            window.localStorage.setItem("projectList", JSON.stringify(listParse));
+          }
+
+          return newProject;
+        });
+      };
+      reader.readAsDataURL(file);
+    } else {
+      const value = e.detail.value;
+      setProject((prevProject) => {
+        const newProject = [...prevProject];
         newProject[0].introduction[field] = value;
 
         window.localStorage.setItem("data", JSON.stringify(newProject));
@@ -25,36 +46,19 @@ export function useIntroduction(setProject) {
         let list = window.localStorage.getItem("projectList");
         if (list) {
           let listParse = JSON.parse(list);
-          listParse.map((project) => {
+          listParse = listParse.map((project) => {
             if (project[0].id === id) {
-              console.log(listParse);
-
               project[0].introduction[field] = value;
-              console.log(listParse);
             }
+            return project;
           });
           window.localStorage.setItem("projectList", JSON.stringify(listParse));
         }
 
         return newProject;
-      } else if (field === "main_img_url") {
-        console.log("SI");
-
-        const value = e.target.files[0];
-        newProject[0].introduction[field] = value;
-        console.log(newProject);
-        return newProject
-      } else if (field === "date") {
-        console.log("date:)");
-        const value = e.detail.value;
-
-        newProject[0].introduction[field] = formatDate(value);
-        console.log(formatDate(value));
-
-        window.localStorage.setItem("data", JSON.stringify(newProject));
-        return newProject;
-      }
-    });
+      });
+    }
   }
+
   return { handleChangeIntroduction };
 }
