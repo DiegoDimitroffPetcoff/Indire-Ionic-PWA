@@ -62,8 +62,8 @@ export function FotterTaskBar({ setView, view }) {
                     {loading
                       ? "..."
                       : error
-                      ? `Error: ${error.message}`
-                      : "Save"}
+                      ? `Erro: ${error.message}`
+                      : "Salvar uma Cópia"}
                   </IonButton>
                   {error && (
                     <p style={{ color: "red" }}>
@@ -104,7 +104,7 @@ export function FotterTaskBar({ setView, view }) {
             {" "}
             <IonButton fill="outline">
               <IonIcon slot="end" icon={clipboardOutline}></IonIcon>
-              PROJECT
+              Projeto
             </IonButton>
           </IonCol>
         </IonGrid>
