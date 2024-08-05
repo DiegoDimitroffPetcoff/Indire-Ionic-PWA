@@ -23,18 +23,23 @@ export function useIntroduction(setProject) {
         window.localStorage.setItem("data", JSON.stringify(newProject));
 
         let list = window.localStorage.getItem("projectList");
-        let listParse = JSON.parse(list);
-        listParse.map((project) => {
-          if (project[0].id === id) {
-            console.log(listParse);
+        if (list) {
+          let listParse = JSON.parse(list);
+          listParse.map((project) => {
+            if (project[0].id === id) {
+              console.log(listParse);
 
-            project[0].introduction[field] = value;
-            console.log(listParse);
-          }
-        });
-        window.localStorage.setItem("projectList", JSON.stringify(listParse));
+              project[0].introduction[field] = value;
+              console.log(listParse);
+            }
+          });
+          window.localStorage.setItem("projectList", JSON.stringify(listParse));
+        }
+
         return newProject;
       } else if (field === "main_img_url") {
+        console.log("SI");
+
         const value = e.target.files[0];
         newProject[0].introduction[field] = value;
         console.log(newProject);

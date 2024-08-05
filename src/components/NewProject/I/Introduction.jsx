@@ -48,13 +48,12 @@ export function Introduction() {
         onIonChange={(e) => handleChangeIntroduction(e, "project_number", id)}
       />
 
-      <IonInput
+      <input
         type="file"
         alt="Main Image on Project"
         accept="image/*"
         label="Image"
-        labelPlacement="floating"
-        onIonChange={(e) => handleChangeIntroduction(e, "main_img_url", id)}
+        onChange={(e) => handleChangeIntroduction(e, "main_img_url", id)}
       />
 
       <IonModal keepContentsMounted={true}>

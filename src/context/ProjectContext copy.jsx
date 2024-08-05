@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 import { useContent } from "./useContent";
 import { useIntroduction } from "./useIntroduction";
 import { useModules } from "./useModules";
@@ -66,6 +66,8 @@ export const PorjectProvider = ({ children }) => {
   const [project, setProject] = useState(() => {
     const projectStorage = window.localStorage.getItem("data");
     if (projectStorage) {
+      console.log("carga de local storage previo PROJECT");
+      
       return JSON.parse(projectStorage);
     }
     return INITIAL_STATE;
@@ -73,24 +75,13 @@ export const PorjectProvider = ({ children }) => {
   const [projectList, setProjectList] = useState(() => {
     const projectStorage = window.localStorage.getItem("projectList");
     if (projectStorage) {
+      console.log("carga de local storage previo LIST");
+
       return JSON.parse(projectStorage);
     }
     return PROJECTS_LIST;
   });
 
-  useEffect(() => {
-    console.log("Guardando project en local storage");
-    window.localStorage.setItem("data", JSON.stringify(project));
-  }, [project]);
-
-  useEffect(() => {
-    console.log("Guardando projectList en local storage");
-    window.localStorage.setItem("projectList", JSON.stringify(projectList));
-  }, [projectList]);
-
-
-
-  
   const { updateProject, resetProjectAndList } = useProject(
     INITIAL_STATE,
     project,
