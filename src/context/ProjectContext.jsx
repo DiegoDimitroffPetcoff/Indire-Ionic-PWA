@@ -11,6 +11,7 @@ import MOCKPROJECTLIST from "./MOCKPROJECTLIST.json";
 import { useProjectList } from "./useProjectList";
 import { v4 as uuidv4 } from "uuid";
 import { useProject } from "./useProject";
+import { saveProjectLocally, getLocalProjects, clearLocalProjects } from "../services/storageService";
 
 export const ProjectContext = createContext();
 const PROJECTS_LIST = MOCKPROJECTLIST;
@@ -78,16 +79,33 @@ export const PorjectProvider = ({ children }) => {
     return PROJECTS_LIST;
   });
 
-  useEffect(() => {
+useEffect(() => {
     console.log("Guardando project en local storage");
     window.localStorage.setItem("data", JSON.stringify(project));
   }, [project]);
 
-  useEffect(() => {
+ /*    useEffect(() => {
     console.log("Guardando projectList en local storage");
     window.localStorage.setItem("projectList", JSON.stringify(projectList));
-  }, [projectList]);
+  }, [projectList]); */
 
+  useEffect(() => {
+    const loadProjects = async () => {
+      const localProjects = await getLocalProjects();
+      setProjectList(localProjects);
+    };
+    loadProjects();
+  }, []);
+
+  const addProjectOnStorage = async (newProject) => {
+    await saveProjectLocally(newProject);
+    setProjectList((prevProjects) => [...prevProjects, newProject]);
+  };
+
+  const clearProjectsFromStorage = async () => {
+    await clearLocalProjects();
+    setProjectList([]);
+  };
 
 
   
@@ -176,6 +194,8 @@ export const PorjectProvider = ({ children }) => {
         addProjectToProjectList,
         deleteProjectOnList,
         resetProjectAndList,
+        clearProjectsFromStorage,
+        addProjectOnStorage
       }}
     >
       {children}

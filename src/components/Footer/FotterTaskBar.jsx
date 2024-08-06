@@ -26,7 +26,7 @@ import PostOneDrive from "../../services/PostOneDrive";
 export function FotterTaskBar({ setView, view }) {
   const [isSignedIn] = useIsSignedIn();
 
-  const { project, addProjectToProjectList } = useContext(ProjectContext);
+  const { project, addProjectToProjectList, addProjectOnStorage } = useContext(ProjectContext);
   const { title } = project[0].introduction;
   const handleSaveToOneDrive = async () => {
     try {
@@ -55,7 +55,7 @@ export function FotterTaskBar({ setView, view }) {
                     disabled={loading}
                     onClick={() => {
                     /*   PostOneDrive(blob); */
-                      addProjectToProjectList(project);
+                    addProjectOnStorage(project);
                     }}
                   >
                     <IonIcon slot="end" icon={saveOutline}></IonIcon>
