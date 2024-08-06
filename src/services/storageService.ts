@@ -49,12 +49,20 @@ const INITIAL_STATE = [
     },
   ];
 // Función para guardar un proyecto localmente
-export const saveProjectOnListProject = async (project: any) => {
+export const pushProjectOnListProject = async (project: any) => {
   const projects = await getLocalProjects();
   projects.push(project);
   await Preferences.set({
     key: "projects",
     value: JSON.stringify(projects),
+  });
+};
+
+export const editeProjectOnListProject = async (newList: any) => {
+
+  await Preferences.set({
+    key: "projects",
+    value: JSON.stringify(newList),
   });
 };
 

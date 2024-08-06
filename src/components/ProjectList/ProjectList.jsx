@@ -38,49 +38,50 @@ export function ProjectList() {
           <IonCol sizeMd="2" sizeXs="12" className="table-header-cell"></IonCol>
         </IonRow>
 
-        {projectList.map((project, idProject) => {
-          if (project[0].introduction) {
-            const { title, address, date, project_number } =
-              project[0].introduction;
-            const id = project[0].id;
-            return (
-              <IonRow key={idProject} className="table-row">
-                <IonCol sizeMd="3" sizeXs="12" className="table-cell">
-                  {title}
-                </IonCol>
-                <IonCol sizeMd="3" sizeXs="12" className="table-cell">
-                  {address}
-                </IonCol>
-                <IonCol sizeMd="1" sizeXs="12" className="table-cell">
-                  {date}
-                </IonCol>
-                <IonCol
-                  sizeMd="3"
-                  sizeXs="12"
-                  className="table-cell"
-                >{`${date}_${title}_${project_number}`}</IonCol>
-                <IonCol sizeMd="1" sizeXs="12">
-                  <IonButton
-                    routerLink={`/project/${id}`}
-                    expand="block"
-                    onClick={() => filter(id)}
-                  >
-                    EDITE
-                  </IonButton>
-                </IonCol>
-                <IonCol sizeMd="1" sizeXs="12">
-                  <IonButton
-                    expand="block"
-                    color={"danger"}
-                    onClick={() => deleteProjectOnList(idProject)}
-                  >
-                    X
-                  </IonButton>
-                </IonCol>
-              </IonRow>
-            );
-          }
-        })}
+        {projectList &&
+          projectList.map((project, idProject) => {
+            if (project[0].introduction) {
+              const { title, address, date, project_number } =
+                project[0].introduction;
+              const id = project[0].id;
+              return (
+                <IonRow key={idProject} className="table-row">
+                  <IonCol sizeMd="3" sizeXs="12" className="table-cell">
+                    {title}
+                  </IonCol>
+                  <IonCol sizeMd="3" sizeXs="12" className="table-cell">
+                    {address}
+                  </IonCol>
+                  <IonCol sizeMd="1" sizeXs="12" className="table-cell">
+                    {date}
+                  </IonCol>
+                  <IonCol
+                    sizeMd="3"
+                    sizeXs="12"
+                    className="table-cell"
+                  >{`${date}_${title}_${project_number}`}</IonCol>
+                  <IonCol sizeMd="1" sizeXs="12">
+                    <IonButton
+                      routerLink={`/project/${id}`}
+                      expand="block"
+                      onClick={() => filter(id)}
+                    >
+                      EDITE
+                    </IonButton>
+                  </IonCol>
+                  <IonCol sizeMd="1" sizeXs="12">
+                    <IonButton
+                      expand="block"
+                      color={"danger"}
+                      onClick={() => deleteProjectOnList(idProject)}
+                    >
+                      X
+                    </IonButton>
+                  </IonCol>
+                </IonRow>
+              );
+            }
+          })}
 
         {/* Table Footer */}
         <IonRow className="table-footer">

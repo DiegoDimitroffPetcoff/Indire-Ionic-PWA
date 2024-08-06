@@ -1,6 +1,10 @@
 import _ from "lodash";
 import { v4 as uuidv4 } from "uuid";
-import { saveProjectOnListProject } from "../services/storageService";
+import {
+  editeProjectOnListProject,
+  getLocalProjects,
+  pushProjectOnListProject,
+} from "../services/storageService";
 export function useProjectList(setProjectList) {
   function addProjectToProjectList(newProject) {
     setProjectList((preProjectList) => {
@@ -21,24 +25,21 @@ export function useProjectList(setProjectList) {
     });
   }
 
-  function deleteProjectOnList(idProject) {
-    setProjectList((preProjectList) => {
-      let projectListUpdate = [...preProjectList];
-      const newProjectList = projectListUpdate.filter(
-        (_, id) => id !== idProject
-      );
-      window.localStorage.setItem(
-        "projectList",
-        JSON.stringify(newProjectList)
-      );
-      return newProjectList;
-    });
+  async function deleteProjectOnList(idProject) {
+    let projectListUpdate = await getLocalProjects();
+    const newProjectList = projectListUpdate.filter(
+      (_, id) => id !== idProject
+    );
+    await editeProjectOnListProject(newProjectList);
+    console.log(newProjectList);
+
+    setProjectList(newProjectList);
   }
 
   async function AddProjectToList(newProject) {
     const newProjectCopy = JSON.parse(JSON.stringify(newProject));
     newProjectCopy[0].id = uuidv4();
-    await saveProjectOnListProject(newProjectCopy);
+    await pushProjectOnListProject(newProjectCopy);
     setProjectList((prevProjects) => [...prevProjects, newProjectCopy]);
   }
 

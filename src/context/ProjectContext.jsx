@@ -14,7 +14,7 @@ import { useProject } from "./useProject";
 import {
   saveProject,
   getProject,
-  saveProjectOnListProject,
+  pushProjectOnListProject,
   getLocalProjects,
   clearLocalProjects,
 } from "../services/storageService";
