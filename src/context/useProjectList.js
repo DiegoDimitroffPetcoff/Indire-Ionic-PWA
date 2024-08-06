@@ -6,24 +6,7 @@ import {
   pushProjectOnListProject,
 } from "../services/storageService";
 export function useProjectList(setProjectList) {
-  function addProjectToProjectList(newProject) {
-    setProjectList((preProjectList) => {
-      let projectListUpdate = [...preProjectList];
-      try {
-        const newProjectCopy = JSON.parse(JSON.stringify(newProject));
-        newProjectCopy[0].id = uuidv4();
-        projectListUpdate.push(newProjectCopy);
-        window.localStorage.setItem(
-          "projectList",
-          JSON.stringify(projectListUpdate)
-        );
-        return projectListUpdate;
-      } catch (error) {
-        console.log(error);
-        return preProjectList;
-      }
-    });
-  }
+
 
   async function deleteProjectOnList(idProject) {
     let projectListUpdate = await getLocalProjects();
@@ -43,5 +26,5 @@ export function useProjectList(setProjectList) {
     setProjectList((prevProjects) => [...prevProjects, newProjectCopy]);
   }
 
-  return { addProjectToProjectList, deleteProjectOnList, AddProjectToList };
+  return {  deleteProjectOnList, AddProjectToList };
 }

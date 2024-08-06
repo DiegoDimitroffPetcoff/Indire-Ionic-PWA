@@ -27,7 +27,7 @@ import PostOneDrive from "../../services/PostOneDrive";
 export function FotterTaskBar({ setView, view }) {
   const [isSignedIn] = useIsSignedIn();
 
-  const { project, addProjectToProjectList, AddProjectToList } =
+  const { project,  AddProjectToList } =
     useContext(ProjectContext);
   const { title } = project[0].introduction;
   const handleSaveToOneDrive = async () => {
