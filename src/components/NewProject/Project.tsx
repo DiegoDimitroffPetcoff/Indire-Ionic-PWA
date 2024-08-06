@@ -5,33 +5,36 @@ import { IonContent, IonButton } from "@ionic/react";
 import { ProjectContext } from "../../context/ProjectContext";
 import "./Project.css";
 import { useParams } from "react-router";
+import { saveProject } from "../../services/storageService";
 
 interface RouteParams {
   id: string;
 }
 
 export function Project() {
-  const { handleSubmite, project, resetProjectAndList } =
-    useContext(ProjectContext);
-  /*   const { id } = useParams<RouteParams>(); */
+  const { handleSubmite, project, setProject } = useContext(ProjectContext);
+  const { id } = useParams<RouteParams>(); 
 
-  
   let modules: any[] = project[1].modules || [];
   const [initialProject, setInitialProject] = useState(null);
 
-/*   useEffect(() => {
-    console.log(
-      "Almacenar el estado inicial del proyecto cuando el componente se monta"
-    );
-
+  useEffect(() => {
+    console.log("Almacenar el estado inicial del proyecto cuando el componente se monta");
     setInitialProject(JSON.parse(JSON.stringify(project)));
-  }, []); */
+    saveProject("initialProject", project);
+  }, [id]);
+
+  const restoreInitialProject = () => {
+    if (initialProject) {
+      setProject(JSON.parse(JSON.stringify(initialProject)));
+    }
+  };
 
   return (
     <IonContent>
-      <IonButton onClick={() => resetProjectAndList(initialProject)}>
+{/*       <IonButton onClick={restoreInitialProject}>
         Restaurar ao estado inicial
-      </IonButton>
+      </IonButton> */}
 
       <form onSubmit={handleSubmite}>
         <Introduction />

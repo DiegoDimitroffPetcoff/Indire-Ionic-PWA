@@ -1,4 +1,6 @@
 import { createContext, useEffect, useState } from "react";
+
+// Custom hooks imports
 import { useContent } from "./useContent";
 import { useIntroduction } from "./useIntroduction";
 import { useModules } from "./useModules";
@@ -7,10 +9,12 @@ import { useSubsection } from "./useSubsection";
 import { useBudget } from "./useBudget";
 import { useImg } from "./useImg";
 import { useTemplates } from "./useTemplate";
-import MOCKPROJECTLIST from "./MOCKPROJECTLIST.json";
 import { useProjectList } from "./useProjectList";
-import { v4 as uuidv4 } from "uuid";
 import { useProject } from "./useProject";
+
+// Static data and services imports
+import MOCKPROJECTLIST from "./MOCKPROJECTLIST.json";
+import { v4 as uuidv4 } from "uuid";
 import {
   saveProject,
   getProject,
@@ -19,9 +23,13 @@ import {
   clearLocalProjects,
 } from "../services/storageService";
 
+// Create ProjectContext
 export const ProjectContext = createContext();
+
+// Mock project list initialization
 const PROJECTS_LIST = MOCKPROJECTLIST;
 
+// Initial state for a new project
 const INITIAL_STATE = [
   {
     id: uuidv4(),
@@ -69,13 +77,16 @@ const INITIAL_STATE = [
     ],
   },
 ];
+
+// ProjectProvider component
 export const PorjectProvider = ({ children }) => {
+  // State management
   const [project, setProject] = useState(INITIAL_STATE);
   const [projectList, setProjectList] = useState(PROJECTS_LIST);
 
+  // Load project data from storage on mount
   useEffect(() => {
-    console.log("recupera data desde capacitor");
-
+    console.log("Loading project data from storage");
     const loadProject = async () => {
       const storedProject = await getProject("data");
       if (storedProject) {
@@ -85,8 +96,9 @@ export const PorjectProvider = ({ children }) => {
     loadProject();
   }, []);
 
+  // Load project list from local storage on mount
   useEffect(() => {
-    console.log("Recupera projectLIst con CAPACITOR");
+    console.log("Loading project list from storage");
     const loadProjects = async () => {
       const localProjects = await getLocalProjects();
       setProjectList(localProjects);
@@ -94,13 +106,13 @@ export const PorjectProvider = ({ children }) => {
     loadProjects();
   }, []);
 
-
-
+  // Clear projects from local storage
   const clearProjectsFromStorage = async () => {
     await clearLocalProjects();
     setProjectList([]);
   };
 
+  // Custom hook usage
   const { updateProject, resetProjectAndList } = useProject(
     INITIAL_STATE,
     project,
@@ -108,24 +120,21 @@ export const PorjectProvider = ({ children }) => {
     setProjectList
   );
 
-  const { addProjectToProjectList, deleteProjectOnList,AddProjectToList } =
+  const { deleteProjectOnList, AddProjectToList } =
     useProjectList(setProjectList);
-  /* ----------------CONTENT---------------- */
+
+  // Custom hooks for different sections of the project
   const { addContent, handleChangeContent, deleteContent } =
     useContent(setProject);
 
-  /* ----------------INTRODUCTION---------------- */
   const { handleChangeIntroduction } = useIntroduction(setProject);
 
-  /* ----------------TEMPLATES---------------- */
   const { addTemplateOnModule, addTemplateSubSection } =
     useTemplates(setProject);
 
-  /* ----------------MODULE---------------- */
   const { handleChangeModules, addCounter, addMainSection, deleteMainSection } =
     useModules({ setProject, project });
 
-  /* ----------------SECTION---------------- */
   const {
     addCounterOnSection,
     deleteSection,
@@ -133,13 +142,10 @@ export const PorjectProvider = ({ children }) => {
     addSection,
   } = useSection(setProject);
 
-  /* ----------------IMAGE---------------- */
   const { handleImg, deleteImage } = useImg(setProject);
 
-  /* ----------------BUDGET---------------- */
   const { addBudget, delenteBudget, handleBudget } = useBudget(setProject);
 
-  /* ----------------SUBSECTION---------------- */
   const {
     deleteSubSection,
     handleChangeSubSection,
@@ -147,11 +153,16 @@ export const PorjectProvider = ({ children }) => {
     addSubSectionSwitch,
   } = useSubsection(setProject);
 
+  // Form submission handler
   function handleSubmite(e) {
     e.preventDefault();
-    /*   window.localStorage.setItem("data", JSON.stringify(project));
-    window.localStorage.setItem("projectList", JSON.stringify(projectList)); */
+    /* Uncomment the following lines if localStorage usage is required
+    window.localStorage.setItem("data", JSON.stringify(project));
+    window.localStorage.setItem("projectList", JSON.stringify(projectList));
+    */
   }
+
+  // Provider component
   return (
     <ProjectContext.Provider
       value={{
@@ -183,7 +194,7 @@ export const PorjectProvider = ({ children }) => {
         addCounterOnSection,
         addTemplateOnModule,
         addTemplateSubSection,
-        addProjectToProjectList,
+
         deleteProjectOnList,
         resetProjectAndList,
         clearProjectsFromStorage,

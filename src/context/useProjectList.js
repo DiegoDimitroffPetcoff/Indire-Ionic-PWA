@@ -6,8 +6,6 @@ import {
   pushProjectOnListProject,
 } from "../services/storageService";
 export function useProjectList(setProjectList) {
-
-
   async function deleteProjectOnList(idProject) {
     let projectListUpdate = await getLocalProjects();
     const newProjectList = projectListUpdate.filter(
@@ -26,5 +24,5 @@ export function useProjectList(setProjectList) {
     setProjectList((prevProjects) => [...prevProjects, newProjectCopy]);
   }
 
-  return {  deleteProjectOnList, AddProjectToList };
+  return { deleteProjectOnList, AddProjectToList };
 }
