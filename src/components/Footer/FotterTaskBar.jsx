@@ -8,6 +8,7 @@ import {
 } from "@ionic/react";
 import {
   copyOutline,
+  downloadOutline,
   clipboardOutline,
   documentOutline,
   saveOutline,
@@ -26,7 +27,8 @@ import PostOneDrive from "../../services/PostOneDrive";
 export function FotterTaskBar({ setView, view }) {
   const [isSignedIn] = useIsSignedIn();
 
-  const { project, addProjectToProjectList, addProjectOnStorage } = useContext(ProjectContext);
+  const { project, addProjectToProjectList, AddProjectToList } =
+    useContext(ProjectContext);
   const { title } = project[0].introduction;
   const handleSaveToOneDrive = async () => {
     try {
@@ -37,7 +39,6 @@ export function FotterTaskBar({ setView, view }) {
       console.error("Failed to upload to OneDrive", error);
     }
   };
-  let updateProject = project;
 
   return (
     <IonFooter>
@@ -54,16 +55,16 @@ export function FotterTaskBar({ setView, view }) {
                     fill="outline"
                     disabled={loading}
                     onClick={() => {
-                    /*   PostOneDrive(blob); */
-                    addProjectOnStorage(project);
+                      PostOneDrive(blob);
+                      /*      AddProjectToList(project); */
                     }}
                   >
-                    <IonIcon slot="end" icon={saveOutline}></IonIcon>
+                    <IonIcon slot="end" icon={downloadOutline}></IonIcon>
                     {loading
                       ? "..."
                       : error
                       ? `Erro: ${error.message}`
-                      : "Salvar uma Cópia"}
+                      : "Download"}
                   </IonButton>
                   {error && (
                     <p style={{ color: "red" }}>
@@ -74,7 +75,16 @@ export function FotterTaskBar({ setView, view }) {
               );
             }}
           </PDFDownloadLink>
-
+          <IonCol>
+            {" "}
+            <IonButton
+              fill="outline"
+              onClick={() => AddProjectToList(project)}
+            >
+              <IonIcon slot="end" icon={saveOutline}></IonIcon>
+              Salvar cópia no dispositivo
+            </IonButton>
+          </IonCol>
           <IonCol>
             {" "}
             <IonButton

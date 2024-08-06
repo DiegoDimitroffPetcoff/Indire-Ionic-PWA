@@ -19,13 +19,13 @@ export function Project() {
   let modules: any[] = project[1].modules || [];
   const [initialProject, setInitialProject] = useState(null);
 
-  useEffect(() => {
+/*   useEffect(() => {
     console.log(
       "Almacenar el estado inicial del proyecto cuando el componente se monta"
     );
 
     setInitialProject(JSON.parse(JSON.stringify(project)));
-  }, []);
+  }, []); */
 
   return (
     <IonContent>

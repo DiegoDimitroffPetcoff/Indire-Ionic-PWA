@@ -1,5 +1,6 @@
 import _ from "lodash";
 import { v4 as uuidv4 } from "uuid";
+import { saveProjectOnListProject } from "../services/storageService";
 export function useProjectList(setProjectList) {
   function addProjectToProjectList(newProject) {
     setProjectList((preProjectList) => {
@@ -33,5 +34,13 @@ export function useProjectList(setProjectList) {
       return newProjectList;
     });
   }
-  return { addProjectToProjectList, deleteProjectOnList };
+
+  async function AddProjectToList(newProject) {
+    const newProjectCopy = JSON.parse(JSON.stringify(newProject));
+    newProjectCopy[0].id = uuidv4();
+    await saveProjectOnListProject(newProjectCopy);
+    setProjectList((prevProjects) => [...prevProjects, newProjectCopy]);
+  }
+
+  return { addProjectToProjectList, deleteProjectOnList, AddProjectToList };
 }

@@ -6,8 +6,7 @@ import { ProjectContext } from "../../context/ProjectContext";
 export function ProjectList() {
   const { projectList, deleteProjectOnList, setProject } =
     useContext(ProjectContext);
-    const [initialProject, setInitialProject] = useState(null);
-
+  const [initialProject, setInitialProject] = useState(null);
 
   function filter(id) {
     const projectFiltered = projectList.find((project) => project[0].id === id);

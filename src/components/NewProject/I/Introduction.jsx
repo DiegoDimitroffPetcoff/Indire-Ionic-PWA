@@ -12,6 +12,7 @@ export function Introduction() {
   const projectContent = project[0].introduction || [];
   const { id } = project[0] && project[0];
 
+
   return (
     <div className="introductionContent">
       <IonInput
