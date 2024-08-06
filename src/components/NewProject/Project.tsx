@@ -14,6 +14,8 @@ export function Project() {
   const { handleSubmite, project, resetProjectAndList } =
     useContext(ProjectContext);
   /*   const { id } = useParams<RouteParams>(); */
+
+  
   let modules: any[] = project[1].modules || [];
   const [initialProject, setInitialProject] = useState(null);
 

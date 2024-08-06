@@ -11,7 +11,13 @@ import MOCKPROJECTLIST from "./MOCKPROJECTLIST.json";
 import { useProjectList } from "./useProjectList";
 import { v4 as uuidv4 } from "uuid";
 import { useProject } from "./useProject";
-import { saveProjectLocally, getLocalProjects, clearLocalProjects } from "../services/storageService";
+import {
+  saveProject,
+  getProject,
+  saveProjectOnListProject,
+  getLocalProjects,
+  clearLocalProjects,
+} from "../services/storageService";
 
 export const ProjectContext = createContext();
 const PROJECTS_LIST = MOCKPROJECTLIST;
@@ -64,32 +70,36 @@ const INITIAL_STATE = [
   },
 ];
 export const PorjectProvider = ({ children }) => {
-  const [project, setProject] = useState(() => {
-    const projectStorage = window.localStorage.getItem("data");
-    if (projectStorage) {
-      return JSON.parse(projectStorage);
-    }
-    return INITIAL_STATE;
-  });
-  const [projectList, setProjectList] = useState(() => {
-    const projectStorage = window.localStorage.getItem("projectList");
-    if (projectStorage) {
-      return JSON.parse(projectStorage);
-    }
-    return PROJECTS_LIST;
-  });
+  const [project, setProject] = useState(INITIAL_STATE);
+  const [projectList, setProjectList] = useState(PROJECTS_LIST);
 
-useEffect(() => {
-    console.log("Guardando project en local storage");
-    window.localStorage.setItem("data", JSON.stringify(project));
-  }, [project]);
+  
+  useEffect(() => {
+    console.log("recupera data desde capacitor");
+    
+    const loadProject = async () => {
+      const storedProject = await getProject("data");
+      if (storedProject) {
+        setProject(storedProject);
+      }
+    };
+    loadProject();
+  }, []);
 
- /*    useEffect(() => {
+
+/*   useEffect(() => {
+    console.log("Guardando project con CAPACITOR");
+    window.localStorage.setItem("data", JSON.stringify(project)); 
+    saveProject("data", project);
+  }, [project]); */
+
+  /*    useEffect(() => {
     console.log("Guardando projectList en local storage");
     window.localStorage.setItem("projectList", JSON.stringify(projectList));
   }, [projectList]); */
 
   useEffect(() => {
+    console.log("Recupera projectLIst con CAPACITOR");
     const loadProjects = async () => {
       const localProjects = await getLocalProjects();
       setProjectList(localProjects);
@@ -98,7 +108,7 @@ useEffect(() => {
   }, []);
 
   const addProjectOnStorage = async (newProject) => {
-    await saveProjectLocally(newProject);
+    await saveProjectOnListProject(newProject);
     setProjectList((prevProjects) => [...prevProjects, newProject]);
   };
 
@@ -107,8 +117,6 @@ useEffect(() => {
     setProjectList([]);
   };
 
-
-  
   const { updateProject, resetProjectAndList } = useProject(
     INITIAL_STATE,
     project,
@@ -157,8 +165,8 @@ useEffect(() => {
 
   function handleSubmite(e) {
     e.preventDefault();
-    window.localStorage.setItem("data", JSON.stringify(project));
-    window.localStorage.setItem("projectList", JSON.stringify(projectList));
+    /*   window.localStorage.setItem("data", JSON.stringify(project));
+    window.localStorage.setItem("projectList", JSON.stringify(projectList)); */
   }
   return (
     <ProjectContext.Provider
@@ -195,7 +203,7 @@ useEffect(() => {
         deleteProjectOnList,
         resetProjectAndList,
         clearProjectsFromStorage,
-        addProjectOnStorage
+        addProjectOnStorage,
       }}
     >
       {children}

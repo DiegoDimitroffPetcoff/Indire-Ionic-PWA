@@ -1,157 +1,68 @@
+import { saveProject } from "../services/storageService";
 export function useImg(setProject) {
-  function handleImg(
-    e,
-    moduleId,
-    firstSectionId,
-    sectionId,
-    sectionId2,
-    field,
-    contentDescription
-  ) {
+  const handleImg = async (e, moduleId, firstSectionId, sectionId, sectionId2, field, contentDescription) => {
     console.log("useImg");
 
-    switch (contentDescription) {
-      case "subsection":
-        console.log("subsection");
+    try {
+      const value = e.detail ? e.detail.value : e.target.files ? e.target.files : e.target.value;
 
-        try {
-          // Obtener los archivos del evento
-          const value = e.detail
-            ? e.detail.value
-            : e.target.files
-            ? e.target.files
-            : e.target.value;
+      if (!value) {
+        throw new Error("No files selected");
+      }
 
-          if (!value) {
-            throw new Error("No files selected");
-          }
+      const files = Array.from(value);
 
-          const files = Array.from(value);
+      if (!files.length) {
+        throw new Error("No files found in the selection");
+      }
 
-          if (!files.length) {
-            throw new Error("No files found in the selection");
-          }
+      const readers = files.map((file) => {
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onloadend = () => resolve(reader.result);
+          reader.onerror = (error) => reject(`File read error: ${error}`);
+          reader.readAsDataURL(file);
+        });
+      });
 
-          const readers = files.map((file) => {
-            return new Promise((resolve, reject) => {
-              const reader = new FileReader();
-              reader.onloadend = () => resolve(reader.result);
-              reader.onerror = (error) => reject(`File read error: ${error}`);
-              reader.readAsDataURL(file);
-            });
-          });
+      const imagesBase64 = await Promise.all(readers);
 
-          Promise.all(readers)
-            .then((imagesBase64) => {
-              setProject((prevProject) => {
-                if (!prevProject[1].modules[moduleId]) {
-                  throw new Error("Invalid moduleId");
-                }
-                const updateProject = [...prevProject];
-                const section =
-                  updateProject[1].modules[moduleId].sections[firstSectionId]
-                    .sections[sectionId];
+      setProject((prevProject) => {
+        const updateProject = [...prevProject];
+        let section;
 
-                // Aseguramos que section[field] sea un array
-                if (!Array.isArray(section[field])) {
-                  section[field] = [];
-                }
-
-                // Concatenamos las nuevas imágenes con las existentes
-                section[field] = section[field].concat(imagesBase64);
-
-                window.localStorage.setItem(
-                  "data",
-                  JSON.stringify(updateProject)
-                );
-                return updateProject;
-              });
-            })
-            .catch((error) => console.error("Error leyendo archivos:", error));
-        } catch (error) {
-          console.error("Error en handleImg:", error);
+        switch (contentDescription) {
+          case "subsection":
+            section = updateProject[1].modules[moduleId].sections[firstSectionId].sections[sectionId];
+            break;
+          case "subsection2":
+            section = updateProject[1].modules[moduleId].sections[firstSectionId].sections[sectionId].sections[sectionId2];
+            break;
+          default:
+            throw new Error("Invalid contentDescription");
         }
-        break;
-      case "subsection2":
-        console.log("subsection2");
 
-        try {
-          // Obtener los archivos del evento
-          const value = e.detail
-            ? e.detail.value
-            : e.target.files
-            ? e.target.files
-            : e.target.value;
-
-          if (!value) {
-            throw new Error("No files selected");
-          }
-
-          const files = Array.from(value);
-
-          if (!files.length) {
-            throw new Error("No files found in the selection");
-          }
-
-          const readers = files.map((file) => {
-            return new Promise((resolve, reject) => {
-              const reader = new FileReader();
-              reader.onloadend = () => resolve(reader.result);
-              reader.onerror = (error) => reject(`File read error: ${error}`);
-              reader.readAsDataURL(file);
-            });
-          });
-
-          Promise.all(readers)
-            .then((imagesBase64) => {
-              setProject((prevProject) => {
-                if (!prevProject[1].modules[moduleId]) {
-                  throw new Error("Invalid moduleId");
-                }
-                const updateProject = [...prevProject];
-                const section =
-                  updateProject[1].modules[moduleId].sections[firstSectionId]
-                    .sections[sectionId].sections[sectionId2];
-
-                // Aseguramos que section[field] sea un array
-                if (!Array.isArray(section[field])) {
-                  section[field] = [];
-                }
-
-                // Concatenamos las nuevas imágenes con las existentes
-                section[field] = section[field].concat(imagesBase64);
-
-                window.localStorage.setItem(
-                  "data",
-                  JSON.stringify(updateProject)
-                );
-
-                return updateProject;
-              });
-            })
-            .catch((error) => console.error("Error leyendo archivos:", error));
-        } catch (error) {
-          console.error("Error en handleImg:", error);
+        if (!Array.isArray(section[field])) {
+          section[field] = [];
         }
-        break;
-      default:
-        console.log("no contentDescription Added");
 
-        break;
+        section[field] = section[field].concat(imagesBase64);
+
+        const key = `project_${moduleId}_${firstSectionId}_${sectionId}_${sectionId2}_${field}`;
+        saveProject(key, section[field]);
+
+        return updateProject;
+      });
+    } catch (error) {
+      console.error("Error en handleImg:", error);
     }
-  }
+  };
 
-  function deleteImage(moduleId, firstSectionId, sectionId, imageIndex) {
+  const deleteImage = async (moduleId, firstSectionId, sectionId, imageIndex) => {
     try {
       setProject((prevProject) => {
-        if (!prevProject[1].modules[moduleId]) {
-          throw new Error("Invalid moduleId");
-        }
         const updateProject = [...prevProject];
-        const section =
-          updateProject[1].modules[moduleId].sections[firstSectionId].sections[
-            sectionId
-          ];
+        const section = updateProject[1].modules[moduleId].sections[firstSectionId].sections[sectionId];
 
         if (!section.img || !Array.isArray(section.img)) {
           throw new Error("No images found in the section");
@@ -162,13 +73,16 @@ export function useImg(setProject) {
         }
 
         section.img.splice(imageIndex, 1);
-        window.localStorage.setItem("data", JSON.stringify(updateProject));
+
+        const key = `project_${moduleId}_${firstSectionId}_${sectionId}_img`;
+        saveProject(key, section.img);
+
         return updateProject;
       });
     } catch (error) {
       console.error("Error en deleteImage:", error);
     }
-  }
+  };
 
   return { handleImg, deleteImage };
 }

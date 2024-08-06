@@ -1,3 +1,5 @@
+import { saveProject, getLocalProjects } from "../services/storageService";
+
 const formatDate = (dateString) => {
   const date = new Date(dateString);
   const day = date.getDate().toString().padStart(2, "0");
@@ -7,56 +9,65 @@ const formatDate = (dateString) => {
 };
 
 export function useIntroduction(setProject) {
-  function handleChangeIntroduction(e, field, id) {
-    if (field === "main_img_url") {
-      const file = e.target.files[0];
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        const base64String = reader.result;
+  async function handleChangeIntroduction(e, field, id) {
+    try {
+      if (field === "main_img_url") {
+        const file = e.target.files[0];
+        const reader = new FileReader();
+
+        reader.onloadend = async () => {
+          const base64String = reader.result;
+          setProject((prevProject) => {
+            const newProject = [...prevProject];
+            newProject[0].introduction[field] = base64String;
+
+            // Guardar el proyecto actualizado
+            saveProject("data", newProject);
+
+            // Actualizar projectList en Capacitor
+            const updateProjectList = async () => {
+              let list = await getLocalProjects();
+              list = list.map((project) => {
+                if (project[0].id === id) {
+                  project[0].introduction[field] = base64String;
+                }
+                return project;
+              });
+              saveProject("projects", list);
+            };
+            updateProjectList();
+
+            return newProject;
+          });
+        };
+        reader.readAsDataURL(file);
+      } else {
+        const value = e.detail.value;
         setProject((prevProject) => {
           const newProject = [...prevProject];
-          newProject[0].introduction[field] = base64String;
+          newProject[0].introduction[field] = value;
 
-          window.localStorage.setItem("data", JSON.stringify(newProject));
+          // Guardar el proyecto actualizado
+          saveProject("data", newProject);
 
-          let list = window.localStorage.getItem("projectList");
-          if (list) {
-            let listParse = JSON.parse(list);
-            listParse = listParse.map((project) => {
+          // Actualizar projectList en Capacitor
+          const updateProjectList = async () => {
+            let list = await getLocalProjects();
+            list = list.map((project) => {
               if (project[0].id === id) {
-                project[0].introduction[field] = base64String;
+                project[0].introduction[field] = value;
               }
               return project;
             });
-            window.localStorage.setItem("projectList", JSON.stringify(listParse));
-          }
+            saveProject("projects", list);
+          };
+          updateProjectList();
 
           return newProject;
         });
-      };
-      reader.readAsDataURL(file);
-    } else {
-      const value = e.detail.value;
-      setProject((prevProject) => {
-        const newProject = [...prevProject];
-        newProject[0].introduction[field] = value;
-
-        window.localStorage.setItem("data", JSON.stringify(newProject));
-
-        let list = window.localStorage.getItem("projectList");
-        if (list) {
-          let listParse = JSON.parse(list);
-          listParse = listParse.map((project) => {
-            if (project[0].id === id) {
-              project[0].introduction[field] = value;
-            }
-            return project;
-          });
-          window.localStorage.setItem("projectList", JSON.stringify(listParse));
-        }
-
-        return newProject;
-      });
+      }
+    } catch (error) {
+      console.error("Error en handleChangeIntroduction:", error);
     }
   }
 
