@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { Modules } from "./M/Modules";
 import { Introduction } from "./I/Introduction";
-import { IonContent, IonButton } from "@ionic/react";
+import { IonContent, IonButton, IonSpinner } from "@ionic/react";
 import { ProjectContext } from "../../context/ProjectContext";
 import "./Project.css";
 import { useParams } from "react-router";
@@ -15,14 +15,17 @@ export function Project() {
   const { handleSubmite, project, setProject } = useContext(ProjectContext);
   const { id } = useParams<RouteParams>(); 
 
-  let modules: any[] = project[1].modules || [];
+  let modules: any[] = project ? project[1].modules : [];
   const [initialProject, setInitialProject] = useState(null);
 
+  // Simulate saving the initial project state when the component mounts
   useEffect(() => {
-    console.log("Almacenar el estado inicial del proyecto cuando el componente se monta");
-    setInitialProject(JSON.parse(JSON.stringify(project)));
-    saveProject("initialProject", project);
-  }, [id]);
+    if (project) {
+      console.log("Almacenar el estado inicial del proyecto cuando el componente se monta");
+      setInitialProject(JSON.parse(JSON.stringify(project)));
+      saveProject("initialProject", project);
+    }
+  }, [project, id]);
 
   const restoreInitialProject = () => {
     if (initialProject) {
@@ -30,11 +33,22 @@ export function Project() {
     }
   };
 
+  // Render the spinner if the project is null
+  if (!project) {
+    return (
+      <IonContent>
+        <div className="spinner-container">
+          <IonSpinner name="crescent" />
+        </div>
+      </IonContent>
+    );
+  }
+
   return (
     <IonContent>
-{/*       <IonButton onClick={restoreInitialProject}>
+      <IonButton onClick={restoreInitialProject}>
         Restaurar ao estado inicial
-      </IonButton> */}
+      </IonButton>
 
       <form onSubmit={handleSubmite}>
         <Introduction />

@@ -5,45 +5,36 @@ import {
   IonToolbar,
   IonCol,
   IonGrid,
-  IonContent,
-  IonSpinner,
 } from "@ionic/react";
 import {
+  copyOutline,
   downloadOutline,
   clipboardOutline,
   documentOutline,
   saveOutline,
   cloudCircle,
 } from "ionicons/icons";
+
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import { useIsSignedIn } from "@microsoft/mgt-react";
-import { pdf } from "@react-pdf/renderer";
+
+import { pdf, Document, Page } from "@react-pdf/renderer";
 import { ProjectContext } from "../../context/ProjectContext";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { MyDocument } from "../Pdf/PdfView";
 import PostOneDrive from "../../services/PostOneDrive";
 
 export function FotterTaskBar({ setView, view }) {
   const [isSignedIn] = useIsSignedIn();
+
   const { project, AddProjectToList } = useContext(ProjectContext);
-
-    // Render the spinner if the project is null
-    if (!project) {
-      return (
-        <IonContent>
-          <div className="spinner-container">
-            <IonSpinner name="crescent" />
-          </div>
-        </IonContent>
-      );
-    }
   const { title } = project[0].introduction;
-
   const handleSaveToOneDrive = async () => {
     try {
       const blob = await pdf(<MyDocument data={project} />).toBlob();
       await PostOneDrive(blob, title);
     } catch (error) {
+      setError(error);
       console.error("Failed to upload to OneDrive", error);
     }
   };
@@ -56,29 +47,34 @@ export function FotterTaskBar({ setView, view }) {
             document={<MyDocument data={project} />}
             fileName={title + ".pdf"}
           >
-            {({ blob, url, loading, error }) => (
-              <IonCol>
-                <IonButton fill="outline" disabled={loading} onClick={() => PostOneDrive(blob)}>
-                  <IonIcon slot="end" icon={downloadOutline}></IonIcon>
-                  {loading ? (
-                    <>
-                      Generating PDF... <IonSpinner name="crescent" />
-                    </>
-                  ) : error ? (
-                    `Erro: ${error.message}`
-                  ) : (
-                    "Download"
+            {({ blob, url, loading, error }) => {
+              return (
+                <>
+                  <IonButton
+                    fill="outline"
+                    disabled={loading}
+                    onClick={() => {
+                      PostOneDrive(blob);
+                    }}
+                  >
+                    <IonIcon slot="end" icon={downloadOutline}></IonIcon>
+                    {loading
+                      ? "..."
+                      : error
+                      ? `Erro: ${error.message}`
+                      : "Download"}
+                  </IonButton>
+                  {error && (
+                    <p style={{ color: "red" }}>
+                      Failed to generate PDF: {error.message}
+                    </p>
                   )}
-                </IonButton>
-                {error && (
-                  <p style={{ color: "red" }}>
-                    Failed to generate PDF: {error.message}
-                  </p>
-                )}
-              </IonCol>
-            )}
+                </>
+              );
+            }}
           </PDFDownloadLink>
           <IonCol>
+            {" "}
             <IonButton
               fill="outline"
               routerLink="/projectList"
@@ -89,6 +85,7 @@ export function FotterTaskBar({ setView, view }) {
             </IonButton>
           </IonCol>
           <IonCol>
+            {" "}
             <IonButton
               disabled={!isSignedIn}
               fill="outline"
@@ -99,25 +96,32 @@ export function FotterTaskBar({ setView, view }) {
             </IonButton>
           </IonCol>
           <IonCol>
+            {" "}
             <IonButton fill="outline">
               <IonIcon slot="end" icon={documentOutline}></IonIcon>
               Word
             </IonButton>
           </IonCol>
           <IonCol>
+            {" "}
             <IonButton fill="outline" onClick={() => setView(!view)}>
               <IonIcon slot="end" icon={clipboardOutline}></IonIcon>
               PDF
             </IonButton>
           </IonCol>
           <IonCol>
+            {" "}
             <IonButton fill="outline">
               <IonIcon slot="end" icon={clipboardOutline}></IonIcon>
               Projeto
             </IonButton>
           </IonCol>
           <IonCol>
-            <IonButton fill="outline" onClick={() => console.log(project)}>
+            {" "}
+            <IonButton fill="outline" onClick={()=>console.log(project)
+            }>
+              <IonIcon slot="end" ></IonIcon>
+              PROJECT
             </IonButton>
           </IonCol>
         </IonGrid>

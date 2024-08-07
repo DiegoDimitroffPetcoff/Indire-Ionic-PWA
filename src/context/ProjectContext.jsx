@@ -81,22 +81,25 @@ const INITIAL_STATE = [
 // ProjectProvider component
 export const PorjectProvider = ({ children }) => {
   // State management
-  const [project, setProject] = useState(INITIAL_STATE);
+  const [project, setProject] = useState(null);
   const [projectList, setProjectList] = useState(PROJECTS_LIST);
 
-  // Load project data from storage on mount
+  // Load project data Capacitor
   useEffect(() => {
-    console.log("Loading project data from storage");
     const loadProject = async () => {
       const storedProject = await getProject("data");
       if (storedProject) {
+        console.log("SI HAY CAPACITOR STORED");
         setProject(storedProject);
+      } else {
+        console.log("NO HAY CAPACITOR STORED, USANDO INITIAL_STATE");
+        setProject(INITIAL_STATE);
       }
     };
     loadProject();
   }, []);
 
-  // Load project list from local storage on mount
+  // Load project list Capacitor
   useEffect(() => {
     console.log("Loading project list from storage");
     const loadProjects = async () => {

@@ -1,53 +1,5 @@
 import { Preferences } from "@capacitor/preferences";
-import { v4 as uuidv4 } from "uuid";
 
-const INITIAL_STATE = [
-    {
-      id: uuidv4(),
-      introduction: {
-        title: "",
-        sub_title: "",
-        main_img_url: "",
-        address: "",
-        project_number: "",
-        date: "",
-        version: "",
-      },
-    },
-    {
-      modules: [
-        { module: "INTRODUÇÃO", description: "", title: "", sections: [] },
-        { module: " DESCRIÇÃO GERAL", description: "", title: "", sections: [] },
-        {
-          module: " INSPEÇÃO TÉCNICA AO EDIFÍCIO",
-          description: "",
-          title: "",
-          sections: [],
-        },
-        { module: " ELEMENTOS BASE", description: "", title: "", sections: [] },
-        {
-          module: " HISTÓRICO DE INTERVENÇÕES",
-          description: "",
-          title: "",
-          sections: [],
-        },
-        {
-          module: "ELEMENTOS INSPECIONADOS E MEDIDAS CORRETIVAS PROPOSTAS",
-          description: "",
-          title: "",
-          mainSection: [],
-          sections: [],
-        },
-        {
-          module: " RECOMENDAÇÕES E AÇÕES DE MANUTENÇÃO",
-          description: "",
-          title: "",
-          sections: [],
-        },
-        { module: " CONCLUSÕES", description: "", title: "", sections: [] },
-      ],
-    },
-  ];
 // Función para guardar un proyecto localmente
 export const pushProjectOnListProject = async (project: any) => {
   const projects = await getLocalProjects();
@@ -59,7 +11,6 @@ export const pushProjectOnListProject = async (project: any) => {
 };
 
 export const editeProjectOnListProject = async (newList: any) => {
-
   await Preferences.set({
     key: "projects",
     value: JSON.stringify(newList),
@@ -88,7 +39,8 @@ export const saveProject = async (key: any, data: any) => {
 // Obtener projecto desde Capacitor Preferences
 export const getProject = async (key: any) => {
   const { value } = await Preferences.get({ key });
-  return value ? JSON.parse(value) : INITIAL_STATE;
+  value ? console.log("SIII tsx") : console.log("NULLL");
+  return value ? JSON.parse(value) : null;
 };
 
 // Eliminar projecto desde Capacitor Preferences
