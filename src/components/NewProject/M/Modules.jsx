@@ -34,9 +34,7 @@ export function Modules({ moduleId }) {
   useEffect(() => {
     addCounter(moduleId, moduleId + 1);
   }, []);
-  useEffect(() => {
-    addCounter(moduleId, moduleId + 1);
-  }, [addCounter, moduleId]);
+
 
   const handleBlur = (e, moduleId, sectionId) => {
     handleChangeSection(e, 'name', moduleId, sectionId);
@@ -83,7 +81,7 @@ export function Modules({ moduleId }) {
                   {FirstSection}
                   <IonInput
                     value={inputValues[sectionId] || ''} // Use state for specific section
-                    onIonBlur={(e) => handleBlur(e, moduleId, sectionId)}
+               onIonBlur={(e) => handleBlur(e, moduleId, sectionId)}
                     onIonInput={(e) => handleInputChange(sectionId, e.detail.value)}
                   ></IonInput>
                 </IonLabel>
