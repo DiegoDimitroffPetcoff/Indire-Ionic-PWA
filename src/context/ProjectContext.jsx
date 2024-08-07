@@ -11,14 +11,14 @@ import { useImg } from "./useImg";
 import { useTemplates } from "./useTemplate";
 import { useProjectList } from "./useProjectList";
 import { useProject } from "./useProject";
+import MODULE_TEMPLATES from "../templates/moduleTemplate.json";
+import SUBSECTION_TEMPLATES from "../templates/subsectionTemplate.json";
 
 // Static data and services imports
 import MOCKPROJECTLIST from "./MOCKPROJECTLIST.json";
 import { v4 as uuidv4 } from "uuid";
 import {
-  saveProject,
   getProject,
-  pushProjectOnListProject,
   getLocalProjects,
   clearLocalProjects,
 } from "../services/storageService";
@@ -83,6 +83,8 @@ export const PorjectProvider = ({ children }) => {
   // State management
   const [project, setProject] = useState(null);
   const [projectList, setProjectList] = useState(PROJECTS_LIST);
+  const [modulesTemplates, setModulesTemplates] = useState(null);
+  const [subsectionTemplates, setSubsectionTemplates] = useState(null);
 
   // Load project data Capacitor
   useEffect(() => {
@@ -107,6 +109,30 @@ export const PorjectProvider = ({ children }) => {
       setProjectList(localProjects);
     };
     loadProjects();
+  }, []);
+
+  useEffect(() => {
+    const loadProject = async () => {
+      const storedTemplates = await getProject("MODULE_TEMPLATES");
+      if (storedTemplates) {
+        setModulesTemplates(storedTemplates);
+      } else {
+        setModulesTemplates(MODULE_TEMPLATES);
+      }
+    };
+    loadProject();
+  }, []);
+
+  useEffect(() => {
+    const loadProject = async () => {
+      const storedTemplates = await getProject("SUBSECTION_TEMPLATES");
+      if (storedTemplates) {
+        setSubsectionTemplates(storedTemplates);
+      } else {
+        setSubsectionTemplates(SUBSECTION_TEMPLATES);
+      }
+    };
+    loadProject();
   }, []);
 
   // Clear projects from local storage
@@ -197,7 +223,10 @@ export const PorjectProvider = ({ children }) => {
         addCounterOnSection,
         addTemplateOnModule,
         addTemplateSubSection,
-
+        modulesTemplates,
+        setModulesTemplates,
+        subsectionTemplates,
+        setSubsectionTemplates,
         deleteProjectOnList,
         resetProjectAndList,
         clearProjectsFromStorage,

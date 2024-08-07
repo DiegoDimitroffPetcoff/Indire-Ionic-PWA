@@ -4,16 +4,22 @@ import {
   IonList,
   IonButton,
   IonCheckbox,
-  IonLabel,
 } from "@ionic/react";
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import { useTemplatesForm } from "./Items/useTemplatesForm";
 import { Name } from "./Items/name";
 import { Content } from "./Items/content";
 import { ContentList } from "./Items/CotentList";
+import { ProjectContext } from "../../context/ProjectContext";
 
 export function TemplatesForm() {
+  const {
+    subsectionTemplates,
+    setSubsectionTemplates,
+    modulesTemplates,
+    setModulesTemplates,
+  } = useContext(ProjectContext);
   const [name, setName] = useState("");
 
   const [title, setTitle] = useState("");
@@ -30,7 +36,7 @@ export function TemplatesForm() {
     handleInputDescription,
     handleSubmite,
     addContentItem,
-    deleteItem
+    deleteItem,
   } = useTemplatesForm(
     setName,
     setTitle,
@@ -41,7 +47,8 @@ export function TemplatesForm() {
     content,
     isModule,
     isSubsection,
-    setContent
+    setContent,
+    setSubsectionTemplates,
   );
 
   return (
@@ -57,7 +64,7 @@ export function TemplatesForm() {
             description={description}
           />
           <IonButton onClick={addContentItem}>Add Content</IonButton>
-          <ContentList content={content} deleteItem={deleteItem}/>
+          <ContentList content={content} deleteItem={deleteItem} />
 
           <IonItem>
             <IonCheckbox

@@ -47,3 +47,32 @@ export const getProject = async (key: any) => {
 export const deleteProject = async (key: any) => {
   await Preferences.remove({ key });
 };
+// Eliminar projecto desde Capacitor Preferences
+
+export const deleteOneProject = async (key: string, id: any) => {
+  console.log("Si");
+  
+  // Obtén el valor almacenado con la clave dada
+  const { value } = await Preferences.get({ key });
+
+  // Asegúrate de que el valor sea un array parseando el JSON
+  let parsedValue: any[] = [];
+  if (value) {
+    try {
+      parsedValue = JSON.parse(value);
+    } catch (error) {
+      console.error("Error parsing JSON from Preferences:", error);
+    }
+  }
+
+  // Filtra los valores para excluir el id proporcionado
+  const valueFiltered = parsedValue.filter(
+    (item: any, index: number) => index !== id
+  );
+
+  // Guarda el valor filtrado de nuevo en Preferences
+  await Preferences.set({
+    key: key,
+    value: JSON.stringify(valueFiltered),
+  });
+};

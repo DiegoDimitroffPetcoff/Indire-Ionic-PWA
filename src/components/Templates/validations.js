@@ -1,7 +1,8 @@
+import { saveProject } from "../../services/storageService";
 import ModuleTemplates from "../../templates/moduleTemplate.json";
 import SubsectionTemplates from "../../templates/subsectionTemplate.json";
 
-export function validations(e, name, content, isModule, isSubsection, setContent, setName, setDescription, setTitle) {
+export function validations(e, name, content, isModule, isSubsection, setContent, setName, setDescription, setTitle,setSubsectionTemplates,) {
   e.preventDefault();
   
   if (!name) {
@@ -29,7 +30,12 @@ export function validations(e, name, content, isModule, isSubsection, setContent
   }
   
   if (isSubsection) {
-    SubsectionTemplates.push(updateTemplate);
+    setSubsectionTemplates(preTemplate=>{
+      const copyTemplate = [...preTemplate,updateTemplate ]
+      saveProject("SUBSECTION_TEMPLATES", copyTemplate)
+      return copyTemplate
+    })
+   /*  SubsectionTemplates.push(updateTemplate); */
   }
   
   let templateMessage = "O template foi salvo com sucesso em ";

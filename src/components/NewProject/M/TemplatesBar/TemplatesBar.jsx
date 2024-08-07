@@ -4,15 +4,18 @@ import {
   IonAccordionGroup,
   IonItem,
   IonLabel,
+  IonButton,
 } from "@ionic/react";
 import { copyOutline } from "ionicons/icons";
 
 import moduloTemplateJson from "../../../../templates/moduleTemplate.json";
-import sectionTemplateJson from "../../../../templates/subsectionTemplate.json";
+
 import { ProjectContext } from "../../../../context/ProjectContext";
 import { useContext, useState } from "react";
-export function TemplatesBar({ moduleId,firstSectionId,sectionId, type }) {
-  const { addTemplateOnModule, addTemplateSubSection } = useContext(ProjectContext);
+import { deleteOneProject } from "../../../../services/storageService";
+export function TemplatesBar({ moduleId, firstSectionId, sectionId, type }) {
+  const { addTemplateOnModule, addTemplateSubSection, subsectionTemplates } =
+    useContext(ProjectContext);
   const [accordionValue, setAccordionValue] = useState(null);
   let action;
   let templateMapped;
@@ -20,44 +23,63 @@ export function TemplatesBar({ moduleId,firstSectionId,sectionId, type }) {
   switch (type) {
     case "module":
       action = addTemplateOnModule;
-      templateMapped = moduloTemplateJson
+      templateMapped = moduloTemplateJson;
       break;
     case "subsection":
       action = addTemplateSubSection;
-      templateMapped = sectionTemplateJson
+      templateMapped = subsectionTemplates;
       break;
-      case "subsection2":
-        action = addTemplateSubSection;
-        templateMapped = sectionTemplateJson
-        break;
+    case "subsection2":
+      action = addTemplateSubSection;
+      templateMapped = subsectionTemplates;
+      break;
     default:
       action = null;
   }
 
   return (
-    <IonAccordionGroup className="IonAccordionGroup" value={accordionValue} key={moduleId}>
+    <IonAccordionGroup
+      className="IonAccordionGroup"
+      value={accordionValue}
+      key={moduleId}
+    >
       <IonAccordion value="first">
         <IonItem slot="header" color="light">
           <IonIcon ios={copyOutline} md={copyOutline}></IonIcon>
         </IonItem>
 
-        <div  slot="content">
+        <div slot="content">
           <div className="btnContainerTemplate">
             {templateMapped &&
               templateMapped.map((template, id) => {
                 return (
-                  <IonItem className="clickable-label" key={id}>
-                    <IonLabel
-                      onClick={() => {
-                        /* en action, el seg parametro agrega el titulo */
-
-                        action(type,template,moduleId,firstSectionId, sectionId);
-                        setAccordionValue(null);
-                      }}
+                  <>
+                    <IonButton
+                      onClick={() =>
+                        deleteOneProject("SUBSECTION_TEMPLATES", id)
+                      }
                     >
-                      {template.name}
-                    </IonLabel>
-                  </IonItem>
+                      X
+                    </IonButton>
+                    <IonItem className="clickable-label" key={id}>
+                      <IonLabel
+                        onClick={() => {
+                          /* en action, el seg parametro agrega el titulo */
+
+                          action(
+                            type,
+                            template,
+                            moduleId,
+                            firstSectionId,
+                            sectionId
+                          );
+                          setAccordionValue(null);
+                        }}
+                      >
+                        {template.name}
+                      </IonLabel>
+                    </IonItem>
+                  </>
                 );
               })}
           </div>

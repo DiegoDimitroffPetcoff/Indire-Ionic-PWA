@@ -10,7 +10,8 @@ export function useTemplatesForm(
   content,
   isModule,
   isSubsection,
-  setContent
+  setContent,
+  setSubsectionTemplates,
 ) {
   function handleInputName(e) {
     const value = e.target.value;
@@ -43,7 +44,8 @@ export function useTemplatesForm(
       setContent,
       setName,
       setDescription,
-      setTitle
+      setTitle,
+      setSubsectionTemplates,
     );
     if (message) {
       alert(message);
