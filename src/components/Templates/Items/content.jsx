@@ -1,26 +1,27 @@
 import { IonInput, IonItem, IonTextarea } from "@ionic/react";
-export function Content({handleInputTitle,title, handleInputDescription, description}) {
+
+export function Content({ handleInputTitle, title, handleInputDescription, description }) {
   return (
-    <div style={{ border: "black 1px solid", margin: "10px" }}>
+    <>
       <IonItem>
         <IonInput
-          label="Title"
+          label="Título"
           labelPlacement="stacked"
           clearInput={true}
-          placeholder="Enter text to see clear button"
+          placeholder="INSPEÇÃO TÉCNICA AO EDIFÍCIO, DESCRIÇÃO GERAL, etc..."
           onIonChange={handleInputTitle}
           value={title}
         ></IonInput>
       </IonItem>
       <IonItem>
         <IonTextarea
-          label="Description"
+          label="Descrição"
           labelPlacement="stacked"
-          placeholder="Enter text to see clear button"
+          placeholder="Envelhecimento natural dos materiais constituintes. Reparação inadequada de zonas de fixação de andaimes..etc"
           onIonChange={handleInputDescription}
           value={description}
         ></IonTextarea>
       </IonItem>
-    </div>
+    </>
   );
 }

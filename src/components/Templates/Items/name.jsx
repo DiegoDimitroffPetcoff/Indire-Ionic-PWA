@@ -1,13 +1,13 @@
-import { useState } from "react";
 import { IonInput, IonItem } from "@ionic/react";
+
 export function Name({ name, handleInputName }) {
   return (
     <IonItem>
       <IonInput
-        label="Name"
+        label="Nome"
         labelPlacement="stacked"
         clearInput={true}
-        placeholder="Enter text to see clear button"
+        placeholder="TELHADOS, PAREDES, PISOS...etc"
         value={name}
         onIonChange={handleInputName}
       ></IonInput>

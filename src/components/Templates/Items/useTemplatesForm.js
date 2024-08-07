@@ -16,21 +16,26 @@ export function useTemplatesForm(
     const value = e.target.value;
     setName(value);
   }
+
   function handleInputTitle(e) {
     const value = e.target.value;
     setTitle(value);
   }
+
   function handleInputDescription(e) {
     const value = e.target.value;
     setDescription(value);
   }
+
   function handleCheck(e, setType) {
     const checked = e.detail.checked;
     setType(checked);
   }
+
   function handleSubmite(e) {
     e.preventDefault();
-    let message = validations(e,
+    let message = validations(
+      e,
       name,
       content,
       isModule,
@@ -43,25 +48,27 @@ export function useTemplatesForm(
     if (message) {
       alert(message);
     }
-
   }
+
   function addContentItem() {
     if (title && description) {
       setContent((preContent) => [...preContent, { title, description }]);
       setTitle("");
       setDescription("");
     } else {
-      alert("Por favor, completa el título y la descripción antes de agregar.");
+      alert("Por favor, complete o título e a descrição antes de adicionar.");
     }
   }
+
   function deleteItem(id) {
     setContent((preContent) => {
       const contentFiltered = preContent.filter(
-        (content, idContent) => idContent != id
+        (content, idContent) => idContent !== id
       );
       return contentFiltered;
     });
   }
+
   return {
     handleInputName,
     handleCheck,
@@ -69,6 +76,6 @@ export function useTemplatesForm(
     handleInputDescription,
     handleSubmite,
     addContentItem,
-    deleteItem
+    deleteItem,
   };
 }

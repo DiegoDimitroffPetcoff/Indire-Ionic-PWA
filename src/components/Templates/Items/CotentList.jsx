@@ -16,7 +16,7 @@ export function ContentList({ content, deleteItem }) {
             content.length > 0 &&
             content.map((content, id) => {
               return (
-                <IonToolbar>
+                <IonToolbar key={id}>
                   <IonButtons slot="end">
                     <IonButton color={"danger"} onClick={() => deleteItem(id)}>
                       X
