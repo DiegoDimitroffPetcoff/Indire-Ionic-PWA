@@ -16,10 +16,12 @@ import {
   addCircleOutline,
   listOutline,
   documents,
+  settings,
 } from "ionicons/icons";
 import "./Menu.css";
 import React, { useContext } from "react";
 import { ProjectContext } from "../../context/ProjectContext";
+import { deleteProject } from "../../services/storageService";
 interface AppPage {
   url: string;
   iosIcon: string;
@@ -54,16 +56,23 @@ const Menu: React.FC = () => {
       iosIcon: documents,
       mdIcon: documents,
     },
-
     {
+      title: "Setting",
+      url: "/setting",
+      iosIcon: settings,
+      mdIcon: settings,
+    },
+
+    /*     {
       title: "Refresh",
       url: "/",
       iosIcon: refresh,
       mdIcon: refresh,
       action: () => {
-        window.localStorage.clear(); // Función para limpiar el localStorage
-      },
-    },
+        window.localStorage.clear();
+        window.location.reload();
+       deleteProject("data") 
+      }, */
   ];
   return (
     <IonMenu contentId="main" type="overlay">
