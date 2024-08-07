@@ -20,7 +20,7 @@ export function useModules({ setProject, project }) {
             }
             return project;
           });
-          saveProject("projects", list);
+          saveProject("projectsList", list);
         };
         updateProjectList();
 
@@ -46,7 +46,7 @@ export function useModules({ setProject, project }) {
           }
           return project;
         });
-        saveProject("projects", list);
+        saveProject("projectsList", list);
       };
       updateProjectList();
 
@@ -71,7 +71,7 @@ export function useModules({ setProject, project }) {
           }
           return project;
         });
-        saveProject("projects", list);
+        saveProject("projectsList", list);
       };
       updateProjectList();
 
@@ -101,7 +101,7 @@ export function useModules({ setProject, project }) {
         }
         return proj;
       });
-      saveProject("projects", list);
+      saveProject("projectsList", list);
     };
     updateProjectList();
   }

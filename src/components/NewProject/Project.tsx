@@ -25,7 +25,7 @@ export function Project() {
       setInitialProject(JSON.parse(JSON.stringify(project)));
       saveProject("initialProject", project);
     }
-  }, [project, id]);
+  }, []);
 
   const restoreInitialProject = () => {
     if (initialProject) {

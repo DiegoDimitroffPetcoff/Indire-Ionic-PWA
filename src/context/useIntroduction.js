@@ -33,7 +33,7 @@ export function useIntroduction(setProject) {
                 }
                 return project;
               });
-              saveProject("projects", list);
+              saveProject("projectsList", list);
             };
             updateProjectList();
 
@@ -59,7 +59,7 @@ export function useIntroduction(setProject) {
               }
               return project;
             });
-            saveProject("projects", list);
+            saveProject("projectsList", list);
           };
           updateProjectList();
 

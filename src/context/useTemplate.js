@@ -1,3 +1,5 @@
+import { saveProject } from "../services/storageService";
+
 export function useTemplates(setProject) {
   const addTemplateOnModule = (_, newModule, moduleId) => {
     /* Module File is special such have a diferent objet, there is not content like in all the subsections */
@@ -9,7 +11,8 @@ export function useTemplates(setProject) {
         newProject[1].modules[moduleId].title = newModule.content[0].title;
         /* I can change the Main name of the module if I put the next sentense */
         /*    newProject[1].modules[moduleId].module = newModule.content[0].title; */
-        window.localStorage.setItem("data", JSON.stringify(newProject));
+       /*  window.localStorage.setItem("data", JSON.stringify(newProject)); */
+        saveProject("data", newProject);
         return newProject;
       } catch (error) {
         console.log(error);
@@ -51,10 +54,11 @@ export function useTemplates(setProject) {
               /*        updateProject[1].modules[moduleId].sections.name = template.name; */
 
               // Guardar en localStorage
-              window.localStorage.setItem(
+    /*           window.localStorage.setItem(
                 "data",
                 JSON.stringify(updateProject)
-              );
+              ); */
+              saveProject("data", updateProject);
               return updateProject;
             } else {
               console.error("Invalid indices for updating project");
@@ -89,10 +93,11 @@ export function useTemplates(setProject) {
               });
 
               // Guardar en localStorage
-              window.localStorage.setItem(
+    /*           window.localStorage.setItem(
                 "data",
                 JSON.stringify(updateProject)
-              );
+              ); */
+              saveProject("data", updateProject);
               return updateProject;
             } else {
               console.error("Invalid indices for updating project");

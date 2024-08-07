@@ -1,3 +1,5 @@
+import { saveProject } from "../services/storageService";
+
 export function useContent(setProject) {
   function addContent(
     description,
@@ -18,7 +20,8 @@ export function useContent(setProject) {
             description: "",
           });
 
-          window.localStorage.setItem("data", JSON.stringify(updateProject));
+          saveProject("data", updateProject);
+          /*  window.localStorage.setItem("data", JSON.stringify(updateProject)); */
           return updateProject;
         });
         break;
@@ -33,7 +36,8 @@ export function useContent(setProject) {
             title: "",
             description: "",
           });
-          window.localStorage.setItem("data", JSON.stringify(updateProject));
+          saveProject("data", updateProject);
+          /*  window.localStorage.setItem("data", JSON.stringify(updateProject)); */
           return updateProject;
         });
         break;
@@ -61,7 +65,8 @@ export function useContent(setProject) {
           updateProject[1].modules[moduleId].sections[firstSectionId].sections[
             sectionId
           ].content[contentId][field] = value;
-          window.localStorage.setItem("data", JSON.stringify(updateProject));
+          saveProject("data", updateProject);
+          /*  window.localStorage.setItem("data", JSON.stringify(updateProject)); */
           return updateProject;
         });
         break;
@@ -73,7 +78,8 @@ export function useContent(setProject) {
           updateProject[1].modules[moduleId].sections[firstSectionId].sections[
             sectionId
           ].sections[sectionId2].content[contentId][field] = value;
-          window.localStorage.setItem("data", JSON.stringify(updateProject));
+          saveProject("data", updateProject);
+          /*  window.localStorage.setItem("data", JSON.stringify(updateProject)); */
           return updateProject;
         });
         break;
@@ -106,7 +112,8 @@ export function useContent(setProject) {
           prevProject[1].modules[moduleId].sections[firstSectionId].sections[
             sectionId
           ].content = contentFiltered;
-          window.localStorage.setItem("data", JSON.stringify(newProject));
+          saveProject("data", newProject);
+          /*  window.localStorage.setItem("data", JSON.stringify(updateProject)); */
           return newProject;
         });
         break;
@@ -127,7 +134,8 @@ export function useContent(setProject) {
             sectionId
           ].sections[sectionId2].content = contentFiltered;
 
-          window.localStorage.setItem("data", JSON.stringify(newProject));
+          saveProject("data", newProject);
+          /*  window.localStorage.setItem("data", JSON.stringify(updateProject)); */
           return newProject;
         });
         break;

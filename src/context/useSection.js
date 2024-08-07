@@ -1,3 +1,5 @@
+import { saveProject } from "../services/storageService";
+
 export function useSection(setProject) {
   // TODO SE DEBE ANALIZAR SIMPLEMENTE AGREGAR MAS TEXTO Y TITUYLO----> CREAR FUNCION
   function addSection(moduleId) {
@@ -11,7 +13,8 @@ export function useSection(setProject) {
         name: "",
       });
 
-      window.localStorage.setItem("data", JSON.stringify(updateProject));
+      saveProject("data", updateProject);
+      /*  window.localStorage.setItem("data", JSON.stringify(updateProject)); */
       return updateProject;
     });
   }
@@ -53,7 +56,9 @@ export function useSection(setProject) {
             // Concatenamos las nuevas imágenes con las existentes
             section[field] = section[field].concat(imagesBase64);
 
-            window.localStorage.setItem("data", JSON.stringify(updateProject));
+            /*     window.localStorage.setItem("data", JSON.stringify(updateProject)); */
+            saveProject("data", updateProject);
+
             console.log(updateProject);
             return updateProject;
           });
@@ -65,7 +70,9 @@ export function useSection(setProject) {
         const section =
           updateProject[1].modules[moduleId].sections[firstSectionId];
         section[field] = value;
-        window.localStorage.setItem("data", JSON.stringify(updateProject));
+        /*     window.localStorage.setItem("data", JSON.stringify(updateProject)); */
+
+        saveProject("data", updateProject);
         return updateProject;
       });
     }
@@ -81,7 +88,8 @@ export function useSection(setProject) {
 
       newProject[1].modules[moduleId].sections = sectionFiltered;
 
-      window.localStorage.setItem("data", JSON.stringify(newProject));
+      /*     window.localStorage.setItem("data", JSON.stringify(newProject)); */
+      saveProject("data", newProject);
       return newProject;
     });
   }

@@ -1,3 +1,5 @@
+import { saveProject } from "../services/storageService";
+
 export function useSubsection(setProject) {
   function handleChangeSubSection(e, moduleId, sectionId, field) {
     const value = e.detail
@@ -25,7 +27,8 @@ export function useSubsection(setProject) {
               section[field] = [];
             }
             section[field] = section[field].concat(imagesBase64);
-            window.localStorage.setItem("data", JSON.stringify(updateProject));
+            /* window.localStorage.setItem("data", JSON.stringify(updateProject)); */
+            saveProject("data", updateProject);
             console.log(updateProject);
             return updateProject;
           });
@@ -36,7 +39,8 @@ export function useSubsection(setProject) {
         const updateProject = [...prevProject];
         const section = updateProject[1].modules[moduleId].sections[sectionId];
         section.content[0][field] = value;
-        window.localStorage.setItem("data", JSON.stringify(updateProject));
+        /* window.localStorage.setItem("data", JSON.stringify(updateProject)); */
+        saveProject("data", updateProject);
         return updateProject;
       });
     }
@@ -61,7 +65,8 @@ export function useSubsection(setProject) {
           );
           newProject[1].modules[moduleId].sections[firstSectionId].sections =
             sectionFiltered;
-          window.localStorage.setItem("data", JSON.stringify(newProject));
+          /* window.localStorage.setItem("data", JSON.stringify(newProject)); */
+          saveProject("data", newProject);
           return newProject;
         });
         break;
@@ -80,7 +85,8 @@ export function useSubsection(setProject) {
           newProject[1].modules[moduleId].sections[firstSectionId].sections[
             sectionId
           ].sections = sectionFiltered;
-          window.localStorage.setItem("data", JSON.stringify(newProject));
+          /* window.localStorage.setItem("data", JSON.stringify(newProject)); */
+          saveProject("data", newProject);
           return newProject;
         });
         break;
@@ -107,7 +113,8 @@ export function useSubsection(setProject) {
             budget: [],
             sections: [],
           });
-          window.localStorage.setItem("data", JSON.stringify(updateProject));
+          /* window.localStorage.setItem("data", JSON.stringify(updateProject)); */
+          saveProject("data", updateProject);
           return updateProject;
         });
         break;
@@ -124,7 +131,8 @@ export function useSubsection(setProject) {
             budget: [],
             sections: [],
           });
-          window.localStorage.setItem("data", JSON.stringify(updateProject));
+          /* window.localStorage.setItem("data", JSON.stringify(updateProject)); */
+          saveProject("data", updateProject);
           return updateProject;
         });
         break;

@@ -27,12 +27,25 @@ export function Modules({ moduleId }) {
     addCounter,
     handleChangeSection,
   } = useContext(ProjectContext);
+
+  const [inputValues, setInputValues] = useState({});
   let module = project[1].modules[moduleId];
 
   useEffect(() => {
     addCounter(moduleId, moduleId + 1);
   }, []);
+  useEffect(() => {
+    addCounter(moduleId, moduleId + 1);
+  }, [addCounter, moduleId]);
 
+  const handleBlur = (e, moduleId, sectionId) => {
+    handleChangeSection(e, 'name', moduleId, sectionId);
+    setInputValues(prev => ({ ...prev, [sectionId]: '' })); // Clear input for the specific section
+  };
+
+  const handleInputChange = (sectionId, value) => {
+    setInputValues(prev => ({ ...prev, [sectionId]: value }));
+  };
   return (
     <div className="moduleContent" key={moduleId}>
       <h2 className="moduleTitle">
@@ -58,7 +71,9 @@ export function Modules({ moduleId }) {
       />
 
       {module.sections.map((section, sectionId) => {
-        let FirstSection = `${moduleId + 1}. # ${sectionId + 1}  `;
+        let FirstSection = `${moduleId + 1}. # ${sectionId + 1} ${
+          section.name
+        } `;
 
         return (
           <IonAccordionGroup expand="inset" key={sectionId}>
@@ -67,9 +82,9 @@ export function Modules({ moduleId }) {
                 <IonLabel>
                   {FirstSection}
                   <IonInput
-                    onIonBlur={(e) =>
-                      handleChangeSection(e, "name", moduleId, sectionId)
-                    }
+                    value={inputValues[sectionId] || ''} // Use state for specific section
+                    onIonBlur={(e) => handleBlur(e, moduleId, sectionId)}
+                    onIonInput={(e) => handleInputChange(sectionId, e.detail.value)}
                   ></IonInput>
                 </IonLabel>
                 <IonButton

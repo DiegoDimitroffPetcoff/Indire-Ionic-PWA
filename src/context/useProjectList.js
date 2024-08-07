@@ -13,7 +13,6 @@ export function useProjectList(setProjectList) {
     );
     await editeProjectOnListProject(newProjectList);
     console.log(newProjectList);
-
     setProjectList(newProjectList);
   }
 

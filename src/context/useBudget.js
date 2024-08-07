@@ -1,3 +1,6 @@
+
+import { saveProject, getProject } from "../services/storageService";
+
 export function useBudget(setProject) {
   function addBudget(
     description,
@@ -21,7 +24,8 @@ export function useBudget(setProject) {
             uniteValue: "",
           });
 
-          window.localStorage.setItem("data", JSON.stringify(updateProject));
+          // Guardar con Capacitor
+          saveProject("data", updateProject);
           return updateProject;
         });
         break;
@@ -38,7 +42,9 @@ export function useBudget(setProject) {
             qtd: "",
             uniteValue: "",
           });
-          window.localStorage.setItem("data", JSON.stringify(updateProject));
+
+          // Guardar con Capacitor
+          saveProject("data", updateProject);
           return updateProject;
         });
         break;
@@ -84,7 +90,9 @@ export function useBudget(setProject) {
               firstSectionId
             ].sections[sectionId].budget[idBudget].uniteValue = result;
           }
-          window.localStorage.setItem("data", JSON.stringify(updateProject));
+
+          // Guardar con Capacitor
+          saveProject("data", updateProject);
           return updateProject;
         });
         break;
@@ -109,7 +117,9 @@ export function useBudget(setProject) {
               firstSectionId
             ].sections[sectionId].sections[sectionId2].budget[idBudget].uniteValue = result;
           }
-          window.localStorage.setItem("data", JSON.stringify(updateProject));
+
+          // Guardar con Capacitor
+          saveProject("data", updateProject);
           return updateProject;
         });
         break;
@@ -144,7 +154,9 @@ export function useBudget(setProject) {
           updateProject[1].modules[moduleId].sections[firstSectionId].sections[
             sectionId
           ].budget = sectionFiltered;
-          window.localStorage.setItem("data", JSON.stringify(updateProject));
+
+          // Guardar con Capacitor
+          saveProject("data", updateProject);
           return updateProject;
         });
         break;
@@ -162,7 +174,9 @@ export function useBudget(setProject) {
           updateProject[1].modules[moduleId].sections[firstSectionId].sections[
             sectionId
           ].sections[sectionId2].budget = sectionFiltered;
-          window.localStorage.setItem("data", JSON.stringify(updateProject));
+
+          // Guardar con Capacitor
+          saveProject("data", updateProject);
           return updateProject;
         });
         break;
@@ -172,5 +186,6 @@ export function useBudget(setProject) {
         break;
     }
   }
+
   return { addBudget, delenteBudget, handleBudget };
 }
