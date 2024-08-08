@@ -1,6 +1,6 @@
-import { saveProject } from "../services/storageService";
+import { deleteOneProject, saveProject } from "../services/storageService";
 
-export function useTemplates(setProject) {
+export function useTemplates(setProject, setSubsectionTemplates, setModulesTemplates) {
   const addTemplateOnModule = (_, newModule, moduleId) => {
     /* Module File is special such have a diferent objet, there is not content like in all the subsections */
     setProject((prevProject) => {
@@ -11,7 +11,7 @@ export function useTemplates(setProject) {
         newProject[1].modules[moduleId].title = newModule.content[0].title;
         /* I can change the Main name of the module if I put the next sentense */
         /*    newProject[1].modules[moduleId].module = newModule.content[0].title; */
-       /*  window.localStorage.setItem("data", JSON.stringify(newProject)); */
+        /*  window.localStorage.setItem("data", JSON.stringify(newProject)); */
         saveProject("data", newProject);
         return newProject;
       } catch (error) {
@@ -54,7 +54,7 @@ export function useTemplates(setProject) {
               /*        updateProject[1].modules[moduleId].sections.name = template.name; */
 
               // Guardar en localStorage
-    /*           window.localStorage.setItem(
+              /*           window.localStorage.setItem(
                 "data",
                 JSON.stringify(updateProject)
               ); */
@@ -93,7 +93,7 @@ export function useTemplates(setProject) {
               });
 
               // Guardar en localStorage
-    /*           window.localStorage.setItem(
+              /*           window.localStorage.setItem(
                 "data",
                 JSON.stringify(updateProject)
               ); */
@@ -114,5 +114,17 @@ export function useTemplates(setProject) {
     }
   }
 
-  return { addTemplateOnModule, addTemplateSubSection };
+  async function deleteTemplate(key, id) {
+    const newTemplates = await deleteOneProject(key, id);
+    console.log(newTemplates);
+    if (key === "MODULE_TEMPLATES") {
+      console.log("se ejecuta setmodules");
+      
+      setModulesTemplates(newTemplates);
+    } else {
+      setSubsectionTemplates(newTemplates);
+    }
+  }
+
+  return { addTemplateOnModule, addTemplateSubSection, deleteTemplate };
 }

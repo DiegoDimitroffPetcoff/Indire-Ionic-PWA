@@ -21,6 +21,7 @@ import {
   getProject,
   getLocalProjects,
   clearLocalProjects,
+  saveProject,
 } from "../services/storageService";
 
 // Create ProjectContext
@@ -117,7 +118,9 @@ export const PorjectProvider = ({ children }) => {
       if (storedTemplates) {
         setModulesTemplates(storedTemplates);
       } else {
+        /* ANALIZAR DESDE DONDE TIENE QUE VENIR LA BASE DE INFO */
         setModulesTemplates(MODULE_TEMPLATES);
+        saveProject("MODULE_TEMPLATES", MODULE_TEMPLATES);
       }
     };
     loadProject();
@@ -130,6 +133,7 @@ export const PorjectProvider = ({ children }) => {
         setSubsectionTemplates(storedTemplates);
       } else {
         setSubsectionTemplates(SUBSECTION_TEMPLATES);
+        saveProject("SUBSECTION_TEMPLATES", SUBSECTION_TEMPLATES);
       }
     };
     loadProject();
@@ -158,8 +162,8 @@ export const PorjectProvider = ({ children }) => {
 
   const { handleChangeIntroduction } = useIntroduction(setProject);
 
-  const { addTemplateOnModule, addTemplateSubSection } =
-    useTemplates(setProject);
+  const { addTemplateOnModule, addTemplateSubSection, deleteTemplate } =
+    useTemplates(setProject, setSubsectionTemplates, setModulesTemplates);
 
   const { handleChangeModules, addCounter, addMainSection, deleteMainSection } =
     useModules({ setProject, project });
@@ -223,6 +227,7 @@ export const PorjectProvider = ({ children }) => {
         addCounterOnSection,
         addTemplateOnModule,
         addTemplateSubSection,
+        deleteTemplate,
         modulesTemplates,
         setModulesTemplates,
         subsectionTemplates,

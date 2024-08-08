@@ -11,6 +11,7 @@ export function useTemplatesForm(
   isModule,
   isSubsection,
   setContent,
+  setModulesTemplates,
   setSubsectionTemplates,
 ) {
   function handleInputName(e) {
@@ -45,6 +46,7 @@ export function useTemplatesForm(
       setName,
       setDescription,
       setTitle,
+      setModulesTemplates,
       setSubsectionTemplates,
     );
     if (message) {

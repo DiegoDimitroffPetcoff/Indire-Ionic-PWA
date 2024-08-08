@@ -48,6 +48,7 @@ export function TemplatesForm() {
     isModule,
     isSubsection,
     setContent,
+    setModulesTemplates,
     setSubsectionTemplates,
   );
 

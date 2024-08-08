@@ -25,7 +25,7 @@ import PostOneDrive from "../../services/PostOneDrive";
 
 export function FotterTaskBar({ setView, view }) {
   const [isSignedIn] = useIsSignedIn();
-  const { project, AddProjectToList } = useContext(ProjectContext);
+  const { project,subsectionTemplates, modulesTemplates,AddProjectToList } = useContext(ProjectContext);
 
     // Render the spinner if the project is null
     if (!project) {
@@ -117,7 +117,7 @@ export function FotterTaskBar({ setView, view }) {
             </IonButton>
           </IonCol>
           <IonCol>
-            <IonButton fill="outline" onClick={() => console.log(project)}>
+            <IonButton fill="outline" onClick={() => console.log("subsectionTemplates:",subsectionTemplates,"modulesTemplates:",modulesTemplates)}>
             </IonButton>
           </IonCol>
         </IonGrid>

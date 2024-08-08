@@ -5,37 +5,51 @@ import {
   IonItem,
   IonLabel,
   IonButton,
+  IonButtons,
 } from "@ionic/react";
 import { copyOutline } from "ionicons/icons";
 
-import moduloTemplateJson from "../../../../templates/moduleTemplate.json";
-
 import { ProjectContext } from "../../../../context/ProjectContext";
-import { useContext, useState } from "react";
-import { deleteOneProject } from "../../../../services/storageService";
+import { useContext, useEffect, useState } from "react";
+
 export function TemplatesBar({ moduleId, firstSectionId, sectionId, type }) {
-  const { addTemplateOnModule, addTemplateSubSection, subsectionTemplates } =
-    useContext(ProjectContext);
+  const {
+    addTemplateOnModule,
+    addTemplateSubSection,
+    deleteTemplate,
+    subsectionTemplates,
+    modulesTemplates,
+  } = useContext(ProjectContext);
   const [accordionValue, setAccordionValue] = useState(null);
   let action;
   let templateMapped;
+  let key;
 
   switch (type) {
     case "module":
+      key = "MODULE_TEMPLATES";
       action = addTemplateOnModule;
-      templateMapped = moduloTemplateJson;
+      templateMapped = modulesTemplates;
       break;
     case "subsection":
+      key = "SUBSECTION_TEMPLATES";
+
       action = addTemplateSubSection;
       templateMapped = subsectionTemplates;
       break;
     case "subsection2":
+      key = "SUBSECTION_TEMPLATES";
+
       action = addTemplateSubSection;
       templateMapped = subsectionTemplates;
       break;
     default:
       action = null;
   }
+
+  useEffect(() => {
+    console.log("ser monta");
+  }, [subsectionTemplates]);
 
   return (
     <IonAccordionGroup
@@ -48,41 +62,38 @@ export function TemplatesBar({ moduleId, firstSectionId, sectionId, type }) {
           <IonIcon ios={copyOutline} md={copyOutline}></IonIcon>
         </IonItem>
 
-        <div slot="content">
-          <div className="btnContainerTemplate">
-            {templateMapped &&
-              templateMapped.map((template, id) => {
-                return (
-                  <>
+        <div slot="content" className="btnContainerTemplate">
+          {templateMapped &&
+            templateMapped.map((template, id) => {
+              return (
+                <IonLabel key={id}>
+                  <IonButtons>
                     <IonButton
-                      onClick={() =>
-                        deleteOneProject("SUBSECTION_TEMPLATES", id)
-                      }
+                      color={"danger"}
+                      onClick={() => deleteTemplate(key, id)}
                     >
                       X
                     </IonButton>
-                    <IonItem className="clickable-label" key={id}>
-                      <IonLabel
-                        onClick={() => {
-                          /* en action, el seg parametro agrega el titulo */
-
-                          action(
-                            type,
-                            template,
-                            moduleId,
-                            firstSectionId,
-                            sectionId
-                          );
-                          setAccordionValue(null);
-                        }}
-                      >
-                        {template.name}
-                      </IonLabel>
-                    </IonItem>
-                  </>
-                );
-              })}
-          </div>
+                  </IonButtons>
+                  <IonItem className="clickable-label" key={id}>
+                    <IonLabel
+                      onClick={() => {
+                        action(
+                          type,
+                          template,
+                          moduleId,
+                          firstSectionId,
+                          sectionId
+                        );
+                        setAccordionValue(null);
+                      }}
+                    >
+                      <h6>{template.name}</h6>
+                    </IonLabel>
+                  </IonItem>
+                </IonLabel>
+              );
+            })}
         </div>
       </IonAccordion>
     </IonAccordionGroup>

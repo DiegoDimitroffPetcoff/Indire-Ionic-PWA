@@ -6,6 +6,7 @@ import { ProjectContext } from "../../context/ProjectContext";
 import "./Project.css";
 import { useParams } from "react-router";
 import { saveProject } from "../../services/storageService";
+import { Spinner } from "../Spinner/Spinner";
 
 interface RouteParams {
   id: string;
@@ -13,7 +14,7 @@ interface RouteParams {
 
 export function Project() {
   const { handleSubmite, project, setProject } = useContext(ProjectContext);
-  const { id } = useParams<RouteParams>(); 
+  const { id } = useParams<RouteParams>();
 
   let modules: any[] = project ? project[1].modules : [];
   const [initialProject, setInitialProject] = useState(null);
@@ -21,7 +22,9 @@ export function Project() {
   // Simulate saving the initial project state when the component mounts
   useEffect(() => {
     if (project) {
-      console.log("Almacenar el estado inicial del proyecto cuando el componente se monta");
+      console.log(
+        "Almacenar el estado inicial del proyecto cuando el componente se monta"
+      );
       setInitialProject(JSON.parse(JSON.stringify(project)));
       saveProject("initialProject", project);
     }
@@ -34,14 +37,8 @@ export function Project() {
   };
 
   // Render the spinner if the project is null
-  if (!project) {
-    return (
-      <IonContent>
-        <div className="spinner-container">
-          <IonSpinner name="crescent" />
-        </div>
-      </IonContent>
-    );
+  if (!project || !modules) {
+    return <Spinner />;
   }
 
   return (

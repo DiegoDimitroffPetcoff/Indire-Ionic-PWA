@@ -2,7 +2,7 @@ import { saveProject } from "../../services/storageService";
 import ModuleTemplates from "../../templates/moduleTemplate.json";
 import SubsectionTemplates from "../../templates/subsectionTemplate.json";
 
-export function validations(e, name, content, isModule, isSubsection, setContent, setName, setDescription, setTitle,setSubsectionTemplates,) {
+export function validations(e, name, content, isModule, isSubsection, setContent, setName, setDescription, setTitle,setModulesTemplates,setSubsectionTemplates,) {
   e.preventDefault();
   
   if (!name) {
@@ -26,13 +26,22 @@ export function validations(e, name, content, isModule, isSubsection, setContent
   };
   
   if (isModule) {
-    ModuleTemplates.push(updateTemplate);
+    setModulesTemplates(preTemplate=>{
+      const copyTemplate = [...preTemplate,updateTemplate ]
+      saveProject("MODULE_TEMPLATES", copyTemplate)
+      console.log("MODULO");
+      
+      return copyTemplate
+    })
+   
   }
   
   if (isSubsection) {
     setSubsectionTemplates(preTemplate=>{
       const copyTemplate = [...preTemplate,updateTemplate ]
       saveProject("SUBSECTION_TEMPLATES", copyTemplate)
+      console.log("sub");
+      
       return copyTemplate
     })
    /*  SubsectionTemplates.push(updateTemplate); */

@@ -50,8 +50,6 @@ export const deleteProject = async (key: any) => {
 // Eliminar projecto desde Capacitor Preferences
 
 export const deleteOneProject = async (key: string, id: any) => {
-  console.log("Si");
-  
   // Obtén el valor almacenado con la clave dada
   const { value } = await Preferences.get({ key });
 
@@ -75,4 +73,5 @@ export const deleteOneProject = async (key: string, id: any) => {
     key: key,
     value: JSON.stringify(valueFiltered),
   });
+  return valueFiltered;
 };
