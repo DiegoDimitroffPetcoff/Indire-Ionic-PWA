@@ -3,8 +3,14 @@
   "name": "Indire",
   "screenshots": [
     {
-      "src": "INDIRE_SCREEN_SHOT.png",
-      "sizes": "320x320",
+      "src": "INDIRE_SCREEN_SHOT_screenshot.png",
+      "sizes": "640x320",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "INDIRE_SCREEN_SHOT_screenshot.png",
+      "sizes": "640x320",
       "type": "image/png",
       "purpose": "any"
     }
