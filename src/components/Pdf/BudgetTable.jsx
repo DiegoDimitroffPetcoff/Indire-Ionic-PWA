@@ -1,5 +1,5 @@
 import { Text, View } from "@react-pdf/renderer";
-import { styles } from "./styles";
+import { styles } from "../../../public/styles";
 let cont = 0
 export const BudgetTable = ({ allData }) => {
 

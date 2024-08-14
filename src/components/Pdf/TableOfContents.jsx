@@ -1,5 +1,5 @@
 import { View, Text } from "@react-pdf/renderer";
-import { styles } from "./styles";
+import { styles } from "../../../public/styles";
 
 export function TableOfContents({ allData }) {
   // Función para generar una lista del índice con los números de página

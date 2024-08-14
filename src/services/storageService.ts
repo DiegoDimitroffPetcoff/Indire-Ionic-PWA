@@ -39,7 +39,7 @@ export const saveProject = async (key: any, data: any) => {
 // Obtener projecto desde Capacitor Preferences
 export const getProject = async (key: any) => {
   const { value } = await Preferences.get({ key });
-  value ? console.log("SIII tsx") : console.log("NULLL");
+
   return value ? JSON.parse(value) : null;
 };
 

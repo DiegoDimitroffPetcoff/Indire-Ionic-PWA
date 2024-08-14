@@ -6,7 +6,7 @@ import {
   PDFViewer,
   Font,
 } from "@react-pdf/renderer";
-import { getDynamicStyles, styles } from "./styles";
+import { getDynamicStyles, styles } from "../../../public/styles";
 
 import { BudgetTable } from "./BudgetTable";
 import { TableOfContents } from "./TableOfContents";

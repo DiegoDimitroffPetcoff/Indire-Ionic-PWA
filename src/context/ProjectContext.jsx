@@ -92,7 +92,7 @@ export const PorjectProvider = ({ children }) => {
     const loadProject = async () => {
       const storedProject = await getProject("data");
       if (storedProject) {
-        console.log("SI HAY CAPACITOR STORED");
+   
         setProject(storedProject);
       } else {
         console.log("NO HAY CAPACITOR STORED, USANDO INITIAL_STATE");
@@ -104,7 +104,7 @@ export const PorjectProvider = ({ children }) => {
 
   // Load project list Capacitor
   useEffect(() => {
-    console.log("Loading project list from storage");
+
     const loadProjects = async () => {
       const localProjects = await getLocalProjects();
       setProjectList(localProjects);

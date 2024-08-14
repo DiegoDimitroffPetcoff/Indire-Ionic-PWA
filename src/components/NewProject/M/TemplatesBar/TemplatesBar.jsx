@@ -47,10 +47,6 @@ export function TemplatesBar({ moduleId, firstSectionId, sectionId, type }) {
       action = null;
   }
 
-  useEffect(() => {
-    console.log("ser monta");
-  }, [subsectionTemplates]);
-
   return (
     <IonAccordionGroup
       className="IonAccordionGroup"

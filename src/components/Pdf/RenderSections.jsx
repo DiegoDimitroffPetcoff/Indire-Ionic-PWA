@@ -1,6 +1,6 @@
 import { Text, View, Image, Page } from "@react-pdf/renderer";
 import { BudgetTable } from "./BudgetTable";
-import { styles } from "./styles";
+import { styles } from "../../../public/styles";
 import { capitalizeFirstLetter } from "../../utils/capitalizeFirstLetter";
 import { RenderSections2 } from "./RenderSections2";
 function counter(idx, firtsSectionIndex, sectionIndex, content) {

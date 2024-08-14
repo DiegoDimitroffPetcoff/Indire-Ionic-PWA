@@ -1,6 +1,6 @@
 import { Text, View, Image, Page } from "@react-pdf/renderer";
 import { BudgetTable } from "./BudgetTable";
-import { styles } from "./styles";
+import { styles } from "../../../public/styles";
 import { RenderSections } from "./RenderSections";
 
 export const RenderFirstSections = ({ sections ,moduleIndex}) => {

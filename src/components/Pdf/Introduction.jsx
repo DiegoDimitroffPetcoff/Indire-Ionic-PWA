@@ -1,5 +1,5 @@
 import { Text, View, Image, Page } from "@react-pdf/renderer";
-import { styles } from "./styles";
+import { styles } from "../../../public/styles";
 import { Header } from "./Header";
 export function Introduction({ data }) {
   const { introduction } = data[0];

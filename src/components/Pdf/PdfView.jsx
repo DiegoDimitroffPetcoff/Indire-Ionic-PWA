@@ -10,7 +10,7 @@ import { IonContent } from "@ionic/react";
 
 import data from "./mock.json";
 
-import { styles } from "./styles";
+import { styles } from "../../../public/styles";
 import { Header } from "./Header";
 import { ProjectContext } from "../../context/ProjectContext";
 import { useContext } from "react";
