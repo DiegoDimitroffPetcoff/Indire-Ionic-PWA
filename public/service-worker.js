@@ -74,4 +74,4 @@ self.addEventListener('message', (event) => {
 
 
 //new version
-const version = "app-version-v20 - / Coming back to the create-react-app" 
+const version = "app-version-v25 - / Try to update firebase " 
