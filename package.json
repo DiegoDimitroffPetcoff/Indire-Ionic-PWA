@@ -1,11 +1,12 @@
 {
-  "name": "Indire",
+  "name": "indire",
   "private": true,
   "version": "0.0.1",
   "type": "module",
   "scripts": {
     "dev": "NODE_OPTIONS=--max-old-space-size=4096 vite",
     "build": "tsc && vite build",
+    "build1": "node --max-old-space-size=4096 tsc && vite build",
     "preview": "vite preview",
     "test.e2e": "cypress run",
     "test.unit": "vitest",

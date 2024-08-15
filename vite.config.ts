@@ -1,22 +1,20 @@
 /// <reference types="vitest" />
 
-import legacy from '@vitejs/plugin-legacy'
-import react from '@vitejs/plugin-react'
-import { defineConfig } from 'vite'
-import { VitePWA } from 'vite-plugin-pwa';
+import legacy from "@vitejs/plugin-legacy";
+import react from "@vitejs/plugin-react";
+import { defineConfig } from "vite";
+import { VitePWA } from "vite-plugin-pwa";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [
-    react(),VitePWA({ registerType: 'autoUpdate' }),
-    legacy()
-  ],
+  plugins: [react(), VitePWA({ registerType: "autoUpdate" }), legacy()],
   build: {
-    outDir: 'build' // Define el directorio de salida como "build"
+    outDir: "build",
+    minify: false,
   },
   test: {
     globals: true,
-    environment: 'jsdom',
-    setupFiles: './src/setupTests.ts',
-  }
-})
+    environment: "jsdom",
+    setupFiles: "./src/setupTests.ts",
+  },
+});

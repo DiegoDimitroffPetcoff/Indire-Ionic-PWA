@@ -1,6 +1,8 @@
 {
   "short_name": "Indire",
   "name": "Indire",
+  "lang": "pt",
+  "description": "Application Made to Indire Company",
   "screenshots": [
     {
       "src": "INDIRE_SCREEN_SHOT_screenshot.png",

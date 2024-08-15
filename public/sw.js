@@ -48,6 +48,7 @@ self.addEventListener('fetch', (event) => {
     caches.match(event.request)
       .then((response) => {
         // Si hay una coincidencia en el caché, retornarla
+        console.log("hay fetch")
         if (response) {
           return response;
         }
