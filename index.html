@@ -15,23 +15,7 @@
     <meta name="msapplication-tap-highlight" content="no" />
 
     <link rel="manifest" href="/manifest.json" />
-    <script>
-      if ("serviceWorker" in navigator) {
-        window.addEventListener("load", () => {
-          navigator.serviceWorker
-            .register("/sw.js")
-            .then((registration) => {
-              console.log(
-                "Service worker registered with scope:",
-                registration.scope
-              );
-            })
-            .catch((error) => {
-              console.error("Service worker registration failed:", error);
-            });
-        });
-      }
-    </script>
+
     <link rel="shortcut icon" type="image/png" href="/INDIRE_LOGO.png" />
 
     <!-- add to homescreen for ios -->
