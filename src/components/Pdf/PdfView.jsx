@@ -9,11 +9,12 @@ import {
 import { IonContent } from "@ionic/react";
 
 import data from "./mock.json";
+import { PDFDownloadLink } from "@react-pdf/renderer";
 
 import { styles } from "../../../public/styles";
 import { Header } from "./Header";
 import { ProjectContext } from "../../context/ProjectContext";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Introduction } from "./Introduction";
 import { Modules } from "./Modules";
 import { BudgetTable } from "./BudgetTable";
@@ -23,9 +24,26 @@ export const PdfView = () => {
 
   return (
     <IonContent>
-      <PDFViewer width="100%" height="100%">
+{/*       <PDFViewer width="100%" height="100%">
         <MyDocument data={project} />
-      </PDFViewer>
+      </PDFViewer> */}
+    <div>
+      <PDFDownloadLink document={<MyDocument data={project} />}>
+        {({ blob, url, loading, error }) => {
+          if (loading) return <p>Cargando PDF...</p>;
+          if (error) return <p>Error al generar el PDF: {error.message}</p>;
+
+          return (
+            <iframe
+              src={url}
+              title="PDF Document"
+              width="100%"
+              height="600px"
+            />
+          );
+        }}
+      </PDFDownloadLink>
+    </div>
     </IonContent>
   );
 };

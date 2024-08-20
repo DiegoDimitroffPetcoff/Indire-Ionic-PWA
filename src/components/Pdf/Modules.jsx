@@ -1,11 +1,4 @@
-import {
-  Page,
-  View,
-  Text,
-  Document,
-  PDFViewer,
-  Font,
-} from "@react-pdf/renderer";
+import { Page, View, Text } from "@react-pdf/renderer";
 import { getDynamicStyles, styles } from "../../../public/styles";
 
 import { BudgetTable } from "./BudgetTable";

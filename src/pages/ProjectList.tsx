@@ -16,7 +16,6 @@ import { ProjectList } from "../components/ProjectList/ProjectList";
 
 const ProjectListPage: React.FC = () => {
   const { name } = useParams<{ name: string }>();
-  const [view, setView] = useState(false);
 
   return (
     <IonPage>
