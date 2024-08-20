@@ -170,7 +170,11 @@ export const styles = StyleSheet.create({
   },
   thirdTemplate: {
     marginTop: 30,
-  },
+  }
+  ,
+  indexPageNumber:{
+    alignSelf:"flex-start"
+  }
 });
 
 /* 

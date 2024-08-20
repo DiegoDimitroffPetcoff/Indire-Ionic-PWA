@@ -170,7 +170,7 @@ export const styles = StyleSheet.create({
   },
   thirdTemplate: {
     marginTop: 30,
-  },
+  }
 });
 
 /* 

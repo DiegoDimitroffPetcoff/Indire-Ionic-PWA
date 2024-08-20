@@ -14,20 +14,19 @@ import { PDFDownloadLink } from "@react-pdf/renderer";
 import { styles } from "../../../public/styles";
 import { Header } from "./Header";
 import { ProjectContext } from "../../context/ProjectContext";
-import { useContext,  } from "react";
+import { useContext } from "react";
 import { Introduction } from "./Introduction";
 import { Modules } from "./Modules";
 import { BudgetTable } from "./BudgetTable";
-import "./PdfView.css"
+import "./PdfView.css";
+import { Iterator } from "../../utils/Iterator";
+import { TableOfContents } from "./TableOfContents";
+
 export const PdfView = () => {
   const { project } = useContext(ProjectContext);
 
   return (
     <IonContent>
-{/*       <PDFViewer width="100%" height="100%">
-        <MyDocument data={project} />
-      </PDFViewer> */}
-    <div>
       <PDFDownloadLink document={<MyDocument data={project} />}>
         {({ blob, url, loading, error }) => {
           if (loading) return <p>Cargando PDF...</p>;
@@ -43,7 +42,6 @@ export const PdfView = () => {
           );
         }}
       </PDFDownloadLink>
-    </div>
     </IonContent>
   );
 };
@@ -63,12 +61,19 @@ Font.register({
 });
 
 export const MyDocument = ({ data }) => {
+  let dataIterated;
+  if (data[1] && data[1].modules) {
+    dataIterated = Iterator(data[1].modules);
+  } else {
+    dataIterated = [];
+  }
+
   return (
     <Document>
       <Introduction data={data} />
-      <Modules data={data} />
-
-      {/*         <BudgetTable budget={data} /> */}
+      <TableOfContents dataIterated={dataIterated} />
+      <Modules dataIterated={dataIterated} />
+      <BudgetTable dataIterated={dataIterated} />
     </Document>
   );
 };
