@@ -1,12 +1,10 @@
-import { Text, View, Image,Page } from "@react-pdf/renderer";
+import { Text, View, Image, Page } from "@react-pdf/renderer";
 import { styles } from "../../../public/styles";
 
 export function Header({ data }) {
-  
-  const { introduction } = data.data[0];
+  const { introduction } = data[0];
 
   return (
-
     <View fixed>
       <Text style={styles.headerContent}>
         {introduction.project_number +
@@ -27,6 +25,5 @@ export function Header({ data }) {
         ---------------------------------------------------------------------------------------------------
       </Text>
     </View>
-   
   );
 }

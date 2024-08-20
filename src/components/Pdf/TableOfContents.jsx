@@ -1,14 +1,15 @@
-import { View, Text, Page } from "@react-pdf/renderer";
+import { View, Link, Text, Page } from "@react-pdf/renderer";
 import { styles } from "../../../public/styles";
 import { capitalizeFirstLetter } from "../../utils/capitalizeFirstLetter";
+import { Header } from "./Header";
 
-export function TableOfContents({ dataIterated }) {
+export function TableOfContents({ dataIterated, data }) {
   function generateIndex(data) {
     let index = [];
     let currentPage = 1;
     data.forEach((item) => {
       index.push({
-        title: item.title ? item.title : item.name,
+        title: item.name ? item.name : item.title,
         idTemplate: item.idTemplate,
         page: currentPage,
       });
@@ -22,6 +23,7 @@ export function TableOfContents({ dataIterated }) {
 
   return (
     <Page size="A4" style={styles.page}>
+      <Header data={data} />
       <View style={styles.tableOfContents}>
         <Text style={styles.indexTitle}>ÍNDICE</Text>
         {indexList.map((item, index) => (
@@ -29,8 +31,12 @@ export function TableOfContents({ dataIterated }) {
             key={index}
             style={{ flexDirection: "row", justifyContent: "space-between" }}
           >
-            <Text style={styles.indexItem}>{capitalizeFirstLetter(item.title)}</Text>
-            <Text style={styles.indexPageNumber}>{item.idTemplate}</Text>
+            <Text style={styles.indexItem}>
+              {capitalizeFirstLetter(item.title)}
+            </Text>
+            <Link style={styles.indexPageNumber} src={`#${item.idTemplate}`}>
+              <Text>{item.idTemplate}</Text>{" "}
+            </Link>
           </View>
         ))}
       </View>

@@ -71,8 +71,8 @@ export const MyDocument = ({ data }) => {
   return (
     <Document>
       <Introduction data={data} />
-      <TableOfContents dataIterated={dataIterated} />
-      <Modules dataIterated={dataIterated} />
+      <TableOfContents data={data} dataIterated={dataIterated} />
+      <Modules data={data}dataIterated={dataIterated} />
       <BudgetTable dataIterated={dataIterated} />
     </Document>
   );

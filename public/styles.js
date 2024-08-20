@@ -77,7 +77,6 @@ export const styles = StyleSheet.create({
     textAlign: "right",
     color: "grey",
     margin: "5px",
-    
   },
   headerTitle: {
     fontSize: 13,
@@ -170,11 +169,11 @@ export const styles = StyleSheet.create({
   },
   thirdTemplate: {
     marginTop: 30,
-  }
-  ,
-  indexPageNumber:{
-    alignSelf:"flex-start"
-  }
+  },
+  indexPageNumber: {
+    alignSelf: "flex-start",
+    textDecoration: "none",
+  },
 });
 
 /* 

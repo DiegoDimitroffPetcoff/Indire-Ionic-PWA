@@ -16,7 +16,7 @@ export function Iterator(modules) {
             name: section.name,
             description: content.description,
             title: content.title,
-            idTemplate: `${moduleId}.${sectionId + 1}`,
+            idTemplate: `${moduleId + 1}.${sectionId + 1}`,
             budget: section.budget || [],
           });
         });
@@ -28,7 +28,7 @@ export function Iterator(modules) {
                 name: subsection.name,
                 description: subContent.description,
                 title: subContent.title,
-                idTemplate: `${moduleId}.${sectionId + 1}.${subsectionId + 1}`,
+                idTemplate: `${moduleId + 1}.${sectionId + 1}.${subsectionId + 1}`,
                 budget: subsection.budget || [],
               });
             });
@@ -40,7 +40,7 @@ export function Iterator(modules) {
                     name: subSubsection.name,
                     description: subSubContent.description,
                     title: subSubContent.title,
-                    idTemplate: `${moduleId}.${sectionId + 1}.${subsectionId + 1}.${
+                    idTemplate: `${moduleId + 1}.${sectionId + 1}.${subsectionId + 1}.${
                       subSubsectionId + 1
                     }`,
                     budget: subSubsection.budget || [],
