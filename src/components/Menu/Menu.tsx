@@ -12,7 +12,6 @@ import {
 import { Login } from "@microsoft/mgt-react";
 import { useLocation } from "react-router-dom";
 import {
-  refresh,
   addCircleOutline,
   listOutline,
   documents,
