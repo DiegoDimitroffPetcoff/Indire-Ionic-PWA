@@ -41,7 +41,6 @@ import "./theme/variables.css";
 import { useEffect, useState } from "react";
 import Templates from "./pages/Templates";
 import ProjectList from "./pages/ProjectList";
-import { BackButton } from "./components/BackButton/BackButton";
 
 setupIonicReact();
 
@@ -67,13 +66,10 @@ const App: React.FC = () => {
         <IonSplitPane contentId="main">
           <Menu />
           <IonRouterOutlet id="main">
-           
             <Route path="/" exact={true}>
               <Redirect to="/project" />
             </Route>
             <Route path="/project" exact={true}>
-
-            <BackButton />
               <Page />
             </Route>
             <Route path="/project/:id">

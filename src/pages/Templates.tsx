@@ -13,21 +13,15 @@ import ExploreContainer from "../components/ExploreContainer";
 import "./Page.css";
 
 import { TemplatesForm } from "../components/Templates/TemplatesForm";
-import { BackButton } from "../components/BackButton/BackButton";
+
+import { Header } from "../components/Header/Header";
 
 const Temaplates: React.FC = () => {
   const { name } = useParams<{ name: string }>();
 
   return (
     <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonButtons slot="start">
-            <IonMenuButton />
-          </IonButtons>
-          <BackButton />
-        </IonToolbar>
-      </IonHeader>
+      <Header />
 
       <IonContent fullscreen>
         <IonHeader collapse="condense">

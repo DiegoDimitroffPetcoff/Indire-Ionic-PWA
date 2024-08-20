@@ -13,21 +13,15 @@ import ExploreContainer from "../components/ExploreContainer";
 import "./Page.css";
 import { useState } from "react";
 import { ProjectList } from "../components/ProjectList/ProjectList";
-import { BackButton } from "../components/BackButton/BackButton";
+
+import { Header } from "../components/Header/Header";
 
 const ProjectListPage: React.FC = () => {
   const { name } = useParams<{ name: string }>();
 
   return (
     <IonPage>
-       <IonHeader>
-        <IonToolbar>
-          <IonButtons slot="start">
-            <IonMenuButton />
-          </IonButtons>
-          <BackButton />
-        </IonToolbar>
-      </IonHeader>
+      <Header />
 
       <IonContent fullscreen>
         <IonHeader collapse="condense">
