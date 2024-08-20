@@ -6,12 +6,12 @@ import {
 
 export function useProject(INITIAL_STATE, project, setProject, setProjectList) {
   function updateProject() {
-    const newProject = JSON.parse(JSON.stringify(INITIAL_STATE));
-    newProject[0].id = uuidv4();
-console.log(newProject);
-
-    saveProject("data", newProject);
-    /*     window.localStorage.setItem("data", JSON.stringify(newProject)); */
+    setProject((preProject) => {
+      const newProject = INITIAL_STATE;
+      newProject[0].id = uuidv4();
+      saveProject("data", newProject);
+      return newProject;
+    });
   }
 
   function resetProjectAndList(initialProject) {

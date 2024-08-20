@@ -14,7 +14,6 @@ interface RouteParams {
 
 export function Project() {
   const { handleSubmite, project, setProject } = useContext(ProjectContext);
-  const { id } = useParams<RouteParams>();
 
   let modules: any[] = project ? project[1].modules : [];
   const [initialProject, setInitialProject] = useState(null);
@@ -43,10 +42,6 @@ export function Project() {
 
   return (
     <IonContent>
-      <IonButton onClick={restoreInitialProject}>
-        Restaurar ao estado inicial
-      </IonButton>
-
       <form onSubmit={handleSubmite}>
         <Introduction />
         {modules.map((_, moduleId) => (

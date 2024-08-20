@@ -64,7 +64,7 @@ export function FotterTaskBar({ setView, view }) {
                   disabled={loading}
                   onClick={() => PostOneDrive(blob)}
                 >
-                  <IonIcon slot="end" icon={downloadOutline}></IonIcon>
+                  <IonIcon icon={downloadOutline}></IonIcon>
                   {loading ? (
                     <>
                       Generating PDF... <IonSpinner name="crescent" />
@@ -89,8 +89,8 @@ export function FotterTaskBar({ setView, view }) {
               routerLink="/projectList"
               onClick={() => AddProjectToList(project)}
             >
-              <IonIcon slot="end" icon={saveOutline}></IonIcon>
-              Salvar cópia no dispositivo
+              <IonIcon  icon={saveOutline}></IonIcon>
+        
             </IonButton>
           </IonCol>
           <IonCol>
@@ -99,28 +99,23 @@ export function FotterTaskBar({ setView, view }) {
               fill="outline"
               onClick={handleSaveToOneDrive}
             >
-              <IonIcon slot="end" icon={cloudCircle}></IonIcon>
-              OnDrive
+              <IonIcon icon={cloudCircle}></IonIcon>
+        
             </IonButton>
           </IonCol>
-          <IonCol>
+    {/*       <IonCol>
             <IonButton fill="outline">
-              <IonIcon slot="end" icon={documentOutline}></IonIcon>
+              <IonIcon icon={documentOutline}></IonIcon>
               Word
             </IonButton>
-          </IonCol>
+          </IonCol> */}
           <IonCol>
             <IonButton fill="outline" onClick={() => setView(!view)}>
-              <IonIcon slot="end" icon={clipboardOutline}></IonIcon>
-              PDF
+              <IonIcon icon={clipboardOutline}></IonIcon>
+    
             </IonButton>
           </IonCol>
-          <IonCol>
-            <IonButton fill="outline">
-              <IonIcon slot="end" icon={clipboardOutline}></IonIcon>
-              Projeto
-            </IonButton>
-          </IonCol>
+
         </IonGrid>
       </IonToolbar>
     </IonFooter>
