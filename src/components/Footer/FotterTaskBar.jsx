@@ -25,18 +25,19 @@ import PostOneDrive from "../../services/PostOneDrive";
 
 export function FotterTaskBar({ setView, view }) {
   const [isSignedIn] = useIsSignedIn();
-  const { project,subsectionTemplates, modulesTemplates,AddProjectToList } = useContext(ProjectContext);
+  const { project, subsectionTemplates, modulesTemplates, AddProjectToList } =
+    useContext(ProjectContext);
 
-    // Render the spinner if the project is null
-    if (!project) {
-      return (
-        <IonContent>
-          <div className="spinner-container">
-            <IonSpinner name="crescent" />
-          </div>
-        </IonContent>
-      );
-    }
+  // Render the spinner if the project is null
+  if (!project) {
+    return (
+      <IonContent>
+        <div className="spinner-container">
+          <IonSpinner name="crescent" />
+        </div>
+      </IonContent>
+    );
+  }
   const { title } = project[0].introduction;
 
   const handleSaveToOneDrive = async () => {
@@ -58,7 +59,11 @@ export function FotterTaskBar({ setView, view }) {
           >
             {({ blob, url, loading, error }) => (
               <IonCol>
-                <IonButton fill="outline" disabled={loading} onClick={() => PostOneDrive(blob)}>
+                <IonButton
+                  fill="outline"
+                  disabled={loading}
+                  onClick={() => PostOneDrive(blob)}
+                >
                   <IonIcon slot="end" icon={downloadOutline}></IonIcon>
                   {loading ? (
                     <>
@@ -114,10 +119,6 @@ export function FotterTaskBar({ setView, view }) {
             <IonButton fill="outline">
               <IonIcon slot="end" icon={clipboardOutline}></IonIcon>
               Projeto
-            </IonButton>
-          </IonCol>
-          <IonCol>
-            <IonButton fill="outline" onClick={() => console.log("subsectionTemplates:",subsectionTemplates,"modulesTemplates:",modulesTemplates)}>
             </IonButton>
           </IonCol>
         </IonGrid>
