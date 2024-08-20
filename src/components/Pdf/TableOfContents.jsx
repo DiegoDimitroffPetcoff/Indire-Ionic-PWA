@@ -7,13 +7,20 @@ export function TableOfContents({ dataIterated, data }) {
   function generateIndex(data) {
     let index = [];
     let currentPage = 1;
+    let lastTemplate = null;
     data.forEach((item) => {
-      index.push({
-        title: item.name ? item.name : item.title,
-        idTemplate: item.idTemplate,
-        page: currentPage,
-      });
-      currentPage += 1;
+      if (lastTemplate !== item.idTemplate) {
+     
+        
+        index.push({
+          title: item.name ? item.name : item.title,
+          idTemplate: item.idTemplate,
+          page: currentPage,
+        });
+        currentPage += 1;
+      }
+
+      lastTemplate = item.idTemplate;
     });
 
     return index;

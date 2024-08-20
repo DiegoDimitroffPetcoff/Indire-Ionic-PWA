@@ -45,7 +45,7 @@ export const PdfView = () => {
     </IonContent>
   );
 };
-// Register fonts
+
 Font.register({
   family: "Arial",
   fonts: [
@@ -72,7 +72,7 @@ export const MyDocument = ({ data }) => {
     <Document>
       <Introduction data={data} />
       <TableOfContents data={data} dataIterated={dataIterated} />
-      <Modules data={data}dataIterated={dataIterated} />
+      <Modules data={data} dataIterated={dataIterated} />
       <BudgetTable dataIterated={dataIterated} />
     </Document>
   );

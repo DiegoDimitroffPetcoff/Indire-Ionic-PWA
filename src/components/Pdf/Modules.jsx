@@ -18,7 +18,7 @@ export function Modules({ data, dataIterated }) {
             <View key={index} style={styles.module}>
               <Text
                 style={[styles.moduleName, getDynamicStyles(index)]}
-                id={module.idTemplate}
+                id={!isSameTemplate && lastidTemplate}
               >
                 {isSameTemplate
                   ? module.name
