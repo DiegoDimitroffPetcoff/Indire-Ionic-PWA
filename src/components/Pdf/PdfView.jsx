@@ -14,11 +14,11 @@ import { PDFDownloadLink } from "@react-pdf/renderer";
 import { styles } from "../../../public/styles";
 import { Header } from "./Header";
 import { ProjectContext } from "../../context/ProjectContext";
-import { useContext, useEffect, useState } from "react";
+import { useContext,  } from "react";
 import { Introduction } from "./Introduction";
 import { Modules } from "./Modules";
 import { BudgetTable } from "./BudgetTable";
-
+import "./PdfView.css"
 export const PdfView = () => {
   const { project } = useContext(ProjectContext);
 

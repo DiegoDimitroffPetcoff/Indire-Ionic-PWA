@@ -1,0 +1,5 @@
+iframe {
+  width: 100%;
+  height: 100vh; /* Ajusta el alto del iframe al 100% del viewport */
+  border: none;
+}
