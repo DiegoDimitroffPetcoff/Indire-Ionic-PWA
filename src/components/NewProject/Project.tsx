@@ -11,7 +11,7 @@ import {
   IonHeader,
   IonToolbar,
   IonButtons,
-  IonBackButton
+  IonBackButton,
 } from "@ionic/react";
 import { ProjectContext } from "../../context/ProjectContext";
 import "./Project.css";
@@ -53,13 +53,15 @@ export function Project() {
   const canGoBack = history.length > 2;
   return (
     <IonContent>
-      <IonHeader>
-        <IonToolbar>
-          <IonButtons slot="start">
-          {canGoBack && <IonBackButton defaultHref="/projectList" />}
-          </IonButtons>
-        </IonToolbar>
-      </IonHeader>
+{/*       {canGoBack && (
+        <IonHeader>
+          <IonToolbar>
+            <IonButtons slot="start">
+              <IonBackButton defaultHref="/projectList" />
+            </IonButtons>
+          </IonToolbar>
+        </IonHeader>
+      )} */}
       <form onSubmit={handleSubmite}>
         <Introduction />
         {modules.map((_, moduleId) => (

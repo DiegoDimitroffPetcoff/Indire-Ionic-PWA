@@ -13,18 +13,19 @@ import ExploreContainer from "../components/ExploreContainer";
 import "./Page.css";
 import { useState } from "react";
 import { ProjectList } from "../components/ProjectList/ProjectList";
+import { BackButton } from "../components/BackButton/BackButton";
 
 const ProjectListPage: React.FC = () => {
   const { name } = useParams<{ name: string }>();
 
   return (
     <IonPage>
-      <IonHeader>
+       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
             <IonMenuButton />
           </IonButtons>
-          <IonTitle>{name}</IonTitle>
+          <BackButton />
         </IonToolbar>
       </IonHeader>
 

@@ -13,6 +13,7 @@ import ExploreContainer from "../components/ExploreContainer";
 import "./Page.css";
 
 import { TemplatesForm } from "../components/Templates/TemplatesForm";
+import { BackButton } from "../components/BackButton/BackButton";
 
 const Temaplates: React.FC = () => {
   const { name } = useParams<{ name: string }>();
@@ -24,7 +25,7 @@ const Temaplates: React.FC = () => {
           <IonButtons slot="start">
             <IonMenuButton />
           </IonButtons>
-          <IonTitle>{name}</IonTitle>
+          <BackButton />
         </IonToolbar>
       </IonHeader>
 

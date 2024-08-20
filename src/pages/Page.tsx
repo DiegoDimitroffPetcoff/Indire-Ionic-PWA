@@ -13,6 +13,7 @@ import ExploreContainer from "../components/ExploreContainer";
 import "./Page.css";
 import { useState } from "react";
 import { FotterTaskBar } from "../components/Footer/FotterTaskBar";
+import { BackButton } from "../components/BackButton/BackButton";
 
 const Page: React.FC = () => {
   const { name } = useParams<{ name: string }>();
@@ -25,7 +26,7 @@ const Page: React.FC = () => {
           <IonButtons slot="start">
             <IonMenuButton />
           </IonButtons>
-          <IonTitle>{name}</IonTitle>
+          <BackButton />
         </IonToolbar>
       </IonHeader>
 
@@ -38,8 +39,7 @@ const Page: React.FC = () => {
         <ExploreContainer name={name} view={view} />
       </IonContent>
 
-      <FotterTaskBar  setView={setView} view={view} />
-      
+      <FotterTaskBar setView={setView} view={view} />
     </IonPage>
   );
 };
