@@ -13,8 +13,12 @@ export function ProjectList() {
     setProject(projectFiltered);
     setInitialProject(JSON.parse(JSON.stringify(projectFiltered)));
   }
+
   return (
     <IonContent>
+   
+
+     
       <IonGrid className="table-grid">
         {/* Caption */}
         <IonRow className="table-caption">

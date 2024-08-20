@@ -1,13 +1,24 @@
 import { useContext, useEffect, useState } from "react";
 import { Modules } from "./M/Modules";
 import { Introduction } from "./I/Introduction";
-import { IonContent, IonButton, IonSpinner } from "@ionic/react";
+import {
+  IonContent,
+  IonButton,
+  IonSpinner,
+  IonCol,
+  IonGrid,
+  IonRow,
+  IonHeader,
+  IonToolbar,
+  IonButtons,
+  IonBackButton
+} from "@ionic/react";
 import { ProjectContext } from "../../context/ProjectContext";
 import "./Project.css";
 import { useParams } from "react-router";
 import { saveProject } from "../../services/storageService";
 import { Spinner } from "../Spinner/Spinner";
-
+import { useHistory } from "react-router";
 interface RouteParams {
   id: string;
 }
@@ -27,7 +38,7 @@ export function Project() {
       setInitialProject(JSON.parse(JSON.stringify(project)));
       saveProject("initialProject", project);
     }
-  }, []);
+  }, [project]);
 
   const restoreInitialProject = () => {
     if (initialProject) {
@@ -39,9 +50,16 @@ export function Project() {
   if (!project || !modules) {
     return <Spinner />;
   }
-
+  const canGoBack = history.length > 2;
   return (
     <IonContent>
+      <IonHeader>
+        <IonToolbar>
+          <IonButtons slot="start">
+          {canGoBack && <IonBackButton defaultHref="/projectList" />}
+          </IonButtons>
+        </IonToolbar>
+      </IonHeader>
       <form onSubmit={handleSubmite}>
         <Introduction />
         {modules.map((_, moduleId) => (
