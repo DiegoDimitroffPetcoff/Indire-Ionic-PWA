@@ -1,18 +1,8 @@
-import {
-  Page,
-  View,
-  Text,
-  Document,
-  PDFViewer,
-  Font,
-} from "@react-pdf/renderer";
+import { Document, Font } from "@react-pdf/renderer";
 import { IonContent } from "@ionic/react";
 
-import data from "./mock.json";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 
-import { styles } from "../../../public/styles";
-import { Header } from "./Header";
 import { ProjectContext } from "../../context/ProjectContext";
 import { useContext } from "react";
 import { Introduction } from "./Introduction";
@@ -31,15 +21,7 @@ export const PdfView = () => {
         {({ blob, url, loading, error }) => {
           if (loading) return <p>Cargando PDF...</p>;
           if (error) return <p>Error al generar el PDF: {error.message}</p>;
-
-          return (
-            <iframe
-              src={url}
-              title="PDF Document"
-              width="100%"
-              height="600px"
-            />
-          );
+          return <iframe src={url} title="PDF Document" loading="lazy" />;
         }}
       </PDFDownloadLink>
     </IonContent>

@@ -1,6 +1,6 @@
 import { Text, View, Image, Page } from "@react-pdf/renderer";
 import { styles } from "../../../public/styles";
-import { Header } from "./Header";
+
 export function Introduction({ data }) {
   const { introduction } = data[0];
   return (
@@ -22,7 +22,7 @@ export function Introduction({ data }) {
                   alt="No imagen Added"
                 />
               )}
-              <Text  style={styles.sub_title}>{introduction.sub_title}</Text>
+              <Text style={styles.sub_title}>{introduction.sub_title}</Text>
 
               <Text style={styles.contentProjectInformation}>
                 {introduction.project_number +
@@ -32,12 +32,6 @@ export function Introduction({ data }) {
                   introduction.version}
               </Text>
             </View>
-
-            {introduction.main_img_url ? (
-              <Image style={styles.mainImage} src={introduction.main_img_url} />
-            ) : (
-              <Text></Text>
-            )}
           </View>
         ) : (
           <Text></Text>
