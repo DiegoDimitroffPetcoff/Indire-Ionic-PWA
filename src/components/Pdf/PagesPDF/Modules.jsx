@@ -1,7 +1,7 @@
 import { Page, View, Text } from "@react-pdf/renderer";
-import { getDynamicStyles, styles } from "../../../public/styles";
+import { getDynamicStyles, styles } from "../../../../public/styles";
 
-import { Header } from "./Header";
+import { Header } from "../Header";
 export function Modules({ data, dataIterated }) {
   let lastidTemplate = null;
 

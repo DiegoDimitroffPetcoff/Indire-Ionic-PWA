@@ -1,7 +1,7 @@
 import { View, Link, Text, Page } from "@react-pdf/renderer";
-import { styles } from "../../../public/styles";
-import { capitalizeFirstLetter } from "../../utils/capitalizeFirstLetter";
-import { Header } from "./Header";
+import { styles } from "../../../../public/styles";
+import { capitalizeFirstLetter } from "../../../utils/capitalizeFirstLetter";
+import { Header } from "../Header";
 
 export function TableOfContents({ dataIterated, data }) {
   function generateIndex(data) {

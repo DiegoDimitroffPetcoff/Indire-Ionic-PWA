@@ -1,5 +1,5 @@
 import { Text, View, Page } from "@react-pdf/renderer";
-import { styles } from "../../../public/styles";
+import { styles } from "../../../../public/styles";
 let cont = 0;
 export const BudgetTable = ({ dataIterated }) => {
   if (dataIterated.length !== 0) {

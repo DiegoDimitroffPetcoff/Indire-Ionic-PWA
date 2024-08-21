@@ -5,12 +5,12 @@ import { PDFDownloadLink } from "@react-pdf/renderer";
 
 import { ProjectContext } from "../../context/ProjectContext";
 import { useContext } from "react";
-import { Introduction } from "./Introduction";
-import { Modules } from "./Modules";
-import { BudgetTable } from "./BudgetTable";
+import { Introduction } from "./PagesPDF/Introduction";
+import { Modules } from "./PagesPDF/Modules";
+import { BudgetTable } from "./PagesPDF/BudgetTable";
 import "./PdfView.css";
 import { Iterator } from "../../utils/Iterator";
-import { TableOfContents } from "./TableOfContents";
+import { TableOfContents } from "./PagesPDF/TableOfContents";
 
 export const PdfView = () => {
   const { project } = useContext(ProjectContext);
