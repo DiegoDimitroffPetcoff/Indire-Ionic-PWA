@@ -21,9 +21,6 @@ export function Project() {
   // Simulate saving the initial project state when the component mounts
   useEffect(() => {
     if (project) {
-      console.log(
-        "Almacenar el estado inicial del proyecto cuando el componente se monta"
-      );
       setInitialProject(JSON.parse(JSON.stringify(project)));
       saveProject("initialProject", project);
     }

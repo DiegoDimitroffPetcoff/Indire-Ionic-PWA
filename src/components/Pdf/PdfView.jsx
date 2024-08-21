@@ -21,7 +21,7 @@ export const PdfView = () => {
         {({ blob, url, loading, error }) => {
           if (loading) return <p>Cargando PDF...</p>;
           if (error) return <p>Error al generar el PDF: {error.message}</p>;
-          return <iframe src={url} title="PDF Document" loading="lazy" />;
+          return <iframe src={url} title="PDF Document" />;
         }}
       </PDFDownloadLink>
     </IonContent>

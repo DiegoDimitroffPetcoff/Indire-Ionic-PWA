@@ -1,7 +1,5 @@
 import { StyleSheet } from "@react-pdf/renderer";
 export function getDynamicStyles(index) {
-
-  
   switch (index) {
     case 1:
       return styles.firstTemplate;
@@ -162,21 +160,17 @@ export const styles = StyleSheet.create({
   },
 
   firstTemplate: {
+    fontSize: 15,
     fontWeight: "bold",
-    margin: 0,
-    color:"red"
+    margin: 10,
   },
   secondTemplate: {
-    fontWeight: "bold",
-    margin: 0,
-    color:"blue"
-  },
-  thirdTemplate: {
-    marginTop: 30,
+    fontWeight: "heavy",
+
+    fontSize: 13,
   },
   indexPageNumber: {
     alignSelf: "flex-start",
     textDecoration: "none",
   },
 });
-

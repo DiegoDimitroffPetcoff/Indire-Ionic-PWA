@@ -4,7 +4,7 @@ import { getDynamicStyles, styles } from "../../../public/styles";
 import { Header } from "./Header";
 export function Modules({ data, dataIterated }) {
   let lastidTemplate = null;
-  let styleCounter = 0;
+
   return (
     <Page size="A4" style={styles.page}>
       <Header data={data} />
@@ -15,7 +15,9 @@ export function Modules({ data, dataIterated }) {
           let dynamicStyle;
           if (!isSameTemplate) {
             dynamicStyle = getDynamicStyles(1);
-          }else{dynamicStyle = getDynamicStyles(2);}
+          } else {
+            dynamicStyle = getDynamicStyles(2);
+          }
 
           lastidTemplate = module.idTemplate;
 
@@ -33,7 +35,6 @@ export function Modules({ data, dataIterated }) {
                       module.name ? module.name : module.title
                     }`}
               </Text>
-              <Text style={styles.moduleText}>{module.title}</Text>
               <Text style={styles.moduleText}>{module.description}</Text>
             </View>
           );

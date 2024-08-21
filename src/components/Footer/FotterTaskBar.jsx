@@ -57,31 +57,21 @@ export function FotterTaskBar({ setView, view }) {
             document={<MyDocument data={project} />}
             fileName={title + ".pdf"}
           >
-            {({ blob, url, loading, error }) => (
-              <IonCol>
-                <IonButton
-                  fill="outline"
-                  disabled={loading}
-                  onClick={() => PostOneDrive(blob)}
-                >
-                  <IonIcon icon={downloadOutline}></IonIcon>
-                  {loading ? (
-                    <>
-                      Generating PDF... <IonSpinner name="crescent" />
-                    </>
-                  ) : error ? (
-                    `Erro: ${error.message}`
-                  ) : (
-                    "Download"
+            {({ blob, url, loading, error }) => {
+              return (
+                <IonCol>
+                  <IonButton fill="outline" disabled={loading}>
+                    <IonIcon icon={downloadOutline}></IonIcon>
+                    {loading ? <>...</> : error ? `Erro: ${error.message}` : ""}
+                  </IonButton>
+                  {error && (
+                    <p style={{ color: "red" }}>
+                      Failed to generate PDF: {error.message}
+                    </p>
                   )}
-                </IonButton>
-                {error && (
-                  <p style={{ color: "red" }}>
-                    Failed to generate PDF: {error.message}
-                  </p>
-                )}
-              </IonCol>
-            )}
+                </IonCol>
+              );
+            }}
           </PDFDownloadLink>
           <IonCol>
             <IonButton
@@ -89,8 +79,7 @@ export function FotterTaskBar({ setView, view }) {
               routerLink="/projectList"
               onClick={() => AddProjectToList(project)}
             >
-              <IonIcon  icon={saveOutline}></IonIcon>
-        
+              <IonIcon icon={saveOutline}></IonIcon>
             </IonButton>
           </IonCol>
           <IonCol>
@@ -100,10 +89,9 @@ export function FotterTaskBar({ setView, view }) {
               onClick={handleSaveToOneDrive}
             >
               <IonIcon icon={cloudCircle}></IonIcon>
-        
             </IonButton>
           </IonCol>
-    {/*       <IonCol>
+          {/*       <IonCol>
             <IonButton fill="outline">
               <IonIcon icon={documentOutline}></IonIcon>
               Word
@@ -112,10 +100,8 @@ export function FotterTaskBar({ setView, view }) {
           <IonCol>
             <IonButton fill="outline" onClick={() => setView(!view)}>
               <IonIcon icon={clipboardOutline}></IonIcon>
-    
             </IonButton>
           </IonCol>
-
         </IonGrid>
       </IonToolbar>
     </IonFooter>
