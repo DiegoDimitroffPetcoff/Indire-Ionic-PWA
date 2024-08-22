@@ -26,7 +26,7 @@ import { PDF } from "../Pdf/PagesPDF/PDF";
 
 export function FotterTaskBar({ setView, view }) {
   const [isSignedIn] = useIsSignedIn();
-  const { project, AddProjectToList } = useContext(ProjectContext);
+  const { project, AddProjectToList, selectedFolder } = useContext(ProjectContext);
   const { url, loading, error } = useRenderPDF(project);
 
   // Render the spinner if the project is null
@@ -46,7 +46,7 @@ export function FotterTaskBar({ setView, view }) {
 
     try {
       const blob = await pdf(PDF(project)).toBlob();
-      await PostOneDrive(blob, title);
+      await PostOneDrive(blob, title, selectedFolder);
     } catch (error) {
       console.error("Failed to upload to OneDrive", error);
     }

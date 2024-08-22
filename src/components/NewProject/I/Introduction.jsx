@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { ProjectContext } from "../../../context/ProjectContext";
 import "../Project.css";
 import {
@@ -7,12 +7,23 @@ import {
   IonDatetimeButton,
   IonModal,
 } from "@ionic/react";
+import { folder } from "ionicons/icons";
+import { IonItem, IonIcon } from "@ionic/react";
+import { IonList, IonSelect, IonSelectOption } from "@ionic/react";
 export function Introduction() {
-  const { project, handleChangeIntroduction } = useContext(ProjectContext);
+  const {
+    project,
+    handleChangeIntroduction,
+    selectedFolder,
+    setSelectedFolder,
+  } = useContext(ProjectContext);
+
   const projectContent = project[0].introduction || [];
   const { id } = project[0] && project[0];
-
-
+  const handleSelectChange = (event) => {
+    const value = event.detail.value;
+    setSelectedFolder(value);
+  };
   return (
     <div className="introductionContent">
       <IonInput
@@ -48,6 +59,22 @@ export function Introduction() {
         labelPlacement="floating"
         onIonChange={(e) => handleChangeIntroduction(e, "project_number", id)}
       />
+      <IonList>
+        <IonItem>
+          <IonIcon ios={folder} md={folder}></IonIcon>
+          <IonSelect
+            aria-label="Fruit"
+            placeholder={selectedFolder}
+            multiple={false}
+            onIonChange={handleSelectChange}
+            value={selectedFolder} // Mantener el valor actual seleccionado
+          >
+            <IonSelectOption value="Edificios">Edificios</IonSelectOption>
+            <IonSelectOption value="Granjas">Granjas</IonSelectOption>
+            <IonSelectOption value="Parkes">Parkes</IonSelectOption>
+          </IonSelect>
+        </IonItem>
+      </IonList>
 
       <input
         type="file"

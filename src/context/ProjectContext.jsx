@@ -86,6 +86,7 @@ export const PorjectProvider = ({ children }) => {
   const [projectList, setProjectList] = useState(PROJECTS_LIST);
   const [modulesTemplates, setModulesTemplates] = useState(null);
   const [subsectionTemplates, setSubsectionTemplates] = useState(null);
+  const [selectedFolder, setSelectedFolder] = useState("no_selected_folder");
 
   // Load project data Capacitor
   useEffect(() => {
@@ -236,6 +237,7 @@ export const PorjectProvider = ({ children }) => {
         resetProjectAndList,
         clearProjectsFromStorage,
         AddProjectToList,
+        selectedFolder, setSelectedFolder
       }}
     >
       {children}

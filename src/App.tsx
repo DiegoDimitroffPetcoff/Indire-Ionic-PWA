@@ -41,11 +41,13 @@ import "./theme/variables.css";
 import { useEffect, useState } from "react";
 import Templates from "./pages/Templates";
 import ProjectList from "./pages/ProjectList";
+import Setting from "./pages/Setting";
 
 setupIonicReact();
 
 const App: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+ 
   useEffect(() => {
     const updateLoginStatus = () => {
       if (Providers.globalProvider) {
@@ -76,6 +78,7 @@ const App: React.FC = () => {
               <Page />
             </Route>
             <Route path="/templates" component={Templates} />
+            <Route path="/setting" component={Setting} />
             <Route path="/projectList" component={ProjectList} />
           </IonRouterOutlet>
         </IonSplitPane>

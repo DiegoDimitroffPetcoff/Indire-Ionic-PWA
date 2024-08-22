@@ -1,15 +1,13 @@
 import {
-  IonButtons,
   IonTitle,
   IonToolbar,
   IonContent,
   IonHeader,
-  IonMenuButton,
   IonPage,
 } from "@ionic/react";
 
 import { useParams } from "react-router";
-import ExploreContainer from "../components/ExploreContainer";
+
 import "./Page.css";
 
 import { TemplatesForm } from "../components/Templates/TemplatesForm";

@@ -1,11 +1,11 @@
 import { Auth } from "../auth/Auth";
 
 
-const PostOneDrive = async (file, title) => {
+const PostOneDrive = async (file, title, folder) => {
   try {
     const accessToken = await Auth();
     var root = "https://graph.microsoft.com/v1.0/me/drive/root:";
-    var path = `/Pruebas-Test/${title}.pdf:/content`;
+    var path = `/${folder}/${title}.pdf:/content`;
     var url = root + encodeURIComponent(path);
 
     const response = await fetch(url, {
