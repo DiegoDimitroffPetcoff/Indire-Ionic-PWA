@@ -12,7 +12,7 @@ interface RouteParams {
   id: string;
 }
 
-export function Project() {
+function Project() {
   const { handleSubmite, project, setProject } = useContext(ProjectContext);
 
   let modules: any[] = project ? project[1].modules : [];
@@ -47,3 +47,4 @@ export function Project() {
     </IonContent>
   );
 }
+export default Project;
