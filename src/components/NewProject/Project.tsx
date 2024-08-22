@@ -20,8 +20,6 @@ function Project() {
 
   // Simulate saving the initial project state when the component mounts
   useEffect(() => {
-    console.log("prokject",project);
-    
     if (project) {
       setInitialProject(JSON.parse(JSON.stringify(project)));
       saveProject("initialProject", project);
