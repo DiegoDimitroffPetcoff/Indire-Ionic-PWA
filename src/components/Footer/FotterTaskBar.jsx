@@ -22,11 +22,12 @@ import { ProjectContext } from "../../context/ProjectContext";
 import { useContext } from "react";
 import { MyDocument } from "../Pdf/PdfView";
 import PostOneDrive from "../../services/PostOneDrive";
+import { useRenderPDF } from "../../hooks/useRenderPDF";
 
 export function FotterTaskBar({ setView, view }) {
   const [isSignedIn] = useIsSignedIn();
-  const { project, subsectionTemplates, modulesTemplates, AddProjectToList } =
-    useContext(ProjectContext);
+  const { project, AddProjectToList } = useContext(ProjectContext);
+  const { url, loading, error } = useRenderPDF(project);
 
   // Render the spinner if the project is null
   if (!project) {
@@ -41,6 +42,8 @@ export function FotterTaskBar({ setView, view }) {
   const { title } = project[0].introduction;
 
   const handleSaveToOneDrive = async () => {
+    console.log("handleSaveToOneDrive");
+
     try {
       const blob = await pdf(<MyDocument data={project} />).toBlob();
       await PostOneDrive(blob, title);
@@ -53,26 +56,21 @@ export function FotterTaskBar({ setView, view }) {
     <IonFooter>
       <IonToolbar>
         <IonGrid>
-          <PDFDownloadLink
-            document={<MyDocument data={project} />}
-            fileName={title + ".pdf"}
-          >
-            {({ blob, url, loading, error }) => {
-              return (
-                <IonCol>
-                  <IonButton fill="outline" disabled={loading}>
-                    <IonIcon icon={downloadOutline}></IonIcon>
-                    {loading ? <>...</> : error ? `Erro: ${error.message}` : ""}
-                  </IonButton>
-                  {error && (
-                    <p style={{ color: "red" }}>
-                      Failed to generate PDF: {error.message}
-                    </p>
-                  )}
-                </IonCol>
-              );
-            }}
-          </PDFDownloadLink>
+          {url ? (
+            <IonCol>
+              <IonButton fill="outline">
+                <a href={url} download={`${title}.pdf`}>
+                  <IonIcon icon={downloadOutline}></IonIcon>
+                </a>
+              </IonButton>
+            </IonCol>
+          ) : (
+            <IonCol>
+              <IonButton fill="outline">
+                <IonIcon>...</IonIcon>
+              </IonButton>
+            </IonCol>
+          )}
           <IonCol>
             <IonButton
               fill="outline"

@@ -1,6 +1,5 @@
 import { expose } from "comlink";
 
-/* import "./workerShim"; */
 let log = console.info;
 
 const renderPDFInWorker = async (props) => {

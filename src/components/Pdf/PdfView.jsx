@@ -13,12 +13,9 @@ import { useRenderPDF } from "../../hooks/useRenderPDF";
 
 export const PdfView = () => {
   const { project } = useContext(ProjectContext);
-
   const { url, loading, error } = useRenderPDF(project);
-
   if (loading) return <p>Generating PDF...</p>;
   if (error) return <p>Error generating PDF: {error.message}</p>;
-
   return (
     <IonContent>{url && <iframe src={url} title="PDF Document" />}</IonContent>
   );
