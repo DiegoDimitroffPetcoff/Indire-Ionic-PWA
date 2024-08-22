@@ -13,20 +13,14 @@ import { useRenderPDF } from "../../hooks/useRenderPDF";
 
 export const PdfView = () => {
   const { project } = useContext(ProjectContext);
-let title= "Diego";
-let author= "Diego";
-let description= "pdf";
-  const { url, loading, error } = useRenderPDF({ title, author, description });
+
+  const { url, loading, error } = useRenderPDF(project);
 
   if (loading) return <p>Generating PDF...</p>;
   if (error) return <p>Error generating PDF: {error.message}</p>;
 
   return (
-    <IonContent>
-      {url && (
-   <iframe src={url} title="PDF Document" />
-      )}
-    </IonContent>
+    <IonContent>{url && <iframe src={url} title="PDF Document" />}</IonContent>
   );
 };
 
@@ -45,8 +39,6 @@ Font.register({
 });
 
 export const MyDocument = ({ data }) => {
-  console.log(data);
-
   let dataIterated;
   if (data[1] && data[1].modules) {
     dataIterated = Iterator(data[1].modules);
@@ -63,12 +55,3 @@ export const MyDocument = ({ data }) => {
     </Document>
   );
 };
-{
-  /* <PDFDownloadLink document={<MyDocument data={project} />}>
-{({ blob, url, loading, error }) => {
-  if (loading) return <p>Cargando PDF...</p>;
-  if (error) return <p>Error al generar el PDF: {error.message}</p>;
-  return <iframe src={url} title="PDF Document" />;
-}}
-</PDFDownloadLink> */
-}
