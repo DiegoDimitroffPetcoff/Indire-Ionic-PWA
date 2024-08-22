@@ -35,7 +35,7 @@ Font.register({
   ],
 });
 
-export const MyDocument = ({ data }) => {
+/* export const MyDocument = ({ data }) => {
   let dataIterated;
   if (data[1] && data[1].modules) {
     dataIterated = Iterator(data[1].modules);
@@ -51,4 +51,4 @@ export const MyDocument = ({ data }) => {
       <BudgetTable dataIterated={dataIterated} />
     </Document>
   );
-};
+}; */

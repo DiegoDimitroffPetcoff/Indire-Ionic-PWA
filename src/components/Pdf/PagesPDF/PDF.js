@@ -1,9 +1,11 @@
 import React from "react";
-import { Page, Document, Text, View, Image } from "@react-pdf/renderer";
+import { Page, Document } from "@react-pdf/renderer";
 import { styles } from "../../../../public/styles";
 import { Introduction } from "./Introduction";
 import { Iterator } from "../../../utils/Iterator";
 import { Modules } from "./Modules.js";
+import { TableOfContents } from "./TableOfContents";
+import { BudgetTable } from "./BudgetTable";
 
 export const PDF = (data) => {
   // Verifica si 'data' existe y tiene contenido antes de intentar acceder a 'data[0]'
@@ -28,6 +30,8 @@ export const PDF = (data) => {
     Document,
     null,
     React.createElement(Introduction, { introduction }),
-    React.createElement(Modules, { data, dataIterated })
+    React.createElement(TableOfContents, { data, dataIterated }),
+    React.createElement(Modules, { data, dataIterated }),
+    React.createElement(BudgetTable, { dataIterated })
   );
 };

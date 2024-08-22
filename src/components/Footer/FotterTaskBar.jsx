@@ -11,18 +11,18 @@ import {
 import {
   downloadOutline,
   clipboardOutline,
-  documentOutline,
   saveOutline,
   cloudCircle,
 } from "ionicons/icons";
-import { PDFDownloadLink } from "@react-pdf/renderer";
+
 import { useIsSignedIn } from "@microsoft/mgt-react";
 import { pdf } from "@react-pdf/renderer";
 import { ProjectContext } from "../../context/ProjectContext";
 import { useContext } from "react";
-import { MyDocument } from "../Pdf/PdfView";
+/* import { MyDocument } from "../Pdf/PdfView"; */
 import PostOneDrive from "../../services/PostOneDrive";
 import { useRenderPDF } from "../../hooks/useRenderPDF";
+import { PDF } from "../Pdf/PagesPDF/PDF";
 
 export function FotterTaskBar({ setView, view }) {
   const [isSignedIn] = useIsSignedIn();
@@ -45,7 +45,7 @@ export function FotterTaskBar({ setView, view }) {
     console.log("handleSaveToOneDrive");
 
     try {
-      const blob = await pdf(<MyDocument data={project} />).toBlob();
+      const blob = await pdf(PDF(project)).toBlob();
       await PostOneDrive(blob, title);
     } catch (error) {
       console.error("Failed to upload to OneDrive", error);
