@@ -1,7 +1,7 @@
 import React from "react";
 import { Page, View, Text } from "@react-pdf/renderer";
 import { getDynamicStyles, styles } from "../../../../public/styles";
-/* import { Header } from "../Header"; */
+import { Header } from "./Header";
 
 export function Modules({ data, dataIterated }) {
   let lastidTemplate = null;
@@ -9,7 +9,7 @@ export function Modules({ data, dataIterated }) {
   return React.createElement(
     Page,
     { size: "A4", style: styles.page },
-/*     React.createElement(Header, { data }), */
+    React.createElement(Header, { data }),
 
     React.createElement(
       View,

@@ -2,7 +2,7 @@ import React from "react";
 import { View, Link, Text, Page } from "@react-pdf/renderer";
 import { styles } from "../../../../public/styles";
 import { capitalizeFirstLetter } from "../../../utils/capitalizeFirstLetter";
-/* import { Header } from "../Header"; */
+import { Header } from "./Header";
 
 export function TableOfContents({ data, dataIterated }) {
   function generateIndex(data) {
@@ -28,7 +28,7 @@ export function TableOfContents({ data, dataIterated }) {
   return React.createElement(
     Page,
     { size: "A4", style: styles.page },
-/*     React.createElement(Header, { data }), */
+    React.createElement(Header, { data }),
     React.createElement(
       View,
       { style: styles.tableOfContents },
