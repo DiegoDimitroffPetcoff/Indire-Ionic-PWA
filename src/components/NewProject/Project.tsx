@@ -8,10 +8,6 @@ import "./Project.css";
 import { saveProject } from "../../services/storageService";
 import { Spinner } from "../Spinner/Spinner";
 
-interface RouteParams {
-  id: string;
-}
-
 function Project() {
   const { handleSubmite, project, setProject } = useContext(ProjectContext);
 

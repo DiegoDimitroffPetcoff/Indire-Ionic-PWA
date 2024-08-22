@@ -10,6 +10,7 @@ const PdfView = () => {
   if (loading) return <p>Generating PDF...</p>;
   if (error) return <p>Error generating PDF: {error.message}</p>;
   return (
+    
     <IonContent>{url && <iframe src={url} title="PDF Document" />}</IonContent>
   );
 };
