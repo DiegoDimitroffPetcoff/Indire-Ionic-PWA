@@ -6,8 +6,9 @@ import {
 
 export function useProject(INITIAL_STATE, project, setProject, setProjectList) {
   function updateProject() {
+
     setProject((preProject) => {
-      const newProject = INITIAL_STATE;
+      const newProject = JSON.parse(JSON.stringify(INITIAL_STATE));
       newProject[0].id = uuidv4();
       saveProject("data", newProject);
       return newProject;
