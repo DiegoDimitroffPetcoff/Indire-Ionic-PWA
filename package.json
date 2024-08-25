@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "dev": "NODE_OPTIONS=--max-old-space-size=4096 vite",
+    "dev": "vite",
     "build": "tsc && vite build",
     "build1": "node --max-old-space-size=4096 tsc && vite build",
     "preview": "vite preview",
@@ -57,6 +57,7 @@
     "terser": "^5.4.0",
     "typescript": "^5.1.6",
     "vite": "~5.2.0",
+    "vite-plugin-comlink": "^5.0.1",
     "vite-plugin-pwa": "^0.20.1",
     "vitest": "^0.34.6"
   },
