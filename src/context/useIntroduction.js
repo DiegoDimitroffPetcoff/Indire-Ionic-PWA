@@ -46,7 +46,7 @@ export function useIntroduction(setProject) {
         setProject((prevProject) => {
           const newProject = [...prevProject];
           newProject[0].introduction[field] = value;
-
+console.log(newProject)
           // Guardar el proyecto actualizado
           saveProject("data", newProject);
 

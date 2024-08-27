@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { ProjectContext } from "../../../context/ProjectContext";
 import "../Project.css";
 import {
@@ -6,10 +6,13 @@ import {
   IonDatetime,
   IonDatetimeButton,
   IonModal,
+  IonList,
+  IonSelect,
+  IonSelectOption,
 } from "@ionic/react";
 import { folder } from "ionicons/icons";
 import { IonItem, IonIcon } from "@ionic/react";
-import { IonList, IonSelect, IonSelectOption } from "@ionic/react";
+
 export function Introduction() {
   const {
     project,

@@ -1,10 +1,9 @@
 import React from "react";
 import { Text, View, Image, Page } from "@react-pdf/renderer";
 import { styles } from "../../../../public/styles";
+import { dateChanger } from "../../../utils/dateChanger";
 
 export function Introduction({ introduction }) {
-/*   const { introduction } = data[0]; */
-
   return React.createElement(
     Page,
     { size: "A4", style: styles.page },
@@ -27,7 +26,11 @@ export function Introduction({ introduction }) {
                 { style: styles.mainTitle },
                 introduction.title
               ),
-              React.createElement(Text, { style: styles.text }, introduction.address),
+              React.createElement(
+                Text,
+                { style: styles.text },
+                introduction.address
+              ),
               introduction.main_img_url
                 ? React.createElement(Image, {
                     style: styles.mainImg,
@@ -42,6 +45,11 @@ export function Introduction({ introduction }) {
                 Text,
                 { style: styles.sub_title },
                 introduction.sub_title
+              ),
+              React.createElement(
+                Text,
+                { style: styles.sub_title },
+                dateChanger(introduction.date)
               ),
               React.createElement(
                 Text,

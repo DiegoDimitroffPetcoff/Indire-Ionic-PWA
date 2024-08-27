@@ -94,7 +94,7 @@ const Menu: React.FC = () => {
                   detail={false}
                 >
                   <IonIcon
-                    aria-hidden="true"
+              /*       aria-hidden="true" */
                     slot="start"
                     ios={appPage.iosIcon}
                     md={appPage.mdIcon}

@@ -34,7 +34,7 @@ export const styles = StyleSheet.create({
   },
   mainTitle: {
     marginTop: 50,
-    fontSize: 35,
+    fontSize: 25,
     fontWeight: "bold",
     textAlign: "center",
   },
@@ -42,11 +42,11 @@ export const styles = StyleSheet.create({
     marginTop: 0,
     padding: 0,
     fontWeight: "bold",
-    fontSize: 30,
+    fontSize: 15,
     textAlign: "center",
   },
   contentProjectInformation: {
-    fontSize: 20,
+    fontSize: 10,
     marginTop: 200,
     fontWeight: "bold",
     textAlign: "center",
