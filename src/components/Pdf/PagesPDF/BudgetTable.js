@@ -4,6 +4,8 @@ import { styles } from "../../../../public/styles";
 
 export const BudgetTable = ({ dataIterated }) => {
   let lastContent;
+  let custoTotal = 0;
+
   if (dataIterated.length !== 0) {
     return React.createElement(
       Page,
@@ -33,8 +35,10 @@ export const BudgetTable = ({ dataIterated }) => {
         dataIterated.map((item, index) => {
           if (item.idTemplate !== lastContent) {
             lastContent = item.idTemplate;
-            return item.budget.map((budget, budgetIndex) =>
-              React.createElement(
+
+            return item.budget.map((budget, budgetIndex) => {
+              custoTotal += budget.uniteValue;
+              return React.createElement(
                 View,
                 { style: styles.tableRow, key: `${index}-${budgetIndex}` },
                 React.createElement(
@@ -67,15 +71,20 @@ export const BudgetTable = ({ dataIterated }) => {
                   { style: styles.tableCol },
                   budget.uniteValue
                 ),
-                React.createElement(
-                  Text,
-                  { style: styles.tableCol },
-                  "TOTAL DE LA SECCION"
-                )
-              )
-            );
+                React.createElement(Text, { style: styles.tableCol })
+              );
+            });
           }
-        })
+        }),
+        React.createElement(
+          Text,
+          { style: styles.tableCol },
+          React.createElement(
+            Text,
+            { style: styles.tableCol },
+            `$${custoTotal}`
+          )
+        )
       )
     );
   }
