@@ -3,6 +3,7 @@ import { Text, View, Page } from "@react-pdf/renderer";
 import { styles } from "../../../../public/styles";
 
 export const BudgetTable = ({ dataIterated }) => {
+  let lastContent;
   if (dataIterated.length !== 0) {
     return React.createElement(
       Page,
@@ -29,21 +30,52 @@ export const BudgetTable = ({ dataIterated }) => {
           ),
           React.createElement(Text, { style: styles.tableCol }, "CUSTO TOTAL")
         ),
-        dataIterated.map((item, index) =>
-          item.budget.map((budget, budgetIndex) =>
-            React.createElement(
-              View,
-              { style: styles.tableRow, key: `${index}-${budgetIndex}` },
-              React.createElement(Text, { style: styles.tableCol }, item.idTemplate),
-              React.createElement(Text, { style: styles.tableCol }, budget.description),
-              React.createElement(Text, { style: styles.tableCol }, budget.amount),
-              React.createElement(Text, { style: styles.tableCol }, budget.qtd),
-              React.createElement(Text, { style: styles.tableCol }, budget.un),
-              React.createElement(Text, { style: styles.tableCol }, budget.uniteValue),
-              React.createElement(Text, { style: styles.tableCol }, "TOTAL DE LA SECCION")
-            )
-          )
-        )
+        dataIterated.map((item, index) => {
+          if (item.idTemplate !== lastContent) {
+            lastContent = item.idTemplate;
+            return item.budget.map((budget, budgetIndex) =>
+              React.createElement(
+                View,
+                { style: styles.tableRow, key: `${index}-${budgetIndex}` },
+                React.createElement(
+                  Text,
+                  { style: styles.tableCol },
+                  item.idTemplate
+                ),
+                React.createElement(
+                  Text,
+                  { style: styles.tableCol },
+                  budget.description
+                ),
+                React.createElement(
+                  Text,
+                  { style: styles.tableCol },
+                  budget.amount
+                ),
+                React.createElement(
+                  Text,
+                  { style: styles.tableCol },
+                  budget.qtd
+                ),
+                React.createElement(
+                  Text,
+                  { style: styles.tableCol },
+                  budget.un
+                ),
+                React.createElement(
+                  Text,
+                  { style: styles.tableCol },
+                  budget.uniteValue
+                ),
+                React.createElement(
+                  Text,
+                  { style: styles.tableCol },
+                  "TOTAL DE LA SECCION"
+                )
+              )
+            );
+          }
+        })
       )
     );
   }

@@ -54,7 +54,13 @@ export function Introduction({ introduction }) {
               React.createElement(
                 Text,
                 { style: styles.contentProjectInformation },
-                `${introduction.project_number}-${introduction.title}-V${introduction.version}`
+                `Ref.`,
+                React.createElement(
+                  Text,
+                  { style: styles.superscript },
+                  "a"
+                ),
+                `${dateChanger(introduction.date)}_${introduction.project_number}_${introduction.title}_V${introduction.version}`
               )
             )
           )

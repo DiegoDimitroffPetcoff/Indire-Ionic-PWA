@@ -47,9 +47,14 @@ export const styles = StyleSheet.create({
   },
   contentProjectInformation: {
     fontSize: 10,
-    marginTop: 200,
+    marginTop: 100,
     fontWeight: "bold",
     textAlign: "center",
+  },
+  superscript: {
+    fontSize: 8, // Tamaño más pequeño para el superíndice
+    verticalAlign: 'super', // Alineación superior para el superíndice
+    marginLeft: 2, // Espacio entre el superíndice y el texto circundante
   },
   logo: {
     width: "150px",
