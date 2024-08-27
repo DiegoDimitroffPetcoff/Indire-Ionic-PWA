@@ -89,6 +89,7 @@ export function Introduction() {
 
       <IonModal keepContentsMounted={true}>
         <IonDatetime
+          presentation="date"
           id="datetime"
           onIonChange={(e) => handleChangeIntroduction(e, "date", id)}
         ></IonDatetime>
