@@ -2,6 +2,9 @@ import React from "react";
 import { Page, View, Text } from "@react-pdf/renderer";
 import { getDynamicStyles, styles } from "../../../../public/styles";
 import { Header } from "./Header";
+import { budgetTemplate } from "../../../utils/budgetTemplate";
+
+
 
 export function Modules({ data, dataIterated }) {
   let lastidTemplate = null;
@@ -21,6 +24,7 @@ export function Modules({ data, dataIterated }) {
           : getDynamicStyles(1);
 
         lastidTemplate = module.idTemplate;
+        let template = budgetTemplate(module, isSameTemplate);
 
         return React.createElement(
           View,
@@ -35,7 +39,14 @@ export function Modules({ data, dataIterated }) {
               ? module.name || module.title
               : `${module.idTemplate}. ${module.name || module.title}`
           ),
-          React.createElement(Text, { style: styles.moduleText }, module.description)
+          React.createElement(
+            Text,
+            { style: styles.moduleText },
+            module.description,
+            module.budget && module.budget.length > 0 && !isSameTemplate
+              ? template
+              : ""
+          )
         );
       })
     )
