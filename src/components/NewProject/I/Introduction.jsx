@@ -27,6 +27,7 @@ export function Introduction() {
     const value = event.detail.value;
     setSelectedFolder(value);
   };
+
   return (
     <div className="introductionContent">
       <IonInput
@@ -96,7 +97,11 @@ export function Introduction() {
       </IonModal>
       <IonDatetimeButton datetime="datetime">
         <IonDatetime
-          value={projectContent.date}
+          value={
+            projectContent.date
+              ? projectContent.date
+              : new Date().toISOString().split("T")[0]
+          }
           onIonChange={(e) => handleChangeIntroduction(e, "date", id)}
         />
       </IonDatetimeButton>
