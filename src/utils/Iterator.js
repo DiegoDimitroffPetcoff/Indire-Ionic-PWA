@@ -1,6 +1,8 @@
 export function Iterator(modules) {
   let allData = [];
   modules.forEach((module, moduleId) => {
+
+    
     allData.push({
       name: module.module,
       description: module.description,
@@ -23,6 +25,8 @@ export function Iterator(modules) {
 
         if (section.sections && section.sections.length > 0) {
           section.sections.forEach((subsection, subsectionId) => {
+
+            
             subsection.content.forEach((subContent) => {
               allData.push({
                 name: subsection.name,
@@ -30,6 +34,7 @@ export function Iterator(modules) {
                 title: subContent.title,
                 idTemplate: `${moduleId + 1}.${sectionId + 1}.${subsectionId + 1}`,
                 budget: subsection.budget || [],
+                img: subsection.img
               });
             });
 

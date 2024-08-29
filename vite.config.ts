@@ -6,7 +6,7 @@ import { comlink } from "vite-plugin-comlink";
 export default defineConfig({
   plugins: [react(), comlink(), VitePWA({ registerType: "autoUpdate" })],
   worker: {
-    format: "es", // Cambia a 'es' si usas ES Modules en tu Worker
+    format: "es",
     plugins: () => [comlink()],
     rollupOptions: {
       output: {
@@ -26,21 +26,6 @@ export default defineConfig({
         entryFileNames: "assets/[name]-[hash].js",
         assetFileNames: "assets/[name]-[hash].[ext]",
       },
-
-      /*       plugins: [
-        {
-          name: "vite-plugin-web-worker",
-          transform(code, id) {
-            if (id.endsWith("?worker")) {
-              return {
-                code: `export default new Worker(${JSON.stringify(id)})`,
-                map: null,
-                
-              };
-            }
-          },
-        },
-      ], */
     },
   },
 });
