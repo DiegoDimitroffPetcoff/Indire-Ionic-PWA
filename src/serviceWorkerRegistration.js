@@ -13,7 +13,7 @@ const isLocalhost = Boolean(
 export function register(config) {
   if (process.env.NODE_ENV !== "production" && "serviceWorker" in navigator) {
     window.addEventListener("load", () => {
-      const swUrl = `../public/service-worker.js`;
+      const swUrl = `/service-worker.js`;
 
       if (isLocalhost) {
         checkValidServiceWorker(swUrl, config);
@@ -32,6 +32,8 @@ export function register(config) {
 }
 
 function registerValidSW(swUrl, config) {
+  console.log(swUrl);
+
   navigator.serviceWorker
     .register(swUrl)
     .then((registration) => {
