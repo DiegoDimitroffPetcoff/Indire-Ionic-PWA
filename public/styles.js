@@ -67,6 +67,7 @@ export const styles = StyleSheet.create({
   },
   mainImg: {
     width: "300px",
+    maxHeight: "300px",
     display: "flex",
     alignSelf: "center",
     margin: 50,

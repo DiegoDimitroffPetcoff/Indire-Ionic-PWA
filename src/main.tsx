@@ -16,4 +16,5 @@ root.render(
     <App />
   </PorjectProvider>
 );
-serviceWorkerRegistration.register();
+/* serviceWorkerRegistration.unregister();
+ */
