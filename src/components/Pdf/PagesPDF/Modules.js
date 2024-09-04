@@ -16,7 +16,7 @@ export function Modules({
 
   return React.createElement(
     View,
-    { style: styles.module },
+    { key: `${lastidTemplate}`, style: styles.module },
     React.createElement(
       Text,
       {
@@ -30,22 +30,21 @@ export function Modules({
     /* --------------CONTENT-------------- */
     module.content &&
       module.content.map((content, index) => {
-        return React.createElement(View, { key: index, style: styles.module }, [
+        let title;
+        if (index === 0) {
+          title = "";
+        } else {
+          title = `${module.idTemplate}. ${content.title}`;
+        }
+        return React.createElement(View, { key: index }, [
           React.createElement(
             Text,
-            {
-              key: `${index}-title`,
-              style: styles.moduleName,
-            },
-
-            `${module.idTemplate}. ${content.title}`
+            { key: `${index}-description`, style: styles.moduleName },
+            title
           ),
           React.createElement(
             Text,
-            {
-              key: `${index}-description`,
-              style: styles.moduleText,
-            },
+            { key: `${index}-description`, style: styles.moduleText },
             content.description
           ),
         ]);

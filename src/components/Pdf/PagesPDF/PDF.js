@@ -32,11 +32,12 @@ export const PDF = (data) => {
       Page,
       { size: "A4", style: styles.page },
       dataIterated.map((module, index) => {
-        const isSameTemplate = lastidTemplate === module.idTemplate;
+        let isSameTemplate = lastidTemplate === module.idTemplate;
+
         const dynamicStyle = isSameTemplate
           ? getDynamicStyles(2)
           : getDynamicStyles(1);
-        lastidTemplate = module.idTemplate;
+        isSameTemplate = lastidTemplate;
 
         return React.createElement(Modules, {
           key: index,

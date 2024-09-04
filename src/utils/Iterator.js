@@ -43,10 +43,10 @@ export function Iterator(modules) {
                 /*              subSubsection.content.forEach((subSubContent) => { */
                 allData.push({
                   name: subSubsection.name,
-                  content: subsection.content,
+                  content: subSubsection.content,
                   /*                description: subSubContent.description, */
                   /*  title: subSubContent.title, */
-                  title: subsection.content[0].title,
+                  title: subSubsection.content[0].title,
                   idTemplate: `${moduleId + 1}.${sectionId + 1}.${
                     subsectionId + 1
                   }.${subSubsectionId + 1}`,
