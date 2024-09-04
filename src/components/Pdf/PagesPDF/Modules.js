@@ -14,13 +14,6 @@ export function Modules({
   let template = budgetTemplate(module, isSameTemplate);
   const images = Array.isArray(module.img) ? module.img : [];
 
-  const hasContentTitle = module.content && module.content.length > 0 && module.content[0].title;
-/* console.log(module);
-
-  if (hasContentTitle) {
-    console.log(module.content[0].title);
-    console.log(module.content[0].title);
-  } */
   return React.createElement(
     View,
     { style: styles.module },
@@ -31,45 +24,33 @@ export function Modules({
         id: !isSameTemplate && lastidTemplate,
       },
       isSameTemplate && module.name !== undefined
-        ? module.name 
+        ? module.name
         : `${module.idTemplate}. ${module.name || module.title}`
     ),
+    /* --------------CONTENT-------------- */
     module.content &&
       module.content.map((content, index) => {
-        return React.createElement(
-          View,
-          { key: index, style: styles.moduleItem },
-          [
-            React.createElement(
-              Text,
-              {
-                key: `${index}-title`,
-                style: { color: "blue", fontWeight: "bold" },
-              },
+        return React.createElement(View, { key: index, style: styles.module }, [
+          React.createElement(
+            Text,
+            {
+              key: `${index}-title`,
+              style: styles.moduleName,
+            },
 
-              `${module.idTemplate}. ${content.title}`
-            ),
-            React.createElement(
-              Text,
-              {
-                key: `${index}-description`,
-                style: { color: "red" }, // Estilo rojo para la descripción
-              },
-              content.description
-            ),
-          ]
-        );
+            `${module.idTemplate}. ${content.title}`
+          ),
+          React.createElement(
+            Text,
+            {
+              key: `${index}-description`,
+              style: styles.moduleText,
+            },
+            content.description
+          ),
+        ]);
       }),
 
-    /* --------------BUDGET-------------- */
-    React.createElement(
-      Text,
-      { style: styles.moduleText },
-
-      module.budget && module.budget.length > 0 && !isSameTemplate
-        ? template
-        : ""
-    ),
     /* --------------IMAGES-------------- */
     images.length > 0 &&
       !isSameTemplate &&
@@ -94,6 +75,15 @@ export function Modules({
             }, // Adjust styles as needed
           })
         )
-      )
+      ),
+    /* --------------BUDGET-------------- */
+    React.createElement(
+      Text,
+      { style: styles.moduleText },
+
+      module.budget && module.budget.length > 0 && !isSameTemplate
+        ? template
+        : ""
+    )
   );
 }

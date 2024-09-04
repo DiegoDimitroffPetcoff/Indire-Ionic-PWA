@@ -40,18 +40,21 @@ export function Iterator(modules) {
 
             if (subsection.sections && subsection.sections.length > 0) {
               subsection.sections.forEach((subSubsection, subSubsectionId) => {
-                subSubsection.content.forEach((subSubContent) => {
-                  allData.push({
-                    name: subSubsection.name,
-                    description: subSubContent.description,
-                    title: subSubContent.title,
-                    idTemplate: `${moduleId + 1}.${sectionId + 1}.${
-                      subsectionId + 1
-                    }.${subSubsectionId + 1}`,
-                    budget: subSubsection.budget || [],
-                    type: "subsection",
-                  });
+                /*              subSubsection.content.forEach((subSubContent) => { */
+                allData.push({
+                  name: subSubsection.name,
+                  content: subsection.content,
+                  /*                description: subSubContent.description, */
+                  /*  title: subSubContent.title, */
+                  title: subsection.content[0].title,
+                  idTemplate: `${moduleId + 1}.${sectionId + 1}.${
+                    subsectionId + 1
+                  }.${subSubsectionId + 1}`,
+                  budget: subSubsection.budget || [],
+                  type: "subsection",
+                  img: subsection.img,
                 });
+                /*  }); */
               });
             }
           });
