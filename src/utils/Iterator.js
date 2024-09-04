@@ -1,14 +1,13 @@
 export function Iterator(modules) {
   let allData = [];
   modules.forEach((module, moduleId) => {
-
-    
     allData.push({
       name: module.module,
       description: module.description,
       title: module.title,
       idTemplate: `${moduleId + 1}`,
       budget: module.budget || [],
+      type: "module",
     });
 
     if (module.sections && module.sections.length > 0) {
@@ -20,22 +19,23 @@ export function Iterator(modules) {
             title: content.title,
             idTemplate: `${moduleId + 1}.${sectionId + 1}`,
             budget: section.budget || [],
+            type: "firstSection",
           });
         });
 
         if (section.sections && section.sections.length > 0) {
           section.sections.forEach((subsection, subsectionId) => {
-
-            
-            subsection.content.forEach((subContent) => {
-              allData.push({
-                name: subsection.name,
-                description: subContent.description,
-                title: subContent.title,
-                idTemplate: `${moduleId + 1}.${sectionId + 1}.${subsectionId + 1}`,
-                budget: subsection.budget || [],
-                img: subsection.img
-              });
+            allData.push({
+              name: subsection.name,
+              content: subsection.content,
+              /*   description: subContent.description, */
+              title: subsection.content[0].title,
+              idTemplate: `${moduleId + 1}.${sectionId + 1}.${
+                subsectionId + 1
+              }`,
+              budget: subsection.budget || [],
+              type: "section",
+              img: subsection.img,
             });
 
             if (subsection.sections && subsection.sections.length > 0) {
@@ -45,10 +45,11 @@ export function Iterator(modules) {
                     name: subSubsection.name,
                     description: subSubContent.description,
                     title: subSubContent.title,
-                    idTemplate: `${moduleId + 1}.${sectionId + 1}.${subsectionId + 1}.${
-                      subSubsectionId + 1
-                    }`,
+                    idTemplate: `${moduleId + 1}.${sectionId + 1}.${
+                      subsectionId + 1
+                    }.${subSubsectionId + 1}`,
                     budget: subSubsection.budget || [],
+                    type: "subsection",
                   });
                 });
               });

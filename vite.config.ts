@@ -16,7 +16,7 @@ export default defineConfig({
 
       manifest: {
         "short_name": "Indire",
-        "name": "Indire",
+        "name": "Indire Application ",
         "lang": "pt",
         "description": "Application Made to Indire Company",
         "screenshots": [
