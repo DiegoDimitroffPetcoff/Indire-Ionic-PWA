@@ -6,9 +6,9 @@ import { Iterator } from "../../../utils/Iterator";
 import { Modules } from "./Modules.js";
 import { TableOfContents } from "./TableOfContents";
 import { BudgetTable } from "./BudgetTable";
+import { Header } from "./Header";
 
 export const PDF = (data) => {
-  // Verifica si 'data' existe y tiene contenido antes de intentar acceder a 'data[0]'
   if (!data || !data[0]) {
     return React.createElement(
       Document,
@@ -31,6 +31,7 @@ export const PDF = (data) => {
     React.createElement(
       Page,
       { size: "A4", style: styles.page },
+      React.createElement(Header, { data }),
       dataIterated.map((module, index) => {
         let isSameTemplate = lastidTemplate === module.idTemplate;
 
@@ -42,9 +43,7 @@ export const PDF = (data) => {
         return React.createElement(Modules, {
           key: index,
           module,
-          isSameTemplate,
           lastidTemplate,
-          dynamicStyle,
         });
       })
     ),

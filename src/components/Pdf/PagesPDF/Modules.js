@@ -1,17 +1,11 @@
 import React from "react";
 import { Page, View, Text, Image } from "@react-pdf/renderer";
-import { getDynamicStyles, styles } from "../../../../public/styles";
-import { Header } from "./Header";
-import { budgetTemplate } from "../../../utils/budgetTemplate";
-import { FirstSection } from "./FirstSection";
+import { styles } from "../../../../public/styles";
 
-export function Modules({
-  module,
-  isSameTemplate,
-  dynamicStyle,
-  lastidTemplate,
-}) {
-  let template = budgetTemplate(module, isSameTemplate);
+import { budgetTemplate } from "../../../utils/budgetTemplate";
+
+export function Modules({ module, lastidTemplate }) {
+  let template = budgetTemplate(module);
   const images = Array.isArray(module.img) ? module.img : [];
 
   return React.createElement(
@@ -19,13 +13,8 @@ export function Modules({
     { key: `${lastidTemplate}`, style: styles.module },
     React.createElement(
       Text,
-      {
-        style: [styles.moduleName, dynamicStyle],
-        id: !isSameTemplate && lastidTemplate,
-      },
-      isSameTemplate && module.name !== undefined
-        ? module.name
-        : `${module.idTemplate}. ${module.name || module.title}`
+      null,
+      `${module.idTemplate}. ${module.name || module.title}`
     ),
     /* --------------CONTENT-------------- */
     module.content &&
@@ -34,7 +23,8 @@ export function Modules({
         if (index === 0) {
           title = "";
         } else {
-          title = `${module.idTemplate}. ${content.title}`;
+          /*    title = `${module.idTemplate}. ${content.title}`; */
+          title = `${content.title}`;
         }
         return React.createElement(View, { key: index }, [
           React.createElement(
@@ -52,7 +42,6 @@ export function Modules({
 
     /* --------------IMAGES-------------- */
     images.length > 0 &&
-      !isSameTemplate &&
       React.createElement(
         View,
         {
@@ -80,9 +69,7 @@ export function Modules({
       Text,
       { style: styles.moduleText },
 
-      module.budget && module.budget.length > 0 && !isSameTemplate
-        ? template
-        : ""
+      module.budget && module.budget.length > 0 ? template : ""
     )
   );
 }
