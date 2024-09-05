@@ -28,7 +28,14 @@ export const PDF = (data) => {
     null,
     React.createElement(Introduction, { introduction }),
     React.createElement(TableOfContents, { data, dataIterated }),
-    React.createElement(
+    React.createElement(Modules, { data, dataIterated }),
+
+    React.createElement(BudgetTable, { dataIterated })
+  );
+};
+
+
+/*     React.createElement(
       Page,
       { size: "A4", style: styles.page },
       React.createElement(Header, { data }),
@@ -46,7 +53,4 @@ export const PDF = (data) => {
           lastidTemplate,
         });
       })
-    ),
-    React.createElement(BudgetTable, { dataIterated })
-  );
-};
+    ), */

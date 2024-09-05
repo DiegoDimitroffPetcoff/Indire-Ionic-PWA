@@ -55,9 +55,9 @@ export function Modules({ data, dataIterated }) {
               {
                 style: {
                   display: "flex",
-                  flexDirection: "row", // Align images in a row
-                  flexWrap: "wrap", // Allow wrapping to new lines
-                  justifyContent: "space-between", // Adjust spacing between images
+                  flexDirection: "row",
+                  flexWrap: "wrap",
+                  justifyContent: "space-between",
                 },
               },
               images.map((imageSrc, imgIndex) =>
@@ -68,7 +68,7 @@ export function Modules({ data, dataIterated }) {
                     width: 100,
                     height: 100,
                     marginBottom: 10,
-                  }, // Adjust styles as needed
+                  },
                 })
               )
             )
