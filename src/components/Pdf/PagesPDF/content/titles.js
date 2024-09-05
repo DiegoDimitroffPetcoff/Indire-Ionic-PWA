@@ -3,6 +3,8 @@ import { Text } from "@react-pdf/renderer";
 import { getDynamicStyles, styles } from "../../styles";
 let lastidTemplate = null;
 export function titles(module) {
+  console.log(module);
+  
   const isSameTemplate = lastidTemplate === module.idTemplate;
   lastidTemplate = module.idTemplate;
   return React.createElement(

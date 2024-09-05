@@ -29,7 +29,7 @@ export const styles = StyleSheet.create({
   },
   module: {
     margin: 10,
-    padding: 10,
+   /*  padding: 10, */
   },
 
   header: {
@@ -141,10 +141,12 @@ export const styles = StyleSheet.create({
     marginHorizontal: 100,
   },
   moduleName: {
-    fontSize: 12,
+    fontSize: "10px",
     fontWeight: "bold",
-    textAlign: "start",
-    /*   marginBottom: 10, */
+    textAlign: "left",
+    marginTop: "10px",
+
+    marginBottom: "5px",
     textDecoration: "underline",
   },
   moduleText: {
@@ -170,23 +172,40 @@ export const styles = StyleSheet.create({
   },
 
   module_title: {
-    fontSize: "18px",
+    fontSize: "12px",
     fontWeight: "bold",
     textAlign: "left",
-    marginTop: "20px",
+  /*   marginTop: "20px", */
     marginBottom: "10px",
     textTransform: "uppercase",
     color: "#000000",
   },
   firstSection_title: {
-    color: "green",
-    margin: 20,
+    fontSize: "10px",
+    fontWeight: "bold",
+    textAlign: "left",
+    marginLeft: "10px",
+    textTransform: "uppercase",
+    color: "#000000",
   },
   section_title: {
-    marginTop: 30,
+    fontSize: "10px",
+    fontWeight: "bold",
+    textAlign: "left",
+    /*   marginTop: "10px", */
+    marginLeft: "10px",
+/*     marginBottom: "5px", */
+    textTransform: "uppercase",
+    color: "#000000",
   },
   subsection_title: {
-    marginTop: 30,
-    color: "red",
+    fontSize: "10px",
+    fontWeight: "bold",
+    textAlign: "left",
+    marginTop: "10px",
+    marginLeft: "10px",
+    marginBottom: "5px",
+    textTransform: "uppercase",
+    color: "#000000",
   },
 });
