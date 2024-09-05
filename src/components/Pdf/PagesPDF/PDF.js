@@ -34,7 +34,6 @@ export const PDF = (data) => {
       React.createElement(Header, { data }),
       dataIterated.map((module, index) => {
         let isSameTemplate = lastidTemplate === module.idTemplate;
-
         const dynamicStyle = isSameTemplate
           ? getDynamicStyles(2)
           : getDynamicStyles(1);
