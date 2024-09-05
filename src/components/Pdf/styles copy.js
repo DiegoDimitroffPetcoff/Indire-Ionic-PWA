@@ -148,11 +148,10 @@ export const styles = StyleSheet.create({
     textDecoration: "underline",
   },
   moduleText: {
-    fontSize: "12px",
-    lineHeight: "1.6",
+    fontSize: 10,
+    /*  marginBottom: 4, */
     textAlign: "justify",
-    marginBottom: "15px",
-    color: "#000000",
+    fontWeight: "thin",
   },
   sectionTitle: {
     fontSize: 15,
@@ -170,13 +169,8 @@ export const styles = StyleSheet.create({
   },
 
   module_title: {
-    fontSize: "18px",
     fontWeight: "bold",
-    textAlign: "left",
-    marginTop: "20px",
-    marginBottom: "10px",
-    textTransform: "uppercase",
-    color: "#000000",
+    margin: 0,
   },
   firstSection_title: {
     color: "green",

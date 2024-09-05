@@ -4,14 +4,11 @@ import { getDynamicStyles, styles } from "../../styles";
 let lastidTemplate = null;
 export function titles(module) {
   const isSameTemplate = lastidTemplate === module.idTemplate;
-  let dynamicStyle = isSameTemplate ? getDynamicStyles(2) : getDynamicStyles(1);
-
   lastidTemplate = module.idTemplate;
-
   return React.createElement(
     Text,
     {
-      style: [styles.moduleName, dynamicStyle],
+      style: [styles.moduleName, getDynamicStyles(module.type)],
       id: !isSameTemplate && lastidTemplate,
     },
     isSameTemplate
