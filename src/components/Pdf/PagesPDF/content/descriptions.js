@@ -1,6 +1,7 @@
 import React from "react";
 import { Text, View, Image } from "@react-pdf/renderer";
 import { styles } from "../../styles";
+import { budgetTemplate } from "../../../../utils/budgetTemplate";
 
 export function descriptions(module) {
   if (module.type === "module") {
@@ -11,8 +12,7 @@ export function descriptions(module) {
     );
   } else {
     if (Array.isArray(module.content)) {
-      console.log(module);
-
+      let template = budgetTemplate(module);
       return [
         module.content.map((content, index) => {
           return [
@@ -34,9 +34,9 @@ export function descriptions(module) {
             {
               style: {
                 display: "flex",
-                flexDirection: "row", // Align images in a row
-                flexWrap: "wrap", // Allow wrapping to new lines
-                justifyContent: "space-between", // Adjust spacing between images
+                flexDirection: "row",
+                flexWrap: "wrap",
+                justifyContent: "center",
               },
             },
             module.img.map((imageSrc, imgIndex) =>
@@ -51,6 +51,12 @@ export function descriptions(module) {
               })
             )
           ),
+        React.createElement(
+          Text,
+          { style: styles.moduleText },
+
+          module.budget && module.budget.length > 0 ? template : ""
+        ),
       ];
     }
   }

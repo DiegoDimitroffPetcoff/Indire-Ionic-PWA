@@ -29,28 +29,6 @@ export const PDF = (data) => {
     React.createElement(Introduction, { introduction }),
     React.createElement(TableOfContents, { data, dataIterated }),
     React.createElement(Modules, { data, dataIterated }),
-
     React.createElement(BudgetTable, { dataIterated })
   );
 };
-
-
-/*     React.createElement(
-      Page,
-      { size: "A4", style: styles.page },
-      React.createElement(Header, { data }),
-      dataIterated.map((module, index) => {
-        let isSameTemplate = lastidTemplate === module.idTemplate;
-
-        const dynamicStyle = isSameTemplate
-          ? getDynamicStyles(2)
-          : getDynamicStyles(1);
-        isSameTemplate = lastidTemplate;
-
-        return React.createElement(Modules, {
-          key: index,
-          module,
-          lastidTemplate,
-        });
-      })
-    ), */
