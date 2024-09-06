@@ -40,16 +40,17 @@ export function TableOfContents({ data, dataIterated }) {
             key: index,
             style: { flexDirection: "row", justifyContent: "space-between" },
           },
+          
+          React.createElement(
+            Link,
+            { style: styles.indexPageNumber, src: `#${item.idTemplate}` },
+            React.createElement(Text, null, item.idTemplate)
+          ),
           React.createElement(
             Text,
             { style: styles.indexItem },
             capitalizeFirstLetter(item.title)
           ),
-          React.createElement(
-            Link,
-            { style: styles.indexPageNumber, src: `#${item.idTemplate}` },
-            React.createElement(Text, null, item.idTemplate)
-          )
         )
       )
     )

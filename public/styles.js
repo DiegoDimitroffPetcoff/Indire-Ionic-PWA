@@ -179,4 +179,10 @@ export const styles = StyleSheet.create({
     alignSelf: "flex-start",
     textDecoration: "none",
   },
+
+
+
+
+
+  
 });
