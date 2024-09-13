@@ -1,10 +1,10 @@
 import { IonCol, IonGrid, IonRow, IonContent, IonButton } from "@ionic/react";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "./ProjectList.css";
 import { ProjectContext } from "../../context/ProjectContext";
 
 export function ProjectList() {
-  const { projectList, deleteProjectOnList, setProject } =
+  const { projectList, deleteProjectOnList, setProject, setProjectList } =
     useContext(ProjectContext);
   const [initialProject, setInitialProject] = useState(null);
 
@@ -14,11 +14,23 @@ export function ProjectList() {
     setInitialProject(JSON.parse(JSON.stringify(projectFiltered)));
   }
 
+  useEffect(() => {
+    try {
+      fetch("http://localhost:8080")
+        .then((resp) => {
+          return resp.json();
+        })
+        .then((data) => {
+          setProjectList(data);
+        })
+        .then(() => console.log(projectList));
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
   return (
     <IonContent>
-   
-
-     
       <IonGrid className="table-grid">
         {/* Caption */}
         <IonRow className="table-caption">

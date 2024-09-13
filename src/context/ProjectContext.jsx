@@ -104,14 +104,14 @@ export const PorjectProvider = ({ children }) => {
   }, []);
 
   // Load project list Capacitor
-  useEffect(() => {
+ /*  useEffect(() => {
 
     const loadProjects = async () => {
       const localProjects = await getLocalProjects();
       setProjectList(localProjects);
     };
     loadProjects();
-  }, []);
+  }, []); */
 
   useEffect(() => {
     const loadProject = async () => {

@@ -19,6 +19,8 @@ export function useProjectList(setProjectList) {
   async function AddProjectToList(newProject) {
     const newProjectCopy = JSON.parse(JSON.stringify(newProject));
     newProjectCopy[0].id = uuidv4();
+
+    
     await pushProjectOnListProject(newProjectCopy);
     setProjectList((prevProjects) => [...prevProjects, newProjectCopy]);
   }

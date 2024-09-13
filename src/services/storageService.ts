@@ -4,6 +4,8 @@ import { Preferences } from "@capacitor/preferences";
 export const pushProjectOnListProject = async (project: any) => {
   const projects = await getLocalProjects();
   projects.push(project);
+  console.log(projects);
+  
   await Preferences.set({
     key: "projectsList",
     value: JSON.stringify(projects),

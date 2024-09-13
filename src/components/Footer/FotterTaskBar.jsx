@@ -23,6 +23,7 @@ import { useContext } from "react";
 import PostOneDrive from "../../services/PostOneDrive";
 import { useRenderPDF } from "../../hooks/useRenderPDF";
 import { PDF } from "../Pdf/PagesPDF/PDF";
+import { postProjectList } from "../../services/dbs/postProjectList";
 
 export function FotterTaskBar({ setView, view }) {
   const [isSignedIn] = useIsSignedIn();
@@ -75,7 +76,10 @@ export function FotterTaskBar({ setView, view }) {
             <IonButton
               fill="outline"
               routerLink="/projectList"
-              onClick={() => AddProjectToList(project)}
+              onClick={() => {
+          
+                postProjectList(project)
+                AddProjectToList(project)}}
             >
               <IonIcon icon={saveOutline}></IonIcon>
             </IonButton>
