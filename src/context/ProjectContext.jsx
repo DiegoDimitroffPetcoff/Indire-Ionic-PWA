@@ -15,7 +15,7 @@ import MODULE_TEMPLATES from "../templates/moduleTemplate.json";
 import SUBSECTION_TEMPLATES from "../templates/subsectionTemplate.json";
 
 // Static data and services imports
-import MOCKPROJECTLIST from "./MOCKPROJECTLIST.json";
+
 import { v4 as uuidv4 } from "uuid";
 import {
   getProject,
@@ -27,9 +27,6 @@ import { getProjectList } from "../services/dbs/getProjectList";
 
 // Create ProjectContext
 export const ProjectContext = createContext();
-
-// Mock project list initialization
-const PROJECTS_LIST = MOCKPROJECTLIST;
 
 // Initial state for a new project
 const INITIAL_STATE = [
@@ -84,12 +81,11 @@ const INITIAL_STATE = [
 export const PorjectProvider = ({ children }) => {
   // State management
   const [project, setProject] = useState(null);
-  const [projectList, setProjectList] = useState(PROJECTS_LIST);
+  const [projectList, setProjectList] = useState([]);
   const [modulesTemplates, setModulesTemplates] = useState(null);
   const [subsectionTemplates, setSubsectionTemplates] = useState(null);
   const [selectedFolder, setSelectedFolder] = useState("no_selected_folder");
 
-  // Load project data Capacitor
   useEffect(() => {
     const loadProject = async () => {
       const storedProject = await getProject("data");
@@ -103,7 +99,6 @@ export const PorjectProvider = ({ children }) => {
     loadProject();
   }, []);
 
-  // Load project list Capacitor
   useEffect(() => {
     const loadProjects = async () => {
       try {
@@ -112,19 +107,25 @@ export const PorjectProvider = ({ children }) => {
         setProjectList(remoteProjects); // Actualiza la lista si la llamada a la base de datos es exitosa
         console.log("Proyectos cargados desde la base de datos");
       } catch (error) {
-        console.error("Error al obtener la lista de proyectos desde la base de datos:", error);
-    
+        console.error(
+          "Error al obtener la lista de proyectos desde la base de datos:",
+          error
+        );
+
         // Si ocurre un error, intenta obtener los proyectos locales
         try {
           const localProjects = await getLocalProjects();
           setProjectList(localProjects); // Actualiza la lista con los proyectos locales
           console.log("Proyectos cargados desde el almacenamiento local");
         } catch (localError) {
-          console.error("Error al obtener la lista de proyectos desde el almacenamiento local:", localError);
+          console.error(
+            "Error al obtener la lista de proyectos desde el almacenamiento local:",
+            localError
+          );
         }
       }
     };
-    
+
     loadProjects();
   }, []);
 

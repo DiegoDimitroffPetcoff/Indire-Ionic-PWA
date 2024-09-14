@@ -1,6 +1,5 @@
-export function getProjectList(params) {
+export function getProjectList() {
   let projectListFromDbs = [];
-
   return fetch("http://localhost:8080")
     .then((resp) => {
       if (!resp.ok) {
