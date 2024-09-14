@@ -23,6 +23,7 @@ import {
   clearLocalProjects,
   saveProject,
 } from "../services/storageService";
+import { getProjectList } from "../services/dbs/getProjectList";
 
 // Create ProjectContext
 export const ProjectContext = createContext();
@@ -105,9 +106,25 @@ export const PorjectProvider = ({ children }) => {
   // Load project list Capacitor
   useEffect(() => {
     const loadProjects = async () => {
-      const localProjects = await getLocalProjects();
-      setProjectList(localProjects);
+      try {
+        // Intentar obtener la lista de proyectos desde la base de datos
+        const remoteProjects = await getProjectList();
+        setProjectList(remoteProjects); // Actualiza la lista si la llamada a la base de datos es exitosa
+        console.log("Proyectos cargados desde la base de datos");
+      } catch (error) {
+        console.error("Error al obtener la lista de proyectos desde la base de datos:", error);
+    
+        // Si ocurre un error, intenta obtener los proyectos locales
+        try {
+          const localProjects = await getLocalProjects();
+          setProjectList(localProjects); // Actualiza la lista con los proyectos locales
+          console.log("Proyectos cargados desde el almacenamiento local");
+        } catch (localError) {
+          console.error("Error al obtener la lista de proyectos desde el almacenamiento local:", localError);
+        }
+      }
     };
+    
     loadProjects();
   }, []);
 

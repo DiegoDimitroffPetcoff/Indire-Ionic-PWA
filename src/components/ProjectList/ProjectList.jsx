@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import "./ProjectList.css";
 import { ProjectContext } from "../../context/ProjectContext";
 import { Spinner } from "../Spinner/Spinner";
+import { getProjectList } from "../../services/dbs/getProjectList";
 
 export function ProjectList() {
   const { projectList, deleteProjectOnList, setProject, setProjectList } =
@@ -14,27 +15,15 @@ export function ProjectList() {
     setProject(projectFiltered);
     setInitialProject(JSON.parse(JSON.stringify(projectFiltered)));
   }
-  let projectListFromDbs = [];
-  useEffect(() => {
-    try {
-      fetch("http://localhost:8080")
-        .then((resp) => {
-          return resp.json();
-        })
-        .then((data) => {
-          data.map((project) => {
-            projectListFromDbs.push(project.project_data);
-          });
-          console.log("projectListFromDbs");
-          console.log(projectListFromDbs);
-          setProjectList(projectListFromDbs);
-        });
-    } catch (error) {
-      console.log(error);
-    }
-  }, []);
-/*   console.log("projectList");
-  console.log(projectList); */
+  console.log(projectList.length);
+
+  if (projectList.length === 0) {
+    return (
+      <IonContent>
+        <Spinner />
+      </IonContent>
+    );
+  }
   return (
     <IonContent>
       <IonGrid className="table-grid">
