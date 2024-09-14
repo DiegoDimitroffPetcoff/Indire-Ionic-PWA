@@ -23,11 +23,11 @@ import { useContext } from "react";
 import PostOneDrive from "../../services/PostOneDrive";
 import { useRenderPDF } from "../../hooks/useRenderPDF";
 import { PDF } from "../Pdf/PagesPDF/PDF";
-import { postProjectList } from "../../services/dbs/postProjectList";
 
 export function FotterTaskBar({ setView, view }) {
   const [isSignedIn] = useIsSignedIn();
-  const { project, AddProjectToList, selectedFolder } = useContext(ProjectContext);
+  const { project, AddProjectToList, selectedFolder } =
+    useContext(ProjectContext);
   const { url, loading, error } = useRenderPDF(project);
 
   // Render the spinner if the project is null
@@ -77,9 +77,8 @@ export function FotterTaskBar({ setView, view }) {
               fill="outline"
               routerLink="/projectList"
               onClick={() => {
-          
-                postProjectList(project)
-                AddProjectToList(project)}}
+                AddProjectToList(project);
+              }}
             >
               <IonIcon icon={saveOutline}></IonIcon>
             </IonButton>

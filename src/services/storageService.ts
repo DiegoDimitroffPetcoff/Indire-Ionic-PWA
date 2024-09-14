@@ -2,10 +2,8 @@ import { Preferences } from "@capacitor/preferences";
 
 // Función para guardar un proyecto localmente
 export const pushProjectOnListProject = async (project: any) => {
-  const projects = await getLocalProjects();
-  projects.push(project);
-  console.log(projects);
-  
+  const projects = await getLocalProjects();  projects.push(project);
+
   await Preferences.set({
     key: "projectsList",
     value: JSON.stringify(projects),

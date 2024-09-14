@@ -5,6 +5,7 @@ import {
   getLocalProjects,
   pushProjectOnListProject,
 } from "../services/storageService";
+import { postProjectList } from "../services/dbs/postProjectList";
 export function useProjectList(setProjectList) {
   async function deleteProjectOnList(idProject) {
     let projectListUpdate = await getLocalProjects();
@@ -20,8 +21,10 @@ export function useProjectList(setProjectList) {
     const newProjectCopy = JSON.parse(JSON.stringify(newProject));
     newProjectCopy[0].id = uuidv4();
 
-    
-    await pushProjectOnListProject(newProjectCopy);
+    /* SAVE ON CAPACTOR */
+  await pushProjectOnListProject(newProjectCopy);
+    /* SAVE ON DBS */
+await postProjectList(newProjectCopy);
     setProjectList((prevProjects) => [...prevProjects, newProjectCopy]);
   }
 
