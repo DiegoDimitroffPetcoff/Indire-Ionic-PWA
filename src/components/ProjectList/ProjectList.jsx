@@ -18,6 +18,8 @@ export function ProjectList() {
   }
 
   if (!projectList) {
+
+    
     return <Spinner message={"Listas de carregamento..."} />;
   }
   return (

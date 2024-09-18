@@ -86,8 +86,7 @@ export const PorjectProvider = ({ children }) => {
   const [modulesTemplates, setModulesTemplates] = useState(null);
   const [subsectionTemplates, setSubsectionTemplates] = useState(null);
   const [selectedFolder, setSelectedFolder] = useState("no_selected_folder");
-  const [syncResult, setSyncResult] = useState(null); 
-
+  const [syncResult, setSyncResult] = useState(null);
 
   useEffect(() => {
     const loadProject = async () => {
@@ -108,9 +107,8 @@ export const PorjectProvider = ({ children }) => {
         const remoteProjects = await getProjectList();
         const localProjects = await getLocalProjects();
         const resultSincronic = sincronization(remoteProjects, localProjects);
-        setProjectList(remoteProjects);
         setSyncResult(resultSincronic);
-    
+        setProjectList(remoteProjects);
 
         console.log("Proyectos cargados desde la base de datos");
       } catch (error) {
@@ -259,7 +257,7 @@ export const PorjectProvider = ({ children }) => {
         AddProjectToList,
         selectedFolder,
         setSelectedFolder,
-        syncResult
+        syncResult,
       }}
     >
       {children}

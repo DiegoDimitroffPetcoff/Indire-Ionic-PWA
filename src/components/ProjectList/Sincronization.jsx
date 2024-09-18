@@ -7,7 +7,7 @@ export function Sincronization(remoteProjects, localProjects) {
   const [localStoraged, setLocalStoraged] = useState(false);
   const [dbsStoraged, setdbsStoraged] = useState(false);
 
-  const { syncResult,AddProjectToList } = useContext(ProjectContext);
+  const { syncResult, listProject, AddProjectToList } = useContext(ProjectContext);
 
   useEffect(() => {
     if (
@@ -25,17 +25,28 @@ export function Sincronization(remoteProjects, localProjects) {
     ) {
       setdbsStoraged(true);
     }
-  }, [syncResult]);
+  }, [syncResult,listProject]);
   async function postToDbs(listProject) {
     listProject.map(async (project) => {
       await postProjectList(project);
     });
   }
   async function postToLocalStorage(listProject) {
-    listProject.map(async (project) => {
-      await AddProjectToList(project, true);
-    });
+    try {
+      // Usar Promise.all para esperar a que todas las promesas se resuelvan
+      await Promise.all(
+        listProject.map(async (project) => {
+          await AddProjectToList(project, true);
+        })
+      );
+    } catch (error) {
+      console.error(
+        "Error al guardar proyectos en el almacenamiento local:",
+        error
+      );
+    }
   }
+
   return (
     <>
       {localStoraged && (

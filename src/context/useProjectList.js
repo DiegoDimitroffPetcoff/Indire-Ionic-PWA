@@ -19,18 +19,19 @@ export function useProjectList(setProjectList) {
 
   async function AddProjectToList(newProject, onlyLocal) {
     if (onlyLocal) {
+      console.log("Guardando en almacenamiento local:", newProject);
       await pushProjectOnListProject(newProject);
       setProjectList((prevProjects) => [...prevProjects, newProject]);
     } else {
+      console.log("Añadiendo proyecto a la lista con base de datos:", newProject);
       const newProjectCopy = JSON.parse(JSON.stringify(newProject));
       newProjectCopy[0].id = uuidv4();
-      /* SAVE ON CAPACTOR */
       await pushProjectOnListProject(newProjectCopy);
-      /* SAVE ON DBS */
       await postProjectList(newProjectCopy);
       setProjectList((prevProjects) => [...prevProjects, newProjectCopy]);
     }
   }
+  
 
   return { deleteProjectOnList, AddProjectToList };
 }

@@ -2,12 +2,21 @@ import { Preferences } from "@capacitor/preferences";
 
 // Función para guardar un proyecto localmente
 export const pushProjectOnListProject = async (project: any) => {
-  const projects = await getLocalProjects();  projects.push(project);
+  try {
+    // Leer los proyectos almacenados localmente
+    const storedProjects = await getLocalProjects();
 
-  await Preferences.set({
-    key: "projectsList",
-    value: JSON.stringify(projects),
-  });
+    // Asegúrate de que `projects` sea una copia para evitar modificar el original
+    const projects = [...storedProjects, project];
+
+    // Guardar la lista actualizada en el almacenamiento local
+    await Preferences.set({
+      key: "projectsList",
+      value: JSON.stringify(projects),
+    });
+  } catch (error) {
+    console.error("Error al guardar el proyecto en local:", error);
+  }
 };
 
 export const editeProjectOnListProject = async (newList: any) => {
