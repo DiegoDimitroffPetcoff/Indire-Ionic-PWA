@@ -13,7 +13,7 @@ interface ContainerProps {
 const ExploreContainer: React.FC<ContainerProps> = ({ view }) => {
   return (
     <div id="container">
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<div>Carregando...</div>}>
         {view ? <PdfView /> : <Project />}
       </Suspense>
     </div>

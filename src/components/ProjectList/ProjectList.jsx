@@ -17,12 +17,8 @@ export function ProjectList() {
   }
   console.log(projectList.length);
 
-  if (projectList.length === 0) {
-    return (
-      <IonContent>
-        <Spinner />
-      </IonContent>
-    );
+  if (!projectList) {
+    return <Spinner message={"Listas de carregamento..."} />;
   }
   return (
     <IonContent>

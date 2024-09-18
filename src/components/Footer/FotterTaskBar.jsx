@@ -23,22 +23,19 @@ import { useContext } from "react";
 import PostOneDrive from "../../services/PostOneDrive";
 import { useRenderPDF } from "../../hooks/useRenderPDF";
 import { PDF } from "../Pdf/PagesPDF/PDF";
+import { Spinner } from "../Spinner/Spinner";
 
 export function FotterTaskBar({ setView, view }) {
   const [isSignedIn] = useIsSignedIn();
   const { project, AddProjectToList, selectedFolder } =
     useContext(ProjectContext);
-  const { url, loading, error } = useRenderPDF(project);
+  const { url, error } = useRenderPDF(project);
 
-  // Render the spinner if the project is null
   if (!project) {
-    return (
-      <IonContent>
-        <div className="spinner-container">
-          <IonSpinner name="crescent" />
-        </div>
-      </IonContent>
-    );
+    return <Spinner message={"Carregando projeto..."} />;
+  }
+  if (error) {
+    return "Ocorreu um erro, tente novamente mais tarde";
   }
   const { title } = project[0].introduction;
 

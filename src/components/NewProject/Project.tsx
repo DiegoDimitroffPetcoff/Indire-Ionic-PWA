@@ -29,7 +29,7 @@ function Project() {
   };
 
   if (!project || !modules) {
-    return <Spinner />;
+    return <Spinner message={"Carregando..."} />;
   }
 
   return (
