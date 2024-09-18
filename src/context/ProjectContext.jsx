@@ -11,6 +11,7 @@ import { useImg } from "./useImg";
 import { useTemplates } from "./useTemplate";
 import { useProjectList } from "./useProjectList";
 import { useProject } from "./useProject";
+import { sincronization } from "../utils/sincronization";
 import MODULE_TEMPLATES from "../templates/moduleTemplate.json";
 import SUBSECTION_TEMPLATES from "../templates/subsectionTemplate.json";
 
@@ -85,6 +86,8 @@ export const PorjectProvider = ({ children }) => {
   const [modulesTemplates, setModulesTemplates] = useState(null);
   const [subsectionTemplates, setSubsectionTemplates] = useState(null);
   const [selectedFolder, setSelectedFolder] = useState("no_selected_folder");
+  const [syncResult, setSyncResult] = useState(null); 
+
 
   useEffect(() => {
     const loadProject = async () => {
@@ -102,21 +105,22 @@ export const PorjectProvider = ({ children }) => {
   useEffect(() => {
     const loadProjects = async () => {
       try {
-        // Intentar obtener la lista de proyectos desde la base de datos
         const remoteProjects = await getProjectList();
-        setProjectList(remoteProjects); // Actualiza la lista si la llamada a la base de datos es exitosa
+        const localProjects = await getLocalProjects();
+        const resultSincronic = sincronization(remoteProjects, localProjects);
+        setProjectList(remoteProjects);
+        setSyncResult(resultSincronic);
+    
+
         console.log("Proyectos cargados desde la base de datos");
       } catch (error) {
         console.error(
           "Error al obtener la lista de proyectos desde la base de datos:",
           error
         );
-
-        // Si ocurre un error, intenta obtener los proyectos locales
         try {
           const localProjects = await getLocalProjects();
-          setProjectList(localProjects); // Actualiza la lista con los proyectos locales
-          console.log("Proyectos cargados desde el almacenamiento local");
+          setProjectList(localProjects);
         } catch (localError) {
           console.error(
             "Error al obtener la lista de proyectos desde el almacenamiento local:",
@@ -255,6 +259,7 @@ export const PorjectProvider = ({ children }) => {
         AddProjectToList,
         selectedFolder,
         setSelectedFolder,
+        syncResult
       }}
     >
       {children}

@@ -4,6 +4,7 @@ import "./ProjectList.css";
 import { ProjectContext } from "../../context/ProjectContext";
 import { Spinner } from "../Spinner/Spinner";
 import { getProjectList } from "../../services/dbs/getProjectList";
+import { Sincronization } from "./Sincronization";
 
 export function ProjectList() {
   const { projectList, deleteProjectOnList, setProject, setProjectList } =
@@ -15,7 +16,6 @@ export function ProjectList() {
     setProject(projectFiltered);
     setInitialProject(JSON.parse(JSON.stringify(projectFiltered)));
   }
-  console.log(projectList.length);
 
   if (!projectList) {
     return <Spinner message={"Listas de carregamento..."} />;
@@ -99,6 +99,7 @@ export function ProjectList() {
             {projectList.length}
           </IonCol>
         </IonRow>
+        <Sincronization />
       </IonGrid>
     </IonContent>
   );

@@ -36,6 +36,8 @@ export function FotterTaskBar({ setView, view }) {
 
   const handleSaveToOneDrive = async () => {
     try {
+      console.log(project);
+      
       await PostOneDrive(project, title, selectedFolder);
     } catch (error) {
       console.error("Failed to upload to OneDrive", error);

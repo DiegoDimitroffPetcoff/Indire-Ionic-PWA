@@ -1,7 +1,6 @@
 import { Auth } from "../auth/Auth";
 import { pdf } from "@react-pdf/renderer";
-import { PDF } from "../Pdf/PagesPDF/PDF";
-
+import { PDF } from "../components/Pdf/PagesPDF/PDF";
 
 const PostOneDrive = async (file, title, folder) => {
   try {
@@ -37,4 +36,4 @@ const PostOneDrive = async (file, title, folder) => {
     throw new Error(error);
   }
 };
-export default PostOneDrive
+export default PostOneDrive;
