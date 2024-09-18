@@ -1,8 +1,11 @@
 import { Auth } from "../auth/Auth";
+import { pdf } from "@react-pdf/renderer";
+import { PDF } from "../Pdf/PagesPDF/PDF";
 
 
 const PostOneDrive = async (file, title, folder) => {
   try {
+    const blob = await pdf(PDF(file)).toBlob();
     const accessToken = await Auth();
     var root = "https://graph.microsoft.com/v1.0/me/drive/root:";
     var path = `/${folder}/${title}.pdf:/content`;
@@ -15,7 +18,7 @@ const PostOneDrive = async (file, title, folder) => {
         "Content-Type": "application/pdf;charset=utf-8",
         "Accept-Language": "pt",
       },
-      body: file,
+      body: blob,
     });
 
     if (response.ok) {

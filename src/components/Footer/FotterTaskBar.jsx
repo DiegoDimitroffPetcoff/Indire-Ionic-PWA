@@ -5,8 +5,6 @@ import {
   IonToolbar,
   IonCol,
   IonGrid,
-  IonContent,
-  IonSpinner,
 } from "@ionic/react";
 import {
   downloadOutline,
@@ -16,13 +14,10 @@ import {
 } from "ionicons/icons";
 
 import { useIsSignedIn } from "@microsoft/mgt-react";
-import { pdf } from "@react-pdf/renderer";
 import { ProjectContext } from "../../context/ProjectContext";
 import { useContext } from "react";
-/* import { MyDocument } from "../Pdf/PdfView"; */
 import PostOneDrive from "../../services/PostOneDrive";
 import { useRenderPDF } from "../../hooks/useRenderPDF";
-import { PDF } from "../Pdf/PagesPDF/PDF";
 import { Spinner } from "../Spinner/Spinner";
 
 export function FotterTaskBar({ setView, view }) {
@@ -40,11 +35,8 @@ export function FotterTaskBar({ setView, view }) {
   const { title } = project[0].introduction;
 
   const handleSaveToOneDrive = async () => {
-    console.log("handleSaveToOneDrive");
-
     try {
-      const blob = await pdf(PDF(project)).toBlob();
-      await PostOneDrive(blob, title, selectedFolder);
+      await PostOneDrive(project, title, selectedFolder);
     } catch (error) {
       console.error("Failed to upload to OneDrive", error);
     }
