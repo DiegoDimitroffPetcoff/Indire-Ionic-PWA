@@ -132,6 +132,26 @@ export const PorjectProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
+    const sincronizationManager = async () => {
+      try {
+        const remoteProjects = await getProjectList();
+        const localProjects = await getLocalProjects();
+        const resultSincronic = sincronization(remoteProjects, localProjects);
+        setSyncResult(resultSincronic);
+
+        console.log("Proyectos cargados desde la base de datos");
+      } catch (error) {
+        console.error(
+          "Error al obtener la lista de proyectos desde la base de datos:",
+          error
+        );
+      }
+    };
+
+    sincronizationManager();
+  }, [projectList]);
+
+  useEffect(() => {
     const loadProject = async () => {
       const storedTemplates = await getProject("MODULE_TEMPLATES");
       if (storedTemplates) {

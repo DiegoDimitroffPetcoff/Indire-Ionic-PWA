@@ -1,13 +1,16 @@
 import React, { useContext, useEffect, useState } from "react";
-import { IonAlert, IonButton } from "@ionic/react";
+
+import { IonCol, IonAlert, IonRow, IonButton } from "@ionic/react";
 
 import { ProjectContext } from "../../context/ProjectContext";
 import { postProjectList } from "../../services/dbs/postProjectList";
-export function Sincronization(remoteProjects, localProjects) {
+import { LocalsProjectMapper } from "./LocalsProjectMapper/LocalsProjectMapper";
+export function Sincronization() {
   const [localStoraged, setLocalStoraged] = useState(false);
   const [dbsStoraged, setdbsStoraged] = useState(false);
 
-  const { syncResult, listProject, AddProjectToList } = useContext(ProjectContext);
+  const { syncResult, projectList, AddProjectToList } =
+    useContext(ProjectContext);
 
   useEffect(() => {
     if (
@@ -25,20 +28,17 @@ export function Sincronization(remoteProjects, localProjects) {
     ) {
       setdbsStoraged(true);
     }
-  }, [syncResult,listProject]);
+  }, [syncResult]);
   async function postToDbs(listProject) {
     listProject.map(async (project) => {
       await postProjectList(project);
     });
   }
-  async function postToLocalStorage(listProject) {
+  async function postToLocalStorage(project) {
     try {
-      // Usar Promise.all para esperar a que todas las promesas se resuelvan
-      await Promise.all(
-        listProject.map(async (project) => {
-          await AddProjectToList(project, true);
-        })
-      );
+      await AddProjectToList(project, true);
+      console.log(syncResult);
+      console.log(projectList);
     } catch (error) {
       console.error(
         "Error al guardar proyectos en el almacenamiento local:",
@@ -72,26 +72,10 @@ export function Sincronization(remoteProjects, localProjects) {
         </>
       )}
       {dbsStoraged && (
-        <>
-          <IonButton id="present-alertDBS" color={"danger"}>
-            {syncResult.newRemoteProjects.length} projeto(s) na base de dados
-            não encontrados no local
-          </IonButton>
-          <IonAlert
-            trigger="present-alertDBS"
-            header="Atenção"
-            subHeader="Projetos na Base de Dados"
-            message={`Há ${syncResult.newRemoteProjects.length} projeto(s) na base de dados que não foram encontrados no seu armazenamento local.`}
-            buttons={[
-              {
-                text: "OK",
-                handler: () => {
-                  postToLocalStorage(syncResult.newRemoteProjects); // Ejecuta la acción cuando se presiona OK
-                },
-              },
-            ]}
-          />
-        </>
+        <LocalsProjectMapper
+          projectsToMapp={syncResult.newRemoteProjects}
+          postToLocalStorage={postToLocalStorage}
+        />
       )}
     </>
   );
