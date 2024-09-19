@@ -1,6 +1,10 @@
-import { IonCol, IonRow, IonButton } from "@ionic/react";
+import { IonCol, IonRow, IonButton, IonIcon } from "@ionic/react";
+import { saveOutline } from "ionicons/icons";
 
 export const LocalsProjectMapper = ({ projectsToMapp, postToLocalStorage }) => {
+  if (!projectsToMapp) {
+    return "Carregando..";
+  }
   return (
     <IonRow className="table-caption">
       <IonCol size="12">
@@ -10,20 +14,25 @@ export const LocalsProjectMapper = ({ projectsToMapp, postToLocalStorage }) => {
 
       {projectsToMapp.map((project, id) => {
         const { date, title, project_number } = project[0].introduction;
+
         return (
           <IonRow className="table-footer" key={id}>
-            <IonCol sizeMd="4" sizeXs="6" className="table-footer-cell">
-              {project.title}
+            <IonCol sizeMd="4" className="table-footer-cell">
+              {title}
             </IonCol>
-            <IonCol sizeMd="4" sizeXs="6" className="table-footer-cell">
+            <IonCol sizeMd="4" className="table-footer-cell">
               {`${date}_${title}_${project_number}`}
             </IonCol>
-            <IonCol sizeMd="4" sizeXs="6" className="table-footer-cell">
+            <IonCol sizeMd="4" className="table-footer-cell">
               <IonButton
                 color={"success"}
                 onClick={() => postToLocalStorage(project)}
               >
-                Guardar en DBS
+                <IonIcon
+                  ios={saveOutline}
+                  md={saveOutline}
+                  onClick={() => postToLocalStorage(project)}
+                />
               </IonButton>
             </IonCol>
           </IonRow>
