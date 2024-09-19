@@ -44,7 +44,7 @@ export function TableOfContents({ data, dataIterated }) {
           React.createElement(
             Link,
             { style: styles.indexPageNumber, src: `#${item.idTemplate}` },
-            React.createElement(Text, null, item.idTemplate)
+            React.createElement(Text, null, item.idTemplate.replace(/^6\./, " #"))
           ),
           React.createElement(
             Text,
