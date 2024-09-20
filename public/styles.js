@@ -17,6 +17,7 @@ export const styles = StyleSheet.create({
   page: {
     padding: 20,
     backgroundColor: "#FFFFFF",
+    gap:20
   },
   module: {
     margin: 10,
@@ -104,6 +105,7 @@ export const styles = StyleSheet.create({
     borderWidth: 1,
     borderRightWidth: 0,
     borderBottomWidth: 0,
+   
   },
   tableRow: {
     flexDirection: "row",

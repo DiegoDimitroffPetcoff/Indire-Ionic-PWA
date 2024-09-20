@@ -88,9 +88,12 @@ form {
 }
 .budgetInputs {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  background-color: #9e9e9e6f;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  background-color: transparent;
+  gap: 10px;
+  margin-bottom: 10px;
 }
+
 .clickable-label:hover {
   cursor: pointer;
   color: antiquewhite;

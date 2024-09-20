@@ -1,6 +1,13 @@
 import { useContext, useState } from "react";
 import { ProjectContext } from "../../../../context/ProjectContext";
-import { IonInput, IonButton, IonAlert } from "@ionic/react";
+import {
+  IonInput,
+  IonButton,
+  IonItem,
+  IonLabel,
+  IonSelect,
+  IonSelectOption,
+} from "@ionic/react";
 
 export const Budget = ({
   description,
@@ -33,7 +40,7 @@ export const Budget = ({
           )
         }
       />
-    <IonInput
+      <IonInput
         label="Un"
         type="text"
         placeholder="Número"
@@ -52,28 +59,8 @@ export const Budget = ({
             idBudget
           )
         }
-      /> 
-{/*       <IonInput
-        label="Un"
-        disabled={true}
-        type="text"
-        placeholder="Número"
-        labelPlacement="floating"
-        fill="outline"
-        value="vg"
-        onIonChange={(e) =>
-          handleBudget(
-            e,
-            description,
-            "amount",
-            moduleId,
-            firstSectionId,
-            sectionId,
-            sectionId2,
-            idBudget
-          )
-        }
-      /> */}
+      />
+
       <IonInput
         label="Qtd"
         type="number"
@@ -134,6 +121,31 @@ export const Budget = ({
           );
         }}
       />
+
+      <IonItem>
+        <IonSelect
+          value={budget.alternative}
+          placeholder="Alternative"
+          onIonChange={(e) =>
+            handleBudget(
+              e,
+              description,
+              "alternative",
+              moduleId,
+              firstSectionId,
+              sectionId,
+              sectionId2,
+              idBudget
+            )
+          }
+        >
+          <IonSelectOption value={null}></IonSelectOption>
+          <IonSelectOption value="A">A</IonSelectOption>
+          <IonSelectOption value="B">B</IonSelectOption>
+          <IonSelectOption value="C">C</IonSelectOption>
+        </IonSelect>
+      </IonItem>
+
       <IonButton
         id="deleBudget"
         color="danger"

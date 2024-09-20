@@ -76,7 +76,9 @@ export function useBudget(setProject) {
             sectionId
           ].budget[idBudget][field] = value;
 
-          if (field === "un" || field === "qtd") {
+          if (field === "un" || field === "qtd" || field === "alternative") {
+            console.log(field);
+            
             let un =
               updateProject[1].modules[moduleId].sections[firstSectionId]
                 .sections[sectionId].budget[idBudget].un;
@@ -89,7 +91,12 @@ export function useBudget(setProject) {
             updateProject[1].modules[moduleId].sections[
               firstSectionId
             ].sections[sectionId].budget[idBudget].uniteValue = result;
+
+         
           }
+console.log(updateProject[1].modules[moduleId].sections[
+  firstSectionId
+].sections[sectionId].budget[idBudget]);
 
           // Guardar con Capacitor
           saveProject("data", updateProject);

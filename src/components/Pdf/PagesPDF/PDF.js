@@ -5,7 +5,7 @@ import { Introduction } from "./Introduction";
 import { Iterator } from "../../../utils/Iterator";
 import { Modules } from "./Modules.js";
 import { TableOfContents } from "./TableOfContents";
-import { BudgetTable } from "./BudgetTable";
+import { BudgetTable } from "./Budget/BudgetTable";
 
 export const PDF = (data) => {
   if (!data || !data[0]) {
@@ -25,6 +25,6 @@ export const PDF = (data) => {
     React.createElement(Introduction, { introduction }),
     React.createElement(TableOfContents, { data, dataIterated }),
     React.createElement(Modules, { data, dataIterated }),
-    React.createElement(BudgetTable, { dataIterated })
+    React.createElement(BudgetTable, { data, dataIterated })
   );
 };

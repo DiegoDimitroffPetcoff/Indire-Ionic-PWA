@@ -1,12 +1,12 @@
 import React from "react";
 import { Text, View, Page } from "@react-pdf/renderer";
-import { styles } from "../../../../public/styles";
+import { styles } from "../../../../../public/styles";
 
 export const BudgetTable = ({ dataIterated }) => {
   let lastContent;
   let custoTotal = 0;
 
-  if (dataIterated.length !== 0) {
+  if (dataIterated && dataIterated.length !== 0) {
     return React.createElement(
       Page,
       { size: "A4", style: styles.page },
@@ -33,46 +33,50 @@ export const BudgetTable = ({ dataIterated }) => {
           React.createElement(Text, { style: styles.tableCol }, "CUSTO TOTAL")
         ),
         dataIterated.map((item, index) => {
-          if (item.idTemplate !== lastContent) {
+          if (item.idTemplate !== lastContent ) {
             lastContent = item.idTemplate;
 
             return item.budget.map((budget, budgetIndex) => {
               custoTotal += budget.uniteValue;
-              return React.createElement(
-                View,
-                { style: styles.tableRow, key: `${index}-${budgetIndex}` },
-                React.createElement(
-                  Text,
-                  { style: styles.tableCol },
-                  item.idTemplate
-                ),
-                React.createElement(
-                  Text,
-                  { style: styles.tableCol },
-                  budget.description
-                ),
-                React.createElement(
-                  Text,
-                  { style: styles.tableCol },
-                  budget.amount
-                ),
-                React.createElement(
-                  Text,
-                  { style: styles.tableCol },
-                  budget.qtd
-                ),
-                React.createElement(
-                  Text,
-                  { style: styles.tableCol },
-                  budget.un
-                ),
-                React.createElement(
-                  Text,
-                  { style: styles.tableCol },
-                  budget.uniteValue
-                ),
-                React.createElement(Text, { style: styles.tableCol })
-              );
+
+              if (!budget.alternative ) {
+                return React.createElement(
+                  View,
+                  { style: styles.tableRow, key: `${index}-${budgetIndex}` },
+                  React.createElement(
+                    Text,
+                    { style: styles.tableCol },
+                    item.idTemplate
+                  ),
+                  React.createElement(
+                    Text,
+                    { style: styles.tableCol },
+                    budget.description
+                  ),
+                  React.createElement(
+                    Text,
+                    { style: styles.tableCol },
+                    budget.amount
+                  ),
+                  React.createElement(
+                    Text,
+                    { style: styles.tableCol },
+                    budget.qtd
+                  ),
+                  React.createElement(
+                    Text,
+                    { style: styles.tableCol },
+                    budget.un
+                  ),
+                  React.createElement(
+                    Text,
+                    { style: styles.tableCol },
+                    budget.uniteValue
+                  ),
+                  React.createElement(Text, { style: styles.tableCol })
+                );
+              }
+              return null;
             });
           }
         }),
