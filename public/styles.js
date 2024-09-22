@@ -121,6 +121,16 @@ export const styles = StyleSheet.create({
     padding: 1,
     textAlign: "center",
   },
+  tableColSpace: {
+    borderStyle: "solid",
+    borderColor: "#bfbfbf",
+    borderWidth: 1,
+    borderLeftWidth: 0,
+    borderTopWidth: 0,
+    width: "100%",
+    padding: 5,
+    textAlign: "center",
+  },
   tableHeader: {
     backgroundColor: "#d3d3d3",
     fontWeight: "bold",

@@ -8,10 +8,10 @@ export function Content({ dataIterated }) {
   return React.createElement(
     View,
     null,
-    dataIterated.map((module, index) => {
+    dataIterated.map((module, i) => {
       return React.createElement(
         View,
-        { key: index, style: styles.module },
+        { key: i, style: styles.module },
         titles(module),
         descriptions(module)
       );

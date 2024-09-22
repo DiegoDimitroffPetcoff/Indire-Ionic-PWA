@@ -1,17 +1,17 @@
 import React from "react";
-import { Text, View, Page } from "@react-pdf/renderer";
+import { Text, View } from "@react-pdf/renderer";
 import { styles } from "../../../../../public/styles";
+import { budgetIteratores } from "./bugetIterator";
+
 export function AlternativeBudget({ dataIterated }) {
-  let lastContent;
+  const { budgetIterator } = budgetIteratores();
+
+  let lastSecondNumber = null;
   let custoTotal = 0;
+
   return React.createElement(
     View,
     { style: styles.table },
-    React.createElement(
-      Text,
-      { style: styles.tableCol },
-      "ALTERNATIVAS AOS TRABALHOS PROPOSTOS"
-    ),
     React.createElement(
       View,
       { style: [styles.tableRow, styles.tableHeader] },
@@ -24,53 +24,35 @@ export function AlternativeBudget({ dataIterated }) {
       React.createElement(Text, { style: styles.tableCol }, "CUSTO TOTAL")
     ),
     dataIterated.map((item, index) => {
-      if (item.idTemplate !== lastContent) {
-        lastContent = item.idTemplate;
+      const secondNumber = item.idTemplate.split(".")[1];
+
+      const isNewSection = secondNumber !== lastSecondNumber;
+
+      if (isNewSection && lastSecondNumber !== null) {
+        lastSecondNumber = secondNumber;
+
+        return [
+          React.createElement(
+            View,
+            { style: styles.tableRow, key: `espacio-${index}` },
+            React.createElement(Text, { style: styles.tableColSpace }, "")
+          ),
+
+          item.budget.map((budget, budgetIndex) => {
+            if (!budget.alternative) {
+              return budgetIterator({ item, index, budget, budgetIndex });
+            }
+          }),
+        ];
+      } else {
+        lastSecondNumber = secondNumber;
 
         return item.budget.map((budget, budgetIndex) => {
-          custoTotal += budget.uniteValue;
-
           if (budget.alternative) {
-            return React.createElement(
-              View,
-              { style: styles.tableRow, key: `${index}-${budgetIndex}` },
-              React.createElement(
-                Text,
-                { style: styles.tableCol },
-                item.idTemplate
-              ),
-              React.createElement(
-                Text,
-                { style: styles.tableCol },
-                budget.description
-              ),
-              React.createElement(
-                Text,
-                { style: styles.tableCol },
-                budget.amount
-              ),
-              React.createElement(Text, { style: styles.tableCol }, budget.qtd),
-              React.createElement(Text, { style: styles.tableCol }, budget.un),
-              React.createElement(
-                Text,
-                { style: styles.tableCol },
-                budget.uniteValue
-              ),
-              React.createElement(Text, { style: styles.tableCol })
-            );
+            return budgetIterator({ item, index, budget, budgetIndex });
           }
-          return null;
         });
       }
     })
-    /*             React.createElement(
-              Text,
-              { style: styles.tableCol },
-              React.createElement(
-                Text,
-                { style: styles.tableCol },
-                `$${custoTotal}`
-              )
-            ) */
   );
 }
