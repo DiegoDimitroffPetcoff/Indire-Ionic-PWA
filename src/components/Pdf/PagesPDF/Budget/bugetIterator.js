@@ -3,6 +3,8 @@ import { Text, View, Page } from "@react-pdf/renderer";
 import { styles } from "../../../../../public/styles";
 export const budgetIteratores = () => {
   function budgetIterator({ item, index, budget, budgetIndex }) {
+
+    
     return React.createElement(
       View,
       { style: styles.tableRow, key: `${index}-${budgetIndex}` },
