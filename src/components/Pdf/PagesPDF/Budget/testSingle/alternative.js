@@ -2,7 +2,7 @@ import React from "react";
 import { Text, View } from "@react-pdf/renderer";
 import { styles } from "../../../../../../public/styles";
 
-export function Single({ item, index }) {
+export function Alternative({ item, index }) {
   const { budget, idTemplate } = item;
 
   const isBudgetArray = Array.isArray(budget) && budget.length > 0;
@@ -12,7 +12,7 @@ export function Single({ item, index }) {
   }
 
   return budget.map((budgetItem, budgetIndex) => {
-    if (!budgetItem.alternative) {
+    if (budgetItem.alternative) {
       return React.createElement(
         View,
         { style: styles.tableRow, key: `${index}-${budgetIndex}` },
@@ -42,7 +42,13 @@ export function Single({ item, index }) {
           { style: styles.tableCol },
           budgetItem.uniteValue || "-"
         ),
-        React.createElement(Text, { style: styles.tableCol }, "-")
+
+        React.createElement(Text, { style: styles.tableCol }, "-"),
+        React.createElement(
+          Text,
+          { style: styles.tableCol },
+          budgetItem.alternative || "-"
+        )
       );
     }
   });

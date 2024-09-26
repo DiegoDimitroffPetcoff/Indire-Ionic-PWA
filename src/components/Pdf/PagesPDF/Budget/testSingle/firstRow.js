@@ -3,13 +3,9 @@ import { Text, View } from "@react-pdf/renderer";
 import { styles } from "../../../../../../public/styles";
 /* import { budgetIteratores } from "./bugetIterator"; */
 
-export function firstRow({ dataIterated }) {
-  /*   const { budgetIterator } = budgetIteratores(); */
-
-  let lastSecondNumber = null;
-  let custoTotal = 0;
-  let subtotal = 0; // Agregar variable subtotal
-
+export function firstRow( {Alternative} ) {
+  console.log(Alternative);
+  
   return React.createElement(
     View,
     { style: styles.table },
@@ -22,51 +18,8 @@ export function firstRow({ dataIterated }) {
       React.createElement(Text, { style: styles.tableCol }, "Qtd."),
       React.createElement(Text, { style: styles.tableCol }, "CUSTO UNITARIO"),
       React.createElement(Text, { style: styles.tableCol }, "CUSTO PARCIAL"),
-      React.createElement(Text, { style: styles.tableCol }, "CUSTO TOTAL")
-    ),
-/*     dataIterated.map((item, index) => {
-      const secondNumber = item.idTemplate.split(".")[1];
-
-      const isNewSection = secondNumber !== lastSecondNumber;
-
-      if (isNewSection && lastSecondNumber !== null) {
-        const previousSubtotal = subtotal;
-        subtotal = 0; // Resetear subtotal para la nueva sección
-
-        lastSecondNumber = secondNumber;
-
-        return [
-          React.createElement(
-            View,
-            { style: styles.tableRow, key: `espacio-${index}` },
-            React.createElement(Text, { style: styles.tableColSpace }, ""),
-            React.createElement(Text, { style: styles.tableCol }, ""), // Fila en blanco para la estética
-            React.createElement(Text, { style: styles.tableCol }, ""),
-            React.createElement(Text, { style: styles.tableCol }, ""),
-            React.createElement(Text, { style: styles.tableCol }, ""),
-            React.createElement(Text, { style: styles.tableCol }, "Subtotal: "), // Columna del subtotal
-            React.createElement(
-              Text,
-              { style: styles.tableCol },
-              previousSubtotal
-            ) // Mostrar el subtotal previo
-          ),
-        ];
-      } else {
-        return null;
-      }
-    }),
-    // Finalmente, muestra el costo total general si lo deseas
-    React.createElement(
-      View,
-      { style: styles.tableRow },
-      React.createElement(Text, { style: styles.tableColSpace }, ""),
-      React.createElement(Text, { style: styles.tableCol }, "Total General"),
-      React.createElement(
-        Text,
-        { style: styles.tableCol },
-        custoTotal.toFixed(2)
-      ) // Mostrar el costo total general
-    ) */
+      React.createElement(Text, { style: styles.tableCol }, "CUSTO TOTAL"),
+      Alternative ? React.createElement(Text, { style: styles.tableCol }, "ALTERNATIVAAA!!") : null
+    )
   );
 }
