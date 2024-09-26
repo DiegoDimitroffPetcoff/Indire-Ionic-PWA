@@ -1,5 +1,4 @@
 import { StyleSheet } from "@react-pdf/renderer";
-
 export function getDynamicStyles(index) {
   switch (index) {
     case 1:
@@ -18,6 +17,7 @@ export const styles = StyleSheet.create({
   page: {
     padding: 20,
     backgroundColor: "#FFFFFF",
+    gap: 20,
   },
   module: {
     margin: 10,
@@ -40,6 +40,8 @@ export const styles = StyleSheet.create({
     textAlign: "center",
   },
   sub_title: {
+    marginTop: 0,
+    padding: 0,
     fontWeight: "bold",
     fontSize: 15,
     textAlign: "center",
@@ -51,9 +53,13 @@ export const styles = StyleSheet.create({
     textAlign: "center",
   },
   superscript: {
-    fontSize: 8,
-    verticalAlign: "super",
-    marginLeft: 2,
+    fontSize: 8, // Tamaño más pequeño para el superíndice
+    verticalAlign: "super", // Alineación superior para el superíndice
+    marginLeft: 2, // Espacio entre el superíndice y el texto circundante
+  },
+  logo: {
+    width: "150px",
+    padding: "10px",
   },
   mainImage: {
     width: "100%",
@@ -102,25 +108,31 @@ export const styles = StyleSheet.create({
   },
   tableRow: {
     flexDirection: "row",
-    margin: 0, // Asegúrate de que no haya margen
+    /*  fontSize: 10,
+    padding: 0,
+    margin: 0, */
   },
   tableCol: {
     borderStyle: "solid",
     borderColor: "#bfbfbf",
     borderWidth: 1,
+    /*    borderLeftWidth: 0,*/
+    /*   borderTopWidth: 0, */
     borderBottomWidth: 0,
     height: "100%",
     width: "100%",
     padding: 1,
     textAlign: "center",
+    backgroundColor: "red",
   },
-  lastTableCol: {
+  last: {
     borderStyle: "solid",
     borderColor: "#bfbfbf",
     borderWidth: 1,
     height: "100%",
+    /*    borderLeftWidth: 0,*/
     borderTopWidth: 0,
-    borderBottomWidth: 1,
+    borderBottomWidth: 1, // Mantener borde inferior
     width: "100%",
     padding: 1,
     textAlign: "center",
@@ -129,6 +141,7 @@ export const styles = StyleSheet.create({
   tableColSpace: {
     borderStyle: "solid",
     borderColor: "#bfbfbf",
+    /*   borderWidth: 1, */
     borderLeftWidth: 0,
     borderTopWidth: 0,
     width: "100%",
@@ -157,10 +170,12 @@ export const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: "bold",
     textAlign: "start",
+    /*   marginBottom: 10, */
     textDecoration: "underline",
   },
   moduleText: {
     fontSize: 10,
+    /*  marginBottom: 4, */
     textAlign: "justify",
     fontWeight: "thin",
   },
@@ -168,12 +183,14 @@ export const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: "bold",
     textAlign: "start",
+    /*   marginBottom: 10, */
     textDecoration: "underline",
   },
   sectionSubTitle: {
     fontSize: 14,
     fontWeight: "bold",
     textAlign: "start",
+    /*   marginBottom: 10, */
     textDecoration: "underline",
   },
 
@@ -184,6 +201,7 @@ export const styles = StyleSheet.create({
   },
   secondTemplate: {
     fontWeight: "heavy",
+
     fontSize: 13,
   },
   indexPageNumber: {

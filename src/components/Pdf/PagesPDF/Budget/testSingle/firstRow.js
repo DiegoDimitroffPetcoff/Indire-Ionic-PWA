@@ -3,9 +3,7 @@ import { Text, View } from "@react-pdf/renderer";
 import { styles } from "../../../../../../public/styles";
 /* import { budgetIteratores } from "./bugetIterator"; */
 
-export function firstRow( {Alternative} ) {
-  console.log(Alternative);
-  
+export function firstRow({ Alternative }) {
   return React.createElement(
     View,
     { style: styles.table },
@@ -19,7 +17,13 @@ export function firstRow( {Alternative} ) {
       React.createElement(Text, { style: styles.tableCol }, "CUSTO UNITARIO"),
       React.createElement(Text, { style: styles.tableCol }, "CUSTO PARCIAL"),
       React.createElement(Text, { style: styles.tableCol }, "CUSTO TOTAL"),
-      Alternative ? React.createElement(Text, { style: styles.tableCol }, "ALTERNATIVAAA!!") : null
+      Alternative
+        ? React.createElement(
+            Text,
+            { style: styles.tableCol },
+            "ALTERNATIVAAA!!"
+          )
+        : null
     )
   );
 }
