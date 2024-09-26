@@ -105,6 +105,7 @@ export const styles = StyleSheet.create({
     margin: 0, // Asegúrate de que no haya margen
   },
   tableCol: {
+    fontSize:14,
     borderStyle: "solid",
     borderColor: "#bfbfbf",
     borderWidth: 1,
@@ -115,6 +116,7 @@ export const styles = StyleSheet.create({
     textAlign: "center",
   },
   lastTableCol: {
+    fontSize:14,
     borderStyle: "solid",
     borderColor: "#bfbfbf",
     borderWidth: 1,
