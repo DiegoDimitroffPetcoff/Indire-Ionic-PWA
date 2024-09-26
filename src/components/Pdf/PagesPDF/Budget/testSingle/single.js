@@ -13,41 +13,83 @@ export function Single({ item, index }) {
   }
 
   return budget.map((budgetItem, budgetIndex) => {
-    
-    const dinamycStyles = lastNumber(idTemplate) ? styles.lastTableCol : styles.tableCol;
+    const dinamycStyles = lastNumber(idTemplate)
+      ? styles.lastTableCol
+      : styles.tableCol;
 
-    if (!budgetItem.alternative) {
-      return React.createElement(
-        View,
-        { style: styles.tableRow, key: `${index}-${budgetIndex}` },
-        React.createElement(Text, { style: dinamycStyles }, idTemplate.replace(/^6\./, " #")),
-        React.createElement(
-          Text,
-          { style: dinamycStyles },
-          budgetItem.description || "-"
-        ),
-        React.createElement(
-          Text,
-          { style: dinamycStyles },
-          budgetItem.amount || "-"
-        ),
-        React.createElement(
-          Text,
-          { style: dinamycStyles },
-          budgetItem.qtd || "-"
-        ),
-        React.createElement(
-          Text,
-          { style: dinamycStyles },
-          budgetItem.un || "-"
-        ),
-        React.createElement(
-          Text,
-          { style: dinamycStyles },
-          budgetItem.uniteValue || "-"
-        ),
-        React.createElement(Text, { style: dinamycStyles }, "-")
-      );
-    }
+    return React.createElement(
+      View,
+      { style: styles.tableRow, key: `${index}-${budgetIndex}` },
+      React.createElement(
+        Text,
+        {
+          style: {
+            ...dinamycStyles,
+            flex: 2, // 40% para "designación"
+          },
+        },
+        idTemplate.replace(/^6\./, " #")
+      ),
+      React.createElement(
+        Text,
+        {
+          style: {
+            ...dinamycStyles,
+            flex: 4, // 30% para "descripción"
+          },
+        },
+        budgetItem.description || "-"
+      ),
+      React.createElement(
+        Text,
+        {
+          style: {
+            ...dinamycStyles,
+            flex: 1, // 20% para "monto"
+          },
+        },
+        budgetItem.amount || "-"
+      ),
+      React.createElement(
+        Text,
+        {
+          style: {
+            ...dinamycStyles,
+            flex: 1, // 10% para "cantidad"
+          },
+        },
+        budgetItem.qtd || "-"
+      ),
+      React.createElement(
+        Text,
+        {
+          style: {
+            ...dinamycStyles,
+            flex: 1, // 10% para "Un"
+          },
+        },
+        budgetItem.un || "-"
+      ),
+      React.createElement(
+        Text,
+        {
+          style: {
+            ...dinamycStyles,
+            flex: 1, // 20% para "valor unitario"
+          },
+        },
+        budgetItem.uniteValue || "-"
+      ),
+      React.createElement(
+        Text,
+        {
+          style: {
+            ...dinamycStyles,
+            flex: 2, // Para el último elemento
+          },
+        },
+        "-"
+      )
+    );
   });
 }
