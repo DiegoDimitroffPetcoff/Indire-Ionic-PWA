@@ -20,7 +20,7 @@ export function Single({ item, index }) {
       return React.createElement(
         View,
         { style: styles.tableRow, key: `${index}-${budgetIndex}` },
-        React.createElement(Text, { style: dinamycStyles }, idTemplate),
+        React.createElement(Text, { style: dinamycStyles }, idTemplate.replace(/^6\./, " #")),
         React.createElement(
           Text,
           { style: dinamycStyles },

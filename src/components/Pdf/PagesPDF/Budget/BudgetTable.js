@@ -15,7 +15,7 @@ export const BudgetTable = ({ data, dataIterated }) => {
         { size: "A4", style: styles.page },
         React.createElement(Header, { data }),
 
-        React.createElement(firstRow,  {Alternative: false}),
+        React.createElement(firstRow, { Alternative: false }),
         dataIterated.map((item, index) => {
           return React.createElement(Single, { item, index });
         })
@@ -25,7 +25,7 @@ export const BudgetTable = ({ data, dataIterated }) => {
         { size: "A4", style: styles.page },
         React.createElement(Header, { data }),
 
-        React.createElement(firstRow, {Alternative: true}),
+        React.createElement(firstRow, { Alternative: true }),
         dataIterated.map((item, index) => {
           return React.createElement(Alternative, { item, index });
         })
