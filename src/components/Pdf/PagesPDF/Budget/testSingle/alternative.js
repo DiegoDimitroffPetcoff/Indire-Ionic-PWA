@@ -13,60 +13,133 @@ export function Alternative({ item, index }) {
 
   return Object.values(alternativas).map((alt, altIndex) => {
     const dinamycStyles = lastNumber(id)
-      ? styles.lastTableCol
-      : styles.tableCol;
+      ? styles.tableCol
+      : styles.lastTableCol;
 
-    return React.createElement(
-      View,
-      { style: styles.tableRow, key: `${index}-${altIndex}` },
+    return [
       React.createElement(
-        Text,
-        { style: { ...dinamycStyles, flex: 2 } },
-        id.replace(/^6\./, " #")
-      ),
-      React.createElement(
-        Text,
-        { style: { ...dinamycStyles, flex: 4 } },
-        `
+        View,
+        { style: styles.tableRow, key: `${index}-${altIndex}` },
+        React.createElement(
+          Text,
+          { style: { ...dinamycStyles, flex: 2 } },
+          id.replace(/^6\./, " #")
+        ),
+        React.createElement(
+          Text,
+          { style: { ...dinamycStyles, flex: 4 } },
+          `
         ${alt.description} 
          (Variante ${alt.alternativa} )
          ` || "-"
+        ),
+        React.createElement(
+          Text,
+          { style: { ...dinamycStyles, flex: 1 } },
+          `
+        ${alt.amount}
+        `
+        ),
+        React.createElement(
+          Text,
+          { style: { ...dinamycStyles, flex: 1 } },
+          `
+        ${alt.qtd}
+        `
+        ),
+        React.createElement(
+          Text,
+          { style: { ...dinamycStyles, flex: 1 } },
+          `
+        ${alt.un}
+        `
+        ),
+        React.createElement(
+          Text,
+          { style: { ...dinamycStyles, flex: 1 } },
+          `
+        ${alt.uniteValue}
+        `
+        ),
+        React.createElement(
+          Text,
+          { style: { ...dinamycStyles, flex: 2 } },
+          `
+        ${alt.diferencia}
+        `
+        )
       ),
       React.createElement(
-        Text,
-        { style: { ...dinamycStyles, flex: 1 } },
+        View,
+        { style: styles.tableRow, key: `${index}-${altIndex}` },
+        React.createElement(
+          Text,
+          { style: { ...dinamycStyles, flex: 2 } },
+          id.replace(/^6\./, " #")
+        ),
+        React.createElement(
+          Text,
+          { style: { ...dinamycStyles, flex: 4 } },
+          `
+        ${item.description} 
+     
+         ` || "-"
+        ),
+        React.createElement(
+          Text,
+          { style: { ...dinamycStyles, flex: 1 } },
+          `
+        ${item.amount}
         `
-        ${alt.amount || "-"}
+        ),
+        React.createElement(
+          Text,
+          { style: { ...dinamycStyles, flex: 1 } },
+          `
+        ${item.qtd}
         `
+        ),
+        React.createElement(
+          Text,
+          { style: { ...dinamycStyles, flex: 1 } },
+          `
+        ${item.un}
+        `
+        ),
+        React.createElement(
+          Text,
+          { style: { ...dinamycStyles, flex: 1 } },
+          `
+        -${item.main}
+        `
+        ),
+        React.createElement(
+          Text,
+          { style: { ...dinamycStyles, flex: 2 } },
+          `
+     
+        `
+        )
       ),
+
       React.createElement(
-        Text,
-        { style: { ...dinamycStyles, flex: 1 } },
+        View,
+        { style: styles.tableRow, key: `${index}-${altIndex}` },
+        React.createElement(
+          Text,
+          null,
+          `
+        VARIAÇÃO DE CUSTO DA ALTERNATIVA PROPOSTA 
         `
-        ${alt.qtd || "-"}
+        ),
+        React.createElement(
+          Text,
+          null,
+          `
+        ${alt.uniteValue}€ 
         `
+        )
       ),
-      React.createElement(
-        Text,
-        { style: { ...dinamycStyles, flex: 1 } },
-        `
-        ${alt.un || "-"}
-        `
-      ),
-      React.createElement(
-        Text,
-        { style: { ...dinamycStyles, flex: 1 } },
-        `
-        ${alt.uniteValue || "-"}
-        `
-      ),
-      React.createElement(
-        Text,
-        { style: { ...dinamycStyles, flex: 2 } },
-        `
-        ${alt.diferencia || "-"}
-        `
-      )
-    );
+    ];
   });
 }
