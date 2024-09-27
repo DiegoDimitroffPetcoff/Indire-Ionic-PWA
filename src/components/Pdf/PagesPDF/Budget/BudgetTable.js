@@ -6,9 +6,12 @@ import { Header } from "../Header";
 import { Single } from "./testSingle/single";
 import { Alternative } from "./testSingle/alternative";
 import { firstRow } from "./testSingle/firstRow";
+import { alternativeResoult } from "./testSingle/alternativeResoult";
 
 export const BudgetTable = ({ data, dataIterated }) => {
   if (dataIterated && dataIterated.length !== 0) {
+    let dataMapped = alternativeResoult(dataIterated);
+
     return [
       React.createElement(
         Page,
@@ -16,7 +19,7 @@ export const BudgetTable = ({ data, dataIterated }) => {
         React.createElement(Header, { data }),
 
         React.createElement(firstRow, { Alternative: false }),
-        dataIterated.map((item, index) => {
+        dataMapped.map((item, index) => {
           return React.createElement(Single, { item, index });
         })
       ),
@@ -26,7 +29,7 @@ export const BudgetTable = ({ data, dataIterated }) => {
         React.createElement(Header, { data }),
 
         React.createElement(firstRow, { Alternative: true }),
-        dataIterated.map((item, index) => {
+        dataMapped.map((item, index) => {
           return React.createElement(Alternative, { item, index });
         })
       ),

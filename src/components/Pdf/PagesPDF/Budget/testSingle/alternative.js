@@ -4,60 +4,69 @@ import { styles } from "../../../../../../public/styles";
 import { lastNumber } from "./lastNumber";
 
 export function Alternative({ item, index }) {
-  const { budget, idTemplate } = item;
+  const { id, alternativas } = item;
 
-  const isBudgetArray = Array.isArray(budget) && budget.length > 0;
-
-  if (!isBudgetArray) {
+  // Verificar si hay alternativas
+  if (!alternativas || Object.keys(alternativas).length === 0) {
     return null;
   }
 
-  return budget.map((budgetItem, budgetIndex) => {
-    if (budgetItem.alternative) {
-      console.log(budgetItem.alternative);
-      
-/*       const dinamycStyles = lastNumber(idTemplate)     */
-      const dinamycStyles = budgetItem.alternative !== "A" 
-        ? styles.lastTableCol
-        : styles.tableCol;
+  return Object.values(alternativas).map((alt, altIndex) => {
+    const dinamycStyles = lastNumber(id)
+      ? styles.lastTableCol
+      : styles.tableCol;
 
-      return React.createElement(
-        View,
-        { style: styles.tableRow, key: `${index}-${budgetIndex}` },
-        React.createElement(Text, { style: dinamycStyles }, idTemplate.replace(/^6\./, " #")),
-        React.createElement(
-          Text,
-          { style: dinamycStyles },
-          budgetItem.description || "-"
-        ),
-        React.createElement(
-          Text,
-          { style: dinamycStyles },
-          budgetItem.amount || "-"
-        ),
-        React.createElement(
-          Text,
-          { style: dinamycStyles },
-          budgetItem.qtd || "-"
-        ),
-        React.createElement(
-          Text,
-          { style: dinamycStyles },
-          budgetItem.un || "-"
-        ),
-        React.createElement(
-          Text,
-          { style: dinamycStyles },
-          budgetItem.uniteValue || "-"
-        ),
-
-        React.createElement(Text, { style: dinamycStyles }, "-"),
-        React.createElement(
-          Text,
-          { style: dinamycStyles },
-          budgetItem.alternative || "-"
-        )
-      );
-    }
+    return React.createElement(
+      View,
+      { style: styles.tableRow, key: `${index}-${altIndex}` },
+      React.createElement(
+        Text,
+        { style: { ...dinamycStyles, flex: 2 } },
+        id.replace(/^6\./, " #")
+      ),
+      React.createElement(
+        Text,
+        { style: { ...dinamycStyles, flex: 4 } },
+        `
+        ${alt.description} 
+         (Variante ${alt.alternativa} )
+         ` || "-"
+      ),
+      React.createElement(
+        Text,
+        { style: { ...dinamycStyles, flex: 1 } },
+        `
+        ${alt.amount || "-"}
+        `
+      ),
+      React.createElement(
+        Text,
+        { style: { ...dinamycStyles, flex: 1 } },
+        `
+        ${alt.qtd || "-"}
+        `
+      ),
+      React.createElement(
+        Text,
+        { style: { ...dinamycStyles, flex: 1 } },
+        `
+        ${alt.un || "-"}
+        `
+      ),
+      React.createElement(
+        Text,
+        { style: { ...dinamycStyles, flex: 1 } },
+        `
+        ${alt.uniteValue || "-"}
+        `
+      ),
+      React.createElement(
+        Text,
+        { style: { ...dinamycStyles, flex: 2 } },
+        `
+        ${alt.diferencia || "-"}
+        `
+      )
+    );
   });
 }
